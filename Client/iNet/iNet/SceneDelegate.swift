@@ -15,16 +15,41 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        setupWindow(for: windowScene)
+    }
+
+    func setupWindow(for windowScene: UIWindowScene) {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let welcomeView = WelcomeView {
-            let signUpViewController = SignUpViewController()
-            self.window?.rootViewController?.present(signUpViewController, animated: true, completion: nil)
-        }
-        let welcomeViewController = UIHostingController(rootView: welcomeView)
-        let navigationController = UINavigationController(rootViewController: welcomeViewController)
-        window?.rootViewController = navigationController
+        window?.rootViewController = setupNavigationController()
         window?.makeKeyAndVisible()
+    }
+
+    func setupNavigationController() -> UINavigationController {
+        let welcomeVC = WelcomeView {
+            self.navigateToSignUp()
+        }
+        let welcomeViewController = UIHostingController(rootView: welcomeVC)
+        return UINavigationController(rootViewController: welcomeViewController)
+    }
+
+    func navigateToSignUp() {
+        let registerVC = RegisterView {
+            self.goToSecondStageNavigate()
+        }
+        let registerViewController = UIHostingController(rootView: registerVC)
+        if let navigationController = self.window?.rootViewController as? UINavigationController {
+            registerViewController.title = "Register"
+            navigationController.pushViewController(registerViewController, animated: true)
+        }
+    }
+    
+    func goToSecondStageNavigate() {
+        let secondStageSignUpVC = UIHostingController(rootView: RegistrationSecondStageView())
+        if let navigationController = self.window?.rootViewController as? UINavigationController {
+            secondStageSignUpVC.title = "Register"
+            navigationController.pushViewController(secondStageSignUpVC, animated: true)
+        }
     }
     
     
@@ -58,4 +83,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
 }
-

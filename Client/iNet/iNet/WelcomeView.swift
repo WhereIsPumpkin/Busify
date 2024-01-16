@@ -13,26 +13,29 @@ struct WelcomeView: View {
     var body: some View {
         VStack {
             welcomeImage
-            Spacer().frame(height: 50)
+            Spacer().frame(height: 20)
             welcomeText
-            Spacer()
+            Spacer().frame(height: 48)
             authButtons
             Spacer()
             
         }
-        .padding(16)
+        .padding(20)
+        .padding(.top, 50)
     }
+    
     private var welcomeImage: some View {
         Image(.onlineConnect)
             .resizable()
             .aspectRatio(contentMode: .fit)
+            .frame(width: 250)
     }
     
     private var welcomeText: some View {
         VStack(spacing: 24) {
-            Text("Connect, \n Share, Explore")
+            Text("Connect, Share\n Explore")
                 .foregroundStyle(Color("mainColor"))
-                .font(.system(size: 36, weight: .semibold))
+                .font(.custom("Poppins-semibold", size: 32))
                 .multilineTextAlignment(.center)
             
             Text("iNet: Connect, share, explore. Your global social gateway.")
@@ -40,11 +43,10 @@ struct WelcomeView: View {
                 .font(.system(size: 16, weight: .medium))
                 .multilineTextAlignment(.center)
         }
-        .padding(.horizontal, 20)
     }
     
     private var authButtons: some View {
-        HStack {
+        VStack(spacing: 32) {
             
             Button(action: {
                 print("Text")
@@ -53,29 +55,31 @@ struct WelcomeView: View {
                     .font(.system(size: 20, weight: .semibold))
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 20)
+                    .padding(.vertical, 16)
                     .background(Color("mainColor"))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
+                
             })
-            
-            Spacer()
             
             Button(action: {
                 self.navigateToSignUp()
             }, label: {
-                Text("Register")
+                Text("Sign Up")
                     .font(.system(size: 20, weight: .semibold))
                     .foregroundStyle(.black)
                     .frame(maxWidth: .infinity)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(.vertical, 16)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.black, lineWidth: 1)
+                    )
             })
             
         }
-        .padding(.horizontal, 20)
     }
 }
 
 #Preview {
-    WelcomeView(navigateToSignUp: { })
+    WelcomeView(navigateToSignUp: {})
 }
 
