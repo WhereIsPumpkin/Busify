@@ -9,24 +9,19 @@ const userSchema = new Schema({
         type: Schema.Types.String,
         required: true,
       },
-    //   email: {
-    //     type: Schema.Types.String,
-    //     required: true,
-    //     unique: true,
-    //   },
-    //   username: {
-    //     type: Schema.Types.String,
-    //     required: true,
-    //     unique: true,
-    //   },
-    //   password: {
-    //     type: Schema.Types.String,
-    //     required: true,
-    //   },
-    //   gender: {
-    //     type: Schema.Types.String,
-    //     required: true,
-    //   }
+      email: {
+        type: Schema.Types.String,
+        required: true,
+        unique: true,
+      },
+      password: {
+        type: Schema.Types.String,
+        required: true,
+      },
+      gender: {
+        type: Schema.Types.String,
+        required: true,
+      }
 })
 
 const User = model("User", userSchema)

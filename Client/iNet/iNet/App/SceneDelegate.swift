@@ -11,7 +11,7 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    
+    var signUpViewModel = SignUpViewModel()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func setupNavigationController() -> UINavigationController {
-        let welcomeVC = WelcomeView {
+        let welcomeVC = WelcomeView(signUpViewModel: signUpViewModel) { 
             self.navigateToSignUp()
         }
         let welcomeViewController = UIHostingController(rootView: welcomeVC)
@@ -34,7 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func navigateToSignUp() {
-        let registerVC = RegisterView {
+        let registerVC = RegisterView(signUpViewModel: signUpViewModel) {
             self.navigateToSecondStageRegister()
         }
         let registerViewController = UIHostingController(rootView: registerVC)
@@ -45,12 +45,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func navigateToSecondStageRegister() {
-        let secondStageSignUpVC = UIHostingController(rootView: RegistrationSecondStageView {
+        let secondStageSignUpVC = RegistrationSecondStageView(signUpViewModel: signUpViewModel) {
             self.navigateToVerification()
-        })
+        }
+        let secondStageRegisterViewController = UIHostingController(rootView: secondStageSignUpVC)
         if let navigationController = self.window?.rootViewController as? UINavigationController {
-            secondStageSignUpVC.title = "Register"
-            navigationController.pushViewController(secondStageSignUpVC, animated: true)
+            secondStageRegisterViewController.title = "Register"
+            navigationController.pushViewController(secondStageRegisterViewController, animated: true)
         }
     }
     

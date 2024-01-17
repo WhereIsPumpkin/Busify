@@ -25,8 +25,11 @@
 		7585CDD52B55C9B60087EC03 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDC22B55C9B60087EC03 /* Poppins-Thin.ttf */; };
 		7585CDD72B55C9B60087EC03 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDC42B55C9B60087EC03 /* Poppins-Light.ttf */; };
 		7585CDDA2B55C9B60087EC03 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDC72B55C9B60087EC03 /* Poppins-Medium.ttf */; };
+		7599CD132B57F35E00F4FD86 /* NetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7599CD122B57F35E00F4FD86 /* NetSwift */; };
 		75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DA2B57CE34006B9655 /* VerificationView.swift */; };
 		75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DC2B57D81B006B9655 /* OTPTextField.swift */; };
+		75E217E02B57E4FA006B9655 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DF2B57E4FA006B9655 /* User.swift */; };
+		75E217E32B57E5AA006B9655 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217E22B57E5AA006B9655 /* SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,8 @@
 		7585CDC72B55C9B60087EC03 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		75E217DA2B57CE34006B9655 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		75E217DC2B57D81B006B9655 /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
+		75E217DF2B57E4FA006B9655 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		75E217E22B57E5AA006B9655 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7599CD132B57F35E00F4FD86 /* NetSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +93,7 @@
 				75479BC12B56EC6300FD79F7 /* App */,
 				75479BC32B56EC7B00FD79F7 /* Screens */,
 				75479BC72B56ECA600FD79F7 /* Custom Views */,
+				75E217DE2B57E4EE006B9655 /* Model */,
 				75479BC22B56EC6A00FD79F7 /* Support */,
 				751B0BF12B544A5400ACBEAE /* Assets.xcassets */,
 				751B0BF62B544A5400ACBEAE /* Info.plist */,
@@ -132,9 +139,8 @@
 		75479BC52B56EC8C00FD79F7 /* Sign Up */ = {
 			isa = PBXGroup;
 			children = (
-				75479BBA2B56A1E900FD79F7 /* RegisterView.swift */,
-				75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */,
-				75E217DA2B57CE34006B9655 /* VerificationView.swift */,
+				75E217E12B57E57A006B9655 /* RegistrationStages */,
+				75E217E22B57E5AA006B9655 /* SignUpViewModel.swift */,
 			);
 			path = "Sign Up";
 			sourceTree = "<group>";
@@ -173,6 +179,24 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		75E217DE2B57E4EE006B9655 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				75E217DF2B57E4FA006B9655 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		75E217E12B57E57A006B9655 /* RegistrationStages */ = {
+			isa = PBXGroup;
+			children = (
+				75479BBA2B56A1E900FD79F7 /* RegisterView.swift */,
+				75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */,
+				75E217DA2B57CE34006B9655 /* VerificationView.swift */,
+			);
+			path = RegistrationStages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -189,6 +213,9 @@
 			dependencies = (
 			);
 			name = iNet;
+			packageProductDependencies = (
+				7599CD122B57F35E00F4FD86 /* NetSwift */,
+			);
 			productName = iNet;
 			productReference = 751B0BE52B544A5300ACBEAE /* iNet.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +244,9 @@
 				Base,
 			);
 			mainGroup = 751B0BDC2B544A5300ACBEAE;
+			packageReferences = (
+				7599CD112B57F35E00F4FD86 /* XCRemoteSwiftPackageReference "SwiftNet" */,
+			);
 			productRefGroup = 751B0BE62B544A5300ACBEAE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -261,6 +291,8 @@
 				75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */,
 				7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */,
 				75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */,
+				75E217E32B57E5AA006B9655 /* SignUpViewModel.swift in Sources */,
+				75E217E02B57E4FA006B9655 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,7 +428,6 @@
 				DEVELOPMENT_TEAM = 69GK54W8ZW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iNet/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -427,7 +458,6 @@
 				DEVELOPMENT_TEAM = 69GK54W8ZW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iNet/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -470,6 +500,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7599CD112B57F35E00F4FD86 /* XCRemoteSwiftPackageReference "SwiftNet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WhereIsPumpkin/SwiftNet";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7599CD122B57F35E00F4FD86 /* NetSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7599CD112B57F35E00F4FD86 /* XCRemoteSwiftPackageReference "SwiftNet" */;
+			productName = NetSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 751B0BDD2B544A5300ACBEAE /* Project object */;
 }

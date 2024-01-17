@@ -7,13 +7,8 @@
 
 import SwiftUI
 
-enum Gender: String, CaseIterable {
-    case female = "Female"
-    case male = "Male"
-}
-
 struct RegistrationSecondStageView: View {
-    @State private var selectedGender = Gender.male
+    @ObservedObject var signUpViewModel: SignUpViewModel
     var navigateToThirdStage: (() -> Void)
     
     var body: some View {
@@ -54,9 +49,9 @@ struct RegistrationSecondStageView: View {
                 RadioButtonField(
                     id: gender.rawValue,
                     label: gender.rawValue,
-                    isMarked: selectedGender == gender,
+                    isMarked: signUpViewModel.selectedGender == gender,
                     callback: { selected in
-                        selectedGender = Gender(rawValue: selected)!
+                        signUpViewModel.selectedGender = Gender(rawValue: selected)!
                     }
                 )
                 if gender != Gender.allCases.last {
@@ -69,10 +64,13 @@ struct RegistrationSecondStageView: View {
     private var nextButton: some View {
         StyledButton(buttonText: "Next", buttonColor: Color("mainColor"), textColor: .white) {
             navigateToThirdStage()
+            Task {
+                await signUpViewModel.registerUser()
+            }
         }
     }
 }
 
 #Preview {
-    RegistrationSecondStageView(navigateToThirdStage: {})
+    RegistrationSecondStageView(signUpViewModel: SignUpViewModel(), navigateToThirdStage: {})
 }

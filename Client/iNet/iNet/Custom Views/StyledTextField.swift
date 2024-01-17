@@ -20,6 +20,7 @@ struct StyledTextField: View {
                 TextField("", text: $text, prompt: Text(prompt).foregroundColor(.gray))
             }
         }
+        .keyboardType(.emailAddress)
         .padding(16)
         .background(Color(red: 0.44, green: 0.44, blue: 0.44).opacity(0.03))
         .overlay(

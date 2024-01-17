@@ -1,198 +1,342 @@
-// import Post from "../models/PostModel.js";
 // import User from "../models/UserModel.js";
+// import EmailToken from "../models/EmailToken.js";
+// import nodemailer from "nodemailer";
 // import jwt from "jsonwebtoken";
+// import bycript from "bcryptjs";
+// import dotenv from "dotenv";
+
+// dotenv.config();
+
+// let transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     user: process.env.AUTH_EMAIL,
+//     pass: process.env.AUTH_PASSWORD,
+//   },
+// });
+
+// const bycriptSalt = bycript.genSaltSync(10);
 
 // const jwtSecret = process.env.JWT_SECRET;
 
-// export const createPost = async (req, res) => {
+// export const createUser = async (req, res) => {
 //   try {
-//     const { content, author } = req.body;
-//     const postImage = req.files.postImage;
+//     const { name, lastName, email, password, gender, username } = req.body;
 
-//     let postImageUrl;
-//     if (postImage) {
-//       postImageUrl = postImage[0].path.replace(/^public[\\/]/, "");
-//       postImageUrl = "/" + postImageUrl.replace(/\\/g, "/");
+//     const userEmail = req.body.email.toLowerCase();
+//     const existingUserEmail = await User.findOne({ email: userEmail });
+
+//     if (!name || !lastName || !email || !password || !gender || !username) {
+//       return res.status(400).json({ message: "Please enter all the fields." });
 //     }
 
-//     // create a new post
-//     const newPost = new Post({
-//       content,
-//       author,
-//       postImage: postImageUrl,
-//       commentCount: 0,
+//     if (existingUserEmail) {
+//       return res
+//         .status(409)
+//         .json({ message: "A user with this email already exists." });
+//     }
+
+//     const existingUsername = await User.findOne({ username });
+//     if (existingUsername) {
+//       return res
+//         .status(409)
+//         .json({ message: "A user with this username already exists." });
+//     }
+
+//     const hashPassword = bycript.hashSync(password, bycriptSalt);
+
+//     const newUser = new User({
+//       name,
+//       lastName,
+//       email: email.toLowerCase(),
+//       password: hashPassword,
+//       gender,
+//       username: username.toLowerCase(),
+//       verified: false,
+//       registrationDate: new Date(),
+//       bio: "",
+//       location: "",
+//       website: "",
+//       profilePic: "",
+//       coverPic: "",
 //     });
 
-//     // save the post to the database
-//     await newPost.save();
+//     await newUser.save();
 
-//     // Add the new post to the posts array of the author
-//     await User.findByIdAndUpdate(author, { $push: { posts: newPost._id } });
+//     const token = Math.floor(100000 + Math.random() * 900000);
 
-//     // fetch the updated post with likes information
-//     const updatedPost = await Post.findById(newPost._id).populate("author");
+//     await new EmailToken({ token, email }).save();
 
-//     // send the updated post as a response
-//     res
-//       .status(201)
-//       .json({ post: updatedPost, message: "Post created successfully" });
-//   } catch (err) {
-//     console.log(err);
-//     res
-//       .status(500)
-//       .json({ message: "An error occurred while creating the post" });
+//     const confirmationUrl = `${process.env.WEB_LINK}/confirm-email?token=${token}`;
+
+//     await transporter.sendMail({
+//       from: "youremail@gmail.com",
+//       to: email,
+//       subject: "Please confirm your email",
+//       html: `
+//       <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+//       <html xmlns="http://www.w3.org/1999/xhtml">
+      
+//       <head>
+//         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+//         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//         <title>Please activate your account</title>
+//         <!--[if mso]><style type="text/css">body, table, td, a { font-family: Arial, Helvetica, sans-serif !important; }</style><![endif]-->
+//       </head>
+      
+//       <body style="font-family: Helvetica, Arial, sans-serif; margin: 0px; padding: 0px; background-color: #ffffff;">
+//         <table role="presentation"
+//           style="width: 100%; border-collapse: collapse; border: 0px; border-spacing: 0px; font-family: Arial, Helvetica, sans-serif; background-color: rgb(239, 239, 239);">
+//           <tbody>
+//             <tr>
+//               <td align="center" style="padding: 1rem 2rem; vertical-align: top; width: 100%;">
+//                 <table role="presentation" style="max-width: 600px; border-collapse: collapse; border: 0px; border-spacing: 0px; text-align: left;">
+//                   <tbody>
+//                     <tr>
+//                       <td style="padding: 40px 0px 0px;">
+//                         <div style="text-align: left;">
+//                           <div style="padding-bottom: 0px;"><img src="https://i.ibb.co/k6xBWK2/Logo.png" alt="Company" style="width: 80px;"></div>
+//                         </div>
+//                         <div style="padding: 20px; background-color: rgb(255, 255, 255);">
+//                           <div style="color: rgb(0, 0, 0); text-align: left;">
+//                             <h1 style="margin: 1rem 0">Verify Your Email..</h1>
+//                             <p style="padding-bottom: 16px">Enter this code in the next 10 minutes to sign up:</p>
+//                             <div
+//                               style="padding: 12px 24px; border-radius: 4px; color: black; display: inline-block;margin: 0.5rem 0; border: 1px solid rgba(82,82,128,0.18); text-align:center; font-size: 60px; font-weight: 600;">
+//                               ${token}</div>
+      
+//                             <p style="padding-bottom: 16px"> If you didn't request this code, you can safely ignore this email. Someone else might have
+//                               typed your email address by mistake.</p>
+//                             <p style="padding-bottom: 16px">Thanks,<br>The VibeNet team</p>
+//                           </div>
+//                         </div>
+//                         <div style="padding-top: 20px; color: rgb(153, 153, 153); text-align: center;"></div>
+//                       </td>
+//                     </tr>
+//                   </tbody>
+//                 </table>
+//               </td>
+//             </tr>
+//           </tbody>
+//         </table>
+//       </body>
+      
+//       </html>
+//       `,
+//     });
+
+//     res.status(201).json({ message: "User created successfully." });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: "Error creating user." });
 //   }
 // };
 
-// export const getPosts = async (req, res) => {
+// export const verifyUser = async (req, res) => {
 //   try {
-//     // query the database for all posts and populate the author and comments.user fields
-//     const posts = await Post.find()
-//       .populate("author")
-//       .populate("comments.user");
+//     const { token, email } = req.body;
 
-//     // send a success response with the posts
-//     res.status(200).json({ posts });
-//   } catch (err) {
-//     console.log(err);
-//     res
-//       .status(500)
-//       .json({ message: "An error occurred while fetching the posts" });
-//   }
-// };
+//     const existingUser = await EmailToken.findOne({ email });
 
-// export const deletePost = async (req, res) => {
-//   const postId = req.params.id;
-//   try {
-//     await Post.deleteOne({ _id: postId });
-//     await User.updateMany({ posts: postId }, { $pull: { posts: postId } });
-//     return res.status(200).json({ message: "Post deleted successfully" });
-//   } catch (err) {
-//     return res.status(500).json({ err, message: "Error deleting post" });
-//   }
-// };
-
-// export const likePost = async (req, res) => {
-//   const { postId, userId } = req.params;
-//   try {
-//     const post = await Post.findById(postId);
-//     if (!post) {
-//       return res.status(404).json({ message: "Post not found" });
+//     if (!existingUser) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "User not found.",
+//       });
 //     }
 
-//     const userIndex = post.likes.indexOf(userId);
+//     if (existingUser.token === token) {
+//       const updatedUser = await User.findOneAndUpdate(
+//         { email },
+//         { verified: true },
+//         { new: true }
+//       );
 
-//     if (userIndex === -1) {
-//       // User has not liked the post, so add the user's ID to the likes array
-//       post.likes.push(userId);
+//       await EmailToken.findOneAndDelete({ email });
+
+//       return res.status(200).json({
+//         success: true,
+//         message: "User verified successfully.",
+//       });
 //     } else {
-//       // User has already liked the post, so remove the user's ID from the likes array
-//       post.likes.splice(userIndex, 1);
+//       return res.status(401).json({
+//         success: false,
+//         message: "Invalid token.",
+//       });
 //     }
-
-//     post.likeCount = post.likes.length;
-
-//     await post.save();
-
-//     // Send a success response with updated like status
-//     const message =
-//       userIndex === -1
-//         ? "Post liked successfully"
-//         : "Post unliked successfully";
-//     res.status(200).json({ message, likes: post.likes });
-//   } catch (err) {
-//     console.log(err);
-//     res
-//       .status(500)
-//       .json({ message: "An error occurred while handling the post like" });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({
+//       success: false,
+//       message: "Error verifying user.",
+//     });
 //   }
 // };
 
-// export const addComment = async (req, res) => {
-//   const { postId, userId } = req.params;
-//   const { content } = req.body;
-
+// export const loginUser = async (req, res) => {
 //   try {
-//     if (!content) {
-//       return res.status(404).json({ message: "Empty Comment" });
+//     const { email, password } = req.body;
+//     const lowercaseEmail = email.toLowerCase();
+//     const existingUser = await User.findOne({ email: lowercaseEmail });
+
+//     if (existingUser) {
+//       const passOk = bycript.compareSync(password, existingUser.password);
+//       if (passOk) {
+//         const payload = {
+//           id: existingUser._id,
+//           name: existingUser.name,
+//           lastName: existingUser.lastName,
+//           email: existingUser.email,
+//           username: existingUser.username,
+//           gender: existingUser.gender,
+//           bio: existingUser.bio,
+//           location: existingUser.location,
+//           website: existingUser.website,
+//           registrationDate: existingUser.registrationDate,
+//           coverPic: existingUser.coverPic,
+//           profilePic: existingUser.profilePic,
+//           saved: existingUser.savedPosts,
+//         };
+//         const token = jwt.sign(payload, jwtSecret);
+//         res.cookie("token", token, { sameSite: "none", secure: true });
+//         res.status(200).json({ message: "Login successful" });
+//       } else {
+//         return res.status(400).json({ message: "Invalid email or password" });
+//       }
+//     } else {
+//       return res.status(400).json({ message: "Invalid email or password" });
 //     }
-//     const post = await Post.findById(postId);
-
-//     if (!post) {
-//       return res.status(404).json({ message: "Post not found" });
-//     }
-
-//     const newComment = {
-//       user: userId,
-//       content: content,
-//     };
-
-//     post.comments.push(newComment);
-//     post.commentCount = post.comments.length;
-
-//     await post.save();
-
-//     // Populate the comments.user field after saving the post
-//     const populatedPost = await Post.findById(postId).populate(
-//       "comments.user",
-//       "profilePic username"
-//     );
-
-//     const addedComment = populatedPost.comments.find(
-//       (c) => c.content === content
-//     );
-
-//     res
-//       .status(200)
-//       .json({ message: "Comment added successfully", comment: addedComment });
-//   } catch (err) {
-//     console.log(err);
-//     res
-//       .status(500)
-//       .json({ message: "An error occurred while handling the post comment" });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ message: "Server error" });
 //   }
 // };
 
-// export const savePost = async (req, res) => {
-//   const { postId, userId } = req.params;
-//   try {
-//     const post = await Post.findById(postId);
-//     if (!post) {
-//       return res.status(404).json({ message: "Post not found" });
-//     }
+// export const getProfile = async (req, res) => {
+//   const token = req.cookies?.token;
 
-//     let user = await User.findById(userId);
-//     if (!user) {
+//   if (token) {
+//     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+//       if (err) throw err;
+//       res.json(userData);
+//     });
+//   } else {
+//     res.status(401).json("no token");
+//   }
+// };
+
+// export const getUsersProfile = async (req, res) => {
+//   const { username } = req.body;
+
+//   try {
+//     const currentUser = await User.findOne({ username });
+
+//     if (!currentUser) {
 //       return res.status(404).json({ message: "User not found" });
 //     }
 
-//     const postIndex = user.savedPosts.indexOf(postId);
+//     return res.status(200).json(currentUser);
+//   } catch (err) {
+//     return res.status(500).json({ message: err.message });
+//   }
+// };
 
-//     if (postIndex === -1) {
-//       // User has not saved the post, so add the post's ID to the savedPosts array
-//       user.savedPosts.push(postId);
-//     } else {
-//       // User has already saved the post, so remove the post's ID from the savedPosts array
-//       user.savedPosts.splice(postIndex, 1);
+// export const updateProfile = async (req, res) => {
+//   try {
+//     const { name, lastName, bio, website, location } = req.body;
+
+//     const userEmail = req.user.email;
+
+//     // Get the profile and cover image files from the request
+//     let profilePic, coverPic;
+//     if (req.files) {
+//       profilePic = req.files.profilePic;
+//       coverPic = req.files.coverPic;
 //     }
 
-//     await user.save();
-
-//     // Populate the savedPosts field of the updated user document
-//     user = await User.findById(userId).populate("savedPosts");
-
-//     const userIndex = post.saves.indexOf(userId);
-
-//     if (userIndex === -1) {
-//       post.saves.push(userId);
-//     } else {
-//       post.saves.splice(userIndex, 1);
+//     // Generate the URLs of the saved profile and cover images
+//     let profilePicUrl, coverPicUrl;
+//     if (profilePic) {
+//       profilePicUrl = profilePic[0].path.replace(/^public[\\/]/, "");
+//       profilePicUrl = "/" + profilePicUrl.replace(/\\/g, "/");
+//     }
+//     if (coverPic) {
+//       coverPicUrl = coverPic[0].path.replace(/^public[\\/]/, "");
+//       coverPicUrl = "/" + coverPicUrl.replace(/\\/g, "/");
 //     }
 
-//     post.saveCount = post.saves.length;
+//     if (
+//       name ||
+//       lastName ||
+//       bio ||
+//       website ||
+//       location ||
+//       profilePicUrl ||
+//       coverPicUrl
+//     ) {
+//       await User.findOneAndUpdate(
+//         { email: userEmail },
+//         {
+//           ...(name && { name }),
+//           ...(lastName && { lastName }),
+//           ...(bio && { bio }),
+//           ...(website && { website }),
+//           ...(location && { location }),
+//           ...(profilePicUrl && { profilePic: profilePicUrl }),
+//           ...(coverPicUrl && { coverPic: coverPicUrl }),
+//         }
+//       );
+//     }
 
-//     await post.save();
+//     const updatedUser = await User.findOne({ email: userEmail });
+//     const payload = {
+//       id: updatedUser._id,
+//       name: updatedUser.name,
+//       lastName: updatedUser.lastName,
+//       email: updatedUser.email,
+//       username: updatedUser.username,
+//       gender: updatedUser.gender,
+//       bio: updatedUser.bio,
+//       location: updatedUser.location,
+//       website: updatedUser.website,
+//       registrationDate: updatedUser.registrationDate,
+//       coverPic: updatedUser.coverPic,
+//       profilePic: updatedUser.profilePic,
+//       saved: updatedUser.savedPosts,
+//     };
+//     const newToken = jwt.sign(payload, jwtSecret);
 
+//     // Send the new token back to the client in a cookie
+//     res.cookie("token", newToken, { sameSite: "none", secure: true });
+//     res.status(200).json({ message: "Profile updated successfully" });
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
+// export const toggleFollow = async (req, res) => {
+//   try {
+//     const { userId, followId } = req.params;
+//     let user = await User.findById(userId);
+//     let message;
+//     if (user.following.includes(followId)) {
+//       await User.findByIdAndUpdate(userId, { $pull: { following: followId } });
+//       await User.findByIdAndUpdate(followId, { $pull: { followers: userId } });
+//       message = "Unfollow successful";
+//     } else {
+//       await User.findByIdAndUpdate(userId, {
+//         $addToSet: { following: followId },
+//       });
+//       await User.findByIdAndUpdate(followId, {
+//         $addToSet: { followers: userId },
+//       });
+//       message = "Follow successful";
+//     }
+
+//     // Refetch user data from database
+//     user = await User.findById(userId);
+
+//     // Update JWT token
 //     const payload = {
 //       id: user._id,
 //       name: user.name,
@@ -206,22 +350,23 @@
 //       registrationDate: user.registrationDate,
 //       coverPic: user.coverPic,
 //       profilePic: user.profilePic,
-//       saved: user.savedPosts.map((post) => post._id),
+//       savedPosts: user.savedPosts.map((post) => post._id),
+//       followers: user.followers,
+//       following: user.following,
 //     };
 //     const newToken = jwt.sign(payload, jwtSecret);
 
 //     // Send the new token back to the client in a cookie
 //     res.cookie("token", newToken, { sameSite: "none", secure: true });
 
-//     const message =
-//       userIndex === -1
-//         ? "Post saved successfully"
-//         : "Post unsaved successfully";
-//     res.status(200).json({ message, saves: post.saves });
-//   } catch (err) {
-//     console.log(err);
-//     res
-//       .status(500)
-//       .json({ message: "An error occurred while handling the post save" });
+//     // Send response
+//     res.status(200).json({ message });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ message: "Server error" });
 //   }
+// };
+
+// export const logOut = async (req, res) => {
+//   res.cookie("token", "", { sameSite: "none", secure: true }).json("ok");
 // };

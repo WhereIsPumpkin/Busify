@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    @ObservedObject var signUpViewModel: SignUpViewModel
     var navigateToSignUp: (() -> Void)
     
     var body: some View {
@@ -64,6 +65,6 @@ struct WelcomeView: View {
 }
 
 #Preview {
-    WelcomeView(navigateToSignUp: {})
+    WelcomeView(signUpViewModel: SignUpViewModel(), navigateToSignUp: {})
 }
 

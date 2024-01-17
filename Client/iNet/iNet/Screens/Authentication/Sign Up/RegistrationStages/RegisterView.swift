@@ -9,10 +9,7 @@ import SwiftUI
 
 struct RegisterView: View {
     
-    @State var name = ""
-    @State var lastName = ""
-    @State var email = ""
-    @State var password = ""
+    @ObservedObject var signUpViewModel: SignUpViewModel
     var navigateToSecondStage: (() -> Void)
     
     var body: some View {
@@ -66,17 +63,17 @@ struct RegisterView: View {
     
     private var nameField: some View {
         HStack(spacing: 16) {
-            StyledTextField(text: $name, prompt: "Name", isSecure: false)
-            StyledTextField(text: $lastName, prompt: "Last name", isSecure: false)
+            StyledTextField(text: $signUpViewModel.name, prompt: "Name", isSecure: false)
+            StyledTextField(text: $signUpViewModel.lastName, prompt: "Last name", isSecure: false)
         }
     }
 
     private var emailField: some View {
-        StyledTextField(text: $email, prompt: "Email", isSecure: false)
+        StyledTextField(text: $signUpViewModel.email, prompt: "Email", isSecure: false)
     }
 
     private var passwordField: some View {
-        StyledTextField(text: $password, prompt: "Password", isSecure: true)
+        StyledTextField(text: $signUpViewModel.password, prompt: "Password", isSecure: true)
     }
     
     private var buttonWrapper: some View {
@@ -101,5 +98,5 @@ struct RegisterView: View {
 }
 
 #Preview {
-    RegisterView(navigateToSecondStage: {})
+    RegisterView(signUpViewModel: SignUpViewModel(), navigateToSecondStage: {})
 }
