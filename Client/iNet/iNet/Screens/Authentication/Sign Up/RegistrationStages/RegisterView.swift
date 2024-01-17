@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RegisterView: View {
     
-    @ObservedObject var signUpViewModel: SignUpViewModel
+    @ObservedObject var signUpViewModel: AuthViewModel
     var navigateToSecondStage: (() -> Void)
     
     var body: some View {
@@ -102,5 +102,5 @@ struct RegisterView: View {
 }
 
 #Preview {
-    RegisterView(signUpViewModel: SignUpViewModel(), navigateToSecondStage: {})
+    RegisterView(signUpViewModel: AuthViewModel(), navigateToSecondStage: {})
 }

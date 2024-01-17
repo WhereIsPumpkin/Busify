@@ -3,16 +3,15 @@ import nodemailer from "nodemailer"
 import EmailToken from "../models/EmailToken.js"
 import dotenv from "dotenv"
 import { confirmationEmailTemplate } from "../emailtemplates/confirmationEmailTemplate.js"
+dotenv.config()
 
 let transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "inetsupersocial@gmail.com",
-    pass: "tkndlkctmjrmlkvx",
+    pass: process.env.AUTH_PASSWORD
   },
 })
-
-dotenv.config()
 
 export const createUser = async (req, res) => {
   try {
@@ -73,7 +72,7 @@ export const verifyUser = async (req, res) => {
     const { token, email } = req.body
 
     const existingUser = await EmailToken.findOne({ email })
-
+    
     if (!existingUser) {
       return res.status(404).json({
         success: false,
@@ -101,7 +100,6 @@ export const verifyUser = async (req, res) => {
       })
     }
   } catch (error) {
-    console.error(error)
     res.status(500).json({
       success: false,
       message: "Error verifying user.",

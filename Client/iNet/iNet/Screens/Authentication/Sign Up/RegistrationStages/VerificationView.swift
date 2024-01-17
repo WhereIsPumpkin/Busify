@@ -9,7 +9,9 @@ import SwiftUI
 
 struct VerificationView: View {
     // MARK: - Properties
+    @ObservedObject var signUpViewModel: AuthViewModel
     @State private var otpValue: [String] = Array(repeating: "", count: 4)
+    var navigateToVerified: () -> Void
     // MARK: - Body
     var body: some View {
         VStack(spacing: 16) {
@@ -49,11 +51,19 @@ struct VerificationView: View {
     }
     
     private var verifyButton: some View {
-        StyledButton(buttonText: "Verify", buttonColor: Color("mainColor"), textColor: .white) {
-            let otpString = otpValue.joined()
-            print(otpString)
+        StyledButton(buttonText: "Verify", buttonColor: otpValue.allSatisfy { !$0.isEmpty } ? Color("mainColor") : .gray, textColor: .white) {
+            let token = otpValue.joined()
+            Task {
+                let isVerified = await signUpViewModel.verifyUser(with: token)
+                print(isVerified)
+                if isVerified {
+                    navigateToVerified()
+                    print(isVerified)
+                }
+            }
         }
         .padding(.top, 16)
+        .disabled( otpValue.allSatisfy { $0.isEmpty })
     }
     
     private var resendButton: some View {
@@ -69,5 +79,5 @@ struct VerificationView: View {
 }
 
 #Preview {
-    VerificationView()
+    VerificationView(signUpViewModel: AuthViewModel(), navigateToVerified: {})
 }

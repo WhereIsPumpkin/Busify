@@ -26,10 +26,13 @@
 		7585CDD72B55C9B60087EC03 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDC42B55C9B60087EC03 /* Poppins-Light.ttf */; };
 		7585CDDA2B55C9B60087EC03 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDC72B55C9B60087EC03 /* Poppins-Medium.ttf */; };
 		7599CD132B57F35E00F4FD86 /* NetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7599CD122B57F35E00F4FD86 /* NetSwift */; };
+		7599CD152B5836E900F4FD86 /* EmailToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD142B5836E900F4FD86 /* EmailToken.swift */; };
+		7599CD172B583CB400F4FD86 /* VerifiedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD162B583CB400F4FD86 /* VerifiedView.swift */; };
+		7599CD192B58437700F4FD86 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD182B58437600F4FD86 /* LoginView.swift */; };
 		75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DA2B57CE34006B9655 /* VerificationView.swift */; };
 		75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DC2B57D81B006B9655 /* OTPTextField.swift */; };
 		75E217E02B57E4FA006B9655 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DF2B57E4FA006B9655 /* User.swift */; };
-		75E217E32B57E5AA006B9655 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217E22B57E5AA006B9655 /* SignUpViewModel.swift */; };
+		75E217E32B57E5AA006B9655 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217E22B57E5AA006B9655 /* AuthViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,10 +56,13 @@
 		7585CDC22B55C9B60087EC03 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		7585CDC42B55C9B60087EC03 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
 		7585CDC72B55C9B60087EC03 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		7599CD142B5836E900F4FD86 /* EmailToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailToken.swift; sourceTree = "<group>"; };
+		7599CD162B583CB400F4FD86 /* VerifiedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiedView.swift; sourceTree = "<group>"; };
+		7599CD182B58437600F4FD86 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		75E217DA2B57CE34006B9655 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		75E217DC2B57D81B006B9655 /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
 		75E217DF2B57E4FA006B9655 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		75E217E22B57E5AA006B9655 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		75E217E22B57E5AA006B9655 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				7585CDB02B559D750087EC03 /* WelcomeView.swift */,
+				75E217E22B57E5AA006B9655 /* AuthViewModel.swift */,
 				75479BC62B56EC9100FD79F7 /* Log In */,
 				75479BC52B56EC8C00FD79F7 /* Sign Up */,
 			);
@@ -140,7 +147,6 @@
 			isa = PBXGroup;
 			children = (
 				75E217E12B57E57A006B9655 /* RegistrationStages */,
-				75E217E22B57E5AA006B9655 /* SignUpViewModel.swift */,
 			);
 			path = "Sign Up";
 			sourceTree = "<group>";
@@ -148,6 +154,7 @@
 		75479BC62B56EC9100FD79F7 /* Log In */ = {
 			isa = PBXGroup;
 			children = (
+				7599CD182B58437600F4FD86 /* LoginView.swift */,
 			);
 			path = "Log In";
 			sourceTree = "<group>";
@@ -183,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				75E217DF2B57E4FA006B9655 /* User.swift */,
+				7599CD142B5836E900F4FD86 /* EmailToken.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,6 +201,7 @@
 				75479BBA2B56A1E900FD79F7 /* RegisterView.swift */,
 				75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */,
 				75E217DA2B57CE34006B9655 /* VerificationView.swift */,
+				7599CD162B583CB400F4FD86 /* VerifiedView.swift */,
 			);
 			path = RegistrationStages;
 			sourceTree = "<group>";
@@ -283,6 +292,8 @@
 			files = (
 				75479BC02B56E37B00FD79F7 /* RadioButtonField.swift in Sources */,
 				75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */,
+				7599CD172B583CB400F4FD86 /* VerifiedView.swift in Sources */,
+				7599CD192B58437700F4FD86 /* LoginView.swift in Sources */,
 				751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */,
 				75479BBD2B56E03900FD79F7 /* RegistrationSecondStageView.swift in Sources */,
 				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
@@ -291,7 +302,8 @@
 				75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */,
 				7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */,
 				75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */,
-				75E217E32B57E5AA006B9655 /* SignUpViewModel.swift in Sources */,
+				75E217E32B57E5AA006B9655 /* AuthViewModel.swift in Sources */,
+				7599CD152B5836E900F4FD86 /* EmailToken.swift in Sources */,
 				75E217E02B57E4FA006B9655 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

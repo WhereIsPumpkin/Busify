@@ -18,7 +18,7 @@ app.get("/", (req,res) => {
 
 app.post("/api/user/register", createUser)
 
-app.post("api/user/verify", verifyUser)
+app.post("/api/user/verify", verifyUser)
 
 connectToMongoDB().then(() => {
     app.listen(3000, () => {
