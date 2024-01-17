@@ -27,7 +27,7 @@ final class SignUpViewModel: ObservableObject {
 
     func registerUser() async {
         let url = URL(string: "http://localhost:3000/api/user/register")!
-        let user = User(name: name, lastName: lastName, email: email, password: password, gender: selectedGender)
+        let user = User(name: name, lastName: lastName, email: email, password: password, gender: selectedGender, verified: false)
         do {
             let (_, response) = try await NetworkManager.shared.postData(to: url, body: user)
             print("User registered with response: \(response)")

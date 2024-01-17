@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from "mongoose"
 
 const emailTokenSchema = new Schema({
   token: {
@@ -9,8 +9,8 @@ const emailTokenSchema = new Schema({
     type: Schema.Types.String,
     required: true,
   },
-});
+})
 
-const EmailToken = model("EmailToken", emailTokenSchema);
+const EmailToken = model("EmailToken", emailTokenSchema)
 
-export default EmailToken;
+export default EmailToken
