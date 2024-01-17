@@ -22,7 +22,7 @@ struct RegisterView: View {
         .padding(.horizontal, 20)
         .padding(.vertical, 42)
     }
-
+    
     private var titleTextWrapper: some View {
         HStack(spacing: 12) {
             UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 20)
@@ -67,11 +67,11 @@ struct RegisterView: View {
             StyledTextField(text: $signUpViewModel.lastName, prompt: "Last name", isSecure: false)
         }
     }
-
+    
     private var emailField: some View {
         StyledTextField(text: $signUpViewModel.email, prompt: "Email", isSecure: false)
     }
-
+    
     private var passwordField: some View {
         StyledTextField(text: $signUpViewModel.password, prompt: "Password", isSecure: true)
     }
@@ -84,17 +84,21 @@ struct RegisterView: View {
     }
     
     private var nextButton: some View {
-        StyledButton(buttonText: "Next", buttonColor: Color("mainColor"), textColor: .white) {
-            navigateToSecondStage()
+        StyledButton(buttonText: "Next", buttonColor: signUpViewModel.isNextButtonDisabled ? .gray : Color("mainColor"), textColor: .white) {
+            if !signUpViewModel.isNextButtonDisabled {
+                navigateToSecondStage()
+            }
         }
+        .disabled(signUpViewModel.isNextButtonDisabled)
     }
-
+    
+    
     private var appleRegisterButton: some View {
         StyledButton(buttonText: "Sign up with Apple", buttonColor: .black, textColor: .white, icon: "applelogo") {
             print("Apple Sign")
         }
     }
-
+    
 }
 
 #Preview {

@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct VerificationView: View {
+    // MARK: - Properties
     @State private var otpValue: [String] = Array(repeating: "", count: 4)
-    
+    // MARK: - Body
     var body: some View {
         VStack(spacing: 16) {
             image
@@ -22,7 +23,7 @@ struct VerificationView: View {
         .padding(.horizontal, 20)
         .padding(.vertical, 16)
     }
-    
+    // MARK: - Computed Properties
     private var image: some View {
         Image("letter")
             .resizable()
