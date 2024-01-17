@@ -14,6 +14,7 @@ enum Gender: String, CaseIterable {
 
 struct RegistrationSecondStageView: View {
     @State private var selectedGender = Gender.male
+    var navigateToThirdStage: (() -> Void)
     
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
@@ -47,7 +48,7 @@ struct RegistrationSecondStageView: View {
             .foregroundColor(Color(red: 0.44, green: 0.44, blue: 0.44))
     }
     
-    var genderSelection: some View {
+     var genderSelection: some View {
         VStack {
             ForEach(Gender.allCases, id: \.self) { gender in
                 RadioButtonField(
@@ -66,21 +67,12 @@ struct RegistrationSecondStageView: View {
     }
     
     private var nextButton: some View {
-        Button(action: {
-            print("Text")
-        }, label: {
-            Text("Next")
-                .font(.system(size: 20, weight: .semibold))
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
-                .background(Color("mainColor"))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-            
-        })
+        StyledButton(buttonText: "Next", buttonColor: Color("mainColor"), textColor: .white) {
+            navigateToThirdStage()
+        }
     }
 }
 
 #Preview {
-    RegistrationSecondStageView()
+    RegistrationSecondStageView(navigateToThirdStage: {})
 }

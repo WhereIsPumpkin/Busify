@@ -35,7 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func navigateToSignUp() {
         let registerVC = RegisterView {
-            self.goToSecondStageNavigate()
+            self.navigateToSecondStageRegister()
         }
         let registerViewController = UIHostingController(rootView: registerVC)
         if let navigationController = self.window?.rootViewController as? UINavigationController {
@@ -44,14 +44,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     
-    func goToSecondStageNavigate() {
-        let secondStageSignUpVC = UIHostingController(rootView: RegistrationSecondStageView())
+    func navigateToSecondStageRegister() {
+        let secondStageSignUpVC = UIHostingController(rootView: RegistrationSecondStageView {
+            self.navigateToVerification()
+        })
         if let navigationController = self.window?.rootViewController as? UINavigationController {
             secondStageSignUpVC.title = "Register"
             navigationController.pushViewController(secondStageSignUpVC, animated: true)
         }
     }
     
+    func navigateToVerification() {
+        let verificationVC = UIHostingController(rootView: VerificationView())
+        if let navigationController = self.window?.rootViewController as? UINavigationController {
+            verificationVC.title = "Register"
+            navigationController.pushViewController(verificationVC, animated: true)
+        }
+    }
+            
     
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

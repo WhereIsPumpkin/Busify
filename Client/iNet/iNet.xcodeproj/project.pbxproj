@@ -13,6 +13,8 @@
 		75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BBA2B56A1E900FD79F7 /* RegisterView.swift */; };
 		75479BBD2B56E03900FD79F7 /* RegistrationSecondStageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */; };
 		75479BC02B56E37B00FD79F7 /* RadioButtonField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BBF2B56E37B00FD79F7 /* RadioButtonField.swift */; };
+		75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BC82B56ED7500FD79F7 /* StyledTextField.swift */; };
+		75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BCA2B56F18300FD79F7 /* StyledButton.swift */; };
 		7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585CDB02B559D750087EC03 /* WelcomeView.swift */; };
 		7585CDCA2B55C9B60087EC03 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */; };
 		7585CDCB2B55C9B60087EC03 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */; };
@@ -23,6 +25,8 @@
 		7585CDD52B55C9B60087EC03 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDC22B55C9B60087EC03 /* Poppins-Thin.ttf */; };
 		7585CDD72B55C9B60087EC03 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDC42B55C9B60087EC03 /* Poppins-Light.ttf */; };
 		7585CDDA2B55C9B60087EC03 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDC72B55C9B60087EC03 /* Poppins-Medium.ttf */; };
+		75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DA2B57CE34006B9655 /* VerificationView.swift */; };
+		75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DC2B57D81B006B9655 /* OTPTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,8 @@
 		75479BBA2B56A1E900FD79F7 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSecondStageView.swift; sourceTree = "<group>"; };
 		75479BBF2B56E37B00FD79F7 /* RadioButtonField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonField.swift; sourceTree = "<group>"; };
+		75479BC82B56ED7500FD79F7 /* StyledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledTextField.swift; sourceTree = "<group>"; };
+		75479BCA2B56F18300FD79F7 /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
 		7585CDB02B559D750087EC03 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -44,6 +50,8 @@
 		7585CDC22B55C9B60087EC03 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		7585CDC42B55C9B60087EC03 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
 		7585CDC72B55C9B60087EC03 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		75E217DA2B57CE34006B9655 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
+		75E217DC2B57D81B006B9655 /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,17 +84,77 @@
 		751B0BE72B544A5300ACBEAE /* iNet */ = {
 			isa = PBXGroup;
 			children = (
-				751B0BE82B544A5300ACBEAE /* AppDelegate.swift */,
-				751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */,
-				7585CDB02B559D750087EC03 /* WelcomeView.swift */,
-				75479BBA2B56A1E900FD79F7 /* RegisterView.swift */,
-				75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */,
-				75479BBF2B56E37B00FD79F7 /* RadioButtonField.swift */,
+				75479BC12B56EC6300FD79F7 /* App */,
+				75479BC32B56EC7B00FD79F7 /* Screens */,
+				75479BC72B56ECA600FD79F7 /* Custom Views */,
+				75479BC22B56EC6A00FD79F7 /* Support */,
 				751B0BF12B544A5400ACBEAE /* Assets.xcassets */,
-				7585CDB42B55C97E0087EC03 /* Fonts */,
 				751B0BF62B544A5400ACBEAE /* Info.plist */,
 			);
 			path = iNet;
+			sourceTree = "<group>";
+		};
+		75479BC12B56EC6300FD79F7 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				751B0BE82B544A5300ACBEAE /* AppDelegate.swift */,
+				751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		75479BC22B56EC6A00FD79F7 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				7585CDB42B55C97E0087EC03 /* Fonts */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		75479BC32B56EC7B00FD79F7 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				75479BC42B56EC8700FD79F7 /* Authentication */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		75479BC42B56EC8700FD79F7 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				7585CDB02B559D750087EC03 /* WelcomeView.swift */,
+				75479BC62B56EC9100FD79F7 /* Log In */,
+				75479BC52B56EC8C00FD79F7 /* Sign Up */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		75479BC52B56EC8C00FD79F7 /* Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				75479BBA2B56A1E900FD79F7 /* RegisterView.swift */,
+				75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */,
+				75E217DA2B57CE34006B9655 /* VerificationView.swift */,
+			);
+			path = "Sign Up";
+			sourceTree = "<group>";
+		};
+		75479BC62B56EC9100FD79F7 /* Log In */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Log In";
+			sourceTree = "<group>";
+		};
+		75479BC72B56ECA600FD79F7 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				75479BBF2B56E37B00FD79F7 /* RadioButtonField.swift */,
+				75479BC82B56ED7500FD79F7 /* StyledTextField.swift */,
+				75479BCA2B56F18300FD79F7 /* StyledButton.swift */,
+				75E217DC2B57D81B006B9655 /* OTPTextField.swift */,
+			);
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 		7585CDB42B55C97E0087EC03 /* Fonts */ = {
@@ -184,11 +252,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				75479BC02B56E37B00FD79F7 /* RadioButtonField.swift in Sources */,
+				75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */,
 				751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */,
 				75479BBD2B56E03900FD79F7 /* RegistrationSecondStageView.swift in Sources */,
+				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
 				75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */,
 				751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */,
+				75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */,
 				7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */,
+				75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +400,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -359,7 +431,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

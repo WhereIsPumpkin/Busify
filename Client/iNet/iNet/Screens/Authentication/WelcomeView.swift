@@ -47,36 +47,20 @@ struct WelcomeView: View {
     
     private var authButtons: some View {
         VStack(spacing: 32) {
+            StyledButton(buttonText: "Login", buttonColor: Color("mainColor"), textColor: .white) {
+                print("Login")
+            }
             
-            Button(action: {
-                print("Text")
-            }, label: {
-                Text("Login")
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-                    .background(Color("mainColor"))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                
-            })
-            
-            Button(action: {
+            StyledButton(buttonText: "Sign Up", buttonColor: .white, textColor: .black) {
                 self.navigateToSignUp()
-            }, label: {
-                Text("Sign Up")
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundStyle(.black)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.black, lineWidth: 1)
-                    )
-            })
-            
+            }
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.black, lineWidth: 1)
+            )
         }
     }
+    
 }
 
 #Preview {
