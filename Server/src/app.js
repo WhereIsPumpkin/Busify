@@ -1,11 +1,11 @@
 import express from "express"
-import connect from "./database/mongo.js"
+import connectToMongoDB from "./database/mongo.js"
 import dotenv from "dotenv"
 import { createUser } from "./controller/user-controller.js"
 import bodyParser from "body-parser";
 
 dotenv.config()
-connect()
+connectToMongoDB()
 
 const app = express()
 
@@ -18,4 +18,8 @@ app.get("/", (req,res) => {
 
 app.post("/api/user/register", createUser)
 
-app.listen(3000);
+connectToMongoDB().then(() => {
+    app.listen(3000, () => {
+        console.log("Server is listening on port 3000");
+    });
+});
