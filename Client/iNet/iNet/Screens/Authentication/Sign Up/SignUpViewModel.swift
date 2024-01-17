@@ -26,7 +26,7 @@ final class SignUpViewModel: ObservableObject {
     }
 
     func registerUser() async {
-        let url = URL(string: "https://dull-ruby-python.cyclic.app/api/user/register")!
+        let url = URL(string: "http://localhost:3000/api/user/register")!
         let user = User(name: name, lastName: lastName, email: email, password: password, gender: selectedGender)
         do {
             let (_, response) = try await NetworkManager.shared.postData(to: url, body: user)
