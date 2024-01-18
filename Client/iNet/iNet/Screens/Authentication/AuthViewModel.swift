@@ -7,6 +7,7 @@
 
 import Foundation
 import NetSwift
+import JWTDecode
 
 enum baseURL: String {
     case local = "https://dull-ruby-python.cyclic.app"
@@ -49,10 +50,12 @@ final class AuthViewModel: ObservableObject {
         let emailToken = EmailToken(email: email, token: token)
         
         defer {
-            name = ""
-            lastName = ""
-            email = ""
-            password = ""
+            DispatchQueue.main.async {
+                self.name = ""
+                self.lastName = ""
+                self.email = ""
+                self.password = ""
+            }
         }
         
         do {
@@ -67,9 +70,27 @@ final class AuthViewModel: ObservableObject {
         }
     }
     
-    func loginUser() {
+    func loginUser() async -> Bool {
+        let url = URL(string: "\(baseURL.production.rawValue)/api/user/login")!
+        let loginDetails = LoginDetails(email: email, password: password)
         
+        do {
+            let (data, response) = try await NetworkManager.shared.postData(to: url, body: loginDetails)
+            
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                if let json = try? JSONSerialization.jsonObject(with: data) as? [String: String],
+                   let token = json["token"] {
+                    let jwt = try decode(jwt: token)
+                    print(jwt)
+                    UserDefaults.standard.set(token, forKey: "userToken")
+                    return true
+                }
+            }
+            return false
+        } catch {
+            print("Login failed: \(error)")
+            return false
+        }
     }
+    
 }
-
-

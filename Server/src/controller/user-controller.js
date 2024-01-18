@@ -1,8 +1,9 @@
 import User from "../models/User.js"
 import nodemailer from "nodemailer"
 import EmailToken from "../models/EmailToken.js"
+import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
-import { confirmationEmailTemplate } from "../emailtemplates/confirmationEmailTemplate.js"
+import { confirmationEmailTemplate } from "../utils/confirmEmailTemplate.js"
 dotenv.config()
 
 let transporter = nodemailer.createTransport({
@@ -16,6 +17,7 @@ let transporter = nodemailer.createTransport({
 export const createUser = async (req, res) => {
   try {
     const { name, lastName, email, password, gender } = req.body
+    
     const userEmail = email.toLowerCase()
     const existingUserEmail = await User.findOne({ email: userEmail })
 
@@ -35,7 +37,7 @@ export const createUser = async (req, res) => {
       token,
       email: userEmail,
     })
-   
+
     await emailToken.save()
 
     try {
@@ -107,3 +109,36 @@ export const verifyUser = async (req, res) => {
     })
   }
 }
+
+export const loginUser = async (req, res) => {
+
+  try {
+    const { email, password } = req.body;
+
+    const userEmail = email.toLowerCase();
+
+    const existingUser = await User.findOne({ email: userEmail });
+    if (!existingUser) {
+      return res.status(404).send('User not found');
+    }
+
+    const validPassword = password === existingUser.password;
+    if (!validPassword) {
+      return res.status(401).send('Invalid password');
+    }
+
+    const payload = {
+      id: existingUser._id,
+      name: existingUser.name,
+      lastName: existingUser.lastName,
+      gender: existingUser.gender,
+      verified: existingUser.verified,
+    };
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    res.json({ token });
+  } catch (error) {
+    res.status(500).send('Server error');
+  }
+};

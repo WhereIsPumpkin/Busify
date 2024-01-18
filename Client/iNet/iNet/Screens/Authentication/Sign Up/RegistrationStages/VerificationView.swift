@@ -70,7 +70,7 @@ struct VerificationView: View {
     
     private var resendButton: some View {
         Button(action: {
-            print("resend")
+            //TODO: - Resend
         }) {
             Label("Resend Code", systemImage: "arrow.triangle.2.circlepath")
                 .font(Font.custom("Poppins", size: 16))

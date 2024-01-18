@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LoginView: View {
     @ObservedObject var viewModel: AuthViewModel
+    var navigateToHomeScreen: () -> Void
+    
     // MARK: - Body
     var body: some View {
         VStack {
@@ -59,7 +61,7 @@ struct LoginView: View {
             StyledTextField(text: $viewModel.password, placeholder: "Password", isSecure: true)
             
             Button(action: {
-                // TODO: - Recover Password
+                navigateToHomeScreen()
             }, label: {
                 Text("Forgot password?")
                     .font(.custom("Poppins", size: 12))
@@ -69,11 +71,14 @@ struct LoginView: View {
     
     private var loginButton: some View {
         StyledButton(buttonText: "Log In", buttonColor: Color("mainColor"), textColor: .white) {
-            // TODO: - Log In
+            Task {
+                await viewModel.loginUser()
+            }
+            navigateToHomeScreen()
         }
     }
 }
 
 #Preview {
-    LoginView(viewModel: AuthViewModel())
+    LoginView(viewModel: AuthViewModel(), navigateToHomeScreen: {})
 }

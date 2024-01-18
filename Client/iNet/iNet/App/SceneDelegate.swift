@@ -11,20 +11,19 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    var navigationManager = NavigationManager()
+    var navigationManager: NavigationManager?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        setupWindow(for: windowScene)
-    }
-    
-    func setupWindow(for windowScene: UIWindowScene) {
+        
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = navigationManager.setupNavigationController(in: window)
+        navigationManager = NavigationManager(window: window)
+        window?.rootViewController = navigationManager?.setupNavigationController()
         window?.makeKeyAndVisible()
     }
 }
+
 func sceneDidDisconnect(_ scene: UIScene) {
     // Called as the scene is being released by the system.
     // This occurs shortly after the scene enters the background, or when its session is discarded.

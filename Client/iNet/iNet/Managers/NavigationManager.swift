@@ -10,23 +10,29 @@ import SwiftUI
 final class NavigationManager {
     // MARK: - Properties
     var authViewModel = AuthViewModel()
+    var window: UIWindow?
     
-    // MARK: - Init Process
-    func setupNavigationController(in window: UIWindow?) -> UINavigationController {
+    // MARK: - Init
+    init(window: UIWindow?) {
+        self.window = window
+    }
+    
+    func setupNavigationController() -> UINavigationController {
         let welcomeVC = WelcomeView(signUpViewModel: authViewModel) {
-            self.navigateToSignUp(in: window)
+            self.navigateToSignUp()
         } navigateToLogIn: {
-            self.navigateToLogIn(in: window)
+            self.navigateToLogIn()
         }
         let welcomeViewController = UIHostingController(rootView: welcomeVC)
         return UINavigationController(rootViewController: welcomeViewController)
     }
     
     // MARK: - Log In Process
-    func navigateToLogIn(in window: UIWindow?) {
-        let loginView = LoginView(viewModel: authViewModel)
+    func navigateToLogIn() {
+        let loginView = LoginView(viewModel: authViewModel, navigateToHomeScreen: {
+            self.navigateToMainViewScreen()
+        })
         let loginViewController = UIHostingController(rootView: loginView)
-
         if let navigationController = window?.rootViewController as? UINavigationController {
             navigationController.popToRootViewController(animated: false)
             
@@ -34,36 +40,48 @@ final class NavigationManager {
         }
     }
     
+    func navigateToMainViewScreen() {
+        let mainScreenViewController = MainScreenViewController()
+        
+        window?.rootViewController = mainScreenViewController
+        window?.makeKeyAndVisible()
+    }
+    
+    
     // MARK: - Sign Up Process
-    func navigateToSignUp(in window: UIWindow?) {
-        navigateToView(title: "Register", RegisterView(viewModel: authViewModel) {
-            self.navigateToSecondStageRegister(in: window)
-        }, in: window)
+    func navigateToSignUp() {
+        let signUpView = RegisterView(viewModel: authViewModel) {
+            self.navigateToSecondStageRegister()
+        }
+        navigateToViewController(UIHostingController(rootView: signUpView))
     }
     
-    func navigateToSecondStageRegister(in window: UIWindow?) {
-        navigateToView(title: "Register", RegistrationSecondStageView(signUpViewModel: authViewModel) {
-            self.navigateToVerification(in: window)
-        }, in: window)
+    func navigateToSecondStageRegister() {
+        let secondStageView = RegistrationSecondStageView(signUpViewModel: authViewModel) {
+            self.navigateToVerification()
+        }
+        navigateToViewController(UIHostingController(rootView: secondStageView))
     }
     
-    func navigateToVerification(in window: UIWindow?) {
-        navigateToView(title: "Verification", VerificationView(signUpViewModel: authViewModel) {
-            self.navigateToVerified(in: window)
-        }, in: window)
+    func navigateToVerification() {
+        let verificationView = VerificationView(signUpViewModel: authViewModel) {
+            self.navigateToVerified()
+        }
+        navigateToViewController(UIHostingController(rootView: verificationView))
     }
     
-    func navigateToVerified(in window: UIWindow?) {
-        navigateToView(title: "Congratulations", VerifiedView {
-            self.navigateToLogIn(in: window)
-        }, in: window)
+    func navigateToVerified() {
+        let verifiedView = VerifiedView {
+            self.navigateToLogIn()
+        }
+        navigateToViewController(UIHostingController(rootView: verifiedView))
     }
     
-    func navigateToView<V: View>(title: String, _ view: V, in window: UIWindow?) {
-        let viewController = UIHostingController(rootView: view)
+    // MARK: - Generic Navigation Helper
+    private func navigateToViewController(_ viewController: UIViewController) {
         if let navigationController = window?.rootViewController as? UINavigationController {
-            viewController.title = title
             navigationController.pushViewController(viewController, animated: true)
         }
     }
+    
 }

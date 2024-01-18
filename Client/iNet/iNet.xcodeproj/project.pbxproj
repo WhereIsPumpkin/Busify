@@ -30,6 +30,9 @@
 		7599CD172B583CB400F4FD86 /* VerifiedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD162B583CB400F4FD86 /* VerifiedView.swift */; };
 		7599CD192B58437700F4FD86 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD182B58437600F4FD86 /* LoginView.swift */; };
 		7599CD1C2B59430F00F4FD86 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD1B2B59430F00F4FD86 /* NavigationManager.swift */; };
+		7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD1D2B59907600F4FD86 /* LoginDetails.swift */; };
+		7599CD232B5996AA00F4FD86 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD222B5996AA00F4FD86 /* MainScreenViewController.swift */; };
+		7599CD262B5997CF00F4FD86 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 7599CD252B5997CF00F4FD86 /* JWTDecode */; };
 		75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DA2B57CE34006B9655 /* VerificationView.swift */; };
 		75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DC2B57D81B006B9655 /* OTPTextField.swift */; };
 		75E217E02B57E4FA006B9655 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DF2B57E4FA006B9655 /* User.swift */; };
@@ -61,6 +64,8 @@
 		7599CD162B583CB400F4FD86 /* VerifiedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiedView.swift; sourceTree = "<group>"; };
 		7599CD182B58437600F4FD86 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7599CD1B2B59430F00F4FD86 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		7599CD1D2B59907600F4FD86 /* LoginDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDetails.swift; sourceTree = "<group>"; };
+		7599CD222B5996AA00F4FD86 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		75E217DA2B57CE34006B9655 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		75E217DC2B57D81B006B9655 /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
 		75E217DF2B57E4FA006B9655 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -72,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7599CD262B5997CF00F4FD86 /* JWTDecode in Frameworks */,
 				7599CD132B57F35E00F4FD86 /* NetSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				75479BC42B56EC8700FD79F7 /* Authentication */,
+				7599CD1F2B59961D00F4FD86 /* Home */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -197,11 +204,20 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		7599CD1F2B59961D00F4FD86 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7599CD222B5996AA00F4FD86 /* MainScreenViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		75E217DE2B57E4EE006B9655 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				75E217DF2B57E4FA006B9655 /* User.swift */,
 				7599CD142B5836E900F4FD86 /* EmailToken.swift */,
+				7599CD1D2B59907600F4FD86 /* LoginDetails.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -235,6 +251,7 @@
 			name = iNet;
 			packageProductDependencies = (
 				7599CD122B57F35E00F4FD86 /* NetSwift */,
+				7599CD252B5997CF00F4FD86 /* JWTDecode */,
 			);
 			productName = iNet;
 			productReference = 751B0BE52B544A5300ACBEAE /* iNet.app */;
@@ -266,6 +283,7 @@
 			mainGroup = 751B0BDC2B544A5300ACBEAE;
 			packageReferences = (
 				7599CD112B57F35E00F4FD86 /* XCRemoteSwiftPackageReference "SwiftNet" */,
+				7599CD242B5997CF00F4FD86 /* XCRemoteSwiftPackageReference "JWTDecode" */,
 			);
 			productRefGroup = 751B0BE62B544A5300ACBEAE /* Products */;
 			projectDirPath = "";
@@ -307,8 +325,10 @@
 				7599CD192B58437700F4FD86 /* LoginView.swift in Sources */,
 				751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */,
 				75479BBD2B56E03900FD79F7 /* RegistrationSecondStageView.swift in Sources */,
+				7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */,
 				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
 				75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */,
+				7599CD232B5996AA00F4FD86 /* MainScreenViewController.swift in Sources */,
 				751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */,
 				75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */,
 				7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */,
@@ -534,6 +554,14 @@
 				kind = branch;
 			};
 		};
+		7599CD242B5997CF00F4FD86 /* XCRemoteSwiftPackageReference "JWTDecode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/JWTDecode.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -541,6 +569,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7599CD112B57F35E00F4FD86 /* XCRemoteSwiftPackageReference "SwiftNet" */;
 			productName = NetSwift;
+		};
+		7599CD252B5997CF00F4FD86 /* JWTDecode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7599CD242B5997CF00F4FD86 /* XCRemoteSwiftPackageReference "JWTDecode" */;
+			productName = JWTDecode;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
