@@ -22,6 +22,10 @@ const userSchema = new Schema({
     type: Schema.Types.String,
     required: true,
   },
+  verified: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const User = model("User", userSchema)

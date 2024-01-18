@@ -9,14 +9,14 @@ let transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "inetsupersocial@gmail.com",
-    pass: process.env.AUTH_PASSWORD
+    pass: process.env.AUTH_PASSWORD,
   },
 })
 
 export const createUser = async (req, res) => {
   try {
     const { name, lastName, email, password, gender } = req.body
-    const userEmail = req.body.email.toLowerCase()
+    const userEmail = email.toLowerCase()
     const existingUserEmail = await User.findOne({ email: userEmail })
 
     if (existingUserEmail) {
@@ -33,8 +33,9 @@ export const createUser = async (req, res) => {
 
     const emailToken = new EmailToken({
       token,
-      email,
+      email: userEmail,
     })
+    console.log(emailToken)
     await emailToken.save()
 
     try {
@@ -54,10 +55,9 @@ export const createUser = async (req, res) => {
     const newUser = new User({
       name,
       lastName,
-      email: email.toLowerCase(),
+      email: userEmail,
       password,
       gender,
-      verified: false,
     })
     await newUser.save()
 
@@ -71,8 +71,10 @@ export const verifyUser = async (req, res) => {
   try {
     const { token, email } = req.body
 
-    const existingUser = await EmailToken.findOne({ email })
-    
+    const userEmail = email.toLowerCase()
+
+    const existingUser = await EmailToken.findOne({ email: userEmail })
+
     if (!existingUser) {
       return res.status(404).json({
         success: false,
@@ -82,7 +84,7 @@ export const verifyUser = async (req, res) => {
 
     if (existingUser.token === token) {
       const updatedUser = await User.findOneAndUpdate(
-        { email },
+        { email: userEmail },
         { verified: true },
         { new: true }
       )
