@@ -35,7 +35,7 @@ export const createUser = async (req, res) => {
       token,
       email: userEmail,
     })
-    console.log(emailToken)
+   
     await emailToken.save()
 
     try {
@@ -46,7 +46,6 @@ export const createUser = async (req, res) => {
         html: confirmationEmailTemplate(token),
       })
     } catch (error) {
-      console.error(error)
       return res
         .status(500)
         .json({ error: "Failed to send confirmation email." })
