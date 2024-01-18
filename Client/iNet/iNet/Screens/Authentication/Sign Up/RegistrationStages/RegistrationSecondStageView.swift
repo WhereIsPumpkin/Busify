@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct RegistrationSecondStageView: View {
+    // MARK: - Properties
     @ObservedObject var signUpViewModel: AuthViewModel
     var navigateToThirdStage: (() -> Void)
     
+    // MARK: - Body
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
             textWrapper
@@ -22,6 +24,7 @@ struct RegistrationSecondStageView: View {
         .padding(.vertical, 42)
     }
     
+    // MARK: - Computed Properties
     var textWrapper: some View {
         VStack(spacing: 8) {
             title

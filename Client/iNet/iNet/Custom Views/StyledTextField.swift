@@ -9,15 +9,15 @@ import SwiftUI
 
 struct StyledTextField: View {
     @Binding var text: String
-    var prompt: String
+    var placeholder: String
     var isSecure: Bool
 
     var body: some View {
         Group {
             if isSecure {
-                SecureField("", text: $text, prompt: Text(prompt).foregroundColor(.gray))
+                SecureField("", text: $text, prompt: Text(placeholder).foregroundColor(.gray))
             } else {
-                TextField("", text: $text, prompt: Text(prompt).foregroundColor(.gray))
+                TextField("", text: $text, prompt: Text(placeholder).foregroundColor(.gray))
             }
         }
         .keyboardType(.emailAddress)

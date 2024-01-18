@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct VerifiedView: View {
+    // MARK: Properties
     var goToLoginPage: () -> Void
+    
+    // MARK: Body
     var body: some View {
         VStack(spacing: 40) {
             heroImage
@@ -20,6 +23,7 @@ struct VerifiedView: View {
         .padding(.vertical, 60)
     }
     
+    // MARK: Computed Properties
     private var heroImage: some View {
         Image(.verified)
             .resizable()

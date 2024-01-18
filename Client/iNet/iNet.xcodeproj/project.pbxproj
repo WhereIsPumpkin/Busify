@@ -29,6 +29,7 @@
 		7599CD152B5836E900F4FD86 /* EmailToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD142B5836E900F4FD86 /* EmailToken.swift */; };
 		7599CD172B583CB400F4FD86 /* VerifiedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD162B583CB400F4FD86 /* VerifiedView.swift */; };
 		7599CD192B58437700F4FD86 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD182B58437600F4FD86 /* LoginView.swift */; };
+		7599CD1C2B59430F00F4FD86 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD1B2B59430F00F4FD86 /* NavigationManager.swift */; };
 		75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DA2B57CE34006B9655 /* VerificationView.swift */; };
 		75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DC2B57D81B006B9655 /* OTPTextField.swift */; };
 		75E217E02B57E4FA006B9655 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DF2B57E4FA006B9655 /* User.swift */; };
@@ -59,6 +60,7 @@
 		7599CD142B5836E900F4FD86 /* EmailToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailToken.swift; sourceTree = "<group>"; };
 		7599CD162B583CB400F4FD86 /* VerifiedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiedView.swift; sourceTree = "<group>"; };
 		7599CD182B58437600F4FD86 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7599CD1B2B59430F00F4FD86 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		75E217DA2B57CE34006B9655 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		75E217DC2B57D81B006B9655 /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
 		75E217DF2B57E4FA006B9655 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				75479BC32B56EC7B00FD79F7 /* Screens */,
 				75479BC72B56ECA600FD79F7 /* Custom Views */,
 				75E217DE2B57E4EE006B9655 /* Model */,
+				7599CD1A2B5942FF00F4FD86 /* Managers */,
 				75479BC22B56EC6A00FD79F7 /* Support */,
 				751B0BF12B544A5400ACBEAE /* Assets.xcassets */,
 				751B0BF62B544A5400ACBEAE /* Info.plist */,
@@ -184,6 +187,14 @@
 				7585CDC22B55C9B60087EC03 /* Poppins-Thin.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		7599CD1A2B5942FF00F4FD86 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7599CD1B2B59430F00F4FD86 /* NavigationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		75E217DE2B57E4EE006B9655 /* Model */ = {
@@ -303,6 +314,7 @@
 				7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */,
 				75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */,
 				75E217E32B57E5AA006B9655 /* AuthViewModel.swift in Sources */,
+				7599CD1C2B59430F00F4FD86 /* NavigationManager.swift in Sources */,
 				7599CD152B5836E900F4FD86 /* EmailToken.swift in Sources */,
 				75E217E02B57E4FA006B9655 /* User.swift in Sources */,
 			);

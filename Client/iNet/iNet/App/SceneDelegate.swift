@@ -11,7 +11,7 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    var signUpViewModel = AuthViewModel()
+    var navigationManager = NavigationManager()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -21,57 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func setupWindow(for windowScene: UIWindowScene) {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = setupNavigationController()
+        window?.rootViewController = navigationManager.setupNavigationController(in: window)
         window?.makeKeyAndVisible()
     }
-    
-    func setupNavigationController() -> UINavigationController {
-        let welcomeVC = WelcomeView(signUpViewModel: signUpViewModel) {
-            self.navigateToSignUp()
-        }
-        let welcomeViewController = UIHostingController(rootView: welcomeVC)
-        return UINavigationController(rootViewController: welcomeViewController)
-    }
-    
-    func navigateToView<V: View>(title: String, _ view: V) {
-        let viewController = UIHostingController(rootView: view)
-        if let navigationController = self.window?.rootViewController as? UINavigationController {
-            viewController.title = title
-            navigationController.pushViewController(viewController, animated: true)
-        }
-    }
-    
-    func navigateToSignUp() {
-        navigateToView(title: "Register", RegisterView(signUpViewModel: signUpViewModel) {
-            self.navigateToSecondStageRegister()
-        })
-    }
-    
-    func navigateToSecondStageRegister() {
-        navigateToView(title: "Register", RegistrationSecondStageView(signUpViewModel: signUpViewModel) {
-            self.navigateToVerification()
-        })
-    }
-    
-    func navigateToVerification() {
-        navigateToView(title: "Verification", VerificationView(signUpViewModel: signUpViewModel) {
-            self.navigateToVerified()
-        })
-    }
-    
-    func navigateToVerified() {
-        navigateToView(title: "Congratulations", VerifiedView {
-            self.navigateToLogIn()
-        })
-    }
-    
-    func navigateToLogIn() {
-        let loginViewController = UIHostingController(rootView: LoginView())
-        window?.rootViewController = loginViewController
-    }
-    
 }
-
 func sceneDidDisconnect(_ scene: UIScene) {
     // Called as the scene is being released by the system.
     // This occurs shortly after the scene enters the background, or when its session is discarded.

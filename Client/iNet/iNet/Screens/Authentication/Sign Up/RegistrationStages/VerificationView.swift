@@ -12,6 +12,7 @@ struct VerificationView: View {
     @ObservedObject var signUpViewModel: AuthViewModel
     @State private var otpValue: [String] = Array(repeating: "", count: 4)
     var navigateToVerified: () -> Void
+    
     // MARK: - Body
     var body: some View {
         VStack(spacing: 16) {
@@ -25,6 +26,7 @@ struct VerificationView: View {
         .padding(.horizontal, 20)
         .padding(.vertical, 16)
     }
+    
     // MARK: - Computed Properties
     private var image: some View {
         Image("letter")

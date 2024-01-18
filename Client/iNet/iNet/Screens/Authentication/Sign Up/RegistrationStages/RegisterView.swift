@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct RegisterView: View {
-    
-    @ObservedObject var signUpViewModel: AuthViewModel
+    // MARK: - Properties
+    @ObservedObject var viewModel: AuthViewModel
     var navigateToSecondStage: (() -> Void)
     
+    // MARK: - Body
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
             titleTextWrapper
@@ -23,6 +24,7 @@ struct RegisterView: View {
         .padding(.vertical, 42)
     }
     
+    // MARK: - Computed Properties
     private var titleTextWrapper: some View {
         HStack(spacing: 12) {
             UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 20)
@@ -63,17 +65,17 @@ struct RegisterView: View {
     
     private var nameField: some View {
         HStack(spacing: 16) {
-            StyledTextField(text: $signUpViewModel.name, prompt: "Name", isSecure: false)
-            StyledTextField(text: $signUpViewModel.lastName, prompt: "Last name", isSecure: false)
+            StyledTextField(text: $viewModel.name, placeholder: "Name", isSecure: false)
+            StyledTextField(text: $viewModel.lastName, placeholder: "Last name", isSecure: false)
         }
     }
     
     private var emailField: some View {
-        StyledTextField(text: $signUpViewModel.email, prompt: "Email", isSecure: false)
+        StyledTextField(text: $viewModel.email, placeholder: "Email", isSecure: false)
     }
     
     private var passwordField: some View {
-        StyledTextField(text: $signUpViewModel.password, prompt: "Password", isSecure: true)
+        StyledTextField(text: $viewModel.password, placeholder: "Password", isSecure: true)
     }
     
     private var buttonWrapper: some View {
@@ -84,23 +86,21 @@ struct RegisterView: View {
     }
     
     private var nextButton: some View {
-        StyledButton(buttonText: "Next", buttonColor: signUpViewModel.isNextButtonDisabled ? .gray : Color("mainColor"), textColor: .white) {
-            if !signUpViewModel.isNextButtonDisabled {
+        StyledButton(buttonText: "Next", buttonColor: viewModel.isNextButtonDisabled ? .gray : Color("mainColor"), textColor: .white) {
+            if !viewModel.isNextButtonDisabled {
                 navigateToSecondStage()
             }
         }
-        .disabled(signUpViewModel.isNextButtonDisabled)
+        .disabled(viewModel.isNextButtonDisabled)
     }
-    
     
     private var appleRegisterButton: some View {
         StyledButton(buttonText: "Sign up with Apple", buttonColor: .black, textColor: .white, icon: "applelogo") {
             print("Apple Sign")
         }
     }
-    
 }
 
 #Preview {
-    RegisterView(signUpViewModel: AuthViewModel(), navigateToSecondStage: {})
+    RegisterView(viewModel: AuthViewModel(), navigateToSecondStage: {})
 }

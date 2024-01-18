@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    // MARK: - Properties
     @ObservedObject var signUpViewModel: AuthViewModel
     var navigateToSignUp: (() -> Void)
+    var navigateToLogIn: () -> Void
     
+    // MARK: - Body
     var body: some View {
         VStack {
             welcomeImage
@@ -25,6 +28,7 @@ struct WelcomeView: View {
         .padding(.top, 50)
     }
     
+    // MARK: - Computed Properties
     private var welcomeImage: some View {
         Image(.onlineConnect)
             .resizable()
@@ -49,7 +53,7 @@ struct WelcomeView: View {
     private var authButtons: some View {
         VStack(spacing: 32) {
             StyledButton(buttonText: "Login", buttonColor: Color("mainColor"), textColor: .white) {
-                print("Login")
+                navigateToLogIn()
             }
             
             StyledButton(buttonText: "Sign Up", buttonColor: .white, textColor: .black) {
@@ -61,10 +65,9 @@ struct WelcomeView: View {
             )
         }
     }
-    
 }
 
 #Preview {
-    WelcomeView(signUpViewModel: AuthViewModel(), navigateToSignUp: {})
+    WelcomeView(signUpViewModel: AuthViewModel(), navigateToSignUp: {}, navigateToLogIn: {})
 }
 
