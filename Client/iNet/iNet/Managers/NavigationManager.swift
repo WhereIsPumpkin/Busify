@@ -17,6 +17,16 @@ final class NavigationManager {
         self.window = window
     }
     
+    func navigateToInitialScreen() {
+        if UserDefaults.standard.string(forKey: "userToken") != nil {
+            navigateToMainViewScreen()
+        } else {
+            let navigationController = setupNavigationController()
+            window?.rootViewController = navigationController
+            window?.makeKeyAndVisible()
+        }
+    }
+    
     func setupNavigationController() -> UINavigationController {
         let welcomeVC = WelcomeView(signUpViewModel: authViewModel) {
             self.navigateToSignUp()
@@ -41,12 +51,11 @@ final class NavigationManager {
     }
     
     func navigateToMainViewScreen() {
-        let mainScreenViewController = MainScreenViewController()
+        let mainScreenViewController = TabBarController()
         
         window?.rootViewController = mainScreenViewController
         window?.makeKeyAndVisible()
     }
-    
     
     // MARK: - Sign Up Process
     func navigateToSignUp() {

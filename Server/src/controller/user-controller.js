@@ -17,7 +17,7 @@ let transporter = nodemailer.createTransport({
 export const createUser = async (req, res) => {
   try {
     const { name, lastName, email, password, gender } = req.body
-    
+
     const userEmail = email.toLowerCase()
     const existingUserEmail = await User.findOne({ email: userEmail })
 
@@ -111,20 +111,19 @@ export const verifyUser = async (req, res) => {
 }
 
 export const loginUser = async (req, res) => {
-
   try {
-    const { email, password } = req.body;
+    const { email, password } = req.body
 
-    const userEmail = email.toLowerCase();
+    const userEmail = email.toLowerCase()
 
-    const existingUser = await User.findOne({ email: userEmail });
+    const existingUser = await User.findOne({ email: userEmail })
     if (!existingUser) {
-      return res.status(404).send('User not found');
+      return res.status(404).send("User not found")
     }
 
-    const validPassword = password === existingUser.password;
+    const validPassword = password === existingUser.password
     if (!validPassword) {
-      return res.status(401).send('Invalid password');
+      return res.status(401).send("Invalid password")
     }
 
     const payload = {
@@ -133,12 +132,12 @@ export const loginUser = async (req, res) => {
       lastName: existingUser.lastName,
       gender: existingUser.gender,
       verified: existingUser.verified,
-    };
+    }
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" })
 
-    res.json({ token });
+    res.json({ token })
   } catch (error) {
-    res.status(500).send('Server error');
+    res.status(500).send("Server error")
   }
-};
+}

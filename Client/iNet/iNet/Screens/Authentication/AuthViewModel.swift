@@ -7,7 +7,6 @@
 
 import Foundation
 import NetSwift
-import JWTDecode
 
 enum baseURL: String {
     case local = "https://dull-ruby-python.cyclic.app"
@@ -80,8 +79,6 @@ final class AuthViewModel: ObservableObject {
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                 if let json = try? JSONSerialization.jsonObject(with: data) as? [String: String],
                    let token = json["token"] {
-                    let jwt = try decode(jwt: token)
-                    print(jwt)
                     UserDefaults.standard.set(token, forKey: "userToken")
                     return true
                 }

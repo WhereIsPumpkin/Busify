@@ -10,6 +10,10 @@
 		751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BE82B544A5300ACBEAE /* AppDelegate.swift */; };
 		751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */; };
 		751B0BF22B544A5400ACBEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 751B0BF12B544A5400ACBEAE /* Assets.xcassets */; };
+		753AA6CE2B5A79CF006A599B /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6CD2B5A79CF006A599B /* HomeScreenViewController.swift */; };
+		753AA6D42B5A815F006A599B /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D32B5A815F006A599B /* WalletViewController.swift */; };
+		753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D52B5A8166006A599B /* ProfileViewController.swift */; };
+		753AA6D82B5A8171006A599B /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D72B5A8171006A599B /* ServicesViewController.swift */; };
 		75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BBA2B56A1E900FD79F7 /* RegisterView.swift */; };
 		75479BBD2B56E03900FD79F7 /* RegistrationSecondStageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */; };
 		75479BC02B56E37B00FD79F7 /* RadioButtonField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BBF2B56E37B00FD79F7 /* RadioButtonField.swift */; };
@@ -31,7 +35,7 @@
 		7599CD192B58437700F4FD86 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD182B58437600F4FD86 /* LoginView.swift */; };
 		7599CD1C2B59430F00F4FD86 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD1B2B59430F00F4FD86 /* NavigationManager.swift */; };
 		7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD1D2B59907600F4FD86 /* LoginDetails.swift */; };
-		7599CD232B5996AA00F4FD86 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD222B5996AA00F4FD86 /* MainScreenViewController.swift */; };
+		7599CD232B5996AA00F4FD86 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD222B5996AA00F4FD86 /* TabBarController.swift */; };
 		7599CD262B5997CF00F4FD86 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 7599CD252B5997CF00F4FD86 /* JWTDecode */; };
 		75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DA2B57CE34006B9655 /* VerificationView.swift */; };
 		75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DC2B57D81B006B9655 /* OTPTextField.swift */; };
@@ -45,6 +49,10 @@
 		751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		751B0BF12B544A5400ACBEAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		751B0BF62B544A5400ACBEAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		753AA6CD2B5A79CF006A599B /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		753AA6D32B5A815F006A599B /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		753AA6D52B5A8166006A599B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		753AA6D72B5A8171006A599B /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		75479BBA2B56A1E900FD79F7 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSecondStageView.swift; sourceTree = "<group>"; };
 		75479BBF2B56E37B00FD79F7 /* RadioButtonField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonField.swift; sourceTree = "<group>"; };
@@ -65,7 +73,7 @@
 		7599CD182B58437600F4FD86 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7599CD1B2B59430F00F4FD86 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		7599CD1D2B59907600F4FD86 /* LoginDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDetails.swift; sourceTree = "<group>"; };
-		7599CD222B5996AA00F4FD86 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		7599CD222B5996AA00F4FD86 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		75E217DA2B57CE34006B9655 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		75E217DC2B57D81B006B9655 /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
 		75E217DF2B57E4FA006B9655 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -116,6 +124,38 @@
 			path = iNet;
 			sourceTree = "<group>";
 		};
+		753AA6CF2B5A811F006A599B /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				7599CD222B5996AA00F4FD86 /* TabBarController.swift */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		753AA6D02B5A812E006A599B /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				753AA6D32B5A815F006A599B /* WalletViewController.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		753AA6D12B5A8140006A599B /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				753AA6D52B5A8166006A599B /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		753AA6D22B5A814B006A599B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				753AA6D72B5A8171006A599B /* ServicesViewController.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		75479BC12B56EC6300FD79F7 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,8 +176,12 @@
 		75479BC32B56EC7B00FD79F7 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				753AA6CF2B5A811F006A599B /* TabBarController */,
 				75479BC42B56EC8700FD79F7 /* Authentication */,
 				7599CD1F2B59961D00F4FD86 /* Home */,
+				753AA6D22B5A814B006A599B /* Services */,
+				753AA6D02B5A812E006A599B /* Wallet */,
+				753AA6D12B5A8140006A599B /* Profile */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -207,7 +251,7 @@
 		7599CD1F2B59961D00F4FD86 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				7599CD222B5996AA00F4FD86 /* MainScreenViewController.swift */,
+				753AA6CD2B5A79CF006A599B /* HomeScreenViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -321,14 +365,18 @@
 			files = (
 				75479BC02B56E37B00FD79F7 /* RadioButtonField.swift in Sources */,
 				75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */,
+				753AA6D42B5A815F006A599B /* WalletViewController.swift in Sources */,
 				7599CD172B583CB400F4FD86 /* VerifiedView.swift in Sources */,
 				7599CD192B58437700F4FD86 /* LoginView.swift in Sources */,
+				753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */,
 				751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */,
 				75479BBD2B56E03900FD79F7 /* RegistrationSecondStageView.swift in Sources */,
 				7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */,
 				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
+				753AA6D82B5A8171006A599B /* ServicesViewController.swift in Sources */,
+				753AA6CE2B5A79CF006A599B /* HomeScreenViewController.swift in Sources */,
 				75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */,
-				7599CD232B5996AA00F4FD86 /* MainScreenViewController.swift in Sources */,
+				7599CD232B5996AA00F4FD86 /* TabBarController.swift in Sources */,
 				751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */,
 				75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */,
 				7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */,
@@ -395,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -452,7 +500,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

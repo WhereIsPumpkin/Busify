@@ -72,11 +72,16 @@ struct LoginView: View {
     private var loginButton: some View {
         StyledButton(buttonText: "Log In", buttonColor: Color("mainColor"), textColor: .white) {
             Task {
-                await viewModel.loginUser()
+                let isSuccess = await viewModel.loginUser()
+                if isSuccess {
+                    navigateToHomeScreen()
+                } else {
+                    // TODO: - Handle Login Error
+                }
             }
-            navigateToHomeScreen()
         }
     }
+    
 }
 
 #Preview {
