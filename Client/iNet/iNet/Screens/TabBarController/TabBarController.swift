@@ -20,8 +20,9 @@ class TabBarController: UITabBarController {
         let homeScreenVC = createHomeScreenVC()
         let profileVC = createProfileVC()
         let walletVC = createWalletVC()
+        let serviceVC = createServicesVC()
 
-        setViewControllers([homeScreenVC, walletVC, profileVC ], animated: true)
+        setViewControllers([homeScreenVC, serviceVC, walletVC, profileVC ], animated: true)
     }
     
     // MARK: - Create TabBarItem View Controllers
@@ -32,9 +33,16 @@ class TabBarController: UITabBarController {
         return homeVC
     }
     
+    private func createServicesVC() -> UINavigationController {
+        let homeVC = UINavigationController(rootViewController: ServicesViewController())
+        homeVC.tabBarItem.image = UIImage(systemName: "square.grid.2x2.fill")
+        homeVC.title = "Services"
+        return homeVC
+    }
+    
     private func createWalletVC() -> UINavigationController {
         let walletVC = UINavigationController(rootViewController: WalletViewController())
-        walletVC.tabBarItem.image = UIImage(systemName: "wallet.pass")
+        walletVC.tabBarItem.image = UIImage(systemName: "dollarsign.circle.fill")
         walletVC.title = "Wallet"
         return walletVC
     }
@@ -47,7 +55,7 @@ class TabBarController: UITabBarController {
     }
 
     private func setupTabBarColors() {
-        tabBar.tintColor = UIColor(named: "mainColorz")
+        tabBar.tintColor = UIColor(named: "mainColor")
         tabBar.unselectedItemTintColor = UIColor.gray
         createTabBarBackgroundColor()
     }

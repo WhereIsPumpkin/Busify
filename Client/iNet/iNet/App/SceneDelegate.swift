@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
 
         navigationManager = NavigationManager(window: window)
-        navigationManager?.navigateToInitialScreen() 
+        navigationManager?.navigateToInitialScreen()
 
         window?.makeKeyAndVisible()
     }

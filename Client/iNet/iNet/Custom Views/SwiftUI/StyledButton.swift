@@ -23,7 +23,8 @@ struct StyledButton: View {
                     Text(buttonText)
                 }
             }
-            .font(.system(size: 20, weight: .semibold))
+//            .font(.system(size: 20, weight: .semibold))
+            .font(.custom("Poppins-medium", size: 20))
             .foregroundStyle(textColor)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 16)

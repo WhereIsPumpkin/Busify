@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7510F73F2B5AA90D003C24BB /* PostStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F73E2B5AA90D003C24BB /* PostStackView.swift */; };
+		7510F7412B5AB2E8003C24BB /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7402B5AB2E8003C24BB /* PostTableViewCell.swift */; };
+		7510F7442B5AC66E003C24BB /* ServicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7432B5AC66E003C24BB /* ServicesCollectionViewCell.swift */; };
+		7510F7462B5AF4A9003C24BB /* ServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7452B5AF4A9003C24BB /* ServicesViewModel.swift */; };
+		7510F74A2B5B005D003C24BB /* BusScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7492B5B005D003C24BB /* BusScheduleViewController.swift */; };
+		7510F74C2B5B010D003C24BB /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F74B2B5B010D003C24BB /* ServiceType.swift */; };
 		751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BE82B544A5300ACBEAE /* AppDelegate.swift */; };
 		751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */; };
 		751B0BF22B544A5400ACBEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 751B0BF12B544A5400ACBEAE /* Assets.xcassets */; };
@@ -36,7 +42,12 @@
 		7599CD1C2B59430F00F4FD86 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD1B2B59430F00F4FD86 /* NavigationManager.swift */; };
 		7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD1D2B59907600F4FD86 /* LoginDetails.swift */; };
 		7599CD232B5996AA00F4FD86 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD222B5996AA00F4FD86 /* TabBarController.swift */; };
-		7599CD262B5997CF00F4FD86 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 7599CD252B5997CF00F4FD86 /* JWTDecode */; };
+		75A0BDF92B5B14AE00B90EEA /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 75A0BDF82B5B14AE00B90EEA /* Lottie */; };
+		75A0BDFD2B5B1A9D00B90EEA /* busAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 75A0BDFC2B5B1A9D00B90EEA /* busAnimation.json */; };
+		75A0BE012B5B1FB900B90EEA /* CustomStyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE002B5B1FB900B90EEA /* CustomStyleButton.swift */; };
+		75A0BE032B5B202600B90EEA /* CustomStyleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE022B5B202600B90EEA /* CustomStyleTextField.swift */; };
+		75A0BE052B5C217300B90EEA /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE042B5C217300B90EEA /* BusStop.swift */; };
+		75A0BE072B5C50C400B90EEA /* BusStopDetailsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE062B5C50C400B90EEA /* BusStopDetailsPage.swift */; };
 		75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DA2B57CE34006B9655 /* VerificationView.swift */; };
 		75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DC2B57D81B006B9655 /* OTPTextField.swift */; };
 		75E217E02B57E4FA006B9655 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DF2B57E4FA006B9655 /* User.swift */; };
@@ -44,6 +55,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7510F73E2B5AA90D003C24BB /* PostStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStackView.swift; sourceTree = "<group>"; };
+		7510F7402B5AB2E8003C24BB /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		7510F7432B5AC66E003C24BB /* ServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCollectionViewCell.swift; sourceTree = "<group>"; };
+		7510F7452B5AF4A9003C24BB /* ServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewModel.swift; sourceTree = "<group>"; };
+		7510F7492B5B005D003C24BB /* BusScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusScheduleViewController.swift; sourceTree = "<group>"; };
+		7510F74B2B5B010D003C24BB /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		751B0BE52B544A5300ACBEAE /* iNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		751B0BE82B544A5300ACBEAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +91,11 @@
 		7599CD1B2B59430F00F4FD86 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		7599CD1D2B59907600F4FD86 /* LoginDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDetails.swift; sourceTree = "<group>"; };
 		7599CD222B5996AA00F4FD86 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		75A0BDFC2B5B1A9D00B90EEA /* busAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = busAnimation.json; sourceTree = "<group>"; };
+		75A0BE002B5B1FB900B90EEA /* CustomStyleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStyleButton.swift; sourceTree = "<group>"; };
+		75A0BE022B5B202600B90EEA /* CustomStyleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStyleTextField.swift; sourceTree = "<group>"; };
+		75A0BE042B5C217300B90EEA /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
+		75A0BE062B5C50C400B90EEA /* BusStopDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopDetailsPage.swift; sourceTree = "<group>"; };
 		75E217DA2B57CE34006B9655 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		75E217DC2B57D81B006B9655 /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
 		75E217DF2B57E4FA006B9655 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -85,14 +107,62 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7599CD262B5997CF00F4FD86 /* JWTDecode in Frameworks */,
 				7599CD132B57F35E00F4FD86 /* NetSwift in Frameworks */,
+				75A0BDF92B5B14AE00B90EEA /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7510F73C2B5A96BC003C24BB /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				75479BBF2B56E37B00FD79F7 /* RadioButtonField.swift */,
+				75479BC82B56ED7500FD79F7 /* StyledTextField.swift */,
+				75479BCA2B56F18300FD79F7 /* StyledButton.swift */,
+				75E217DC2B57D81B006B9655 /* OTPTextField.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		7510F73D2B5A96D5003C24BB /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				7510F73E2B5AA90D003C24BB /* PostStackView.swift */,
+				7510F7402B5AB2E8003C24BB /* PostTableViewCell.swift */,
+				75A0BE002B5B1FB900B90EEA /* CustomStyleButton.swift */,
+				75A0BE022B5B202600B90EEA /* CustomStyleTextField.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		7510F7422B5AC655003C24BB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7510F7432B5AC66E003C24BB /* ServicesCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		7510F7472B5B0021003C24BB /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				753AA6D72B5A8171006A599B /* ServicesViewController.swift */,
+				7510F7422B5AC655003C24BB /* Cell */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		7510F7482B5B0032003C24BB /* Bus Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				7510F7492B5B005D003C24BB /* BusScheduleViewController.swift */,
+				75A0BE062B5C50C400B90EEA /* BusStopDetailsPage.swift */,
+			);
+			path = "Bus Schedule";
+			sourceTree = "<group>";
+		};
 		751B0BDC2B544A5300ACBEAE = {
 			isa = PBXGroup;
 			children = (
@@ -151,7 +221,9 @@
 		753AA6D22B5A814B006A599B /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				753AA6D72B5A8171006A599B /* ServicesViewController.swift */,
+				7510F7472B5B0021003C24BB /* Main */,
+				7510F7482B5B0032003C24BB /* Bus Schedule */,
+				7510F7452B5AF4A9003C24BB /* ServicesViewModel.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -168,6 +240,7 @@
 		75479BC22B56EC6A00FD79F7 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				75A0BDFC2B5B1A9D00B90EEA /* busAnimation.json */,
 				7585CDB42B55C97E0087EC03 /* Fonts */,
 			);
 			path = Support;
@@ -200,7 +273,10 @@
 		75479BC52B56EC8C00FD79F7 /* Sign Up */ = {
 			isa = PBXGroup;
 			children = (
-				75E217E12B57E57A006B9655 /* RegistrationStages */,
+				75479BBA2B56A1E900FD79F7 /* RegisterView.swift */,
+				75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */,
+				75E217DA2B57CE34006B9655 /* VerificationView.swift */,
+				7599CD162B583CB400F4FD86 /* VerifiedView.swift */,
 			);
 			path = "Sign Up";
 			sourceTree = "<group>";
@@ -216,10 +292,8 @@
 		75479BC72B56ECA600FD79F7 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				75479BBF2B56E37B00FD79F7 /* RadioButtonField.swift */,
-				75479BC82B56ED7500FD79F7 /* StyledTextField.swift */,
-				75479BCA2B56F18300FD79F7 /* StyledButton.swift */,
-				75E217DC2B57D81B006B9655 /* OTPTextField.swift */,
+				7510F73C2B5A96BC003C24BB /* SwiftUI */,
+				7510F73D2B5A96D5003C24BB /* UIKit */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -262,19 +336,10 @@
 				75E217DF2B57E4FA006B9655 /* User.swift */,
 				7599CD142B5836E900F4FD86 /* EmailToken.swift */,
 				7599CD1D2B59907600F4FD86 /* LoginDetails.swift */,
+				7510F74B2B5B010D003C24BB /* ServiceType.swift */,
+				75A0BE042B5C217300B90EEA /* BusStop.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		75E217E12B57E57A006B9655 /* RegistrationStages */ = {
-			isa = PBXGroup;
-			children = (
-				75479BBA2B56A1E900FD79F7 /* RegisterView.swift */,
-				75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */,
-				75E217DA2B57CE34006B9655 /* VerificationView.swift */,
-				7599CD162B583CB400F4FD86 /* VerifiedView.swift */,
-			);
-			path = RegistrationStages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,7 +360,7 @@
 			name = iNet;
 			packageProductDependencies = (
 				7599CD122B57F35E00F4FD86 /* NetSwift */,
-				7599CD252B5997CF00F4FD86 /* JWTDecode */,
+				75A0BDF82B5B14AE00B90EEA /* Lottie */,
 			);
 			productName = iNet;
 			productReference = 751B0BE52B544A5300ACBEAE /* iNet.app */;
@@ -327,7 +392,7 @@
 			mainGroup = 751B0BDC2B544A5300ACBEAE;
 			packageReferences = (
 				7599CD112B57F35E00F4FD86 /* XCRemoteSwiftPackageReference "SwiftNet" */,
-				7599CD242B5997CF00F4FD86 /* XCRemoteSwiftPackageReference "JWTDecode" */,
+				75A0BDF72B5B14AE00B90EEA /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = 751B0BE62B544A5300ACBEAE /* Products */;
 			projectDirPath = "";
@@ -347,6 +412,7 @@
 				7585CDD72B55C9B60087EC03 /* Poppins-Light.ttf in Resources */,
 				7585CDCA2B55C9B60087EC03 /* Poppins-ExtraBold.ttf in Resources */,
 				7585CDD22B55C9B60087EC03 /* Poppins-Black.ttf in Resources */,
+				75A0BDFD2B5B1A9D00B90EEA /* busAnimation.json in Resources */,
 				7585CDD52B55C9B60087EC03 /* Poppins-Thin.ttf in Resources */,
 				751B0BF22B544A5400ACBEAE /* Assets.xcassets in Resources */,
 				7585CDD42B55C9B60087EC03 /* Poppins-Regular.ttf in Resources */,
@@ -363,28 +429,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7510F7462B5AF4A9003C24BB /* ServicesViewModel.swift in Sources */,
 				75479BC02B56E37B00FD79F7 /* RadioButtonField.swift in Sources */,
 				75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */,
 				753AA6D42B5A815F006A599B /* WalletViewController.swift in Sources */,
 				7599CD172B583CB400F4FD86 /* VerifiedView.swift in Sources */,
 				7599CD192B58437700F4FD86 /* LoginView.swift in Sources */,
+				75A0BE072B5C50C400B90EEA /* BusStopDetailsPage.swift in Sources */,
 				753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */,
 				751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */,
 				75479BBD2B56E03900FD79F7 /* RegistrationSecondStageView.swift in Sources */,
 				7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */,
 				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
 				753AA6D82B5A8171006A599B /* ServicesViewController.swift in Sources */,
+				7510F7412B5AB2E8003C24BB /* PostTableViewCell.swift in Sources */,
 				753AA6CE2B5A79CF006A599B /* HomeScreenViewController.swift in Sources */,
 				75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */,
+				7510F74A2B5B005D003C24BB /* BusScheduleViewController.swift in Sources */,
 				7599CD232B5996AA00F4FD86 /* TabBarController.swift in Sources */,
 				751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */,
+				7510F73F2B5AA90D003C24BB /* PostStackView.swift in Sources */,
 				75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */,
 				7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */,
 				75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */,
+				75A0BE052B5C217300B90EEA /* BusStop.swift in Sources */,
+				75A0BE032B5B202600B90EEA /* CustomStyleTextField.swift in Sources */,
 				75E217E32B57E5AA006B9655 /* AuthViewModel.swift in Sources */,
 				7599CD1C2B59430F00F4FD86 /* NavigationManager.swift in Sources */,
 				7599CD152B5836E900F4FD86 /* EmailToken.swift in Sources */,
+				7510F7442B5AC66E003C24BB /* ServicesCollectionViewCell.swift in Sources */,
 				75E217E02B57E4FA006B9655 /* User.swift in Sources */,
+				75A0BE012B5B1FB900B90EEA /* CustomStyleButton.swift in Sources */,
+				7510F74C2B5B010D003C24BB /* ServiceType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,12 +678,12 @@
 				kind = branch;
 			};
 		};
-		7599CD242B5997CF00F4FD86 /* XCRemoteSwiftPackageReference "JWTDecode" */ = {
+		75A0BDF72B5B14AE00B90EEA /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/auth0/JWTDecode.swift";
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.0;
+				kind = upToNextMinorVersion;
+				minimumVersion = 4.3.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -618,10 +694,10 @@
 			package = 7599CD112B57F35E00F4FD86 /* XCRemoteSwiftPackageReference "SwiftNet" */;
 			productName = NetSwift;
 		};
-		7599CD252B5997CF00F4FD86 /* JWTDecode */ = {
+		75A0BDF82B5B14AE00B90EEA /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7599CD242B5997CF00F4FD86 /* XCRemoteSwiftPackageReference "JWTDecode" */;
-			productName = JWTDecode;
+			package = 75A0BDF72B5B14AE00B90EEA /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
