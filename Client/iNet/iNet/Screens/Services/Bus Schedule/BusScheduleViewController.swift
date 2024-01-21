@@ -21,6 +21,7 @@ class BusScheduleViewController: UIViewController {
     private var viewModel = ServicesViewModel()
     private var tableView: UITableView?
     private let textFieldWrapper = UIStackView()
+    let returnButton = UIButton(type: .system)
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -38,8 +39,9 @@ class BusScheduleViewController: UIViewController {
     
     private func configureViewController() {
         title = "Bus Schedule"
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 34/255, green: 40/255, blue: 49/255, alpha: 1)
         view.addSubview(mainVerticalStack)
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
     }
     
     private func setupMainVerticalStack() {
@@ -97,34 +99,57 @@ class BusScheduleViewController: UIViewController {
     private func setupTitleLabel() {
         titleLabel.text = "Choose Stop ID or Enter Address"
         titleLabel.font = UIFont(name: "Poppins-Medium", size: 16)
-        titleLabel.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+        titleLabel.textColor = .white
         titleLabel.textAlignment = .center
     }
     
     private func setupTextFieldWrap() {
         textFieldWrapper.addArrangedSubview(busSearchTextField)
+        setupReturnButton()
         textFieldWrapper.axis = .horizontal
+        textFieldWrapper.spacing = 8
         textFieldWrapper.isLayoutMarginsRelativeArrangement = true
-        textFieldWrapper.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        textFieldWrapper.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 20)
     }
+    
+    private func setupReturnButton() {
+        returnButton.setImage(UIImage(systemName: "arrow.down.right.and.arrow.up.left"), for: .normal)
+        returnButton.tintColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
+        returnButton.addTarget(self, action: #selector(returnButtonTapped), for: .touchUpInside)
+        returnButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        returnButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    
+    @objc private func returnButtonTapped() {
+        UIView.animate(withDuration: 0.3) {
+            self.configureViewForTextFieldUnfocus()
+            self.viewModel.filterLocations(with: "")
+            self.tableView?.reloadData()
+            self.busSearchTextField.clearText()
+            self.busSearchTextField.updateClearButtonVisibility()
+        }
+    }
+    
     
     private func setupBusSearchTextField() {
         busSearchTextField.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
         busSearchTextField.delegate = self
         busSearchTextField.onClearAction = {
             UIView.animate(withDuration: 0.3) {
-                self.configureViewForTextFieldUnfocus()
+                self.viewModel.filterLocations(with: "")
+                self.tableView?.reloadData()
             }
         }
     }
     
     private func setupTableView() {
         tableView = UITableView()
+        tableView?.backgroundColor = UIColor(red: 34/255, green: 40/255, blue: 49/255, alpha: 1)
         guard let tableView = tableView else { return }
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(BusScheduleTableViewCell.self, forCellReuseIdentifier: "BusScheduleCell")
     }
     
     private func createDismissKeyboardGesture() {
@@ -136,9 +161,6 @@ class BusScheduleViewController: UIViewController {
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-    let testData = ["Bus 1", "Bus 2", "Bus 3", "Bus 3","Bus 3","Bus 3","Bus 3","Bus 3",]
-    
 }
 
 // MARK: - Extensions
@@ -193,15 +215,22 @@ extension BusScheduleViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = viewModel.filteredLocationName(at: indexPath.row)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusScheduleCell", for: indexPath) as? BusScheduleTableViewCell else {
+            return UITableViewCell()
+        }
+        let locationName = viewModel.filteredLocation(at: indexPath.row)
+        guard let code = locationName.code else {
+            cell.configure(with: locationName.name, id: "0000")
+            return cell
+        }
+        cell.configure(with: locationName.name, id: "\(code)")
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedBusStopName = viewModel.filteredLocationName(at: indexPath.row)
+        let selectedBusStopName = viewModel.filteredLocation(at: indexPath.row)
         let detailsVC = BusStopDetailsPage()
-        detailsVC.busStopName = selectedBusStopName
+        detailsVC.busStopName = selectedBusStopName.name
         self.navigationController?.pushViewController(detailsVC, animated: true)
     }
 }
@@ -219,6 +248,7 @@ extension BusScheduleViewController {
     
     private func configureViewForTextFieldFocus() {
         hideBusAnimation()
+        showReturnButton()
         adjustSpacingsForFocus()
         hideTitleLabel()
         addTableViewToStack()
@@ -226,9 +256,20 @@ extension BusScheduleViewController {
     
     private func configureViewForTextFieldUnfocus() {
         unhideBusAnimation()
+        hideReturnButton()
         resetSpacings()
         showTitleLabel()
         removeTableViewFromStack()
+    }
+    
+    private func showReturnButton() {
+        returnButton.alpha = 1
+        textFieldWrapper.addArrangedSubview(returnButton)
+    }
+    
+    private func hideReturnButton() {
+        returnButton.alpha = 0
+        textFieldWrapper.removeArrangedSubview(returnButton)
     }
     
     private func hideBusAnimation() {
@@ -237,12 +278,12 @@ extension BusScheduleViewController {
     }
     
     private func unhideBusAnimation() {
-        busAnimationView.isHidden = false
         busAnimationView.alpha = 1
+        busAnimationView.isHidden = false
     }
     
     private func adjustSpacingsForFocus() {
-        mainVerticalStack.setCustomSpacing(16, after: self.titleLabel)
+        // Sizing Adjust //TODO: - Look for sizes
     }
     
     private func resetSpacings() {

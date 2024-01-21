@@ -94,8 +94,8 @@ class PostStackView: UIStackView {
         postText.text = "Y’all ready for this next"
         postText.font = UIFont(name: "Poppins", size: 16)
         postText.textColor = .black
-        postText.numberOfLines = 0  // Allow multiple lines
-          postText.lineBreakMode = .byWordWrapping  // Break
+        postText.numberOfLines = 0
+          postText.lineBreakMode = .byWordWrapping
     }
     
     private func setupIconStack() {

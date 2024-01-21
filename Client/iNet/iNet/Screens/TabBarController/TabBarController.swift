@@ -34,11 +34,11 @@ class TabBarController: UITabBarController {
     }
     
     private func createServicesVC() -> UINavigationController {
-        let homeVC = UINavigationController(rootViewController: ServicesViewController())
-        homeVC.tabBarItem.image = UIImage(systemName: "square.grid.2x2.fill")
-        homeVC.title = "Services"
-        return homeVC
+        let servicesVC = UINavigationController(rootViewController: ServicesViewController())
+        servicesVC.tabBarItem = UITabBarItem(title: "Services", image: UIImage(systemName: "square.grid.2x2.fill"), tag: 0)
+        return servicesVC
     }
+
     
     private func createWalletVC() -> UINavigationController {
         let walletVC = UINavigationController(rootViewController: WalletViewController())
@@ -55,8 +55,7 @@ class TabBarController: UITabBarController {
     }
 
     private func setupTabBarColors() {
-        tabBar.tintColor = UIColor(named: "mainColor")
-        tabBar.unselectedItemTintColor = UIColor.gray
+        tabBar.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
         createTabBarBackgroundColor()
     }
     
@@ -64,7 +63,7 @@ class TabBarController: UITabBarController {
         if #available(iOS 15.0, *) {
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = .systemBackground
+            appearance.backgroundColor = UIColor(red: 57/255, green: 62/255, blue: 70/255, alpha: 1)
             tabBar.standardAppearance = appearance
             tabBar.scrollEdgeAppearance = tabBar.standardAppearance
         }

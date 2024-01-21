@@ -23,7 +23,6 @@ class ServicesViewModel {
             await fetchBusStops { [weak self] error in
                 DispatchQueue.main.async {
                     if let error = error {
-                        // Handle error, e.g., log or show an alert
                         print("Error fetching bus stops: \(error)")
                     } else {
                         self?.filteredLocations = self?.locations ?? []
@@ -45,21 +44,24 @@ class ServicesViewModel {
     }
     
     func filterLocations(with query: String) {
-        if query.isEmpty {
-            filteredLocations = locations
-        } else {
-            filteredLocations = locations.filter { location in
-                location.name.lowercased().contains(query.lowercased())
-            }
-        }
-    }
+          if query.isEmpty {
+              filteredLocations = locations
+          } else {
+              filteredLocations = locations.filter { location in
+                  let queryLowercased = query.lowercased()
+                  let nameMatch = location.name.lowercased().contains(queryLowercased)
+                  let codeMatch = location.code?.lowercased().contains(queryLowercased) ?? false
+                  return nameMatch || codeMatch
+              }
+          }
+      }
     
     var numberOfFilteredLocations: Int {
         return filteredLocations.count
     }
     
-    func filteredLocationName(at index: Int) -> String {
-        return filteredLocations[index].name
+    func filteredLocation(at index: Int) -> Location {
+        return filteredLocations[index]
     }
 }
 

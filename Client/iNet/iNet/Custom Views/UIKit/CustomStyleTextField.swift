@@ -54,7 +54,7 @@ class CustomStyledTextField: UITextField {
     
     private func styleTextField() {
         self.borderStyle = .none
-        self.backgroundColor = UIColor(red: 0.44, green: 0.44, blue: 0.44, alpha: 0.06)
+        self.backgroundColor = UIColor(red: 57/255, green: 62/255, blue: 70/255, alpha: 1)
         self.layer.cornerRadius = 8
         self.autocapitalizationType = .none
         self.returnKeyType = .done
@@ -71,9 +71,11 @@ class CustomStyledTextField: UITextField {
     private func createImageView() -> UIImageView {
         let imageView = UIImageView(frame: CGRect(x: 12, y: 7, width: 16, height: 16))
         imageView.image = UIImage(systemName: "magnifyingglass")
+        imageView.tintColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
         imageView.contentMode = .scaleAspectFit
         return imageView
     }
+
     
     private func createPaddingView(withView view: UIView) -> UIView {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 30))
@@ -115,7 +117,7 @@ class CustomStyledTextField: UITextField {
         updateClearButtonVisibility()
     }
     
-    private func clearText() {
+    func clearText() {
         self.text = ""
         self.resignFirstResponder()
     }
@@ -128,7 +130,7 @@ class CustomStyledTextField: UITextField {
         updateClearButtonVisibility()
     }
 
-    private func updateClearButtonVisibility() {
+    func updateClearButtonVisibility() {
         self.rightViewMode = self.text?.isEmpty == false ? .always : .never
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ServicesViewController: UIViewController {
     private var viewModel = ServicesViewModel()
@@ -57,13 +58,17 @@ extension ServicesViewController: UICollectionViewDataSource, UICollectionViewDe
         switch serviceType {
         case .busSchedule:
             let busScheduleViewController = BusScheduleViewController()
+            busScheduleViewController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(busScheduleViewController, animated: true)
         case .personalizedSuggestions:
-            print("Personalized Suggestions tapped")
+            let chatBotViewController = UIHostingController(rootView: ChatBotView())
+            self.navigationItem.title = ""
+            navigationController?.pushViewController(chatBotViewController, animated: true)
         case .cinemaTickets:
             print("Cinema Tickets tapped")
         }
     }
+
     
 }
 

@@ -12,7 +12,7 @@ class BusStopDetailsPage: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 34/255, green: 40/255, blue: 49/255, alpha: 1)
         title = busStopName
     }
 }
