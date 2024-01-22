@@ -57,9 +57,10 @@ extension ServicesViewController: UICollectionViewDataSource, UICollectionViewDe
         
         switch serviceType {
         case .busSchedule:
-            NavigationManager.shared.navigateToBusViewController()
+            navigationController?.pushViewController(BusScheduleViewController(), animated: true)
         case .personalizedSuggestions:
-            NavigationManager.shared.navigateToChatBotViewController()
+            let chatBotViewController = UIHostingController(rootView: ChatBotView())
+            navigationController?.pushViewController(chatBotViewController, animated: true)
         case .cinemaTickets:
             print("Cinema Tickets tapped")
         }

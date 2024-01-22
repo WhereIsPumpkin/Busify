@@ -14,7 +14,7 @@ final class NavigationManager {
     var window: UIWindow?
     
     private init() {}
-
+    
     // MARK: - Init
     init(window: UIWindow?) {
         self.window = window
@@ -48,11 +48,16 @@ final class NavigationManager {
     
     func navigateToMainViewScreen() {
         let mainScreenViewController = TabBarController()
-        let navigationController = UINavigationController(rootViewController: mainScreenViewController)
-        window?.rootViewController = navigationController
+        window?.rootViewController = mainScreenViewController
         window?.makeKeyAndVisible()
     }
-
+    
+    func createServicesVC() -> UINavigationController {
+        let servicesVC = ServicesViewController() // Assuming ServicesViewController is already defined
+        let navigationVC = UINavigationController(rootViewController: servicesVC)
+        navigationVC.tabBarItem = UITabBarItem(title: "Services", image: UIImage(systemName: "square.grid.2x2.fill"), tag: 0)
+        return navigationVC
+    }
     
     // MARK: - Sign Up Process
     func navigateToSignUp() {
@@ -81,6 +86,7 @@ final class NavigationManager {
     }
     
     func navigateToBusViewController() {
+        print("12")
         navigateToViewController(BusScheduleViewController())
     }
     

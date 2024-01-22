@@ -29,7 +29,8 @@ class BusScheduleTableViewCell: UITableViewCell {
     private let busIconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(systemName: "bus.fill")
+        imageView.image = UIImage(resource: .busStopIcon)
+        imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
         return imageView
