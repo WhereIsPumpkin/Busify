@@ -17,3 +17,11 @@ enum UserType: Encodable {
     case user
     case system
 }
+
+struct DebateRequestBody: Codable {
+    let message: String
+}
+
+struct MessageResponse: Codable {
+    let message: String
+}

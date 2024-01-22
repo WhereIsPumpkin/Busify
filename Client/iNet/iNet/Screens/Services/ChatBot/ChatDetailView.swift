@@ -10,6 +10,7 @@ import SwiftUI
 struct ChatDetailView: View {
     @StateObject var viewModel = ChatViewModel()
     @State private var isKeyboardVisible = false
+    
     var body: some View {
         ZStack {
             backgroundColor
@@ -28,8 +29,8 @@ struct ChatDetailView: View {
             inputFieldWrapper
         }
         .keyboardResponsive { visible in
-                    isKeyboardVisible = visible
-                }
+            isKeyboardVisible = visible
+        }
         .ignoresSafeArea(edges: .bottom)
         .padding(.top)
     }
@@ -59,7 +60,7 @@ struct ChatDetailView: View {
                 Spacer()
             }
         }
-
+        
     }
     
     private func userMessage(_ text: String) -> some View {
@@ -107,8 +108,7 @@ struct ChatDetailView: View {
         Button(action: {
             if !viewModel.text.isEmpty {
                 Task {
-                    await viewModel.sendMessage(viewModel.text)
-                    viewModel.text = ""
+                    await viewModel.sendMessage()
                 }
             }
         }, label: {

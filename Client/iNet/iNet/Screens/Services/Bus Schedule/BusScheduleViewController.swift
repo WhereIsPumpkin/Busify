@@ -130,7 +130,6 @@ class BusScheduleViewController: UIViewController {
         }
     }
     
-    
     private func setupBusSearchTextField() {
         busSearchTextField.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
         busSearchTextField.delegate = self

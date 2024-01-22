@@ -80,6 +80,15 @@ final class NavigationManager {
         navigateToViewController(chatBotView)
     }
     
+    func navigateToBusViewController() {
+        navigateToViewController(BusScheduleViewController())
+    }
+    
+    func navigateToChatBotViewController() {
+        let chatBotViewController = UIHostingController(rootView: ChatBotView())
+        navigateToViewController(chatBotViewController)
+    }
+    
     // MARK: - Generic Navigation Helper
     private func navigateToViewController(_ viewController: UIViewController) {
         if let navigationController = window?.rootViewController as? UINavigationController {

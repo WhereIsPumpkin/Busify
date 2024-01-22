@@ -8,29 +8,20 @@
 import Foundation
 import NetSwift
 
-
-struct DebateRequestBody: Codable {
-    let message: String
-}
-
-// Struct for the response body
-struct MessageResponse: Codable {
-    let message: String
-}
-
 class ChatViewModel: ObservableObject {
     @Published var text = ""
     @Published var messages: [Message] = [
         Message(userType: .system, text: "Hello there! Ready to engage in a playful debate? Let's have some fun! What's on your mind?🤔"),
     ]
     
-    func sendMessage(_ messageText: String) async {
+    @MainActor
+    func sendMessage() async {
         let urlString = "http://localhost:3000/api/assistant/debate"
         guard let url = URL(string: urlString) else { return }
-
-        let message = DebateRequestBody(message: messageText)
-        messages.append(Message(userType: .user, text: messageText))
-
+        
+        let message = DebateRequestBody(message: text)
+        messages.append(Message(userType: .user, text: text))
+        text = ""
         do {
             let (data, _) = try await NetworkManager.shared.postData(to: url, body: message)
             let messageResponse = try JSONDecoder().decode(MessageResponse.self, from: data)
