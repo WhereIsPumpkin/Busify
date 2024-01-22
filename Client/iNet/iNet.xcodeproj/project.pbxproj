@@ -50,6 +50,10 @@
 		75A0BE0C2B5C84C200B90EEA /* ChatBotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE0B2B5C84C200B90EEA /* ChatBotView.swift */; };
 		75A0BE142B5D3C9C00B90EEA /* busAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 75A0BE132B5D3C9C00B90EEA /* busAnimation.json */; };
 		75A0BE172B5D410200B90EEA /* BusScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE162B5D410200B90EEA /* BusScheduleTableViewCell.swift */; };
+		75A0BE192B5DE1EE00B90EEA /* ChatDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE182B5DE1EE00B90EEA /* ChatDetailView.swift */; };
+		75A0BE1B2B5DEB5200B90EEA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE1A2B5DEB5200B90EEA /* Message.swift */; };
+		75A0BE1D2B5DEF9E00B90EEA /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE1C2B5DEF9E00B90EEA /* ChatViewModel.swift */; };
+		75A0BE202B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE1F2B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift */; };
 		75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DA2B57CE34006B9655 /* VerificationView.swift */; };
 		75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DC2B57D81B006B9655 /* OTPTextField.swift */; };
 		75E217E02B57E4FA006B9655 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DF2B57E4FA006B9655 /* User.swift */; };
@@ -100,6 +104,10 @@
 		75A0BE0B2B5C84C200B90EEA /* ChatBotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBotView.swift; sourceTree = "<group>"; };
 		75A0BE132B5D3C9C00B90EEA /* busAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = busAnimation.json; sourceTree = "<group>"; };
 		75A0BE162B5D410200B90EEA /* BusScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusScheduleTableViewCell.swift; sourceTree = "<group>"; };
+		75A0BE182B5DE1EE00B90EEA /* ChatDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailView.swift; sourceTree = "<group>"; };
+		75A0BE1A2B5DEB5200B90EEA /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		75A0BE1C2B5DEF9E00B90EEA /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		75A0BE1F2B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponsiveModifier.swift; sourceTree = "<group>"; };
 		75E217DA2B57CE34006B9655 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		75E217DC2B57D81B006B9655 /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
 		75E217DF2B57E4FA006B9655 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -191,6 +199,7 @@
 				75479BC32B56EC7B00FD79F7 /* Screens */,
 				75479BC72B56ECA600FD79F7 /* Custom Views */,
 				75E217DE2B57E4EE006B9655 /* Model */,
+				75A0BE1E2B5DF89800B90EEA /* Helpers */,
 				7599CD1A2B5942FF00F4FD86 /* Managers */,
 				75479BC22B56EC6A00FD79F7 /* Support */,
 				751B0BF12B544A5400ACBEAE /* Assets.xcassets */,
@@ -340,6 +349,8 @@
 			isa = PBXGroup;
 			children = (
 				75A0BE0B2B5C84C200B90EEA /* ChatBotView.swift */,
+				75A0BE182B5DE1EE00B90EEA /* ChatDetailView.swift */,
+				75A0BE1C2B5DEF9E00B90EEA /* ChatViewModel.swift */,
 			);
 			path = ChatBot;
 			sourceTree = "<group>";
@@ -352,6 +363,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		75A0BE1E2B5DF89800B90EEA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				75A0BE1F2B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		75E217DE2B57E4EE006B9655 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +379,7 @@
 				7599CD1D2B59907600F4FD86 /* LoginDetails.swift */,
 				7510F74B2B5B010D003C24BB /* ServiceType.swift */,
 				75A0BE042B5C217300B90EEA /* BusStop.swift */,
+				75A0BE1A2B5DEB5200B90EEA /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -460,6 +480,7 @@
 				75A0BE072B5C50C400B90EEA /* BusStopDetailsPage.swift in Sources */,
 				753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */,
 				751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */,
+				75A0BE192B5DE1EE00B90EEA /* ChatDetailView.swift in Sources */,
 				75479BBD2B56E03900FD79F7 /* RegistrationSecondStageView.swift in Sources */,
 				7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */,
 				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
@@ -467,11 +488,14 @@
 				7510F7412B5AB2E8003C24BB /* PostTableViewCell.swift in Sources */,
 				753AA6CE2B5A79CF006A599B /* HomeScreenViewController.swift in Sources */,
 				75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */,
+				75A0BE1D2B5DEF9E00B90EEA /* ChatViewModel.swift in Sources */,
 				7510F74A2B5B005D003C24BB /* BusScheduleViewController.swift in Sources */,
 				7599CD232B5996AA00F4FD86 /* TabBarController.swift in Sources */,
 				751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */,
 				7510F73F2B5AA90D003C24BB /* PostStackView.swift in Sources */,
+				75A0BE1B2B5DEB5200B90EEA /* Message.swift in Sources */,
 				75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */,
+				75A0BE202B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift in Sources */,
 				7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */,
 				75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */,
 				75A0BE052B5C217300B90EEA /* BusStop.swift in Sources */,

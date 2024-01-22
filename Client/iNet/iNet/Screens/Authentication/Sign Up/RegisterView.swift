@@ -10,7 +10,6 @@ import SwiftUI
 struct RegisterView: View {
     // MARK: - Properties
     @ObservedObject var viewModel: AuthViewModel
-    var navigateToSecondStage: (() -> Void)
     
     // MARK: - Body
     var body: some View {
@@ -88,7 +87,7 @@ struct RegisterView: View {
     private var nextButton: some View {
         StyledButton(buttonText: "Next", buttonColor: viewModel.isNextButtonDisabled ? .gray : Color("mainColor"), textColor: .white) {
             if !viewModel.isNextButtonDisabled {
-                navigateToSecondStage()
+                NavigationManager.shared.navigateToSecondStageRegister()
             }
         }
         .disabled(viewModel.isNextButtonDisabled)
@@ -102,5 +101,5 @@ struct RegisterView: View {
 }
 
 #Preview {
-    RegisterView(viewModel: AuthViewModel(), navigateToSecondStage: {})
+    RegisterView(viewModel: AuthViewModel())
 }

@@ -10,7 +10,6 @@ import SwiftUI
 struct RegistrationSecondStageView: View {
     // MARK: - Properties
     @ObservedObject var signUpViewModel: AuthViewModel
-    var navigateToThirdStage: (() -> Void)
     
     // MARK: - Body
     var body: some View {
@@ -66,7 +65,7 @@ struct RegistrationSecondStageView: View {
     
     private var nextButton: some View {
         StyledButton(buttonText: "Next", buttonColor: Color("mainColor"), textColor: .white) {
-            navigateToThirdStage()
+            NavigationManager.shared.navigateToVerification()
             Task {
                 await signUpViewModel.registerUser()
             }
@@ -75,5 +74,5 @@ struct RegistrationSecondStageView: View {
 }
 
 #Preview {
-    RegistrationSecondStageView(signUpViewModel: AuthViewModel(), navigateToThirdStage: {})
+    RegistrationSecondStageView(signUpViewModel: AuthViewModel())
 }

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct LoginView: View {
     @ObservedObject var viewModel: AuthViewModel
-    var navigateToHomeScreen: () -> Void
     
     // MARK: - Body
     var body: some View {
@@ -61,7 +60,7 @@ struct LoginView: View {
             StyledTextField(text: $viewModel.password, placeholder: "Password", isSecure: true)
             
             Button(action: {
-                navigateToHomeScreen()
+                // TODO: Forgot Password
             }, label: {
                 Text("Forgot password?")
                     .font(.custom("Poppins", size: 12))
@@ -74,7 +73,7 @@ struct LoginView: View {
             Task {
                 let isSuccess = await viewModel.loginUser()
                 if isSuccess {
-                    navigateToHomeScreen()
+                    NavigationManager.shared.navigateToMainViewScreen()
                 } else {
                     // TODO: - Handle Login Error
                 }
@@ -85,5 +84,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView(viewModel: AuthViewModel(), navigateToHomeScreen: {})
+    LoginView(viewModel: AuthViewModel())
 }

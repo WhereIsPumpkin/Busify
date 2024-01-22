@@ -5,6 +5,7 @@ import {
   createUser,
   verifyUser,
   loginUser,
+  debateUser
 } from "./controller/user-controller.js"
 import bodyParser from "body-parser"
 
@@ -16,15 +17,13 @@ const app = express()
 app.use(bodyParser.json())
 app.use(express.json())
 
-app.get("/saba", (req, res) => {
-  return res.status(200).json({ message: "app works!" })
-})
-
 app.post("/api/user/register", createUser)
 
 app.post("/api/user/verify", verifyUser)
 
 app.post("/api/user/login", loginUser)
+
+app.post("/api/assistant/debate", debateUser);
 
 connectToMongoDB().then(() => {
   app.listen(3000, () => {

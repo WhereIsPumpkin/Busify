@@ -10,8 +10,6 @@ import SwiftUI
 struct WelcomeView: View {
     // MARK: - Properties
     @ObservedObject var signUpViewModel: AuthViewModel
-    var navigateToSignUp: (() -> Void)
-    var navigateToLogIn: () -> Void
     
     // MARK: - Body
     var body: some View {
@@ -53,11 +51,11 @@ struct WelcomeView: View {
     private var authButtons: some View {
         VStack(spacing: 32) {
             StyledButton(buttonText: "Login", buttonColor: Color("mainColor"), textColor: .white) {
-                navigateToLogIn()
+                NavigationManager.shared.navigateToLogIn()
             }
             
             StyledButton(buttonText: "Sign Up", buttonColor: .white, textColor: .black) {
-                self.navigateToSignUp()
+                NavigationManager.shared.navigateToSignUp()
             }
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
@@ -68,6 +66,6 @@ struct WelcomeView: View {
 }
 
 #Preview {
-    WelcomeView(signUpViewModel: AuthViewModel(), navigateToSignUp: {}, navigateToLogIn: {})
+    WelcomeView(signUpViewModel: AuthViewModel())
 }
 

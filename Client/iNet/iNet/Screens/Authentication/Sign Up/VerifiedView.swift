@@ -9,7 +9,6 @@ import SwiftUI
 
 struct VerifiedView: View {
     // MARK: Properties
-    var goToLoginPage: () -> Void
     
     // MARK: Body
     var body: some View {
@@ -54,11 +53,11 @@ struct VerifiedView: View {
     
     private var finishButton: some View {
         StyledButton(buttonText: "Log In", buttonColor: Color("mainColor"), textColor: .white) {
-            goToLoginPage()
+            NavigationManager.shared.navigateToLogIn()
         }
     }
 }
 
 #Preview {
-    VerifiedView(goToLoginPage: {})
+    VerifiedView()
 }

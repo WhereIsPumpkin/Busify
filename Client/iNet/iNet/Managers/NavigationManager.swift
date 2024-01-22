@@ -9,9 +9,12 @@ import SwiftUI
 
 final class NavigationManager {
     // MARK: - Properties
+    static let shared = NavigationManager()
     var authViewModel = AuthViewModel()
     var window: UIWindow?
     
+    private init() {}
+
     // MARK: - Init
     init(window: UIWindow?) {
         self.window = window
@@ -28,62 +31,53 @@ final class NavigationManager {
     }
     
     func setupNavigationController() -> UINavigationController {
-        let welcomeVC = WelcomeView(signUpViewModel: authViewModel) {
-            self.navigateToSignUp()
-        } navigateToLogIn: {
-            self.navigateToLogIn()
-        }
+        let welcomeVC = WelcomeView(signUpViewModel: authViewModel)
         let welcomeViewController = UIHostingController(rootView: welcomeVC)
         return UINavigationController(rootViewController: welcomeViewController)
     }
     
     // MARK: - Log In Process
     func navigateToLogIn() {
-        let loginView = LoginView(viewModel: authViewModel, navigateToHomeScreen: {
-            self.navigateToMainViewScreen()
-        })
+        let loginView = LoginView(viewModel: authViewModel)
         let loginViewController = UIHostingController(rootView: loginView)
         if let navigationController = window?.rootViewController as? UINavigationController {
             navigationController.popToRootViewController(animated: false)
-            
             navigationController.pushViewController(loginViewController, animated: true)
         }
     }
     
     func navigateToMainViewScreen() {
         let mainScreenViewController = TabBarController()
-        
-        window?.rootViewController = mainScreenViewController
+        let navigationController = UINavigationController(rootViewController: mainScreenViewController)
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
+
     
     // MARK: - Sign Up Process
     func navigateToSignUp() {
-        let signUpView = RegisterView(viewModel: authViewModel) {
-            self.navigateToSecondStageRegister()
-        }
+        let signUpView = RegisterView(viewModel: authViewModel)
         navigateToViewController(UIHostingController(rootView: signUpView))
     }
     
     func navigateToSecondStageRegister() {
-        let secondStageView = RegistrationSecondStageView(signUpViewModel: authViewModel) {
-            self.navigateToVerification()
-        }
+        let secondStageView = RegistrationSecondStageView(signUpViewModel: authViewModel)
         navigateToViewController(UIHostingController(rootView: secondStageView))
     }
     
     func navigateToVerification() {
-        let verificationView = VerificationView(signUpViewModel: authViewModel) {
-            self.navigateToVerified()
-        }
+        let verificationView = VerificationView(signUpViewModel: authViewModel)
         navigateToViewController(UIHostingController(rootView: verificationView))
     }
     
     func navigateToVerified() {
-        let verifiedView = VerifiedView {
-            self.navigateToLogIn()
-        }
+        let verifiedView = VerifiedView()
         navigateToViewController(UIHostingController(rootView: verifiedView))
+    }
+    
+    func navigateToChatBot() {
+        let chatBotView = UIHostingController(rootView: ChatDetailView())
+        navigateToViewController(chatBotView)
     }
     
     // MARK: - Generic Navigation Helper
@@ -92,5 +86,4 @@ final class NavigationManager {
             navigationController.pushViewController(viewController, animated: true)
         }
     }
-    
 }

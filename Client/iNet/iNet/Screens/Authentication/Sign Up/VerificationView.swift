@@ -11,7 +11,6 @@ struct VerificationView: View {
     // MARK: - Properties
     @ObservedObject var signUpViewModel: AuthViewModel
     @State private var otpValue: [String] = Array(repeating: "", count: 4)
-    var navigateToVerified: () -> Void
     
     // MARK: - Body
     var body: some View {
@@ -59,7 +58,7 @@ struct VerificationView: View {
                 let isVerified = await signUpViewModel.verifyUser(with: token)
                 print(isVerified)
                 if isVerified {
-                    navigateToVerified()
+                    NavigationManager.shared.navigateToVerified()
                     print(isVerified)
                 }
             }
@@ -81,5 +80,5 @@ struct VerificationView: View {
 }
 
 #Preview {
-    VerificationView(signUpViewModel: AuthViewModel(), navigateToVerified: {})
+    VerificationView(signUpViewModel: AuthViewModel())
 }

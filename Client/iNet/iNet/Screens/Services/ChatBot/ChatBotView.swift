@@ -94,6 +94,10 @@ struct ChatBotView: View {
         .frame(width: 120, height: 120)
         .background(Color(red: 57/255, green: 62/255, blue: 70/255))
         .cornerRadius(15)
+        .onTapGesture {
+            print("")
+            NavigationManager.shared.navigateToChatBot()
+        }
     }
 }
 
