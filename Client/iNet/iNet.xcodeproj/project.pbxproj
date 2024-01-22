@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7510F73F2B5AA90D003C24BB /* PostStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F73E2B5AA90D003C24BB /* PostStackView.swift */; };
-		7510F7412B5AB2E8003C24BB /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7402B5AB2E8003C24BB /* PostTableViewCell.swift */; };
 		7510F7442B5AC66E003C24BB /* ServicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7432B5AC66E003C24BB /* ServicesCollectionViewCell.swift */; };
 		7510F7462B5AF4A9003C24BB /* ServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7452B5AF4A9003C24BB /* ServicesViewModel.swift */; };
 		7510F74A2B5B005D003C24BB /* BusScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7492B5B005D003C24BB /* BusScheduleViewController.swift */; };
@@ -62,8 +60,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7510F73E2B5AA90D003C24BB /* PostStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStackView.swift; sourceTree = "<group>"; };
-		7510F7402B5AB2E8003C24BB /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		7510F7432B5AC66E003C24BB /* ServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCollectionViewCell.swift; sourceTree = "<group>"; };
 		7510F7452B5AF4A9003C24BB /* ServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewModel.swift; sourceTree = "<group>"; };
 		7510F7492B5B005D003C24BB /* BusScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusScheduleViewController.swift; sourceTree = "<group>"; };
@@ -143,8 +139,6 @@
 		7510F73D2B5A96D5003C24BB /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				7510F73E2B5AA90D003C24BB /* PostStackView.swift */,
-				7510F7402B5AB2E8003C24BB /* PostTableViewCell.swift */,
 				75A0BE002B5B1FB900B90EEA /* CustomStyleButton.swift */,
 				75A0BE022B5B202600B90EEA /* CustomStyleTextField.swift */,
 			);
@@ -496,7 +490,6 @@
 				7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */,
 				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
 				753AA6D82B5A8171006A599B /* ServicesViewController.swift in Sources */,
-				7510F7412B5AB2E8003C24BB /* PostTableViewCell.swift in Sources */,
 				753AA6CE2B5A79CF006A599B /* HomeScreenViewController.swift in Sources */,
 				75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */,
 				75A0BE1D2B5DEF9E00B90EEA /* ChatViewModel.swift in Sources */,
@@ -504,7 +497,6 @@
 				7510F74A2B5B005D003C24BB /* BusScheduleViewController.swift in Sources */,
 				7599CD232B5996AA00F4FD86 /* TabBarController.swift in Sources */,
 				751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */,
-				7510F73F2B5AA90D003C24BB /* PostStackView.swift in Sources */,
 				75A0BE1B2B5DEB5200B90EEA /* Message.swift in Sources */,
 				75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */,
 				75A0BE202B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift in Sources */,

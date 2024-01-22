@@ -21,23 +21,9 @@ class BusStopDetailsPage: UIViewController {
         var time: String
     }
     
-    // Sample data array
-    var busTimes: [BusTime] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateTestData()
         SetupUI()
-    }
-    
-    private func generateTestData() {
-        // Generate random test data
-        let sampleTimes = ["8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM"]
-        for _ in 1...10 {
-            let randomIndex = Int(arc4random_uniform(UInt32(sampleTimes.count)))
-            let busTime = BusTime(time: sampleTimes[randomIndex])
-            busTimes.append(busTime)
-        }
     }
     
     private func SetupUI() {
@@ -146,24 +132,34 @@ class BusStopDetailsPage: UIViewController {
         titleWrapper.addArrangedSubview(UIView())
     }
     
-    private func setupCollectionView() {
+    private func initializeCollectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
+        return layout
+    }
+
+    private func configureCollectionView() {
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+    }
+
+    private func setupCollectionViewDataSourceAndDelegate() {
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+
+    private func registerCollectionViewCells() {
         collectionView.register(BusTimeCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        
-        configureCollectionViewAppearance()
+    }
+
+    private func setupCollectionView() {
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: initializeCollectionViewLayout())
+        configureCollectionView()
+        setupCollectionViewDataSourceAndDelegate()
+        registerCollectionViewCells()
         setupCollectionViewConstraints()
     }
-    
-    private func configureCollectionViewAppearance() {
-        collectionView.backgroundColor = .clear
-        // Additional configuration...
-    }
-    
+
     private func setupCollectionViewConstraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -171,13 +167,12 @@ class BusStopDetailsPage: UIViewController {
 
 extension BusStopDetailsPage: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return busTimes.count
+        10
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! BusTimeCollectionViewCell
-        let busTime = busTimes[indexPath.row]
-   
+
         return cell
     }
 
