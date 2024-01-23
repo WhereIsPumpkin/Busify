@@ -28,6 +28,12 @@ class BusTimeCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configure(with arrivalTime: ArrivalTime) {
+        busWaitTime.text = "\(arrivalTime.arrivalTime) Min"
+        busNumber.text = arrivalTime.routeNumber
+        busRoute.text = arrivalTime.destinationStopName
+    }
+    
     // MARK: - Private Methods
     private func setupContentLayout() {
         setupContent()
@@ -157,5 +163,4 @@ class BusTimeCollectionViewCell: UICollectionViewCell {
         infoVerticalStack.addArrangedSubview(busWaitTime)
         infoVerticalStack.addArrangedSubview(busRoute)
     }
-    
 }

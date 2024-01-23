@@ -25,6 +25,7 @@ app.post("/api/user/login", loginUser)
 
 app.post("/api/assistant/debate", debateUser);
 
+
 connectToMongoDB().then(() => {
   app.listen(3000, () => {
     console.log("Server is listening on port 3000")

@@ -18,7 +18,7 @@ class BusScheduleViewController: UIViewController {
     private var busAnimationHeight: NSLayoutConstraint!
     private let busSearchTextField = CustomStyledTextField(placeholder: "e.g Baratashvili... or 4230", isSecure: false)
     private let searchButton = CustomStyledButton(buttonText: "Search", buttonColor: UIColor(named: "mainColor")!, textColor: .white)
-    private var viewModel = ServicesViewModel()
+    private var viewModel = BusScheduleViewModel()
     private var tableView: UITableView?
     private let textFieldWrapper = UIStackView()
     let returnButton = UIButton(type: .system)
@@ -97,7 +97,7 @@ class BusScheduleViewController: UIViewController {
     }
     
     private func setupTitleLabel() {
-        titleLabel.text = "Choose Stop ID or Enter Address"
+        titleLabel.text = "Enter Stop ID or Enter Address"
         titleLabel.font = UIFont(name: "Poppins-Medium", size: 16)
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
@@ -168,17 +168,7 @@ extension BusScheduleViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == busSearchTextField {
             animateTextFieldFocused(true)
-            Task {
-                await viewModel.fetchBusStops { [weak self] error in
-                    DispatchQueue.main.async {
-                        if let error = error {
-                            print(error)  // TODO: - Error Handle
-                        } else {
-                            self?.tableView?.reloadData()
-                        }
-                    }
-                }
-            }
+            tableView?.reloadData()
         }
     }
     
@@ -227,10 +217,16 @@ extension BusScheduleViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedBusStopName = viewModel.filteredLocation(at: indexPath.row)
-        let detailsVC = BusStopDetailsPage()
-        detailsVC.busStopName = selectedBusStopName.name
-        self.navigationController?.pushViewController(detailsVC, animated: true)
+        let selectedBusStop = viewModel.filteredLocation(at: indexPath.row)
+        Task {
+            try await viewModel.fetchBusStopArrivalTimes(stopID: selectedBusStop.code ?? "1466") {
+                DispatchQueue.main.async { [self] in
+                    let detailsVC = BusStopDetailsPage(arrivalTimes: viewModel.selectedBusStopArrivalTimes)
+                    detailsVC.title = "Stop: #\(selectedBusStop.code ?? "0000")"
+                    self.navigationController?.pushViewController(detailsVC, animated: true)
+                }
+            }
+        }
     }
 }
 

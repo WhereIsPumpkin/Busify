@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         barAppearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
         barAppearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
         UINavigationBar.appearance().standardAppearance = barAppearance
+        
+        GMSServices.provideAPIKey("AIzaSyDyfZgGGuw4Mv8L24n0dOhz2Atz3M7BfUw")
         return true
     }
     

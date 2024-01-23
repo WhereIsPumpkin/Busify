@@ -171,6 +171,6 @@ export const debateUser = async (req, res) => {
   })
 
   const assistantMessage = response.choices[0].message.content
-  
-  res.send({ message: assistantMessage });
+
+  res.send({ message: assistantMessage })
 }

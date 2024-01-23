@@ -91,7 +91,7 @@ final class NavigationManager {
     }
     
     func navigateToChatBotViewController() {
-        let chatBotViewController = UIHostingController(rootView: ChatBotView())
+        let chatBotViewController = UIHostingController(rootView: ChatDetailView())
         navigateToViewController(chatBotViewController)
     }
     

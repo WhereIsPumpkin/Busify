@@ -9,23 +9,30 @@ import UIKit
 
 class BusStopDetailsPage: UIViewController {
     // MARK: - Properties
-    var busStopName: String?
     var mainStackView = UIStackView()
     var heroImage = UIImageView(image: UIImage(resource: .busStop))
     var titleWrapper = UIStackView()
     var titleLabel = UILabel()
     var busWaitIcon = UIImageView(image: UIImage(resource: .busWaitIcon))
     var collectionView: UICollectionView!
+    var arrivalTimes: ArrivalTimesResponse?
     
-    struct BusTime {
-        var time: String
-    }
-    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         SetupUI()
     }
     
+    init(arrivalTimes: ArrivalTimesResponse?) {
+        self.arrivalTimes = arrivalTimes
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Private Methods
     private func SetupUI() {
         SetupView()
     }
@@ -36,9 +43,9 @@ class BusStopDetailsPage: UIViewController {
         setupViewSubViews()
     }
     
+    
     private func setupViewAppearance() {
-        view.backgroundColor = UIColor(red: 34/255, green: 40/255, blue: 49/255, alpha: 1)
-        title = busStopName
+        view.backgroundColor = UIColor(resource: .background)
     }
     
     private func addViewSubviews() {
@@ -137,21 +144,21 @@ class BusStopDetailsPage: UIViewController {
         layout.scrollDirection = .vertical
         return layout
     }
-
+    
     private func configureCollectionView() {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .clear
     }
-
+    
     private func setupCollectionViewDataSourceAndDelegate() {
         collectionView.dataSource = self
         collectionView.delegate = self
     }
-
+    
     private func registerCollectionViewCells() {
         collectionView.register(BusTimeCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
     }
-
+    
     private func setupCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: initializeCollectionViewLayout())
         configureCollectionView()
@@ -159,7 +166,7 @@ class BusStopDetailsPage: UIViewController {
         registerCollectionViewCells()
         setupCollectionViewConstraints()
     }
-
+    
     private func setupCollectionViewConstraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -167,15 +174,22 @@ class BusStopDetailsPage: UIViewController {
 
 extension BusStopDetailsPage: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        if let arrivalTimes = arrivalTimes {
+            return arrivalTimes.arrivalTime.count
+        }
+        return 0
     }
-
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! BusTimeCollectionViewCell
-
+        if let arrivalTimes = arrivalTimes {
+            let arrivalTime = arrivalTimes.arrivalTime[indexPath.row]
+            cell.configure(with: arrivalTime)
+        }
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.width
         let height: CGFloat = 80
@@ -183,8 +197,8 @@ extension BusStopDetailsPage: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-           return 16 // Spacing between rows
-       }
+        16
+    }
 }
 
 
