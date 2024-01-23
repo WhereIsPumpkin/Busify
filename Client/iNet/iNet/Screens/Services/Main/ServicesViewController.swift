@@ -26,6 +26,7 @@ class ServicesViewController: UIViewController {
         collectionView.register(ServicesCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.backgroundColor = UIColor(resource: .background)
         return collectionView
     }()
     
@@ -35,7 +36,7 @@ class ServicesViewController: UIViewController {
         view.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         view.addSubview(collectionView)
         navigationItem.title = "Services"
-        
+        view.backgroundColor = UIColor(resource: .background)
     }
 }
 

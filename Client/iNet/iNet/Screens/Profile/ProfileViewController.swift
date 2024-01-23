@@ -9,7 +9,7 @@ import UIKit
 import NetSwift
 
 class ProfileViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController {
         guard let url = URL(string: urlString) else {
             fatalError("Invalid URL")
         }
-
+        
         let arrivalTimes: ArrivalTimesResponse = try await NetworkManager.shared.fetchDecodableData(from: url, responseType: ArrivalTimesResponse.self)
         return arrivalTimes
     }

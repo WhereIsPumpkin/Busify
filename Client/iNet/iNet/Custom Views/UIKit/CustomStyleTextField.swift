@@ -17,6 +17,8 @@ class CustomStyledTextField: UITextField {
     
     var onClearAction: (() -> Void)?
     
+    let placeholderText = NSAttributedString(string: "e.g Baratashvili... or 4230", attributes: [NSAttributedString.Key.foregroundColor: UIColor(.gray)])
+    
     init(placeholder: String, isSecure: Bool) {
         self.isSecure = isSecure
         super.init(frame: .zero)
@@ -54,12 +56,13 @@ class CustomStyledTextField: UITextField {
     
     private func styleTextField() {
         self.borderStyle = .none
-        self.backgroundColor = UIColor(red: 57/255, green: 62/255, blue: 70/255, alpha: 1)
+        self.backgroundColor = UIColor(resource: .base)
         self.layer.cornerRadius = 8
         self.autocapitalizationType = .none
         self.returnKeyType = .done
         self.clearButtonMode = .whileEditing
         self.font = UIFont.systemFont(ofSize: 16)
+        self.attributedPlaceholder = placeholderText
     }
     
     private func setupLeftImageView() {
@@ -71,7 +74,7 @@ class CustomStyledTextField: UITextField {
     private func createImageView() -> UIImageView {
         let imageView = UIImageView(frame: CGRect(x: 12, y: 7, width: 16, height: 16))
         imageView.image = UIImage(systemName: "magnifyingglass")
-        imageView.tintColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
+        imageView.tintColor = UIColor(resource: .accent)
         imageView.contentMode = .scaleAspectFit
         return imageView
     }

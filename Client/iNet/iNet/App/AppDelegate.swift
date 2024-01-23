@@ -11,7 +11,7 @@ import GoogleMaps
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        UINavigationBar.appearance().tintColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0)
+        UINavigationBar.appearance().tintColor = UIColor(resource: .accent)
         let backImage = UIImage(systemName: "chevron.backward")
         let barAppearance = UINavigationBarAppearance()
         barAppearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)

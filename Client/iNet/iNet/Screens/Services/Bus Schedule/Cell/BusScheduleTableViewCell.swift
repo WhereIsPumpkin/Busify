@@ -32,7 +32,7 @@ class BusScheduleTableViewCell: UITableViewCell {
         imageView.image = UIImage(resource: .busStopIcon)
         imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
+        imageView.tintColor = UIColor(resource: .accent)
         return imageView
     }()
 
@@ -49,7 +49,7 @@ class BusScheduleTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Poppins-Medium", size: 16)
-        label.textColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
+        label.textColor = UIColor(resource: .accent)
         return label
     }()
 
@@ -63,7 +63,7 @@ class BusScheduleTableViewCell: UITableViewCell {
     }
     
     private func setupUI() {
-        backgroundColor = UIColor(red: 57/255, green: 62/255, blue: 70/255, alpha: 1)
+        backgroundColor = UIColor(resource: .base)
         addSubview(mainStack)
         
         mainStack.addArrangedSubview(busIconImageView)

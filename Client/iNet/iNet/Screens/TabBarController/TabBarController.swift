@@ -63,7 +63,7 @@ class TabBarController: UITabBarController {
         if #available(iOS 15.0, *) {
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = UIColor(red: 57/255, green: 62/255, blue: 70/255, alpha: 1)
+            appearance.backgroundColor = UIColor(resource: .base)
             tabBar.standardAppearance = appearance
             tabBar.scrollEdgeAppearance = tabBar.standardAppearance
         }

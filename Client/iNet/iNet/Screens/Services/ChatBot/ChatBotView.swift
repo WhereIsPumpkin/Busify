@@ -12,7 +12,7 @@ struct ChatBotView: View {
     let offset: CGFloat = 105
     var body: some View {
         ZStack {
-            Color(red: 34/255, green: 40/255, blue: 49/255).ignoresSafeArea()
+            Color(.background).ignoresSafeArea()
             VStack {
                 heroImage
                 WelcomeMessage
@@ -42,7 +42,7 @@ struct ChatBotView: View {
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(Color(red: 238/255, green: 238/255, blue: 238/255).opacity(0.3), lineWidth: 1)
+                .stroke(Color(.accent))
         )
     }
     
@@ -51,7 +51,7 @@ struct ChatBotView: View {
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: 36)
-            .foregroundStyle(Color(red: 238/255, green: 238/255, blue: 238/255))
+            .foregroundStyle(Color(.accent))
     }
     
     private var welcomeText: some View {
@@ -61,7 +61,7 @@ struct ChatBotView: View {
             Text("Ask What you want and get answers")
                 .font(.custom("Poppins-Medium", size: 12))
         }
-        .foregroundStyle(Color(red: 238/255, green: 238/255, blue: 238/255))
+        .foregroundStyle(Color(.accent))
     }
     
     private var servicesGrid: some View {
@@ -86,13 +86,13 @@ struct ChatBotView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 50, height: 50)
-                .foregroundColor(Color(red: 238/255, green: 238/255, blue: 238/255))
+                .foregroundColor(Color(.accent))
             Text(service.title)
                 .font(.custom("Poppins-Medium", size: 14))
                 .foregroundColor(Color.white)
         }
         .frame(width: 120, height: 120)
-        .background(Color(red: 57/255, green: 62/255, blue: 70/255))
+        .background(Color(.base))
         .cornerRadius(15)
         .onTapGesture {
             print("")

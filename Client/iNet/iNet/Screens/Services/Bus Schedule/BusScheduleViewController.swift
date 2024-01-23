@@ -39,7 +39,7 @@ class BusScheduleViewController: UIViewController {
     
     private func configureViewController() {
         title = "Bus Schedule"
-        view.backgroundColor = UIColor(red: 34/255, green: 40/255, blue: 49/255, alpha: 1)
+        view.backgroundColor = UIColor(.background)
         view.addSubview(mainVerticalStack)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
     }
@@ -114,7 +114,7 @@ class BusScheduleViewController: UIViewController {
     
     private func setupReturnButton() {
         returnButton.setImage(UIImage(systemName: "arrow.down.right.and.arrow.up.left"), for: .normal)
-        returnButton.tintColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
+        returnButton.tintColor = UIColor(resource: .accent)
         returnButton.addTarget(self, action: #selector(returnButtonTapped), for: .touchUpInside)
         returnButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         returnButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -143,7 +143,7 @@ class BusScheduleViewController: UIViewController {
     
     private func setupTableView() {
         tableView = UITableView()
-        tableView?.backgroundColor = UIColor(red: 34/255, green: 40/255, blue: 49/255, alpha: 1)
+        tableView?.backgroundColor = UIColor(resource: .background)
         guard let tableView = tableView else { return }
         tableView.dataSource = self
         tableView.delegate = self

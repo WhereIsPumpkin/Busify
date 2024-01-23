@@ -19,7 +19,7 @@ struct ChatDetailView: View {
     }
     
     private var backgroundColor: some View {
-        Color(red: 34/255, green: 40/255, blue: 49/255).ignoresSafeArea()
+        Color(.background).ignoresSafeArea()
     }
     
     private var contentView: some View {
@@ -87,20 +87,20 @@ struct ChatDetailView: View {
         .frame(height: isKeyboardVisible ? 60 : 120)
         .padding(.horizontal, isKeyboardVisible ? 0 : 20)
         .padding(.trailing, isKeyboardVisible ? 20 : 0)
-        .background(Color(red: 57/255, green: 62/255, blue: 70/255))
+        .background(Color(.base))
         .clipShape(UnevenRoundedRectangle(topLeadingRadius: !isKeyboardVisible ? 30 : 14, topTrailingRadius: !isKeyboardVisible ? 30 : 14))
     }
     
     private var inputField: some View {
-        TextField("", text: $viewModel.text, prompt: Text("Write Your Wrong Opinion Here!!").foregroundColor(Color(red: 238/255, green: 238/255, blue: 238/255).opacity(0.4)))
-            .foregroundStyle(Color(red: 238/255, green: 238/255, blue: 238/255))
+        TextField("", text: $viewModel.text, prompt: Text("Write Your Wrong Opinion Here!!").foregroundColor(Color(.accent).opacity(0.4)))
+            .foregroundStyle(Color(.accent))
             .font(.custom("Poppins", size: 16))
             .padding(.horizontal)
             .frame(height: 50)
-            .background(Color(red: 57/255, green: 62/255, blue: 70/255))
+            .background(Color(.base))
             .overlay(
                 RoundedRectangle(cornerRadius: 14)
-                    .stroke(Color(red: 0, green: 173, blue: 181), lineWidth: 2)
+                    .stroke(Color(.alternate))
             )
     }
     
@@ -113,13 +113,11 @@ struct ChatDetailView: View {
             }
         }, label: {
             Image(systemName: "paperplane.fill")
-                .foregroundStyle(Color(red: 0, green: 173, blue: 181))
+                .foregroundStyle(Color(.alternate))
                 .font(.system(size: 20))
         })
     }
 }
-
-
 
 #Preview {
     ChatDetailView()
