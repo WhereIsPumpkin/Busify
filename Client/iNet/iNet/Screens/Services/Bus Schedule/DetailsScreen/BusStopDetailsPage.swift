@@ -199,6 +199,21 @@ extension BusStopDetailsPage: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         16
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let modalViewController = ReminderViewController()
+        modalViewController.modalPresentationStyle = .pageSheet
+        
+        if let sheet = modalViewController.sheetPresentationController {
+            let customHeight = self.view.frame.height * 0.75
+            
+            sheet.detents = [.custom { context in customHeight }]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 20
+        }
+        
+        present(modalViewController, animated: true, completion: nil)
+    }
 }
 
 

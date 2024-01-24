@@ -59,6 +59,8 @@
 		75D91B632B5F8D350034F967 /* GoogleMapsCore in Frameworks */ = {isa = PBXBuildFile; productRef = 75D91B622B5F8D350034F967 /* GoogleMapsCore */; };
 		75D91B652B5F8D350034F967 /* GoogleMapsM4B in Frameworks */ = {isa = PBXBuildFile; productRef = 75D91B642B5F8D350034F967 /* GoogleMapsM4B */; };
 		75D91B8A2B5FBE730034F967 /* BusScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B892B5FBE730034F967 /* BusScheduleViewModel.swift */; };
+		75D91B8C2B6009B30034F967 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B8B2B6009B30034F967 /* ReminderViewController.swift */; };
+		75D91B902B6041590034F967 /* TextToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B8F2B6041590034F967 /* TextToImage.swift */; };
 		75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DA2B57CE34006B9655 /* VerificationView.swift */; };
 		75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DC2B57D81B006B9655 /* OTPTextField.swift */; };
 		75E217E02B57E4FA006B9655 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DF2B57E4FA006B9655 /* User.swift */; };
@@ -114,6 +116,8 @@
 		75A0BE272B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimeCollectionViewCell.swift; sourceTree = "<group>"; };
 		75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalTimes.swift; sourceTree = "<group>"; };
 		75D91B892B5FBE730034F967 /* BusScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusScheduleViewModel.swift; sourceTree = "<group>"; };
+		75D91B8B2B6009B30034F967 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
+		75D91B8F2B6041590034F967 /* TextToImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToImage.swift; sourceTree = "<group>"; };
 		75E217DA2B57CE34006B9655 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		75E217DC2B57D81B006B9655 /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
 		75E217DF2B57E4FA006B9655 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -376,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				75A0BE1F2B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift */,
+				75D91B8F2B6041590034F967 /* TextToImage.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 			children = (
 				75A0BE062B5C50C400B90EEA /* BusStopDetailsPage.swift */,
 				75A0BE272B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift */,
+				75D91B8B2B6009B30034F967 /* ReminderViewController.swift */,
 			);
 			path = DetailsScreen;
 			sourceTree = "<group>";
@@ -507,10 +513,12 @@
 				75A0BE192B5DE1EE00B90EEA /* ChatDetailView.swift in Sources */,
 				75479BBD2B56E03900FD79F7 /* RegistrationSecondStageView.swift in Sources */,
 				7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */,
+				75D91B8C2B6009B30034F967 /* ReminderViewController.swift in Sources */,
 				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
 				753AA6D82B5A8171006A599B /* ServicesViewController.swift in Sources */,
 				753AA6CE2B5A79CF006A599B /* HomeScreenViewController.swift in Sources */,
 				75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */,
+				75D91B902B6041590034F967 /* TextToImage.swift in Sources */,
 				75A0BE1D2B5DEF9E00B90EEA /* ChatViewModel.swift in Sources */,
 				75A0BE282B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift in Sources */,
 				7510F74A2B5B005D003C24BB /* BusScheduleViewController.swift in Sources */,

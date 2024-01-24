@@ -9,14 +9,15 @@ import UIKit
 //import GoogleMaps
 import NetSwift
 
-struct Coordinate: Decodable {
-    var id: String
-    var code: String?
-    var lat: Double
-    var lon: Double
-}
 
 class WalletViewController: UIViewController {
-
+    
 }
+
+@available(iOS 17.0, *)
+#Preview {
+    WalletViewController()
+}
+
+
 
