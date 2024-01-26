@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
+    // MARK: - Properties
     @ObservedObject var viewModel: AuthViewModel
     
     // MARK: - Body

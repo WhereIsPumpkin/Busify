@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 
-class BusScheduleViewController: UIViewController {
+class BusStopSearchViewController: UIViewController {
     // MARK: - Properties
     private let titleLabel = UILabel()
     private var originalTopConstraint: NSLayoutConstraint!
@@ -18,7 +18,7 @@ class BusScheduleViewController: UIViewController {
     private var busAnimationHeight: NSLayoutConstraint!
     private let busSearchTextField = CustomStyledTextField(placeholder: "e.g Baratashvili... or 4230", isSecure: false)
     private let searchButton = CustomStyledButton(buttonText: "Search", buttonColor: UIColor(named: "mainColor")!, textColor: .white)
-    private var viewModel = BusScheduleViewModel()
+    private var viewModel = BusStopSearchViewModel()
     private var tableView: UITableView?
     private let textFieldWrapper = UIStackView()
     let returnButton = UIButton(type: .system)
@@ -38,7 +38,7 @@ class BusScheduleViewController: UIViewController {
     }
     
     private func configureViewController() {
-        title = "Bus Schedule"
+        title = "Bus Stop"
         view.backgroundColor = UIColor(.background)
         view.addSubview(mainVerticalStack)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
@@ -148,7 +148,7 @@ class BusScheduleViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.register(BusScheduleTableViewCell.self, forCellReuseIdentifier: "BusScheduleCell")
+        tableView.register(BusStopSearchTableViewCell.self, forCellReuseIdentifier: "BusScheduleCell")
     }
     
     private func createDismissKeyboardGesture() {
@@ -163,7 +163,7 @@ class BusScheduleViewController: UIViewController {
 }
 
 // MARK: - Extensions
-extension BusScheduleViewController: UITextFieldDelegate {
+extension BusStopSearchViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == busSearchTextField {
@@ -197,14 +197,14 @@ extension BusScheduleViewController: UITextFieldDelegate {
     
 }
 
-extension BusScheduleViewController: UITableViewDelegate, UITableViewDataSource {
+extension BusStopSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfFilteredLocations
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusScheduleCell", for: indexPath) as? BusScheduleTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusScheduleCell", for: indexPath) as? BusStopSearchTableViewCell else {
             return UITableViewCell()
         }
         let locationName = viewModel.filteredLocation(at: indexPath.row)
@@ -231,7 +231,7 @@ extension BusScheduleViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 // MARK: - Animation Controll
-extension BusScheduleViewController {
+extension BusStopSearchViewController {
     private func animateTextFieldFocused(_ focused: Bool) {
         UIView.animate(withDuration: 0.3) {
             if focused {

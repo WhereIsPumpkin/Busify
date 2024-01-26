@@ -129,7 +129,7 @@ class BusStopDetailsPage: UIViewController {
     }
     
     private func setupTitleLabel() {
-        titleLabel.text = "Bus Schedule:"
+        titleLabel.text = "Arrival Times:"
         titleLabel.textColor = UIColor(red: 0.933, green: 0.933, blue: 0.933, alpha: 1)
         titleLabel.font = UIFont(name: "Poppins-Bold", size: 20)
         titleWrapper.addArrangedSubview(titleLabel)
@@ -172,14 +172,14 @@ class BusStopDetailsPage: UIViewController {
     }
 }
 
-extension BusStopDetailsPage: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension BusStopDetailsPage: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let arrivalTimes = arrivalTimes {
             return arrivalTimes.arrivalTime.count
+        } else {
+            return 0
         }
-        return 0
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! BusTimeCollectionViewCell
@@ -190,6 +190,26 @@ extension BusStopDetailsPage: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let arrivalTimes = arrivalTimes {
+            let modalViewController = ReminderViewController(busNumber: arrivalTimes.arrivalTime[indexPath.row])
+            modalViewController.modalPresentationStyle = .pageSheet
+            
+            if let sheet = modalViewController.sheetPresentationController {
+                let customHeight = self.view.frame.height * 0.65
+                print(self.view.frame.height)
+                sheet.detents = [.custom { context in customHeight }]
+                sheet.prefersGrabberVisible = true
+                sheet.preferredCornerRadius = 20
+            }
+            
+            present(modalViewController, animated: true, completion: nil)
+        }
+        
+    }
+}
+
+extension BusStopDetailsPage: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.width
         let height: CGFloat = 80
@@ -199,26 +219,4 @@ extension BusStopDetailsPage: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         16
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let modalViewController = ReminderViewController()
-        modalViewController.modalPresentationStyle = .pageSheet
-        
-        if let sheet = modalViewController.sheetPresentationController {
-            let customHeight = self.view.frame.height * 0.75
-            
-            sheet.detents = [.custom { context in customHeight }]
-            sheet.prefersGrabberVisible = true
-            sheet.preferredCornerRadius = 20
-        }
-        
-        present(modalViewController, animated: true, completion: nil)
-    }
 }
-
-
-
-
-
-
-

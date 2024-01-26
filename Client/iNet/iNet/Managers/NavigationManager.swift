@@ -51,14 +51,7 @@ final class NavigationManager {
         window?.rootViewController = mainScreenViewController
         window?.makeKeyAndVisible()
     }
-    
-    func createServicesVC() -> UINavigationController {
-        let servicesVC = ServicesViewController() // Assuming ServicesViewController is already defined
-        let navigationVC = UINavigationController(rootViewController: servicesVC)
-        navigationVC.tabBarItem = UITabBarItem(title: "Services", image: UIImage(systemName: "square.grid.2x2.fill"), tag: 0)
-        return navigationVC
-    }
-    
+     
     // MARK: - Sign Up Process
     func navigateToSignUp() {
         let signUpView = RegisterView(viewModel: authViewModel)
@@ -80,19 +73,8 @@ final class NavigationManager {
         navigateToViewController(UIHostingController(rootView: verifiedView))
     }
     
-    func navigateToChatBot() {
-        let chatBotView = UIHostingController(rootView: ChatDetailView())
-        navigateToViewController(chatBotView)
-    }
-    
     func navigateToBusViewController() {
-        print("12")
-        navigateToViewController(BusScheduleViewController())
-    }
-    
-    func navigateToChatBotViewController() {
-        let chatBotViewController = UIHostingController(rootView: ChatDetailView())
-        navigateToViewController(chatBotViewController)
+        navigateToViewController(BusStopSearchViewController())
     }
     
     // MARK: - Generic Navigation Helper

@@ -36,5 +36,10 @@
 		<string>fetch</string>
 		<string>processing</string>
 	</array>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<dict>
+		<key>Item 0</key>
+		<string>com.Void.iNet</string>
+	</dict>
 </dict>
 </plist>

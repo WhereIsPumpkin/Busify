@@ -80,7 +80,7 @@ class BusTimeCollectionViewCell: UICollectionViewCell {
         mainHorizontalStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             mainHorizontalStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            mainHorizontalStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            mainHorizontalStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             mainHorizontalStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             mainHorizontalStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
@@ -157,7 +157,16 @@ class BusTimeCollectionViewCell: UICollectionViewCell {
         busRoute.text = "Didi Dighomi IV M.R"
         busRoute.textColor = UIColor(red: 0.933, green: 0.933, blue: 0.933, alpha: 0.6)
         busRoute.font = UIFont(name: "Poppins-semibold", size: 14)
+        busRoute.numberOfLines = 1
+        busRoute.minimumScaleFactor = 0.7
+        busRoute.adjustsFontSizeToFitWidth = true
+        busRoute.lineBreakMode = .byTruncatingTail
+        busRoute.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            busRoute.widthAnchor.constraint(lessThanOrEqualToConstant: 200)
+        ])
     }
+
     
     private func addInfoVerticalStackArrangedSubviews() {
         infoVerticalStack.addArrangedSubview(busWaitTime)

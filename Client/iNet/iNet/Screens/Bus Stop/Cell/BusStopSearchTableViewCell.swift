@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BusScheduleTableViewCell: UITableViewCell {
+class BusStopSearchTableViewCell: UITableViewCell {
     
     private let mainStack: UIStackView = {
         let stack = UIStackView()

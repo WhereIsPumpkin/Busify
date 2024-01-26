@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().standardAppearance = barAppearance
         
         GMSServices.provideAPIKey("AIzaSyDyfZgGGuw4Mv8L24n0dOhz2Atz3M7BfUw")
+        NotificationManager.shared.checkForPermission()
         return true
     }
     

@@ -8,7 +8,7 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTabBarViews()
@@ -34,16 +34,17 @@ class TabBarController: UITabBarController {
     }
     
     private func createServicesVC() -> UINavigationController {
-        let servicesVC = UINavigationController(rootViewController: ServicesViewController())
-        servicesVC.tabBarItem = UITabBarItem(title: "Services", image: UIImage(systemName: "square.grid.2x2.fill"), tag: 0)
-        return servicesVC
+        let busStopVC = UINavigationController(rootViewController: BusStopSearchViewController())
+        let originalTabBarImage = UIImage(named: "tabBusStop")
+        let tabBarImage = resizeImage(image: originalTabBarImage, targetSize: CGSize(width: 30, height: 30))
+        busStopVC.tabBarItem = UITabBarItem(title: "Bus Stop", image: tabBarImage, selectedImage: nil)
+        return busStopVC
     }
-
     
     private func createWalletVC() -> UINavigationController {
-        let walletVC = UINavigationController(rootViewController: WalletViewController())
-        walletVC.tabBarItem.image = UIImage(systemName: "dollarsign.circle.fill")
-        walletVC.title = "Wallet"
+        let walletVC = UINavigationController(rootViewController: LiveMapViewController())
+        walletVC.tabBarItem.image = UIImage(systemName: "mappin.and.ellipse")
+        walletVC.title = "Live Map"
         return walletVC
     }
     
@@ -69,4 +70,35 @@ class TabBarController: UITabBarController {
         }
     }
 
+}
+
+// MARK: - Extension
+
+extension TabBarController {
+    private func resizeImage(image: UIImage?, targetSize: CGSize) -> UIImage? {
+        guard let image = image else {
+            return nil
+        }
+
+        let size = image.size
+
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
+        }
+
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage
+    }
 }

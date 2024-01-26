@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7510F7442B5AC66E003C24BB /* ServicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7432B5AC66E003C24BB /* ServicesCollectionViewCell.swift */; };
-		7510F7462B5AF4A9003C24BB /* ServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7452B5AF4A9003C24BB /* ServicesViewModel.swift */; };
-		7510F74A2B5B005D003C24BB /* BusScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7492B5B005D003C24BB /* BusScheduleViewController.swift */; };
+		7510F74A2B5B005D003C24BB /* BusStopSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7492B5B005D003C24BB /* BusStopSearchViewController.swift */; };
 		7510F74C2B5B010D003C24BB /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F74B2B5B010D003C24BB /* ServiceType.swift */; };
 		751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BE82B544A5300ACBEAE /* AppDelegate.swift */; };
 		751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */; };
 		751B0BF22B544A5400ACBEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 751B0BF12B544A5400ACBEAE /* Assets.xcassets */; };
+		75217B2E2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75217B2D2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift */; };
 		753AA6CE2B5A79CF006A599B /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6CD2B5A79CF006A599B /* HomeScreenViewController.swift */; };
-		753AA6D42B5A815F006A599B /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D32B5A815F006A599B /* WalletViewController.swift */; };
+		753AA6D42B5A815F006A599B /* LiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D32B5A815F006A599B /* LiveMapViewController.swift */; };
 		753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D52B5A8166006A599B /* ProfileViewController.swift */; };
-		753AA6D82B5A8171006A599B /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D72B5A8171006A599B /* ServicesViewController.swift */; };
 		75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BBA2B56A1E900FD79F7 /* RegisterView.swift */; };
 		75479BBD2B56E03900FD79F7 /* RegistrationSecondStageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */; };
 		75479BC02B56E37B00FD79F7 /* RadioButtonField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BBF2B56E37B00FD79F7 /* RadioButtonField.swift */; };
 		75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BC82B56ED7500FD79F7 /* StyledTextField.swift */; };
 		75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BCA2B56F18300FD79F7 /* StyledButton.swift */; };
+		7562A4FE2B6377C300A2F50B /* ReminderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7562A4FD2B6377C300A2F50B /* ReminderModel.swift */; };
+		7562A5002B63F9CF00A2F50B /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7562A4FF2B63F9CF00A2F50B /* NotificationManager.swift */; };
 		7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585CDB02B559D750087EC03 /* WelcomeView.swift */; };
 		7585CDCA2B55C9B60087EC03 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */; };
 		7585CDCB2B55C9B60087EC03 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */; };
@@ -45,12 +45,9 @@
 		75A0BE032B5B202600B90EEA /* CustomStyleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE022B5B202600B90EEA /* CustomStyleTextField.swift */; };
 		75A0BE052B5C217300B90EEA /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE042B5C217300B90EEA /* BusStop.swift */; };
 		75A0BE072B5C50C400B90EEA /* BusStopDetailsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE062B5C50C400B90EEA /* BusStopDetailsPage.swift */; };
-		75A0BE0C2B5C84C200B90EEA /* ChatBotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE0B2B5C84C200B90EEA /* ChatBotView.swift */; };
 		75A0BE142B5D3C9C00B90EEA /* busAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 75A0BE132B5D3C9C00B90EEA /* busAnimation.json */; };
-		75A0BE172B5D410200B90EEA /* BusScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE162B5D410200B90EEA /* BusScheduleTableViewCell.swift */; };
-		75A0BE192B5DE1EE00B90EEA /* ChatDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE182B5DE1EE00B90EEA /* ChatDetailView.swift */; };
+		75A0BE172B5D410200B90EEA /* BusStopSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE162B5D410200B90EEA /* BusStopSearchTableViewCell.swift */; };
 		75A0BE1B2B5DEB5200B90EEA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE1A2B5DEB5200B90EEA /* Message.swift */; };
-		75A0BE1D2B5DEF9E00B90EEA /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE1C2B5DEF9E00B90EEA /* ChatViewModel.swift */; };
 		75A0BE202B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE1F2B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift */; };
 		75A0BE282B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE272B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift */; };
 		75A0BE2A2B5EE2F000B90EEA /* ArrivalTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */; };
@@ -58,7 +55,7 @@
 		75D91B612B5F8D350034F967 /* GoogleMapsBase in Frameworks */ = {isa = PBXBuildFile; productRef = 75D91B602B5F8D350034F967 /* GoogleMapsBase */; };
 		75D91B632B5F8D350034F967 /* GoogleMapsCore in Frameworks */ = {isa = PBXBuildFile; productRef = 75D91B622B5F8D350034F967 /* GoogleMapsCore */; };
 		75D91B652B5F8D350034F967 /* GoogleMapsM4B in Frameworks */ = {isa = PBXBuildFile; productRef = 75D91B642B5F8D350034F967 /* GoogleMapsM4B */; };
-		75D91B8A2B5FBE730034F967 /* BusScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B892B5FBE730034F967 /* BusScheduleViewModel.swift */; };
+		75D91B8A2B5FBE730034F967 /* BusStopSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B892B5FBE730034F967 /* BusStopSearchViewModel.swift */; };
 		75D91B8C2B6009B30034F967 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B8B2B6009B30034F967 /* ReminderViewController.swift */; };
 		75D91B902B6041590034F967 /* TextToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B8F2B6041590034F967 /* TextToImage.swift */; };
 		75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DA2B57CE34006B9655 /* VerificationView.swift */; };
@@ -68,24 +65,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7510F7432B5AC66E003C24BB /* ServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCollectionViewCell.swift; sourceTree = "<group>"; };
-		7510F7452B5AF4A9003C24BB /* ServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewModel.swift; sourceTree = "<group>"; };
-		7510F7492B5B005D003C24BB /* BusScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusScheduleViewController.swift; sourceTree = "<group>"; };
+		7510F7492B5B005D003C24BB /* BusStopSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopSearchViewController.swift; sourceTree = "<group>"; };
 		7510F74B2B5B010D003C24BB /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		751B0BE52B544A5300ACBEAE /* iNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		751B0BE82B544A5300ACBEAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		751B0BF12B544A5400ACBEAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		751B0BF62B544A5400ACBEAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75217B2D2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		753AA6CD2B5A79CF006A599B /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
-		753AA6D32B5A815F006A599B /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		753AA6D32B5A815F006A599B /* LiveMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveMapViewController.swift; sourceTree = "<group>"; };
 		753AA6D52B5A8166006A599B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		753AA6D72B5A8171006A599B /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		75479BBA2B56A1E900FD79F7 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSecondStageView.swift; sourceTree = "<group>"; };
 		75479BBF2B56E37B00FD79F7 /* RadioButtonField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonField.swift; sourceTree = "<group>"; };
 		75479BC82B56ED7500FD79F7 /* StyledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledTextField.swift; sourceTree = "<group>"; };
 		75479BCA2B56F18300FD79F7 /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
+		7562A4FD2B6377C300A2F50B /* ReminderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderModel.swift; sourceTree = "<group>"; };
+		7562A4FF2B63F9CF00A2F50B /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationManager.swift; path = ../../../../../../Documents/NotificationManager.swift; sourceTree = "<group>"; };
 		7585CDB02B559D750087EC03 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -106,16 +103,13 @@
 		75A0BE022B5B202600B90EEA /* CustomStyleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStyleTextField.swift; sourceTree = "<group>"; };
 		75A0BE042B5C217300B90EEA /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		75A0BE062B5C50C400B90EEA /* BusStopDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopDetailsPage.swift; sourceTree = "<group>"; };
-		75A0BE0B2B5C84C200B90EEA /* ChatBotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBotView.swift; sourceTree = "<group>"; };
 		75A0BE132B5D3C9C00B90EEA /* busAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = busAnimation.json; sourceTree = "<group>"; };
-		75A0BE162B5D410200B90EEA /* BusScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusScheduleTableViewCell.swift; sourceTree = "<group>"; };
-		75A0BE182B5DE1EE00B90EEA /* ChatDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailView.swift; sourceTree = "<group>"; };
+		75A0BE162B5D410200B90EEA /* BusStopSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopSearchTableViewCell.swift; sourceTree = "<group>"; };
 		75A0BE1A2B5DEB5200B90EEA /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		75A0BE1C2B5DEF9E00B90EEA /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		75A0BE1F2B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponsiveModifier.swift; sourceTree = "<group>"; };
 		75A0BE272B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimeCollectionViewCell.swift; sourceTree = "<group>"; };
 		75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalTimes.swift; sourceTree = "<group>"; };
-		75D91B892B5FBE730034F967 /* BusScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusScheduleViewModel.swift; sourceTree = "<group>"; };
+		75D91B892B5FBE730034F967 /* BusStopSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopSearchViewModel.swift; sourceTree = "<group>"; };
 		75D91B8B2B6009B30034F967 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
 		75D91B8F2B6041590034F967 /* TextToImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToImage.swift; sourceTree = "<group>"; };
 		75E217DA2B57CE34006B9655 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
@@ -161,32 +155,15 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
-		7510F7422B5AC655003C24BB /* Cell */ = {
+		7510F7482B5B0032003C24BB /* Bus Stop */ = {
 			isa = PBXGroup;
 			children = (
-				7510F7432B5AC66E003C24BB /* ServicesCollectionViewCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		7510F7472B5B0021003C24BB /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				753AA6D72B5A8171006A599B /* ServicesViewController.swift */,
-				7510F7422B5AC655003C24BB /* Cell */,
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
-		7510F7482B5B0032003C24BB /* Bus Schedule */ = {
-			isa = PBXGroup;
-			children = (
-				7510F7492B5B005D003C24BB /* BusScheduleViewController.swift */,
-				75D91B892B5FBE730034F967 /* BusScheduleViewModel.swift */,
+				7510F7492B5B005D003C24BB /* BusStopSearchViewController.swift */,
+				75D91B892B5FBE730034F967 /* BusStopSearchViewModel.swift */,
 				75A0BE152B5D40BB00B90EEA /* Cell */,
-				75A0BE212B5EC0C900B90EEA /* DetailsScreen */,
+				75A0BE212B5EC0C900B90EEA /* BusStop Details */,
 			);
-			path = "Bus Schedule";
+			path = "Bus Stop";
 			sourceTree = "<group>";
 		};
 		751B0BDC2B544A5300ACBEAE = {
@@ -212,6 +189,7 @@
 				75479BC32B56EC7B00FD79F7 /* Screens */,
 				75479BC72B56ECA600FD79F7 /* Custom Views */,
 				75E217DE2B57E4EE006B9655 /* Model */,
+				75217B2C2B62951B00D9FC19 /* Extensions */,
 				75A0BE1E2B5DF89800B90EEA /* Helpers */,
 				7599CD1A2B5942FF00F4FD86 /* Managers */,
 				75479BC22B56EC6A00FD79F7 /* Support */,
@@ -221,18 +199,26 @@
 			path = iNet;
 			sourceTree = "<group>";
 		};
-		753AA6CF2B5A811F006A599B /* TabBarController */ = {
+		75217B2C2B62951B00D9FC19 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				75217B2D2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		753AA6CF2B5A811F006A599B /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
 				7599CD222B5996AA00F4FD86 /* TabBarController.swift */,
 			);
-			path = TabBarController;
+			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
 		753AA6D02B5A812E006A599B /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				753AA6D32B5A815F006A599B /* WalletViewController.swift */,
+				753AA6D32B5A815F006A599B /* LiveMapViewController.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -243,17 +229,6 @@
 				753AA6D52B5A8166006A599B /* ProfileViewController.swift */,
 			);
 			path = Profile;
-			sourceTree = "<group>";
-		};
-		753AA6D22B5A814B006A599B /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				7510F7472B5B0021003C24BB /* Main */,
-				75A0BE082B5C79A700B90EEA /* ChatBot */,
-				7510F7482B5B0032003C24BB /* Bus Schedule */,
-				7510F7452B5AF4A9003C24BB /* ServicesViewModel.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		75479BC12B56EC6300FD79F7 /* App */ = {
@@ -277,10 +252,10 @@
 		75479BC32B56EC7B00FD79F7 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				753AA6CF2B5A811F006A599B /* TabBarController */,
+				753AA6CF2B5A811F006A599B /* Tab Bar */,
 				75479BC42B56EC8700FD79F7 /* Authentication */,
 				7599CD1F2B59961D00F4FD86 /* Home */,
-				753AA6D22B5A814B006A599B /* Services */,
+				7510F7482B5B0032003C24BB /* Bus Stop */,
 				753AA6D02B5A812E006A599B /* Wallet */,
 				753AA6D12B5A8140006A599B /* Profile */,
 			);
@@ -346,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				7599CD1B2B59430F00F4FD86 /* NavigationManager.swift */,
+				7562A4FF2B63F9CF00A2F50B /* NotificationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -358,20 +334,10 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		75A0BE082B5C79A700B90EEA /* ChatBot */ = {
-			isa = PBXGroup;
-			children = (
-				75A0BE0B2B5C84C200B90EEA /* ChatBotView.swift */,
-				75A0BE182B5DE1EE00B90EEA /* ChatDetailView.swift */,
-				75A0BE1C2B5DEF9E00B90EEA /* ChatViewModel.swift */,
-			);
-			path = ChatBot;
-			sourceTree = "<group>";
-		};
 		75A0BE152B5D40BB00B90EEA /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				75A0BE162B5D410200B90EEA /* BusScheduleTableViewCell.swift */,
+				75A0BE162B5D410200B90EEA /* BusStopSearchTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -385,14 +351,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		75A0BE212B5EC0C900B90EEA /* DetailsScreen */ = {
+		75A0BE212B5EC0C900B90EEA /* BusStop Details */ = {
 			isa = PBXGroup;
 			children = (
 				75A0BE062B5C50C400B90EEA /* BusStopDetailsPage.swift */,
 				75A0BE272B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift */,
 				75D91B8B2B6009B30034F967 /* ReminderViewController.swift */,
 			);
-			path = DetailsScreen;
+			path = "BusStop Details";
 			sourceTree = "<group>";
 		};
 		75E217DE2B57E4EE006B9655 /* Model */ = {
@@ -405,6 +371,7 @@
 				75A0BE042B5C217300B90EEA /* BusStop.swift */,
 				75A0BE1A2B5DEB5200B90EEA /* Message.swift */,
 				75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */,
+				7562A4FD2B6377C300A2F50B /* ReminderModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -501,29 +468,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7510F7462B5AF4A9003C24BB /* ServicesViewModel.swift in Sources */,
 				75479BC02B56E37B00FD79F7 /* RadioButtonField.swift in Sources */,
 				75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */,
-				753AA6D42B5A815F006A599B /* WalletViewController.swift in Sources */,
+				753AA6D42B5A815F006A599B /* LiveMapViewController.swift in Sources */,
 				7599CD172B583CB400F4FD86 /* VerifiedView.swift in Sources */,
 				7599CD192B58437700F4FD86 /* LoginView.swift in Sources */,
 				75A0BE072B5C50C400B90EEA /* BusStopDetailsPage.swift in Sources */,
 				753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */,
 				751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */,
-				75A0BE192B5DE1EE00B90EEA /* ChatDetailView.swift in Sources */,
 				75479BBD2B56E03900FD79F7 /* RegistrationSecondStageView.swift in Sources */,
 				7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */,
 				75D91B8C2B6009B30034F967 /* ReminderViewController.swift in Sources */,
 				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
-				753AA6D82B5A8171006A599B /* ServicesViewController.swift in Sources */,
 				753AA6CE2B5A79CF006A599B /* HomeScreenViewController.swift in Sources */,
 				75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */,
 				75D91B902B6041590034F967 /* TextToImage.swift in Sources */,
-				75A0BE1D2B5DEF9E00B90EEA /* ChatViewModel.swift in Sources */,
 				75A0BE282B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift in Sources */,
-				7510F74A2B5B005D003C24BB /* BusScheduleViewController.swift in Sources */,
+				7510F74A2B5B005D003C24BB /* BusStopSearchViewController.swift in Sources */,
 				7599CD232B5996AA00F4FD86 /* TabBarController.swift in Sources */,
+				75217B2E2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift in Sources */,
 				75A0BE2A2B5EE2F000B90EEA /* ArrivalTimes.swift in Sources */,
+				7562A5002B63F9CF00A2F50B /* NotificationManager.swift in Sources */,
 				751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */,
 				75A0BE1B2B5DEB5200B90EEA /* Message.swift in Sources */,
 				75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */,
@@ -532,16 +497,15 @@
 				75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */,
 				75A0BE052B5C217300B90EEA /* BusStop.swift in Sources */,
 				75A0BE032B5B202600B90EEA /* CustomStyleTextField.swift in Sources */,
-				75D91B8A2B5FBE730034F967 /* BusScheduleViewModel.swift in Sources */,
+				75D91B8A2B5FBE730034F967 /* BusStopSearchViewModel.swift in Sources */,
 				75E217E32B57E5AA006B9655 /* AuthViewModel.swift in Sources */,
+				7562A4FE2B6377C300A2F50B /* ReminderModel.swift in Sources */,
 				7599CD1C2B59430F00F4FD86 /* NavigationManager.swift in Sources */,
-				75A0BE0C2B5C84C200B90EEA /* ChatBotView.swift in Sources */,
 				7599CD152B5836E900F4FD86 /* EmailToken.swift in Sources */,
-				7510F7442B5AC66E003C24BB /* ServicesCollectionViewCell.swift in Sources */,
 				75E217E02B57E4FA006B9655 /* User.swift in Sources */,
 				75A0BE012B5B1FB900B90EEA /* CustomStyleButton.swift in Sources */,
 				7510F74C2B5B010D003C24BB /* ServiceType.swift in Sources */,
-				75A0BE172B5D410200B90EEA /* BusScheduleTableViewCell.swift in Sources */,
+				75A0BE172B5D410200B90EEA /* BusStopSearchTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
