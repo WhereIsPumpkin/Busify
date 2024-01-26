@@ -15,20 +15,17 @@ class ReminderViewController: UIViewController {
     private let descriptionLabel = UILabel()
     private let headerStack = UIStackView()
     private let busImage = UIImageView(image: UIImage(resource: .bus))
-    private let innerStackView = UIStackView()
-    private let pickerView = UIPickerView()
-    private let clock = UILabel()
     private let datePickerStack = UIStackView()
-    private let calendarIcon = UIImageView(image: UIImage(systemName: "calendar.badge.plus"))
+    private let calendarIcon = UIImageView(image: UIImage(systemName: "timer"))
     private let datePickerLabel = UILabel()
     private let datePicker = UIDatePicker()
     private let datePickerWrapStack = UIStackView()
     private let timePickerStack = UIStackView()
-    private let clockIcon = UIImageView(image: UIImage(systemName: "clock"))
+    private let clockIcon = UIImageView(image: UIImage(systemName: "calendar.badge.clock"))
     private let timePickerLabel = UILabel()
     private let allDayStack = UIStackView()
     private let allDayIconLabelWrapper = UIStackView()
-    private let allDayIcon = UIImageView(image: UIImage(systemName: "repeat"))
+    private let allDayIcon = UIImageView(image: UIImage(systemName: "clock.arrow.2.circlepath"))
     private let allDayLabel = UILabel()
     private let allDaySwitch = UISwitch()
     let timePickerDoneButton = UIButton(type: .system)
@@ -284,10 +281,12 @@ class ReminderViewController: UIViewController {
     }
     
     private func setupDatePickerLabel() {
-        datePickerLabel.text = "Set Date"
+        datePickerLabel.text = "Set Nearby Reminder"
         datePickerLabel.textColor = UIColor(resource: .accent)
         datePickerLabel.font = UIFont(name: "Poppins-semibold", size: 16)
     }
+    
+    
     
     private func setupTimePickerStack() {
         setupTimePickerStackLayout()
@@ -405,7 +404,7 @@ class ReminderViewController: UIViewController {
     }
     
     private func setupTimePickerLabel() {
-        timePickerLabel.text = "Set Time"
+        timePickerLabel.text = "Set Time Reminder"
         timePickerLabel.textColor = UIColor(resource: .accent)
         timePickerLabel.font = UIFont(name: "Poppins-semibold", size: 16)
     }
@@ -429,6 +428,7 @@ class ReminderViewController: UIViewController {
     
     private func setupAllDayIcon() {
         allDayIcon.translatesAutoresizingMaskIntoConstraints = false
+        allDayIcon.contentMode = .scaleAspectFill
         allDayIcon.widthAnchor.constraint(equalToConstant: 24).isActive = true
         allDayIcon.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }

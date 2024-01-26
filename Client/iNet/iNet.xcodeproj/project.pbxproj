@@ -23,6 +23,7 @@
 		75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BCA2B56F18300FD79F7 /* StyledButton.swift */; };
 		7562A4FE2B6377C300A2F50B /* ReminderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7562A4FD2B6377C300A2F50B /* ReminderModel.swift */; };
 		7562A5002B63F9CF00A2F50B /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7562A4FF2B63F9CF00A2F50B /* NotificationManager.swift */; };
+		7562A5062B64451300A2F50B /* IconLabelStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7562A5052B64451300A2F50B /* IconLabelStackView.swift */; };
 		7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585CDB02B559D750087EC03 /* WelcomeView.swift */; };
 		7585CDCA2B55C9B60087EC03 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */; };
 		7585CDCB2B55C9B60087EC03 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */; };
@@ -83,6 +84,7 @@
 		75479BCA2B56F18300FD79F7 /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
 		7562A4FD2B6377C300A2F50B /* ReminderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderModel.swift; sourceTree = "<group>"; };
 		7562A4FF2B63F9CF00A2F50B /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationManager.swift; path = ../../../../../../Documents/NotificationManager.swift; sourceTree = "<group>"; };
+		7562A5052B64451300A2F50B /* IconLabelStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabelStackView.swift; sourceTree = "<group>"; };
 		7585CDB02B559D750087EC03 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				75A0BE002B5B1FB900B90EEA /* CustomStyleButton.swift */,
 				75A0BE022B5B202600B90EEA /* CustomStyleTextField.swift */,
+				7562A5052B64451300A2F50B /* IconLabelStackView.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				75D91B902B6041590034F967 /* TextToImage.swift in Sources */,
 				75A0BE282B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift in Sources */,
 				7510F74A2B5B005D003C24BB /* BusStopSearchViewController.swift in Sources */,
+				7562A5062B64451300A2F50B /* IconLabelStackView.swift in Sources */,
 				7599CD232B5996AA00F4FD86 /* TabBarController.swift in Sources */,
 				75217B2E2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift in Sources */,
 				75A0BE2A2B5EE2F000B90EEA /* ArrivalTimes.swift in Sources */,
