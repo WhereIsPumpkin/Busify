@@ -28,7 +28,7 @@ struct StyledButton: View {
             .frame(maxWidth: .infinity)
             .padding(.vertical, 16)
             .background(buttonColor)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .clipShape(RoundedRectangle(cornerRadius: 20))
         })
     }
 }

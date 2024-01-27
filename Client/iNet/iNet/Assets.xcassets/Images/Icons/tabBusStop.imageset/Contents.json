@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "busStopIcon.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "busStopIcon.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

@@ -15,62 +15,86 @@ struct LoginView: View {
     var body: some View {
         VStack {
             logo
-            Spacer().frame(height: 5)
-            title
-            description
-            Spacer().frame(height: 60)
+            Spacer().frame(height: 48)
+            loginText
+            Spacer().frame(height: 24)
             fieldWrap
-            Spacer()
+            Spacer().frame(height: 24)
             loginButton
+            Spacer()
         }
         .padding(.horizontal, 20)
-        .padding(.vertical, 50)
+        .padding(.vertical, 60)
+        .background(Color.background)
     }
     
     // MARK: - Computed Properties
     private var logo: some View {
-        Text("iNet")
-            .font(.custom("Poppins-semiBold", size: 40))
-            .foregroundStyle(Color("mainColor"))
+        HStack {
+            Image(.logo)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 50)
+            Text("Busify")
+                .foregroundStyle(.accent)
+                .font(.custom("Poppins-Bold", size: 32))
+        }
     }
     
-    private var title: some View {
-        Text("Welcome Back")
-            .font(.custom("Poppins-Medium", size: 26))
-    }
-    
-    private var description: some View {
-        Text("sign in to access your account")
-            .font(.custom("Poppins", size: 14))
-            .foregroundColor(Color(red: 0.15, green: 0.15, blue: 0.15))
+    private var loginText: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Login")
+                    .foregroundStyle(.accent)
+                    .font(.custom("Poppins-Bold", size: 24))
+                
+                Text("Log In to Access All Features")
+                    .foregroundStyle(.accent.opacity(0.5))
+                    .font(.custom("Poppins-medium", size: 14))
+            }
+            Spacer()
+        }
     }
     
     private var fieldWrap: some View {
-        VStack(spacing: 26) {
+        VStack(spacing: 16) {
             emailField
             passwordField
         }
     }
     
     private var emailField: some View {
-        StyledTextField(text: $viewModel.email, placeholder: "Email", isSecure: false)
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Email")
+                .foregroundStyle(.accent)
+                .font(.custom("Poppins-medium", size: 16))
+            
+            StyledTextField(text: $viewModel.email, placeholder: "Enter your email", isSecure: false)
+        }
     }
     
-    private var passwordField: some View {
+     private var passwordField: some View {
         VStack(alignment: .trailing, spacing: 16) {
-            StyledTextField(text: $viewModel.password, placeholder: "Password", isSecure: true)
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Password")
+                    .foregroundStyle(.accent)
+                    .font(.custom("Poppins-medium", size: 16))
+                
+                StyledTextField(text: $viewModel.password, placeholder: "Enter Password", isSecure: true)
+            }
             
             Button(action: {
                 // TODO: Forgot Password
             }, label: {
-                Text("Forgot password?")
+                Text("Forgot Password?")
+                    .foregroundStyle(.accent.opacity(0.8))
                     .font(.custom("Poppins", size: 12))
             })
         }
     }
     
     private var loginButton: some View {
-        StyledButton(buttonText: "Log In", buttonColor: Color("mainColor"), textColor: .white) {
+        StyledButton(buttonText: "Log In", buttonColor: Color(.alternate), textColor: .white) {
             Task {
                 let isSuccess = await viewModel.loginUser()
                 if isSuccess {

@@ -15,18 +15,19 @@ struct StyledTextField: View {
     var body: some View {
         Group {
             if isSecure {
-                SecureField("", text: $text, prompt: Text(placeholder).foregroundColor(.gray))
+                SecureField("", text: $text, prompt: Text(placeholder).foregroundColor(.accentColor.opacity(0.5)).font(.custom("Poppins", size: 14)))
             } else {
-                TextField("", text: $text, prompt: Text(placeholder).foregroundColor(.gray))
+                TextField("", text: $text, prompt: Text(placeholder).foregroundColor(.accentColor.opacity(0.5)).font(.custom("Poppins", size: 14)))
             }
         }
         .keyboardType(.emailAddress)
         .padding(16)
-        .background(Color(red: 0.44, green: 0.44, blue: 0.44).opacity(0.03))
+        .background(Color.base.opacity(0.7))
+        .clipShape(RoundedRectangle(cornerRadius: 20))
         .overlay(
-            RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: 20)
                 .inset(by: 0.5)
-                .stroke(Color(red: 0.44, green: 0.44, blue: 0.44).opacity(0.05), lineWidth: 1)
+                .stroke(Color.accentColor.opacity(0.2), lineWidth: 1)
         )
     }
 }
