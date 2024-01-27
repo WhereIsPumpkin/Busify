@@ -11,19 +11,20 @@ import GoogleMaps
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        setupBarAppearance()
+        GMSServices.provideAPIKey("AIzaSyDyfZgGGuw4Mv8L24n0dOhz2Atz3M7BfUw")
+        NotificationManager.shared.checkForPermission()
+        return true
+    }
+    
+    private func setupBarAppearance() {
         UINavigationBar.appearance().tintColor = UIColor(resource: .accent)
         let backImage = UIImage(systemName: "chevron.backward")
         let barAppearance = UINavigationBarAppearance()
         barAppearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
         barAppearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
         UINavigationBar.appearance().standardAppearance = barAppearance
-        
-        GMSServices.provideAPIKey("AIzaSyDyfZgGGuw4Mv8L24n0dOhz2Atz3M7BfUw")
-        NotificationManager.shared.checkForPermission()
-        return true
     }
-    
-    // MARK: UISceneSession Lifecycle
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.

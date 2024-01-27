@@ -104,17 +104,16 @@ class IconLabelStackView: UIView {
     }
     
     @objc private func showPicker() {
-        guard let parentView = self.superview else {
+        guard let parentView = self.superview, let superParentView = parentView.superview else {
             print("IconLabelStackView must be added to a superview before showing the date picker.")
             return
         }
-        
         if pickerStack.superview == nil {
             setupPickerStack()
             setupDoneButton()
             setupDatePicker()
-            parentView.addSubview(pickerStack)
-            setupStackConstraints(parentView)
+            superParentView.addSubview(pickerStack)
+            setupStackConstraints(superParentView)
         }
     }
     
@@ -145,17 +144,19 @@ class IconLabelStackView: UIView {
     }
     
     private func setupStackConstraints(_ parentView: UIView) {
+        guard let superView = parentView.superview else { return }
+
         pickerStack.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            pickerStack.heightAnchor.constraint(equalToConstant: 250),
-            pickerStack.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
-            pickerStack.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
-            pickerStack.bottomAnchor.constraint(equalTo: parentView.bottomAnchor),
-            
-            datePicker.widthAnchor.constraint(equalToConstant: parentView.bounds.width - 24)
+            pickerStack.heightAnchor.constraint(equalToConstant: 200),
+            pickerStack.leadingAnchor.constraint(equalTo: superView.leadingAnchor),
+            pickerStack.trailingAnchor.constraint(equalTo: superView.trailingAnchor),
+            pickerStack.bottomAnchor.constraint(equalTo: superView.bottomAnchor),
+            datePicker.widthAnchor.constraint(equalToConstant: superView.bounds.width - 24)
         ])
     }
+
     
     @objc private func dateChanged(_ sender: UIDatePicker) {
         switch datePickerStyle {
@@ -168,6 +169,7 @@ class IconLabelStackView: UIView {
             let hours = Int(sender.countDownDuration / 3600)
             let minutes = Int(sender.countDownDuration.truncatingRemainder(dividingBy: 3600) / 60)
             let timeString = "\(hours) hours \(minutes) min"
+            print("Test")
             onDateSelected?(timeString)
         default:
             break
@@ -203,5 +205,6 @@ class IconLabelStackView: UIView {
 
 @available(iOS 17.0, *)
 #Preview {
-    ProfileViewController()
+    ReminderViewController(busNumber: ArrivalTime(routeNumber: "293", destinationStopName: "Test", arrivalTime: 123))
 }
+

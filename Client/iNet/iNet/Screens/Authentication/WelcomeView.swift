@@ -20,7 +20,6 @@ struct WelcomeView: View {
             Spacer().frame(height: 48)
             authButtons
             Spacer()
-            
         }
         .padding(20)
         .padding(.top, 50)
@@ -47,8 +46,7 @@ struct WelcomeView: View {
                 .multilineTextAlignment(.center)
         }
     }
-    
-    private var authButtons: some View {
+         private var authButtons: some View {
         VStack(spacing: 32) {
             StyledButton(buttonText: "Login", buttonColor: Color("mainColor"), textColor: .white) {
                 NavigationManager.shared.navigateToLogIn()
