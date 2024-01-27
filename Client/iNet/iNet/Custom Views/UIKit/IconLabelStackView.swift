@@ -18,6 +18,7 @@ class IconLabelStackView: UIView {
     private var doneButton = UIButton()
     private var datePickerStyle: UIDatePicker.Mode
     var tapAction: (() -> Void)?
+    var selectedValue: String?
     
     init(icon: String, title: String, datePickerStyle: UIDatePicker.Mode) {
         iconImageView = UIImageView(image: UIImage(systemName: icon))
@@ -46,6 +47,10 @@ class IconLabelStackView: UIView {
             mainStack.leadingAnchor.constraint(equalTo: leadingAnchor),
             mainStack.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
+    }
+    
+    func updateTitleLabel(with text: String) {
+        titleLabel.text = text
     }
     
     private func setupMainStackAppearance() {
@@ -145,7 +150,7 @@ class IconLabelStackView: UIView {
     
     private func setupStackConstraints(_ parentView: UIView) {
         guard let superView = parentView.superview else { return }
-
+        
         pickerStack.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -156,24 +161,26 @@ class IconLabelStackView: UIView {
             datePicker.widthAnchor.constraint(equalToConstant: superView.bounds.width - 24)
         ])
     }
-
     
     @objc private func dateChanged(_ sender: UIDatePicker) {
         switch datePickerStyle {
-        case .date:
+        case .date, .time:
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-            let dateString = dateFormatter.string(from: sender.date)
-            onDateSelected?(dateString)
+            dateFormatter.dateFormat = datePickerStyle == .date ? "yyyy-MM-dd" : "HH:mm"
+            selectedValue = dateFormatter.string(from: sender.date)
         case .countDownTimer:
             let hours = Int(sender.countDownDuration / 3600)
             let minutes = Int(sender.countDownDuration.truncatingRemainder(dividingBy: 3600) / 60)
-            let timeString = "\(hours) hours \(minutes) min"
-            print("Test")
-            onDateSelected?(timeString)
+            selectedValue = "\(hours) hours \(minutes) min"
         default:
             break
         }
+        onDateSelected?(selectedValue ?? "")
+    }
+    
+    func resetView() {
+        selectedValue = nil
+        updateTitleLabel(with: "Set \(datePickerStyle == .countDownTimer ? "Nearby" : "Time") Reminder")
     }
     
     private func setupDoneButton() {

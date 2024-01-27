@@ -25,12 +25,14 @@ final class ReminderViewController: UIViewController {
     var busInfo: ArrivalTime = ArrivalTime(routeNumber: "000", destinationStopName: "NAN", arrivalTime: 0)
     let nearbyReminderStack = IconLabelStackView(icon: "deskclock", title: "Set Nearby Reminder", datePickerStyle: .countDownTimer)
     let timeReminderStack = IconLabelStackView(icon: "cursorarrow.click.badge.clock", title: "Set Time Reminder", datePickerStyle: .time)
-    
+    private var nearbyReminderTime: String?
+    private var timeReminderTime: String?
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupReminderCallbacks()
     }
     
     init(busNumber: ArrivalTime) {
@@ -46,13 +48,29 @@ final class ReminderViewController: UIViewController {
     private func setupUI() {
         setupView()
         setupMainStack()
-        nearbyReminderStack.onDateSelected = { [weak self] selectedDate in
-            self?.handleNearbyReminderDateSelection(selectedDate)
+    }
+    
+    private func setupReminderCallbacks() {
+        nearbyReminderStack.onDateSelected = { [weak self] selectedTime in
+            self?.timeReminderStack.resetView()
+            self?.nearbyReminderTime = selectedTime
+            self?.timeReminderTime = nil // Clear the time reminder
+            
+            let newText = selectedTime.isEmpty ? "Set Nearby Reminder" : "\(selectedTime)"
+            self?.nearbyReminderStack.updateTitleLabel(with: newText)
+            
+            self?.timeReminderStack.updateTitleLabel(with: "Set Time Reminder")
         }
         
-        // Setup for time reminder stack
-        timeReminderStack.onDateSelected = { [weak self] selectedDate in
-            self?.handleTimeReminderDateSelection(selectedDate)
+        timeReminderStack.onDateSelected = { [weak self] selectedTime in
+            self?.nearbyReminderStack.resetView()
+            self?.timeReminderTime = selectedTime
+            self?.nearbyReminderTime = nil // Clear the nearby reminder
+            
+            let newText = selectedTime.isEmpty ? "Set Time Reminder" : "\(selectedTime)"
+            self?.timeReminderStack.updateTitleLabel(with: newText)
+            
+            self?.nearbyReminderStack.updateTitleLabel(with: "Set Nearby Reminder")
         }
     }
     
@@ -208,8 +226,25 @@ final class ReminderViewController: UIViewController {
     }
     
     @objc private func setReminderButtonTapped(_ sender: UIButton) {
-        
+        if let nearbyTime = nearbyReminderTime {
+            let reminderTimeInMinutes = busInfo.arrivalTime - nearbyTime.toMinutes()
+            let (hour, minute) = Date().adding(minutes: reminderTimeInMinutes)
+            NotificationManager.shared.dispatchNotification(
+                identifier: "nearbyReminder",
+                title: "Reminder‼",
+                body: "Your bus, #\(busInfo.routeNumber), will arrive in\(nearbyTime.toMinutes()) minutes.",
+                hour: hour,
+                minute: minute,
+                isDaily: false
+            )
+            dismiss(animated: true)
+        } else if let timeReminder = timeReminderTime {
+            print("Time Reminder is set for: \(timeReminder)")
+        } else {
+            print("No reminder is set")
+        }
     }
+    
 }
 
 @available(iOS 17.0, *)
