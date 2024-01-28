@@ -17,7 +17,7 @@ class BusStopSearchViewController: UIViewController {
     private let busAnimationView = LottieAnimationView(name: "busAnimation")
     private var busAnimationHeight: NSLayoutConstraint!
     private let busSearchTextField = CustomStyledTextField(placeholder: "e.g Baratashvili... or 4230", isSecure: false)
-    private let searchButton = CustomStyledButton(buttonText: "Search", buttonColor: UIColor(named: "mainColor")!, textColor: .white)
+    private let searchButton = CustomStyledButton(buttonText: "Search", buttonColor: UIColor(resource: .background), textColor: .white)
     private var viewModel = BusStopSearchViewModel()
     private var tableView: UITableView?
     private let textFieldWrapper = UIStackView()
