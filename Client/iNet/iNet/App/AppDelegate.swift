@@ -6,13 +6,11 @@
 //
 
 import UIKit
-import GoogleMaps
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupBarAppearance()
-        GMSServices.provideAPIKey("AIzaSyDyfZgGGuw4Mv8L24n0dOhz2Atz3M7BfUw")
         NotificationManager.shared.checkForPermission()
         return true
     }
