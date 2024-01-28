@@ -21,43 +21,54 @@ struct WelcomeView: View {
             authButtons
             Spacer()
         }
-        .padding(20)
-        .padding(.top, 50)
+        .background(Color.background)
+        .padding(.horizontal, 20)
     }
     
     // MARK: - Computed Properties
     private var welcomeImage: some View {
-        Image(.onlineConnect)
+        Image(.welcomeHero)
             .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 250)
+            .aspectRatio(contentMode: .fill)
+            .frame(height: 275)
     }
     
     private var welcomeText: some View {
-        VStack(spacing: 24) {
-            Text("Connect, Share\n Explore")
-                .foregroundStyle(Color("mainColor"))
-                .font(.custom("Poppins-semibold", size: 32))
-                .multilineTextAlignment(.center)
-            
-            Text("iNet: Connect, share, explore. Your global social gateway.")
-                .foregroundStyle(.black)
-                .font(.system(size: 16, weight: .medium))
-                .multilineTextAlignment(.center)
+        VStack(alignment: .leading, spacing: 16) {
+            HStack {
+                Image(.logo)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 30)
+                Text("Busify")
+                    .foregroundStyle(.accent)
+                    .font(.custom("Poppins-Bold", size: 22))
+                Spacer()
+            }
+            VStack(spacing: 8) {
+                Text("Bus Stops, Schedules, and Alerts in One")
+                    .font(.custom("Poppins-Bold", size: 24))
+                    .foregroundColor(Color(.accent))
+                
+                Text("Track, and Get Notified: All Your Bus Stops and Schedules, Right at Your Fingertips!")
+                    .font(.custom("Poppins", size: 14))
+                    .foregroundStyle(Color(.accent).opacity(0.5))
+            }
         }
     }
-         private var authButtons: some View {
+    
+    private var authButtons: some View {
         VStack(spacing: 32) {
-            StyledButton(buttonText: "Login", buttonColor: Color("mainColor"), textColor: .white) {
+            StyledButton(buttonText: "Login", buttonColor: Color(.alternate), textColor: .white) {
                 NavigationManager.shared.navigateToLogIn()
             }
             
-            StyledButton(buttonText: "Sign Up", buttonColor: .white, textColor: .black) {
+            StyledButton(buttonText: "Register", buttonColor: .clear, textColor: .accent) {
                 NavigationManager.shared.navigateToSignUp()
             }
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.black, lineWidth: 1)
+                    .stroke(Color.accent, lineWidth: 1)
             )
         }
     }

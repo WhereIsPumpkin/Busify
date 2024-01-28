@@ -23,12 +23,12 @@ struct StyledButton: View {
                     Text(buttonText)
                 }
             }
-            .font(.custom("Poppins-medium", size: 20))
+            .font(.custom("Poppins-semibold", size: 20))
             .foregroundStyle(textColor)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 16)
             .background(buttonColor)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .clipShape(RoundedRectangle(cornerRadius: 20))
         })
     }
 }
