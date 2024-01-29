@@ -58,11 +58,6 @@ final class NavigationManager {
         navigateToViewController(UIHostingController(rootView: signUpView))
     }
     
-    func navigateToSecondStageRegister() {
-        let secondStageView = RegistrationSecondStageView(signUpViewModel: authViewModel)
-        navigateToViewController(UIHostingController(rootView: secondStageView))
-    }
-    
     func navigateToVerification() {
         let verificationView = VerificationView(signUpViewModel: authViewModel)
         navigateToViewController(UIHostingController(rootView: verificationView))

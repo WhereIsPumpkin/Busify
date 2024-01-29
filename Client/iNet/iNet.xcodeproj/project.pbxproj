@@ -16,7 +16,6 @@
 		753AA6D42B5A815F006A599B /* LiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D32B5A815F006A599B /* LiveMapViewController.swift */; };
 		753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D52B5A8166006A599B /* ProfileViewController.swift */; };
 		75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BBA2B56A1E900FD79F7 /* RegisterView.swift */; };
-		75479BBD2B56E03900FD79F7 /* RegistrationSecondStageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */; };
 		75479BC02B56E37B00FD79F7 /* RadioButtonField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BBF2B56E37B00FD79F7 /* RadioButtonField.swift */; };
 		75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BC82B56ED7500FD79F7 /* StyledTextField.swift */; };
 		75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BCA2B56F18300FD79F7 /* StyledButton.swift */; };
@@ -78,7 +77,6 @@
 		753AA6D32B5A815F006A599B /* LiveMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveMapViewController.swift; sourceTree = "<group>"; };
 		753AA6D52B5A8166006A599B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		75479BBA2B56A1E900FD79F7 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
-		75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSecondStageView.swift; sourceTree = "<group>"; };
 		75479BBF2B56E37B00FD79F7 /* RadioButtonField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonField.swift; sourceTree = "<group>"; };
 		75479BC82B56ED7500FD79F7 /* StyledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledTextField.swift; sourceTree = "<group>"; };
 		75479BCA2B56F18300FD79F7 /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
@@ -287,7 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				75479BBA2B56A1E900FD79F7 /* RegisterView.swift */,
-				75479BBC2B56E03900FD79F7 /* RegistrationSecondStageView.swift */,
 				75E217DA2B57CE34006B9655 /* VerificationView.swift */,
 				7599CD162B583CB400F4FD86 /* VerifiedView.swift */,
 			);
@@ -481,7 +478,6 @@
 				75A0BE072B5C50C400B90EEA /* BusStopDetailsPage.swift in Sources */,
 				753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */,
 				751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */,
-				75479BBD2B56E03900FD79F7 /* RegistrationSecondStageView.swift in Sources */,
 				7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */,
 				75D91B8C2B6009B30034F967 /* ReminderViewController.swift in Sources */,
 				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
