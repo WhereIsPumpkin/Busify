@@ -17,7 +17,7 @@ class BusStopSearchViewController: UIViewController {
     private let busAnimationView = LottieAnimationView(name: "busAnimation")
     private var busAnimationHeight: NSLayoutConstraint!
     private let busSearchTextField = CustomStyledTextField(placeholder: "e.g Baratashvili... or 4230", isSecure: false)
-    private let searchButton = CustomStyledButton(buttonText: "Search", buttonColor: UIColor(named: "mainColor")!, textColor: .white)
+    private let searchButton = CustomStyledButton(buttonText: "Search", buttonColor: UIColor(resource: .background), textColor: .white)
     private var viewModel = BusStopSearchViewModel()
     private var tableView: UITableView?
     private let textFieldWrapper = UIStackView()
@@ -220,10 +220,10 @@ extension BusStopSearchViewController: UITableViewDelegate, UITableViewDataSourc
         let selectedBusStop = viewModel.filteredLocation(at: indexPath.row)
         Task {
             try await viewModel.fetchBusStopArrivalTimes(stopID: selectedBusStop.code ?? "1466") {
-                DispatchQueue.main.async { [self] in
-                    let detailsVC = BusStopDetailsPage(arrivalTimes: viewModel.selectedBusStopArrivalTimes)
+                DispatchQueue.main.async { [weak self] in
+                    let detailsVC = BusStopDetailsPage(arrivalTimes: self?.viewModel.selectedBusStopArrivalTimes)
                     detailsVC.title = "Stop: #\(selectedBusStop.code ?? "0000")"
-                    self.navigationController?.pushViewController(detailsVC, animated: true)
+                    self?.navigationController?.pushViewController(detailsVC, animated: true)
                 }
             }
         }

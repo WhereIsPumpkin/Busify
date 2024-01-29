@@ -26,6 +26,7 @@
 		7562A5062B64451300A2F50B /* IconLabelStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7562A5052B64451300A2F50B /* IconLabelStackView.swift */; };
 		7562A5082B65823500A2F50B /* String+Exntesions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7562A5072B65823500A2F50B /* String+Exntesions.swift */; };
 		7562A50A2B6582A500A2F50B /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7562A5092B6582A500A2F50B /* Date+Extensions.swift */; };
+		758062632B66922300A0A157 /* LiveMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062622B66922300A0A157 /* LiveMapViewModel.swift */; };
 		7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585CDB02B559D750087EC03 /* WelcomeView.swift */; };
 		7585CDCA2B55C9B60087EC03 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */; };
 		7585CDCB2B55C9B60087EC03 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */; };
@@ -54,10 +55,6 @@
 		75A0BE202B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE1F2B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift */; };
 		75A0BE282B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE272B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift */; };
 		75A0BE2A2B5EE2F000B90EEA /* ArrivalTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */; };
-		75D91B5F2B5F8D350034F967 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 75D91B5E2B5F8D350034F967 /* GoogleMaps */; };
-		75D91B612B5F8D350034F967 /* GoogleMapsBase in Frameworks */ = {isa = PBXBuildFile; productRef = 75D91B602B5F8D350034F967 /* GoogleMapsBase */; };
-		75D91B632B5F8D350034F967 /* GoogleMapsCore in Frameworks */ = {isa = PBXBuildFile; productRef = 75D91B622B5F8D350034F967 /* GoogleMapsCore */; };
-		75D91B652B5F8D350034F967 /* GoogleMapsM4B in Frameworks */ = {isa = PBXBuildFile; productRef = 75D91B642B5F8D350034F967 /* GoogleMapsM4B */; };
 		75D91B8A2B5FBE730034F967 /* BusStopSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B892B5FBE730034F967 /* BusStopSearchViewModel.swift */; };
 		75D91B8C2B6009B30034F967 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B8B2B6009B30034F967 /* ReminderViewController.swift */; };
 		75D91B902B6041590034F967 /* TextToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B8F2B6041590034F967 /* TextToImage.swift */; };
@@ -89,6 +86,7 @@
 		7562A5052B64451300A2F50B /* IconLabelStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabelStackView.swift; sourceTree = "<group>"; };
 		7562A5072B65823500A2F50B /* String+Exntesions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Exntesions.swift"; sourceTree = "<group>"; };
 		7562A5092B6582A500A2F50B /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		758062622B66922300A0A157 /* LiveMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveMapViewModel.swift; sourceTree = "<group>"; };
 		7585CDB02B559D750087EC03 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -129,12 +127,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75D91B652B5F8D350034F967 /* GoogleMapsM4B in Frameworks */,
-				75D91B632B5F8D350034F967 /* GoogleMapsCore in Frameworks */,
 				7599CD132B57F35E00F4FD86 /* NetSwift in Frameworks */,
 				75A0BDF92B5B14AE00B90EEA /* Lottie in Frameworks */,
-				75D91B5F2B5F8D350034F967 /* GoogleMaps in Frameworks */,
-				75D91B612B5F8D350034F967 /* GoogleMapsBase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,7 +156,7 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
-		7510F7482B5B0032003C24BB /* Bus Stop */ = {
+		7510F7482B5B0032003C24BB /* BusStop */ = {
 			isa = PBXGroup;
 			children = (
 				7510F7492B5B005D003C24BB /* BusStopSearchViewController.swift */,
@@ -170,7 +164,7 @@
 				75A0BE152B5D40BB00B90EEA /* Cell */,
 				75A0BE212B5EC0C900B90EEA /* BusStop Details */,
 			);
-			path = "Bus Stop";
+			path = BusStop;
 			sourceTree = "<group>";
 		};
 		751B0BDC2B544A5300ACBEAE = {
@@ -224,12 +218,13 @@
 			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
-		753AA6D02B5A812E006A599B /* Wallet */ = {
+		753AA6D02B5A812E006A599B /* Live Map */ = {
 			isa = PBXGroup;
 			children = (
 				753AA6D32B5A815F006A599B /* LiveMapViewController.swift */,
+				758062622B66922300A0A157 /* LiveMapViewModel.swift */,
 			);
-			path = Wallet;
+			path = "Live Map";
 			sourceTree = "<group>";
 		};
 		753AA6D12B5A8140006A599B /* Profile */ = {
@@ -264,8 +259,8 @@
 				753AA6CF2B5A811F006A599B /* Tab Bar */,
 				75479BC42B56EC8700FD79F7 /* Authentication */,
 				7599CD1F2B59961D00F4FD86 /* Home */,
-				7510F7482B5B0032003C24BB /* Bus Stop */,
-				753AA6D02B5A812E006A599B /* Wallet */,
+				7510F7482B5B0032003C24BB /* BusStop */,
+				753AA6D02B5A812E006A599B /* Live Map */,
 				753AA6D12B5A8140006A599B /* Profile */,
 			);
 			path = Screens;
@@ -404,10 +399,6 @@
 			packageProductDependencies = (
 				7599CD122B57F35E00F4FD86 /* NetSwift */,
 				75A0BDF82B5B14AE00B90EEA /* Lottie */,
-				75D91B5E2B5F8D350034F967 /* GoogleMaps */,
-				75D91B602B5F8D350034F967 /* GoogleMapsBase */,
-				75D91B622B5F8D350034F967 /* GoogleMapsCore */,
-				75D91B642B5F8D350034F967 /* GoogleMapsM4B */,
 			);
 			productName = iNet;
 			productReference = 751B0BE52B544A5300ACBEAE /* iNet.app */;
@@ -440,7 +431,6 @@
 			packageReferences = (
 				7599CD112B57F35E00F4FD86 /* XCRemoteSwiftPackageReference "SwiftNet" */,
 				75A0BDF72B5B14AE00B90EEA /* XCRemoteSwiftPackageReference "lottie-spm" */,
-				75D91B5D2B5F8D350034F967 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
 			);
 			productRefGroup = 751B0BE62B544A5300ACBEAE /* Products */;
 			projectDirPath = "";
@@ -494,6 +484,7 @@
 				75D91B902B6041590034F967 /* TextToImage.swift in Sources */,
 				75A0BE282B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift in Sources */,
 				7510F74A2B5B005D003C24BB /* BusStopSearchViewController.swift in Sources */,
+				758062632B66922300A0A157 /* LiveMapViewModel.swift in Sources */,
 				7562A5062B64451300A2F50B /* IconLabelStackView.swift in Sources */,
 				7599CD232B5996AA00F4FD86 /* TabBarController.swift in Sources */,
 				75217B2E2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift in Sources */,
@@ -653,9 +644,11 @@
 				DEVELOPMENT_TEAM = 69GK54W8ZW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iNet/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We use your location to keep providing real-time updates about bus stops, even when you're not actively using the app.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to provide real-time information about bus stops near you.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -683,9 +676,11 @@
 				DEVELOPMENT_TEAM = 69GK54W8ZW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iNet/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We use your location to keep providing real-time updates about bus stops, even when you're not actively using the app.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to provide real-time information about bus stops near you.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -743,14 +738,6 @@
 				minimumVersion = 4.3.4;
 			};
 		};
-		75D91B5D2B5F8D350034F967 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googlemaps/ios-maps-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.3.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -763,26 +750,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 75A0BDF72B5B14AE00B90EEA /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
-		};
-		75D91B5E2B5F8D350034F967 /* GoogleMaps */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 75D91B5D2B5F8D350034F967 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;
-			productName = GoogleMaps;
-		};
-		75D91B602B5F8D350034F967 /* GoogleMapsBase */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 75D91B5D2B5F8D350034F967 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;
-			productName = GoogleMapsBase;
-		};
-		75D91B622B5F8D350034F967 /* GoogleMapsCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 75D91B5D2B5F8D350034F967 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;
-			productName = GoogleMapsCore;
-		};
-		75D91B642B5F8D350034F967 /* GoogleMapsM4B */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 75D91B5D2B5F8D350034F967 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;
-			productName = GoogleMapsM4B;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
