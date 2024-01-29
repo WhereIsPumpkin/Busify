@@ -79,25 +79,43 @@ class LiveMapViewController: UIViewController {
     }
     
     private func setupUserLocationButton() {
-        let userLocationButton = UIButton(type: .system)
+        let userLocationButton = createUserLocationButton()
+        addButtonToMapView(userLocationButton)
+        configureButtonIcon(for: userLocationButton)
+        setButtonConstraints(for: userLocationButton)
+    }
+    
+    private func createUserLocationButton() -> UIButton {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(centerMapOnUserButtonTapped), for: .touchUpInside)
+        return button
+    }
+    
+    private func configureButtonIcon(for button: UIButton) {
         let largeFont = UIFont.systemFont(ofSize: 60)
-        let config = UIImage.SymbolConfiguration(paletteColors: [.white, .base])
+        let config = UIImage.SymbolConfiguration(paletteColors: [.white, .base]) 
         let configuration = UIImage.SymbolConfiguration(font: largeFont).applying(config)
+        
         if let locationIcon = UIImage(systemName: "location.circle.fill", withConfiguration: configuration) {
-            userLocationButton.setImage(locationIcon, for: .normal)
+            button.setImage(locationIcon, for: .normal)
         }
-        userLocationButton.addTarget(self, action: #selector(centerMapOnUserButtonTapped), for: .touchUpInside)
-        userLocationButton.translatesAutoresizingMaskIntoConstraints = false
-        mapView?.addSubview(userLocationButton)
+    }
+    
+    private func setButtonConstraints(for button: UIButton) {
+        guard let mapView = self.mapView else { return }
         
         NSLayoutConstraint.activate([
-            userLocationButton.trailingAnchor.constraint(equalTo: mapView!.trailingAnchor, constant: -24),
-            userLocationButton.bottomAnchor.constraint(equalTo: mapView!.safeAreaLayoutGuide.bottomAnchor, constant: -24),
-            userLocationButton.widthAnchor.constraint(equalToConstant: 60),
-            userLocationButton.heightAnchor.constraint(equalToConstant: 60)
+            button.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -24),
+            button.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -24),
+            button.widthAnchor.constraint(equalToConstant: 60),
+            button.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
-
+    
+    private func addButtonToMapView(_ button: UIButton) {
+        mapView?.addSubview(button)
+    }
     
     @objc private func centerMapOnUserButtonTapped() {
         if let userLocation = locationManager.location?.coordinate {

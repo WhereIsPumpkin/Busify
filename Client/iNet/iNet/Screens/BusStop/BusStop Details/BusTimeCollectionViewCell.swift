@@ -46,10 +46,10 @@ class BusTimeCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupContentLayer() {
-        layer.backgroundColor = UIColor(red: 0.224, green: 0.243, blue: 0.275, alpha: 0.3).cgColor
+        layer.backgroundColor = UIColor(.base.opacity(0.3)).cgColor
         layer.cornerRadius = 20
         layer.borderWidth = 1
-        layer.borderColor = UIColor(red: 0.933, green: 0.933, blue: 0.933, alpha: 1).cgColor
+        layer.borderColor = UIColor(.accent.opacity(0.2)).cgColor
     }
     
     private func setupMainHorizontalStack() {

@@ -13,7 +13,6 @@
 		751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */; };
 		751B0BF22B544A5400ACBEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 751B0BF12B544A5400ACBEAE /* Assets.xcassets */; };
 		75217B2E2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75217B2D2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift */; };
-		753AA6CE2B5A79CF006A599B /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6CD2B5A79CF006A599B /* HomeScreenViewController.swift */; };
 		753AA6D42B5A815F006A599B /* LiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D32B5A815F006A599B /* LiveMapViewController.swift */; };
 		753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D52B5A8166006A599B /* ProfileViewController.swift */; };
 		75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BBA2B56A1E900FD79F7 /* RegisterView.swift */; };
@@ -27,6 +26,7 @@
 		7562A5082B65823500A2F50B /* String+Exntesions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7562A5072B65823500A2F50B /* String+Exntesions.swift */; };
 		7562A50A2B6582A500A2F50B /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7562A5092B6582A500A2F50B /* Date+Extensions.swift */; };
 		758062632B66922300A0A157 /* LiveMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062622B66922300A0A157 /* LiveMapViewModel.swift */; };
+		7580626A2B68133500A0A157 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062692B68133500A0A157 /* HomeView.swift */; };
 		7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585CDB02B559D750087EC03 /* WelcomeView.swift */; };
 		7585CDCA2B55C9B60087EC03 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */; };
 		7585CDCB2B55C9B60087EC03 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */; };
@@ -73,7 +73,6 @@
 		751B0BF12B544A5400ACBEAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		751B0BF62B544A5400ACBEAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75217B2D2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
-		753AA6CD2B5A79CF006A599B /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		753AA6D32B5A815F006A599B /* LiveMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveMapViewController.swift; sourceTree = "<group>"; };
 		753AA6D52B5A8166006A599B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		75479BBA2B56A1E900FD79F7 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -87,6 +86,7 @@
 		7562A5072B65823500A2F50B /* String+Exntesions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Exntesions.swift"; sourceTree = "<group>"; };
 		7562A5092B6582A500A2F50B /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		758062622B66922300A0A157 /* LiveMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveMapViewModel.swift; sourceTree = "<group>"; };
+		758062692B68133500A0A157 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7585CDB02B559D750087EC03 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -333,7 +333,7 @@
 		7599CD1F2B59961D00F4FD86 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				753AA6CD2B5A79CF006A599B /* HomeScreenViewController.swift */,
+				758062692B68133500A0A157 /* HomeView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -479,10 +479,10 @@
 				7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */,
 				75D91B8C2B6009B30034F967 /* ReminderViewController.swift in Sources */,
 				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
-				753AA6CE2B5A79CF006A599B /* HomeScreenViewController.swift in Sources */,
 				75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */,
 				75D91B902B6041590034F967 /* TextToImage.swift in Sources */,
 				75A0BE282B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift in Sources */,
+				7580626A2B68133500A0A157 /* HomeView.swift in Sources */,
 				7510F74A2B5B005D003C24BB /* BusStopSearchViewController.swift in Sources */,
 				758062632B66922300A0A157 /* LiveMapViewModel.swift in Sources */,
 				7562A5062B64451300A2F50B /* IconLabelStackView.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class TabBarController: UITabBarController {
     // MARK: - Life Cycle
@@ -27,10 +28,11 @@ class TabBarController: UITabBarController {
     
     // MARK: - Create TabBarItem View Controllers
     private func createHomeScreenVC() -> UINavigationController {
-        let homeVC = UINavigationController(rootViewController: HomeScreenViewController())
+        let homeVC = UIHostingController(rootView: HomeView())
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.title = "Home"
-        return homeVC
+        let navigationController = UINavigationController(rootViewController: homeVC)
+        return navigationController
     }
     
     private func createServicesVC() -> UINavigationController {
