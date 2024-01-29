@@ -23,9 +23,9 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: 32) {
             header
             dailyStatistic
+            savedStops
             Spacer()
         }
-        .padding(.top, 24)
         .padding(.horizontal, 20)
     }
     
@@ -60,62 +60,50 @@ struct HomeView: View {
     
     private var dailyStatistic: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Daily Statistic")
-                .font(.custom("Poppins-semibold", size: 18))
-                .foregroundStyle(.accent)
+            dailyStatisticTitle
             statisticCards
         }
+    }
+    
+    private var dailyStatisticTitle: some View {
+        Text("Daily Statistic")
+            .font(.custom("Poppins-semibold", size: 18))
+            .foregroundStyle(.accent)
     }
     
     private var statisticCards: some View {
         ScrollView(.horizontal) {
             HStack {
-                statisticCard
-                statisticCard
-                statisticCard
+                StatisticCard(iconName: "bus.fill", count: "293 340", transportType: "Bus")
+                StatisticCard(iconName: "cablecar.fill", count: "4 145", transportType: "Cable car")
+                StatisticCard(iconName: "bus.fill", count: "154 123", transportType: "Minibus")
             }
         }
         .scrollIndicators(.hidden)
     }
     
-    private var statisticCard: some View {
-        HStack(spacing: 8) {
-            busIcon
-            statisticText
-            Spacer()
-        }
-        .padding(.horizontal, 16)
-        .frame(width: 160, height: 64)
-        .background(.base)
-        .clipShape(RoundedRectangle(cornerRadius: 20))
-    }
-    
-    private var busIcon: some View {
-        ZStack {
-            Circle()
-                .frame(width: 44, height: 44)
-                .foregroundStyle(.background.opacity(0.5))
-            
-            Image(systemName: "bus.fill")
-                .resizable()
-                .foregroundColor(.accent)
-                .frame(width: 22, height: 22)
-        }
-    }
-    
-    private var statisticText: some View {
+    private var savedStops: some View {
         VStack(alignment: .leading) {
-            Text("293 340")
-                .font(.custom("Poppins-bold", size: 14))
-                .foregroundStyle(.accent)
+            HStack {
+                Text("Saved Stops")
+                    .font(.custom("Poppins-semibold", size: 18))
+                    .foregroundStyle(.accent)
+                
+                Image(systemName: "bookmark.fill")
+                    .foregroundStyle(.alternate.opacity(0.5))
+            }
             
-            Text("Bus")
-                .font(.custom("Poppins", size: 12))
-                .foregroundStyle(.accent.opacity(0.6))
+            ScrollView(.horizontal) {
+                HStack {
+                    BusStopCard(busStopName: "გიორგი სააკაძის მოედანი", busStopNumber: "2446")
+                    BusStopCard(busStopName: "გიორგი სააკაძის მოედანი", busStopNumber: "2446")
+                    BusStopCard(busStopName: "გიორგი სააკაძის მოედანი", busStopNumber: "2446")
+                    BusStopCard(busStopName: "გიორგი სააკაძის მოედანი", busStopNumber: "2446")
+                }
+            }
+            .scrollIndicators(.hidden)
         }
     }
-    
-    
 }
 
 #Preview {
