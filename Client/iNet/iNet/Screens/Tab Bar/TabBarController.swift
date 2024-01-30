@@ -38,7 +38,7 @@ class TabBarController: UITabBarController {
     
     private func createServicesVC() -> UINavigationController {
         let busStopVC = UINavigationController(rootViewController: BusStopSearchViewController())
-        busStopVC.tabBarItem = UITabBarItem(title: "Bus Stop", image: UIImage(systemName: "bus"), selectedImage: nil)
+        busStopVC.tabBarItem = UITabBarItem(title: "Bus Stop", image: UIImage(resource: .busStopIconTest), selectedImage: nil)
         return busStopVC
     }
     

@@ -12,7 +12,7 @@ class BusTimeCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     private let mainHorizontalStack = UIStackView()
     private let busNumberStack = UIStackView()
-    private let busIcon = UIImageView(image: UIImage(systemName: "bus.fill"))
+    private let busIcon = UIImageView(image: UIImage(resource: .busIcon))
     private let busNumber = UILabel()
     private let infoVerticalStack = UIStackView()
     private let busWaitTime = UILabel()
@@ -149,7 +149,7 @@ class BusTimeCollectionViewCell: UICollectionViewCell {
     
     private func setupBusWaitTime() {
         busWaitTime.text = "15 Min"
-        busWaitTime.textColor = UIColor(red: 0.933, green: 0.933, blue: 0.933, alpha: 1)
+        busWaitTime.textColor = UIColor(.accent)
         busWaitTime.font = UIFont(name: "Poppins-Bold", size: 16)
     }
     

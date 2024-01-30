@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "bus-stop-svgrepo-com (2).svg",
+      "filename" : "busStopIcon 2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "busStopIcon 3.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "busStopIcon 4.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

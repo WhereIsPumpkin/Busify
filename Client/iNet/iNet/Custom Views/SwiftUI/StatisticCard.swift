@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StatisticCard: View {
-    let iconName: String
+    let iconName: ImageResource
     let count: String
     let transportType: String
 
@@ -30,7 +30,7 @@ struct StatisticCard: View {
                 .frame(width: 44, height: 44)
                 .foregroundStyle(.background.opacity(0.5))
             
-            Image(systemName: iconName)
+            Image(iconName)
                 .resizable()
                 .foregroundColor(.accent)
                 .frame(width: 22, height: 22)

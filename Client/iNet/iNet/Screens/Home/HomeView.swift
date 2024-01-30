@@ -74,9 +74,9 @@ struct HomeView: View {
     private var statisticCards: some View {
         ScrollView(.horizontal) {
             HStack {
-                StatisticCard(iconName: "bus.fill", count: "293 340", transportType: "Bus")
-                StatisticCard(iconName: "cablecar.fill", count: "4 145", transportType: "Cable car")
-                StatisticCard(iconName: "bus.fill", count: "154 123", transportType: "Minibus")
+                StatisticCard(iconName: .busIcon, count: "293 340", transportType: "Bus")
+                StatisticCard(iconName: .busStop, count: "4 145", transportType: "Cable car")
+                StatisticCard(iconName: .busStop, count: "154 123", transportType: "Minibus")
             }
         }
         .scrollIndicators(.hidden)

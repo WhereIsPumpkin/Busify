@@ -41,7 +41,7 @@ class BusStopSearchTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 0.7)
+        label.textColor = UIColor(.accent.opacity(0.7))
         return label
     }()
     
