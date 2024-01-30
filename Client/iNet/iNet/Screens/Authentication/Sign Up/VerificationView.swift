@@ -24,6 +24,7 @@ struct VerificationView: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 16)
+        .background(Color.background)
     }
     
     // MARK: - Computed Properties
@@ -35,15 +36,19 @@ struct VerificationView: View {
     }
     
     private var textWrapper: some View {
-        VStack(spacing: 14) {
-            Text("Verification")
-                .foregroundStyle(.black)
-                .font(.custom("Poppins-semibold", size: 20))
+        HStack {
+            VStack(alignment: .leading, spacing: 14) {
+                Text("OTP Verification")
+                    .foregroundStyle(.accent )
+                    .font(.custom("Poppins-semibold", size: 24))
+                
+                Text("Enter the verification code we just send on your email adress")
+                    .font(Font.custom("Poppins", size: 12))
+                    .foregroundColor(Color.accentColor.opacity(0.5))
+            }
+            .padding(.top, 32)
             
-            Text("Enter the verification code we just sent on your email.")
-                .font(Font.custom("Poppins", size: 16))
-                .multilineTextAlignment(.center)
-                .foregroundColor(Color(red: 0.44, green: 0.44, blue: 0.44))
+            Spacer()
         }
     }
     
@@ -52,31 +57,34 @@ struct VerificationView: View {
     }
     
     private var verifyButton: some View {
-        StyledButton(buttonText: "Verify", buttonColor: otpValue.allSatisfy { !$0.isEmpty } ? Color("mainColor") : .gray, textColor: .white) {
+        StyledButton(buttonText: "Verify", buttonColor: otpValue.allSatisfy { !$0.isEmpty } ? Color.alternate : .accent.opacity(0.5), textColor: .white) {
             let token = otpValue.joined()
             Task {
                 let isVerified = await signUpViewModel.verifyUser(with: token)
-                print(isVerified)
                 if isVerified {
                     NavigationManager.shared.navigateToVerified()
-                    print(isVerified)
                 }
             }
         }
         .padding(.top, 16)
-        .disabled( otpValue.allSatisfy { $0.isEmpty })
+        .disabled(otpValue.allSatisfy { $0.isEmpty })
     }
     
     private var resendButton: some View {
-        Button(action: {
-            //TODO: - Resend
-        }) {
-            Label("Resend Code", systemImage: "arrow.triangle.2.circlepath")
-                .font(Font.custom("Poppins", size: 16))
-                .multilineTextAlignment(.center)
-                .foregroundColor(.black)
+        HStack(spacing: 0) {
+            Text("Didn’t receive code? ")
+                .font(Font.custom("Poppins", size: 14))
+                .foregroundColor(.white.opacity(0.7))
+            Text("Resend")
+                .font(Font.custom("Poppins-Bold", size: 14))
+                .foregroundColor(.white)
+                .onTapGesture {
+                    print("Resend tapped")
+                    // TODO: - Resend Verification Code
+                }
         }
     }
+    
 }
 
 #Preview {

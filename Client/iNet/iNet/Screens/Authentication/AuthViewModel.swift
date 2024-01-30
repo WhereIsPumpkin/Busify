@@ -19,7 +19,6 @@ final class AuthViewModel: ObservableObject {
     @Published var lastName = ""
     @Published var email = ""
     @Published var password = ""
-    @Published var selectedGender = Gender.female
     
     
     //MARK: - Methods
@@ -35,7 +34,7 @@ final class AuthViewModel: ObservableObject {
     
     func registerUser() async {
         let url = URL(string: "\(baseURL.production.rawValue)/api/user/register")!
-        let user = User(name: name, lastName: lastName, email: email, password: password, gender: selectedGender, verified: false)
+        let user = User(name: name, lastName: lastName, email: email, password: password, verified: false)
         do {
             let (_, response) = try await NetworkManager.shared.postData(to: url, body: user)
             print("User registered with response: \(response)")

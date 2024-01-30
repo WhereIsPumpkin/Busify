@@ -67,7 +67,7 @@ struct WelcomeView: View {
                 NavigationManager.shared.navigateToSignUp()
             }
             .overlay(
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: 20)
                     .stroke(Color.accent, lineWidth: 1)
             )
         }

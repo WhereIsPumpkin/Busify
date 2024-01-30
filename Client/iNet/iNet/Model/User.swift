@@ -12,11 +12,5 @@ struct User: Codable {
     var lastName: String
     var email: String
     var password: String
-    var gender: Gender
     var verified: Bool
-}
-
-enum Gender: String, CaseIterable, Codable {
-    case female = "Female"
-    case male = "Male"
 }
