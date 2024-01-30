@@ -20,6 +20,7 @@ struct VerifiedView: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 60)
+        .background(Color.background)
     }
     
     // MARK: Computed Properties
@@ -31,28 +32,29 @@ struct VerifiedView: View {
     }
     
     private var textWrap: some View {
-        VStack(spacing: 12) {
-            title
-            description
+        HStack  {
+            VStack(alignment: .leading, spacing: 12) {
+                title
+                description
+            }
+            Spacer()
         }
     }
     
     private var title: some View {
         Text("Verified")
-            .foregroundStyle(.black)
-            .font(.custom("Poppins-medium", size: 20))
+            .foregroundStyle(.accent)
+            .font(.custom("Poppins-semibold", size: 24))
     }
     
     private var description: some View {
         Text("Your account has been verified\nsuccessfully")
-          .font(Font.custom("Poppins", size: 16))
-          .multilineTextAlignment(.center)
-          .foregroundColor(Color(red: 0.44, green: 0.44, blue: 0.44))
-          .frame(width: 331, alignment: .top)
+          .font(Font.custom("Poppins", size: 12))
+          .foregroundColor(Color.accentColor.opacity(0.5))
     }
     
     private var finishButton: some View {
-        StyledButton(buttonText: "Log In", buttonColor: Color("mainColor"), textColor: .white) {
+        StyledButton(buttonText: "Log In", buttonColor: Color.alternate, textColor: .white) {
             NavigationManager.shared.navigateToLogIn()
         }
     }

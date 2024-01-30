@@ -36,16 +36,20 @@ struct VerificationView: View {
     }
     
     private var textWrapper: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            Text("OTP Verification")
-                .foregroundStyle(.accent )
-                .font(.custom("Poppins-semibold", size: 20))
+        HStack {
+            VStack(alignment: .leading, spacing: 14) {
+                Text("OTP Verification")
+                    .foregroundStyle(.accent )
+                    .font(.custom("Poppins-semibold", size: 24))
+                
+                Text("Enter the verification code we just send on your email adress")
+                    .font(Font.custom("Poppins", size: 12))
+                    .foregroundColor(Color.accentColor.opacity(0.5))
+            }
+            .padding(.top, 32)
             
-            Text("Enter the verification code we just send on your email adress")
-                .font(Font.custom("Poppins", size: 16))
-                .foregroundColor(Color.accentColor.opacity(0.5))
+            Spacer()
         }
-        .padding(.top, 32)
     }
     
     private var otpTextField: some View {
