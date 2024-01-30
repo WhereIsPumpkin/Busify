@@ -21,6 +21,7 @@ struct RegisterView: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 42)
+        .background(Color.background)
     }
     
     // MARK: - Computed Properties
@@ -28,7 +29,7 @@ struct RegisterView: View {
         HStack(spacing: 12) {
             UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 20)
                 .frame(width: 6)
-                .foregroundColor(Color("mainColor"))
+                .foregroundColor(Color.alternate)
             
             VStack(alignment: .leading) {
                 titleText
@@ -42,7 +43,7 @@ struct RegisterView: View {
     private var titleText: some View {
         HStack {
             Text("Enter Your Details")
-                .foregroundStyle(.black)
+                .foregroundStyle(.accent)
                 .font(.custom("Poppins-semibold", size: 20))
             Spacer()
         }
@@ -51,7 +52,7 @@ struct RegisterView: View {
     private var descriptionText: some View {
         Text("it's quick and easy")
             .font(Font.custom("Poppins", size: 16))
-            .foregroundColor(Color(red: 0.44, green: 0.44, blue: 0.44))
+            .foregroundColor(Color.accentColor.opacity(0.5))
     }
     
     private var inputFields: some View {
@@ -85,7 +86,7 @@ struct RegisterView: View {
     }
     
     private var nextButton: some View {
-        StyledButton(buttonText: "Next", buttonColor: viewModel.isNextButtonDisabled ? .gray : Color("mainColor"), textColor: .white) {
+        StyledButton(buttonText: "Next", buttonColor: viewModel.isNextButtonDisabled ? .accent.opacity(0.5) : Color.alternate, textColor: .white) {
             if !viewModel.isNextButtonDisabled {
                 NavigationManager.shared.navigateToVerification()
             }
@@ -94,7 +95,7 @@ struct RegisterView: View {
     }
     
     private var appleRegisterButton: some View {
-        StyledButton(buttonText: "Sign up with Apple", buttonColor: .black, textColor: .white, icon: "applelogo") {
+        StyledButton(buttonText: "Sign up with Apple", buttonColor: .accent, textColor: .black, icon: "applelogo") {
             print("Apple Sign")
         }
     }
