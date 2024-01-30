@@ -87,7 +87,7 @@ struct RegisterView: View {
     private var nextButton: some View {
         StyledButton(buttonText: "Next", buttonColor: viewModel.isNextButtonDisabled ? .gray : Color("mainColor"), textColor: .white) {
             if !viewModel.isNextButtonDisabled {
-                NavigationManager.shared.navigateToSecondStageRegister()
+                NavigationManager.shared.navigateToVerification()
             }
         }
         .disabled(viewModel.isNextButtonDisabled)

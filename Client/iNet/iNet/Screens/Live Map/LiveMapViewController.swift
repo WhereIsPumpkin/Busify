@@ -35,6 +35,7 @@ class LiveMapViewController: UIViewController {
     private func setupMapView() {
         setupMapViewProperties()
         setupIcon()
+        centerMapOnUserLocation()
         setupUserLocationButton()
         view = mapView
     }
@@ -66,6 +67,7 @@ class LiveMapViewController: UIViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.startUpdatingLocation()
+        locationManager.requestWhenInUseAuthorization()
     }
     
     private func loadBusStopsOnMap() {
@@ -79,25 +81,43 @@ class LiveMapViewController: UIViewController {
     }
     
     private func setupUserLocationButton() {
-        let userLocationButton = UIButton(type: .system)
+        let userLocationButton = createUserLocationButton()
+        addButtonToMapView(userLocationButton)
+        configureButtonIcon(for: userLocationButton)
+        setButtonConstraints(for: userLocationButton)
+    }
+    
+    private func createUserLocationButton() -> UIButton {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(centerMapOnUserButtonTapped), for: .touchUpInside)
+        return button
+    }
+    
+    private func configureButtonIcon(for button: UIButton) {
         let largeFont = UIFont.systemFont(ofSize: 60)
         let config = UIImage.SymbolConfiguration(paletteColors: [.white, .base])
         let configuration = UIImage.SymbolConfiguration(font: largeFont).applying(config)
+        
         if let locationIcon = UIImage(systemName: "location.circle.fill", withConfiguration: configuration) {
-            userLocationButton.setImage(locationIcon, for: .normal)
+            button.setImage(locationIcon, for: .normal)
         }
-        userLocationButton.addTarget(self, action: #selector(centerMapOnUserButtonTapped), for: .touchUpInside)
-        userLocationButton.translatesAutoresizingMaskIntoConstraints = false
-        mapView?.addSubview(userLocationButton)
+    }
+    
+    private func setButtonConstraints(for button: UIButton) {
+        guard let mapView = self.mapView else { return }
         
         NSLayoutConstraint.activate([
-            userLocationButton.trailingAnchor.constraint(equalTo: mapView!.trailingAnchor, constant: -24),
-            userLocationButton.bottomAnchor.constraint(equalTo: mapView!.safeAreaLayoutGuide.bottomAnchor, constant: -24),
-            userLocationButton.widthAnchor.constraint(equalToConstant: 60),
-            userLocationButton.heightAnchor.constraint(equalToConstant: 60)
+            button.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -24),
+            button.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -24),
+            button.widthAnchor.constraint(equalToConstant: 60),
+            button.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
-
+    
+    private func addButtonToMapView(_ button: UIButton) {
+        mapView?.addSubview(button)
+    }
     
     @objc private func centerMapOnUserButtonTapped() {
         if let userLocation = locationManager.location?.coordinate {
@@ -106,21 +126,49 @@ class LiveMapViewController: UIViewController {
         }
     }
     
+    private func centerMapOnUserLocation() {
+        if locationManager.authorizationStatus == .authorizedWhenInUse || locationManager.authorizationStatus == .authorizedAlways {
+            if let currentLocation = locationManager.location?.coordinate {
+                let region = MKCoordinateRegion(center: currentLocation, latitudinalMeters: 1000, longitudinalMeters: 1000)
+                mapView?.setRegion(region, animated: true)
+            }
+        }
+    }
 }
 
 // MARK: - Extensions
 extension LiveMapViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        updateCameraPosition(latitude: locValue.latitude, longitude: locValue.longitude)
-    }
-    
-    private func updateCameraPosition(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        DispatchQueue.main.async {
-            let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: span)
-            self.mapView?.setRegion(region, animated: true)
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .notDetermined:
+            manager.requestWhenInUseAuthorization()
+        case .restricted, .denied:
+            presentLocationAccessAlert("Location Access Denied", "Please enable location services in Settings.")
+        case .authorizedAlways, .authorizedWhenInUse:
+            if let currentLocation = locationManager.location?.coordinate {
+                centerMapOn(currentLocation)
+            } else {
+                presentLocationAccessAlert("Location Unavailable", "Your current location cannot be determined.")
+            }
+        @unknown default:
+            fatalError("Unknown authorization status")
         }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to get user's location: \(error.localizedDescription)")
+        presentLocationAccessAlert("Location Error", "Failed to obtain location.")
+    }
+
+    private func presentLocationAccessAlert(_ title: String, _ message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true)
+    }
+
+    private func centerMapOn(_ location: CLLocationCoordinate2D) {
+        let region = MKCoordinateRegion(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        mapView?.setRegion(region, animated: true)
     }
 }
 

@@ -45,7 +45,7 @@ struct WelcomeView: View {
                     .font(.custom("Poppins-Bold", size: 22))
                 Spacer()
             }
-            VStack(spacing: 8) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text("Bus Stops, Schedules, and Alerts in One")
                     .font(.custom("Poppins-Bold", size: 24))
                     .foregroundColor(Color(.accent))

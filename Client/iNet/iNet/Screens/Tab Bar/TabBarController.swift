@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class TabBarController: UITabBarController {
     // MARK: - Life Cycle
@@ -27,15 +28,19 @@ class TabBarController: UITabBarController {
     
     // MARK: - Create TabBarItem View Controllers
     private func createHomeScreenVC() -> UINavigationController {
-        let homeVC = UINavigationController(rootViewController: HomeScreenViewController())
+        let homeVC = UIHostingController(rootView: HomeView())
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.title = "Home"
-        return homeVC
+        homeVC.navigationItem.title = ""
+        let navigationController = UINavigationController(rootViewController: homeVC)
+        navigationController.hidesBarsOnSwipe = true
+        navigationController.isNavigationBarHidden = true
+        return navigationController
     }
     
     private func createServicesVC() -> UINavigationController {
         let busStopVC = UINavigationController(rootViewController: BusStopSearchViewController())
-        busStopVC.tabBarItem = UITabBarItem(title: "Bus Stop", image: UIImage(systemName: "bus"), selectedImage: nil)
+        busStopVC.tabBarItem = UITabBarItem(title: "Bus Stop", image: UIImage(resource: .busStopIconTest), selectedImage: nil)
         return busStopVC
     }
     

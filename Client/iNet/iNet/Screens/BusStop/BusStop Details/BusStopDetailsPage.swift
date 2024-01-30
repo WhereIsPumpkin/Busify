@@ -114,7 +114,7 @@ class BusStopDetailsPage: UIViewController {
     
     private func configureTitleWrapperLayout() {
         titleWrapper.axis = .horizontal
-        titleWrapper.alignment = .center
+        titleWrapper.alignment = .top
         titleWrapper.spacing = 12
     }
     
@@ -126,11 +126,18 @@ class BusStopDetailsPage: UIViewController {
     
     private func setupBusWaitIcon() {
         titleWrapper.addArrangedSubview(busWaitIcon)
+        setupBusWaitIconConstraints()
+    }
+    
+    private func setupBusWaitIconConstraints() {
+        busWaitIcon.translatesAutoresizingMaskIntoConstraints = false
+        busWaitIcon.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        busWaitIcon.heightAnchor.constraint(equalToConstant: 24).isActive = true
     }
     
     private func setupTitleLabel() {
         titleLabel.text = "Arrival Times:"
-        titleLabel.textColor = UIColor(red: 0.933, green: 0.933, blue: 0.933, alpha: 1)
+        titleLabel.textColor = UIColor(.accent)
         titleLabel.font = UIFont(name: "Poppins-Bold", size: 20)
         titleWrapper.addArrangedSubview(titleLabel)
     }
