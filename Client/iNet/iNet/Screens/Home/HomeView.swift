@@ -11,7 +11,7 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             backgroundColor
-            content
+            contentScroll
         }
     }
     
@@ -19,11 +19,19 @@ struct HomeView: View {
         Color.background.ignoresSafeArea()
     }
     
+    private var contentScroll: some View {
+        ScrollView {
+            content
+        }
+        .scrollIndicators(.hidden)
+    }
+    
     private var content: some View {
         VStack(alignment: .leading, spacing: 32) {
             header
             dailyStatistic
             savedStops
+            travelCards
             Spacer()
         }
         .padding(.horizontal, 20)
@@ -75,8 +83,9 @@ struct HomeView: View {
         ScrollView(.horizontal) {
             HStack {
                 StatisticCard(iconName: .busIcon, count: "293 340", transportType: "Bus")
-                StatisticCard(iconName: .busStop, count: "4 145", transportType: "Cable car")
-                StatisticCard(iconName: .busStop, count: "154 123", transportType: "Minibus")
+                StatisticCard(iconName: .cableCar, count: "4 145", transportType: "Cable car")
+                StatisticCard(iconName: .minibus, count: "154 123", transportType: "Minibus")
+                StatisticCard(iconName: .metro, count: "154 123", transportType: "Subway")
             }
         }
         .scrollIndicators(.hidden)
@@ -103,6 +112,38 @@ struct HomeView: View {
             }
             .scrollIndicators(.hidden)
         }
+    }
+    
+    private var travelCards: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            travelCardText
+            travelCard
+        }
+    }
+    
+    private var travelCardText: some View {
+        VStack(alignment:. leading, spacing: 4) {
+            Text("Travel card")
+                .font(.custom("Poppins-semibold", size: 18))
+                .foregroundColor(.white)
+            
+            Text("Select your ideal Travel Card for enjoyable public transport in Tbilisi.")
+                .font(Font.custom("Poppins", size: 11))
+                .foregroundColor(Color(red: 0.87, green: 0.87, blue: 0.87).opacity(0.7))
+                .frame(width: 240, alignment: .topLeading)
+        }
+    }
+        
+    private var travelCard: some View {
+        ScrollView(.horizontal) {
+            HStack {
+                TravelCard()
+                TravelCard()
+                TravelCard()
+                TravelCard()
+            }
+        }
+        .scrollIndicators(.hidden)
     }
 }
 

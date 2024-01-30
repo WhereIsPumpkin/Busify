@@ -28,6 +28,7 @@
 		7580626A2B68133500A0A157 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062692B68133500A0A157 /* HomeView.swift */; };
 		7580626C2B681DE700A0A157 /* StatisticCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7580626B2B681DE700A0A157 /* StatisticCard.swift */; };
 		7580626E2B684B9900A0A157 /* BusStopCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7580626D2B684B9900A0A157 /* BusStopCard.swift */; };
+		758062722B68D95900A0A157 /* TravelCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062712B68D95900A0A157 /* TravelCard.swift */; };
 		7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585CDB02B559D750087EC03 /* WelcomeView.swift */; };
 		7585CDCA2B55C9B60087EC03 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */; };
 		7585CDCB2B55C9B60087EC03 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */; };
@@ -89,6 +90,7 @@
 		758062692B68133500A0A157 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7580626B2B681DE700A0A157 /* StatisticCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticCard.swift; sourceTree = "<group>"; };
 		7580626D2B684B9900A0A157 /* BusStopCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopCard.swift; sourceTree = "<group>"; };
+		758062712B68D95900A0A157 /* TravelCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelCard.swift; sourceTree = "<group>"; };
 		7585CDB02B559D750087EC03 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				75479BCA2B56F18300FD79F7 /* StyledButton.swift */,
 				75E217DC2B57D81B006B9655 /* OTPTextField.swift */,
 				7580626B2B681DE700A0A157 /* StatisticCard.swift */,
+				758062712B68D95900A0A157 /* TravelCard.swift */,
 				7580626D2B684B9900A0A157 /* BusStopCard.swift */,
 			);
 			path = SwiftUI;
@@ -513,6 +516,7 @@
 				75A0BE012B5B1FB900B90EEA /* CustomStyleButton.swift in Sources */,
 				7510F74C2B5B010D003C24BB /* ServiceType.swift in Sources */,
 				75A0BE172B5D410200B90EEA /* BusStopSearchTableViewCell.swift in Sources */,
+				758062722B68D95900A0A157 /* TravelCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
