@@ -31,7 +31,10 @@ class TabBarController: UITabBarController {
         let homeVC = UIHostingController(rootView: HomeView())
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.title = "Home"
+        homeVC.navigationItem.title = ""
         let navigationController = UINavigationController(rootViewController: homeVC)
+        navigationController.hidesBarsOnSwipe = true
+        navigationController.isNavigationBarHidden = true
         return navigationController
     }
     
