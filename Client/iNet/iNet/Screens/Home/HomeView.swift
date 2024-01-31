@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    // MARK: - Properties
+    @StateObject var viewModel = HomeViewModel()
+    
     var body: some View {
         ZStack {
             backgroundColor
@@ -84,13 +87,29 @@ struct HomeView: View {
     private var statisticCards: some View {
         ScrollView(.horizontal) {
             HStack {
-                StatisticCard(iconName: .busIcon, count: "293 340", transportType: "Bus")
-                StatisticCard(iconName: .cableCar, count: "4 145", transportType: "Cable car")
-                StatisticCard(iconName: .minibus, count: "154 123", transportType: "Minibus")
-                StatisticCard(iconName: .metro, count: "154 123", transportType: "Subway")
+                if let stats = viewModel.passengerStatistic?.transactionsByTransportTypes {
+                    StatisticCard(iconName: .busIcon, count: stats.bus.formattedWithSeparator(), transportType: "Bus")
+                    StatisticCard(iconName: .cableCar, count: stats.cableCar.formattedWithSeparator(), transportType: "Cable car")
+                    StatisticCard(iconName: .minibus, count: stats.minibus.formattedWithSeparator(), transportType: "Minibus")
+                    StatisticCard(iconName: .metro, count: stats.subway.formattedWithSeparator(), transportType: "Subway")
+                } else {
+                    statisticEmptyState
+                }
             }
         }
         .scrollIndicators(.hidden)
+    }
+    
+    private var statisticEmptyState: some View {
+        HStack(spacing: 16) {
+            Text("Loading statistics...")
+                .font(.custom("Poppins-semibold", size: 12))
+                .foregroundStyle(.accent)
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle())
+                .scaleEffect(1)
+                .tint(Color.accentColor)
+        }
     }
     
     private var savedStops: some View {
@@ -135,10 +154,10 @@ struct HomeView: View {
                 .frame(width: 240, alignment: .topLeading)
         }
     }
-        
+    
     private var travelCard: some View {
         ScrollView(.horizontal) {
-            HStack {
+            HStack(spacing: 8) {
                 TravelCard(cardName: "MetroQuick", price: 1, duration: "90min", descriptions: [
                     "90-Minute Freedom", "Brief adventure"
                 ])

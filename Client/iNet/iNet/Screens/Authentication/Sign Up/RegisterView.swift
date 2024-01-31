@@ -89,6 +89,10 @@ struct RegisterView: View {
         StyledButton(buttonText: "Next", buttonColor: viewModel.isNextButtonDisabled ? .accent.opacity(0.5) : Color.alternate, textColor: .white) {
             if !viewModel.isNextButtonDisabled {
                 NavigationManager.shared.navigateToVerification()
+                Task {
+                    await viewModel.registerUser()
+                }
+                
             }
         }
         .disabled(viewModel.isNextButtonDisabled)

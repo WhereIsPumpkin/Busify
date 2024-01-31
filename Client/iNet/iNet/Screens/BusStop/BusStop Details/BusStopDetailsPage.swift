@@ -14,6 +14,7 @@ class BusStopDetailsPage: UIViewController {
     var titleWrapper = UIStackView()
     var titleLabel = UILabel()
     var busWaitIcon = UIImageView(image: UIImage(resource: .busWaitIcon))
+    var bookmarkIcon = UIImageView(image: UIImage(systemName: "bookmark"))
     var collectionView: UICollectionView!
     var arrivalTimes: ArrivalTimesResponse?
     
@@ -122,6 +123,7 @@ class BusStopDetailsPage: UIViewController {
         setupBusWaitIcon()
         setupTitleLabel()
         addSpacerToTitleWrapper()
+        setupBookmarkIcon()
     }
     
     private func setupBusWaitIcon() {
@@ -144,6 +146,28 @@ class BusStopDetailsPage: UIViewController {
     
     private func addSpacerToTitleWrapper() {
         titleWrapper.addArrangedSubview(UIView())
+    }
+    
+    private func setupBookmarkIcon() {
+        titleWrapper.addArrangedSubview(bookmarkIcon)
+        setupBookmarkConstraints()
+        setupBookmarkIconTapGesture()
+    }
+    
+    private func setupBookmarkConstraints() {
+        bookmarkIcon.translatesAutoresizingMaskIntoConstraints = false
+        bookmarkIcon.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        bookmarkIcon.heightAnchor.constraint(equalToConstant: 24).isActive = true
+    }
+    
+    private func setupBookmarkIconTapGesture() {
+        bookmarkIcon.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(bookmarkIconTapped))
+        bookmarkIcon.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func bookmarkIconTapped() {
+        print("clicked")
     }
     
     private func initializeCollectionViewLayout() -> UICollectionViewFlowLayout {
@@ -226,4 +250,10 @@ extension BusStopDetailsPage: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         16
     }
+}
+
+
+@available(iOS 17, *)
+#Preview {
+    BusStopDetailsPage(arrivalTimes: ArrivalTimesResponse(arrivalTime: mockArrivalTimes.arrivalTime))
 }

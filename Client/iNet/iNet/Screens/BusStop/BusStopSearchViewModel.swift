@@ -8,7 +8,7 @@
 import Foundation
 import NetSwift
 
-class BusStopSearchViewModel {
+final class BusStopSearchViewModel {
     // MARK: - Properties
     private var locations: Locations = []
     private var filteredLocations: Locations = []

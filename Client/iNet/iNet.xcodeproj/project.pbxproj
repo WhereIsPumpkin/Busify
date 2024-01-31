@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7510F74A2B5B005D003C24BB /* BusStopSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7492B5B005D003C24BB /* BusStopSearchViewController.swift */; };
-		7510F74C2B5B010D003C24BB /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F74B2B5B010D003C24BB /* ServiceType.swift */; };
 		751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BE82B544A5300ACBEAE /* AppDelegate.swift */; };
 		751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */; };
 		751B0BF22B544A5400ACBEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 751B0BF12B544A5400ACBEAE /* Assets.xcassets */; };
@@ -29,6 +28,9 @@
 		7580626C2B681DE700A0A157 /* StatisticCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7580626B2B681DE700A0A157 /* StatisticCard.swift */; };
 		7580626E2B684B9900A0A157 /* BusStopCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7580626D2B684B9900A0A157 /* BusStopCard.swift */; };
 		758062722B68D95900A0A157 /* TravelCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062712B68D95900A0A157 /* TravelCard.swift */; };
+		758062742B692D8400A0A157 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062732B692D8400A0A157 /* HomeViewModel.swift */; };
+		758062762B692E0600A0A157 /* Passengers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062752B692E0600A0A157 /* Passengers.swift */; };
+		758062782B69320A00A0A157 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062772B69320A00A0A157 /* Int+Extensions.swift */; };
 		7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585CDB02B559D750087EC03 /* WelcomeView.swift */; };
 		7585CDCA2B55C9B60087EC03 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */; };
 		7585CDCB2B55C9B60087EC03 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */; };
@@ -53,7 +55,6 @@
 		75A0BE072B5C50C400B90EEA /* BusStopDetailsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE062B5C50C400B90EEA /* BusStopDetailsPage.swift */; };
 		75A0BE142B5D3C9C00B90EEA /* busAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 75A0BE132B5D3C9C00B90EEA /* busAnimation.json */; };
 		75A0BE172B5D410200B90EEA /* BusStopSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE162B5D410200B90EEA /* BusStopSearchTableViewCell.swift */; };
-		75A0BE1B2B5DEB5200B90EEA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE1A2B5DEB5200B90EEA /* Message.swift */; };
 		75A0BE202B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE1F2B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift */; };
 		75A0BE282B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE272B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift */; };
 		75A0BE2A2B5EE2F000B90EEA /* ArrivalTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */; };
@@ -68,7 +69,6 @@
 
 /* Begin PBXFileReference section */
 		7510F7492B5B005D003C24BB /* BusStopSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopSearchViewController.swift; sourceTree = "<group>"; };
-		7510F74B2B5B010D003C24BB /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		751B0BE52B544A5300ACBEAE /* iNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		751B0BE82B544A5300ACBEAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +91,9 @@
 		7580626B2B681DE700A0A157 /* StatisticCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticCard.swift; sourceTree = "<group>"; };
 		7580626D2B684B9900A0A157 /* BusStopCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopCard.swift; sourceTree = "<group>"; };
 		758062712B68D95900A0A157 /* TravelCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelCard.swift; sourceTree = "<group>"; };
+		758062732B692D8400A0A157 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		758062752B692E0600A0A157 /* Passengers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passengers.swift; sourceTree = "<group>"; };
+		758062772B69320A00A0A157 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		7585CDB02B559D750087EC03 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -113,7 +116,6 @@
 		75A0BE062B5C50C400B90EEA /* BusStopDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopDetailsPage.swift; sourceTree = "<group>"; };
 		75A0BE132B5D3C9C00B90EEA /* busAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = busAnimation.json; sourceTree = "<group>"; };
 		75A0BE162B5D410200B90EEA /* BusStopSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopSearchTableViewCell.swift; sourceTree = "<group>"; };
-		75A0BE1A2B5DEB5200B90EEA /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		75A0BE1F2B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponsiveModifier.swift; sourceTree = "<group>"; };
 		75A0BE272B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimeCollectionViewCell.swift; sourceTree = "<group>"; };
 		75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalTimes.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				75217B2D2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift */,
 				7562A5072B65823500A2F50B /* String+Exntesions.swift */,
 				7562A5092B6582A500A2F50B /* Date+Extensions.swift */,
+				758062772B69320A00A0A157 /* Int+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				758062692B68133500A0A157 /* HomeView.swift */,
+				758062732B692D8400A0A157 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -377,11 +381,10 @@
 				75E217DF2B57E4FA006B9655 /* User.swift */,
 				7599CD142B5836E900F4FD86 /* EmailToken.swift */,
 				7599CD1D2B59907600F4FD86 /* LoginDetails.swift */,
-				7510F74B2B5B010D003C24BB /* ServiceType.swift */,
 				75A0BE042B5C217300B90EEA /* BusStop.swift */,
-				75A0BE1A2B5DEB5200B90EEA /* Message.swift */,
 				75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */,
 				7562A4FD2B6377C300A2F50B /* ReminderModel.swift */,
+				758062752B692E0600A0A157 /* Passengers.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -496,25 +499,26 @@
 				75A0BE2A2B5EE2F000B90EEA /* ArrivalTimes.swift in Sources */,
 				7562A5002B63F9CF00A2F50B /* NotificationManager.swift in Sources */,
 				751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */,
-				75A0BE1B2B5DEB5200B90EEA /* Message.swift in Sources */,
 				75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */,
 				75A0BE202B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift in Sources */,
 				7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */,
 				7562A50A2B6582A500A2F50B /* Date+Extensions.swift in Sources */,
+				758062742B692D8400A0A157 /* HomeViewModel.swift in Sources */,
 				75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */,
 				7562A5082B65823500A2F50B /* String+Exntesions.swift in Sources */,
 				75A0BE052B5C217300B90EEA /* BusStop.swift in Sources */,
 				75A0BE032B5B202600B90EEA /* CustomStyleTextField.swift in Sources */,
 				75D91B8A2B5FBE730034F967 /* BusStopSearchViewModel.swift in Sources */,
 				75E217E32B57E5AA006B9655 /* AuthViewModel.swift in Sources */,
+				758062762B692E0600A0A157 /* Passengers.swift in Sources */,
 				7562A4FE2B6377C300A2F50B /* ReminderModel.swift in Sources */,
 				7599CD1C2B59430F00F4FD86 /* NavigationManager.swift in Sources */,
 				7599CD152B5836E900F4FD86 /* EmailToken.swift in Sources */,
 				7580626E2B684B9900A0A157 /* BusStopCard.swift in Sources */,
+				758062782B69320A00A0A157 /* Int+Extensions.swift in Sources */,
 				75E217E02B57E4FA006B9655 /* User.swift in Sources */,
 				7580626C2B681DE700A0A157 /* StatisticCard.swift in Sources */,
 				75A0BE012B5B1FB900B90EEA /* CustomStyleButton.swift in Sources */,
-				7510F74C2B5B010D003C24BB /* ServiceType.swift in Sources */,
 				75A0BE172B5D410200B90EEA /* BusStopSearchTableViewCell.swift in Sources */,
 				758062722B68D95900A0A157 /* TravelCard.swift in Sources */,
 			);
