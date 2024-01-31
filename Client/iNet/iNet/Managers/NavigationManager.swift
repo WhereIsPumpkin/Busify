@@ -51,7 +51,7 @@ final class NavigationManager {
         window?.rootViewController = mainScreenViewController
         window?.makeKeyAndVisible()
     }
-     
+    
     // MARK: - Sign Up Process
     func navigateToSignUp() {
         let signUpView = RegisterView(viewModel: authViewModel)
@@ -70,6 +70,17 @@ final class NavigationManager {
     
     func navigateToBusViewController() {
         navigateToViewController(BusStopSearchViewController())
+    }
+    
+    func navigateToBusStopDetailsPage(arrivalTimes: ArrivalTimesResponse?, stopId: String) {
+        let busStopDetailsPage = BusStopDetailsPage(arrivalTimes: arrivalTimes, stopId: stopId)
+        
+        if let tabBarController = window?.rootViewController as? UITabBarController,
+           let navigationController = tabBarController.selectedViewController as? UINavigationController {
+            navigationController.pushViewController(busStopDetailsPage, animated: true)
+        } else {
+            print("No suitable navigation controller found")
+        }
     }
     
     // MARK: - Generic Navigation Helper

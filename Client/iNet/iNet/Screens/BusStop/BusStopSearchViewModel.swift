@@ -8,44 +8,27 @@
 import Foundation
 import NetSwift
 
-class BusStopSearchViewModel {
-    // MARK: - Properties
-    private var locations: Locations = []
+final class BusStopSearchViewModel {
     private var filteredLocations: Locations = []
     var selectedBusStopArrivalTimes: ArrivalTimesResponse?
     
-    // MARK: Init
     init() {
         Task {
-            await fetchBusStops()
+            await initializeBusStops()
         }
     }
     
     // MARK: - Stop Configure Methods
-    func fetchBusStops() async {
-        guard let url = URL(string: "http://transfer.ttc.com.ge:8080/otp/routers/ttc/index/stops") else { return }
-        
-        do {
-            let fetchedData = try await NetworkManager.shared.fetchDecodableData(from: url, responseType: Locations.self)
-            self.locations = fetchedData
-            self.filteredLocations = fetchedData
-        } catch {
-            // TODO: - Error Handling
-            print(error)
+    private func initializeBusStops() async {
+        if BusStopManager.shared.getLocations() == nil {
+            print("Bus stop locations not available, fetching now...")
+            await BusStopManager.shared.fetchBusStops()
         }
+        self.filteredLocations = BusStopManager.shared.getLocations() ?? []
     }
     
     func filterLocations(with query: String) {
-        if query.isEmpty {
-            filteredLocations = locations
-        } else {
-            filteredLocations = locations.filter { location in
-                let queryLowercased = query.lowercased()
-                let nameMatch = location.name.lowercased().contains(queryLowercased)
-                let codeMatch = location.code?.lowercased().contains(queryLowercased) ?? false
-                return nameMatch || codeMatch
-            }
-        }
+        filteredLocations = BusStopManager.shared.filterLocations(with: query)
     }
     
     var numberOfFilteredLocations: Int {
@@ -57,14 +40,13 @@ class BusStopSearchViewModel {
     }
     
     // MARK: - Stop Details Methods
-    func fetchBusStopArrivalTimes(stopID: String, completion: @escaping () -> Void) async throws {
-        let urlString = "https://transfer.msplus.ge:1443/otp/routers/ttc/stopArrivalTimes?stopId=\(stopID)"
-        guard let url = URL(string: urlString) else {
-            fatalError("Invalid URL")
+    func fetchBusStopArrivalTimes(stopID: String, completion: @escaping () -> Void) async {
+        do {
+            let arrivalTimes = try await BusStopManager.shared.fetchBusStopArrivalTimes(stopID: stopID)
+            self.selectedBusStopArrivalTimes = arrivalTimes
+            completion()
+        } catch {
+            print("Error fetching bus stop arrival times: \(error.localizedDescription)")
         }
-        let arrivalTimes = try await NetworkManager.shared.fetchDecodableData(from: url, responseType: ArrivalTimesResponse.self)
-        self.selectedBusStopArrivalTimes = arrivalTimes
-        completion()
     }
-    
 }

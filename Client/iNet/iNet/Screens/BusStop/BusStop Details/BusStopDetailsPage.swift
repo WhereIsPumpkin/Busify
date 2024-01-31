@@ -7,15 +7,17 @@
 
 import UIKit
 
-class BusStopDetailsPage: UIViewController {
+final class BusStopDetailsPage: UIViewController {
     // MARK: - Properties
     var mainStackView = UIStackView()
     var heroImage = UIImageView(image: UIImage(resource: .busStop))
     var titleWrapper = UIStackView()
     var titleLabel = UILabel()
     var busWaitIcon = UIImageView(image: UIImage(resource: .busWaitIcon))
+    var bookmarkIcon = UIImageView()
     var collectionView: UICollectionView!
     var arrivalTimes: ArrivalTimesResponse?
+    var stopId: String
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -23,8 +25,9 @@ class BusStopDetailsPage: UIViewController {
         SetupUI()
     }
     
-    init(arrivalTimes: ArrivalTimesResponse?) {
+    init(arrivalTimes: ArrivalTimesResponse?, stopId: String) {
         self.arrivalTimes = arrivalTimes
+        self.stopId = stopId
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -46,6 +49,7 @@ class BusStopDetailsPage: UIViewController {
     
     private func setupViewAppearance() {
         view.backgroundColor = UIColor(resource: .background)
+        navigationController?.isNavigationBarHidden = false
     }
     
     private func addViewSubviews() {
@@ -122,6 +126,7 @@ class BusStopDetailsPage: UIViewController {
         setupBusWaitIcon()
         setupTitleLabel()
         addSpacerToTitleWrapper()
+        setupBookmarkIcon()
     }
     
     private func setupBusWaitIcon() {
@@ -144,6 +149,44 @@ class BusStopDetailsPage: UIViewController {
     
     private func addSpacerToTitleWrapper() {
         titleWrapper.addArrangedSubview(UIView())
+    }
+    
+    private func setupBookmarkIcon() {
+        updateBookmarkIcon()
+        titleWrapper.addArrangedSubview(bookmarkIcon)
+        setupBookmarkConstraints()
+        setupBookmarkIconTapGesture()
+    }
+    
+    private func updateBookmarkIcon() {
+        let isBookmarked = UserSessionManager.shared.currentUser?.bookmarkedStops.contains(stopId) ?? false
+        let bookmarkImageName = isBookmarked ? "bookmark.fill" : "bookmark"
+        bookmarkIcon.image = UIImage(systemName: bookmarkImageName)
+    }
+    
+    private func setupBookmarkConstraints() {
+        bookmarkIcon.translatesAutoresizingMaskIntoConstraints = false
+        bookmarkIcon.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        bookmarkIcon.heightAnchor.constraint(equalToConstant: 24).isActive = true
+    }
+    
+    private func setupBookmarkIconTapGesture() {
+        bookmarkIcon.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(bookmarkIconTapped))
+        bookmarkIcon.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func bookmarkIconTapped() {
+        Task {
+            await BusStopManager.shared.toggleBookmark(busStopID: stopId)
+            await UserSessionManager.shared.fetchUserInfo()
+            
+            DispatchQueue.main.async {
+                self.updateBookmarkIcon()
+            }
+            
+            NotificationCenter.default.post(name: .bookmarksUpdated, object: nil)
+        }
     }
     
     private func initializeCollectionViewLayout() -> UICollectionViewFlowLayout {
@@ -226,4 +269,10 @@ extension BusStopDetailsPage: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         16
     }
+}
+
+
+@available(iOS 17, *)
+#Preview {
+    BusStopDetailsPage(arrivalTimes: ArrivalTimesResponse(arrivalTime: mockArrivalTimes.arrivalTime), stopId: "1234")
 }

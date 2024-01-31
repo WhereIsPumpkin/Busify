@@ -206,9 +206,9 @@ extension LiveMapViewController: MKMapViewDelegate {
 }
 
 extension LiveMapViewController: LiveMapViewModelDelegate {
-    func busArrivalTimesFetched(_ stopID: ArrivalTimesResponse) {
+    func busArrivalTimesFetched(_ arrivalTimes: ArrivalTimesResponse, _ stopID: String) {
         DispatchQueue.main.async {
-            let vc = BusStopDetailsPage(arrivalTimes: stopID)
+            let vc = BusStopDetailsPage(arrivalTimes: arrivalTimes, stopId: stopID)
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

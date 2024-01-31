@@ -18,13 +18,13 @@ const userSchema = new Schema({
     type: Schema.Types.String,
     required: true,
   },
-  gender: {
-    type: Schema.Types.String,
-    required: true,
-  },
   verified: {
     type: Boolean,
     default: false,
+  },
+  bookmarkedStops: {
+    type: [Schema.Types.String],
+    default: []
   },
 })
 

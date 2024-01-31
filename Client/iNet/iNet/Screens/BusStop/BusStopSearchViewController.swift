@@ -218,10 +218,12 @@ extension BusStopSearchViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedBusStop = viewModel.filteredLocation(at: indexPath.row)
+        
+        // TODO: - Removed try
         Task {
-            try await viewModel.fetchBusStopArrivalTimes(stopID: selectedBusStop.code ?? "1466") {
+             await viewModel.fetchBusStopArrivalTimes(stopID: selectedBusStop.code ?? "1466") {
                 DispatchQueue.main.async { [weak self] in
-                    let detailsVC = BusStopDetailsPage(arrivalTimes: self?.viewModel.selectedBusStopArrivalTimes)
+                    let detailsVC = BusStopDetailsPage(arrivalTimes: self?.viewModel.selectedBusStopArrivalTimes, stopId: selectedBusStop.code ?? "1466")
                     detailsVC.title = "Stop: #\(selectedBusStop.code ?? "0000")"
                     self?.navigationController?.pushViewController(detailsVC, animated: true)
                 }
