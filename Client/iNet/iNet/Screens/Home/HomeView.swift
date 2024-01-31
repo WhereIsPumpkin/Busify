@@ -10,11 +10,15 @@ import SwiftUI
 struct HomeView: View {
     // MARK: - Properties
     @StateObject var viewModel = HomeViewModel()
+    @State private var user: User? = UserSessionManager.shared.currentUser
     
     var body: some View {
         ZStack {
             backgroundColor
             contentScroll
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .didUpdateCurrentUser)) { _ in
+            self.user = UserSessionManager.shared.currentUser
         }
     }
     
@@ -65,7 +69,7 @@ struct HomeView: View {
                 .font(Font.custom("Poppins-regular", size: 18))
                 .foregroundStyle(.accent)
             
-            if let user = UserSessionManager.shared.currentUser {
+            if let user = user {
                 Text("\(user.name) \(user.lastName)")
                     .font(Font.custom("Poppins-bold", size: 18))
                     .foregroundStyle(.alternate)
