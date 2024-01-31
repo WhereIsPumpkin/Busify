@@ -127,15 +127,21 @@ export const loginUser = async (req, res) => {
 
     const payload = {
       id: existingUser._id,
-      name: existingUser.name,
-      lastName: existingUser.lastName,
-      gender: existingUser.gender,
-      verified: existingUser.verified,
     }
 
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" })
 
-    res.json({ token })
+    res.json({ 
+      token,
+      user: {
+        id: existingUser._id,
+        name: existingUser.name,
+        lastName: existingUser.lastName,
+        email: existingUser.email,
+        bookmarkedStops: existingUser.bookmarkedStops,
+        verified: existingUser.verified
+      }
+     })
   } catch (error) {
     res.status(500).send("Server error")
   }

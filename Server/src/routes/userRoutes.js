@@ -7,10 +7,10 @@ import {
 
 const router = express.Router()
 
+router.post("/login", loginUser)
 router.post("/register", createUser)
 
 router.post("/verify", verifyUser)
 
-router.post("/login", loginUser)
 
 export default router
