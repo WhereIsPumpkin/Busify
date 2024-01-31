@@ -167,7 +167,7 @@ class BusStopDetailsPage: UIViewController {
     }
     
     @objc private func bookmarkIconTapped() {
-        print("clicked")
+        print(UserManager.shared.currentUser?.id)
     }
     
     private func initializeCollectionViewLayout() -> UICollectionViewFlowLayout {

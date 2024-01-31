@@ -34,7 +34,7 @@ final class AuthViewModel: ObservableObject {
     
     func registerUser() async {
         let url = URL(string: "\(baseURL.production.rawValue)/api/user/register")!
-        let user = User(name: name, lastName: lastName, email: email, password: password, verified: false)
+        let user = RegistrationDetails(name: name, lastName: lastName, email: email, password: password)
         do {
             let (_, _) = try await NetworkManager.shared.postData(to: url, body: user)
         } catch {
@@ -72,16 +72,14 @@ final class AuthViewModel: ObservableObject {
         let loginDetails = LoginDetails(email: email, password: password)
         
         do {
-            let (data, response) = try await NetworkManager.shared.postData(to: url, body: loginDetails)
+            let (data, _) = try await NetworkManager.shared.postData(to: url, body: loginDetails)
+            let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
             
-            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                if let json = try? JSONSerialization.jsonObject(with: data) as? [String: String],
-                   let token = json["token"] {
-                    UserDefaults.standard.set(token, forKey: "userToken")
-                    return true
-                }
-            }
-            return false
+            UserDefaults.standard.set(loginResponse.token, forKey: "userToken")
+            
+            UserManager.shared.currentUser = loginResponse.user
+            
+            return true
         } catch {
             print("Login failed: \(error)")
             return false

@@ -12,6 +12,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupBarAppearance()
         NotificationManager.shared.checkForPermission()
+        
+        Task {
+            let user = await UserSessionManager.shared.fetchUserInfo()
+            print(user)
+        }
         return true
     }
     

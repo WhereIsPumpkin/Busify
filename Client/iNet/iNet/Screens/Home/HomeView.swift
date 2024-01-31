@@ -65,11 +65,14 @@ struct HomeView: View {
                 .font(Font.custom("Poppins-regular", size: 18))
                 .foregroundStyle(.accent)
             
-            Text("Thom Yorke")
-                .font(Font.custom("Poppins-bold", size: 18))
-                .foregroundStyle(.alternate)
+            if let user = UserManager.shared.currentUser {
+                Text("\(user.name) \(user.lastName)")
+                    .font(Font.custom("Poppins-bold", size: 18))
+                    .foregroundStyle(.alternate)
+            }
         }
     }
+    
     
     private var dailyStatistic: some View {
         VStack(alignment: .leading, spacing: 16) {

@@ -129,9 +129,9 @@ export const loginUser = async (req, res) => {
       id: existingUser._id,
     }
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" })
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1w" })
 
-    res.json({ 
+    res.json({
       token,
       user: {
         id: existingUser._id,
@@ -139,9 +139,29 @@ export const loginUser = async (req, res) => {
         lastName: existingUser.lastName,
         email: existingUser.email,
         bookmarkedStops: existingUser.bookmarkedStops,
-        verified: existingUser.verified
-      }
-     })
+        verified: existingUser.verified,
+      },
+    })
+  } catch (error) {
+    res.status(500).send("Server error")
+  }
+}
+
+export const getUserInfo = async (req, res) => {
+  try {
+    const userID = req.userData.id
+
+    const user = await User.findById(userID)
+
+    const userInfo = {
+      id: user._id,
+      name: user.name,
+      lastName: user.lastName,
+      email: user.email,
+      verified: user.verified,
+      bookmarkedStops: user.bookmarkedStops,
+    }
+    res.json(userInfo)
   } catch (error) {
     res.status(500).send("Server error")
   }
