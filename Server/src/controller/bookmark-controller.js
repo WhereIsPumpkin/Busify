@@ -16,7 +16,6 @@ export const toggleBookmark = async (req, res) => {
 
     const bookmarkIndex = user.bookmarkedStops.indexOf(busStopID);
 
-    console.log(`bookmark index ${bookmarkIndex}`)
     if (bookmarkIndex === -1) {
       user.bookmarkedStops.push(busStopID);
     } else {

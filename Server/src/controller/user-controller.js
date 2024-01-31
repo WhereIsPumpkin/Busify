@@ -150,7 +150,7 @@ export const loginUser = async (req, res) => {
 export const getUserInfo = async (req, res) => {
   try {
     const userID = req.userData.id
-
+    console.log("I am inside getuserinfo")
     const user = await User.findById(userID)
 
     const userInfo = {
@@ -163,6 +163,7 @@ export const getUserInfo = async (req, res) => {
     }
     res.json(userInfo)
   } catch (error) {
-    res.status(500).send("Server error")
+    console.error("Error fetching user info:", error)
+    res.status(500).send("Server error: " + error.message)
   }
 }

@@ -9,8 +9,8 @@ import Foundation
 import NetSwift
 
 enum baseURL: String {
-    case local = "https://dull-ruby-python.cyclic.app"
-    case production = "http://localhost:3000"
+    case production = "https://dull-ruby-python.cyclic.app"
+    case local = "http://localhost:3000"
 }
 
 final class AuthViewModel: ObservableObject {
@@ -19,7 +19,6 @@ final class AuthViewModel: ObservableObject {
     @Published var lastName = ""
     @Published var email = ""
     @Published var password = ""
-    
     
     //MARK: - Methods
     var isNextButtonDisabled: Bool {
