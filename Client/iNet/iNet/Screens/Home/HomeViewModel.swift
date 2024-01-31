@@ -12,10 +12,12 @@ final class HomeViewModel: ObservableObject {
     // MARK: - Properties
     @Published var passengerStatistic: TransactionsResponse?
     @Published var error: String?
-
+    @Published var bookmarkedBusStops: [Location] = []
+    
     init() {
         Task {
             await fetchPassengersData()
+            await fetchBookmarkedBusStops()
         }
     }
     
@@ -34,5 +36,22 @@ final class HomeViewModel: ObservableObject {
             }
         }
     }
-
+    
+    private func fetchBookmarkedBusStops() async {
+        guard let bookmarkedIds = UserSessionManager.shared.currentUser?.bookmarkedStops else {
+            self.bookmarkedBusStops = []
+            return
+        }
+        guard let allStops = BusStopManager.shared.getLocations() else {
+            self.bookmarkedBusStops = []
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.bookmarkedBusStops = allStops.filter { location in
+                bookmarkedIds.contains(where: { $0 == location.code })
+            }
+        }
+    }
+    
 }

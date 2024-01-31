@@ -21,32 +21,24 @@ final class LiveMapViewModel {
     weak var delegate: LiveMapViewModelDelegate?
     
     func viewDidLoad() async {
-        await fetchBusStops()
-    }
-    
-    private func fetchBusStops() async {
-        guard let url = URL(string: "http://transfer.ttc.com.ge:8080/otp/routers/ttc/index/stops") else { return }
+        if BusStopManager.shared.getLocations() == nil {
+            await BusStopManager.shared.fetchBusStops()
+        }
         
-        do {
-            let fetchedData = try await NetworkManager.shared.fetchDecodableData(from: url, responseType: Locations.self)
-            self.locations = fetchedData
-            self.delegate?.locationsFetched(fetchedData)
-        } catch {
-            self.delegate?.showError(error)
+        if let locations = BusStopManager.shared.getLocations() {
+            self.delegate?.locationsFetched(locations)
         }
     }
     
     func fetchBusStopArrivalTimes(stopID: String) async {
-        guard let url = URL(string: "https://transfer.msplus.ge:1443/otp/routers/ttc/stopArrivalTimes?stopId=\(stopID)") else { return }
-        
         do {
-            let arrivalTimes = try await NetworkManager.shared.fetchDecodableData(from: url, responseType: ArrivalTimesResponse.self)
+            let arrivalTimes = try await BusStopManager.shared.fetchBusStopArrivalTimes(stopID: stopID)
             self.selectedBusStopArrivalTimes = arrivalTimes
             delegate?.busArrivalTimesFetched(arrivalTimes)
         } catch {
             delegate?.showError(error)
         }
     }
-
+    
 }
 

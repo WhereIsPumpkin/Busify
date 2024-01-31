@@ -11,6 +11,8 @@ class UserSessionManager {
     static let shared = UserSessionManager()
 
     private init() {}
+    
+    var currentUser: User?
 
     func fetchUserInfo() async -> Bool {
         guard let token = UserDefaults.standard.string(forKey: "userToken") else {
@@ -32,7 +34,7 @@ class UserSessionManager {
                 return false
             }
             let user = try JSONDecoder().decode(User.self, from: data)
-            UserManager.shared.currentUser = user
+            self.currentUser = user
             return true
         } catch {
             print("Failed to fetch user info: \(error.localizedDescription)")

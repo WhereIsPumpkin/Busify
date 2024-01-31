@@ -77,7 +77,7 @@ final class AuthViewModel: ObservableObject {
             
             UserDefaults.standard.set(loginResponse.token, forKey: "userToken")
             
-            UserManager.shared.currentUser = loginResponse.user
+            UserSessionManager.shared.currentUser = loginResponse.user
             
             return true
         } catch {

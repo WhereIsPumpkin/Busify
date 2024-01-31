@@ -65,14 +65,13 @@ struct HomeView: View {
                 .font(Font.custom("Poppins-regular", size: 18))
                 .foregroundStyle(.accent)
             
-            if let user = UserManager.shared.currentUser {
+            if let user = UserSessionManager.shared.currentUser {
                 Text("\(user.name) \(user.lastName)")
                     .font(Font.custom("Poppins-bold", size: 18))
                     .foregroundStyle(.alternate)
             }
         }
     }
-    
     
     private var dailyStatistic: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -117,25 +116,69 @@ struct HomeView: View {
     
     private var savedStops: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Text("Saved Stops")
-                    .font(.custom("Poppins-semibold", size: 18))
-                    .foregroundStyle(.accent)
-                
-                Image(systemName: "bookmark.fill")
-                    .foregroundStyle(.alternate.opacity(0.5))
+            savedStopsTitle
+            savedStopsView
+        }
+    }
+    
+    private var savedStopsView: some View {
+        Group {
+            if !viewModel.bookmarkedBusStops.isEmpty {
+                savedStopList
+            } else {
+                emptyState
             }
+        }
+    }
+    
+    private var savedStopsTitle: some View {
+        HStack {
+            Text("Saved Stops")
+                .font(.custom("Poppins-semibold", size: 18))
+                .foregroundStyle(.accent)
             
-            ScrollView(.horizontal) {
-                HStack {
-                    BusStopCard(busStopName: "გიორგი სააკაძის მოედანი", busStopNumber: "2446")
-                    BusStopCard(busStopName: "გიორგი სააკაძის მოედანი", busStopNumber: "2446")
-                    BusStopCard(busStopName: "გიორგი სააკაძის მოედანი", busStopNumber: "2446")
-                    BusStopCard(busStopName: "გიორგი სააკაძის მოედანი", busStopNumber: "2446")
+            Image(systemName: "bookmark.fill")
+                .foregroundStyle(.alternate.opacity(0.5))
+        }
+    }
+    
+    private var savedStopList: some View {
+        ScrollView(.horizontal) {
+            HStack {
+                ForEach(viewModel.bookmarkedBusStops, id: \.id) { stop in
+                    BusStopCard(busStopName: stop.name, busStopNumber: stop.code ?? "N/A")
                 }
             }
-            .scrollIndicators(.hidden)
         }
+        .scrollIndicators(.hidden)
+    }
+    
+    private var emptyState: some View {
+        VStack(spacing: 8) {
+            Image(.busStopBrench)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 32, height: 32)
+            
+            VStack(spacing: 4) {
+                Text("No templates yet – let's create!")
+                    .font(.custom("Poppins-semibold", size: 14))
+                    .foregroundColor(.white)
+                
+                Text("To create a template, click the 'Save' icon on the Bus Stop page.")
+                    .font(.custom("Poppins", size: 12))
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.white.opacity(0.5))
+            }
+            
+            HStack {
+                Spacer()
+            }
+        }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 16)
+        .background(Color.base)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
     }
     
     private var travelCards: some View {

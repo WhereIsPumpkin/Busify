@@ -12,11 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupBarAppearance()
         NotificationManager.shared.checkForPermission()
-        
-        Task {
-            let user = await UserSessionManager.shared.fetchUserInfo()
-            print(user)
-        }
+        fetchUser()
         return true
     }
     
@@ -27,6 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         barAppearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
         barAppearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
         UINavigationBar.appearance().standardAppearance = barAppearance
+    }
+    
+    private func fetchUser() {
+        Task {
+            let _ = await UserSessionManager.shared.fetchUserInfo()
+        }
     }
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
