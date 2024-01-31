@@ -85,6 +85,14 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
+    func fetchBusStopArrivalTimes(stopID: String) async throws -> ArrivalTimesResponse {
+        do {
+            let arrivalTimes = try await BusStopManager.shared.fetchBusStopArrivalTimes(stopID: stopID)
+            return arrivalTimes
+        } catch {
+            throw error
+        }
+    }
 }
 
 private struct Weak<T: AnyObject> {

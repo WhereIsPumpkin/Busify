@@ -35,7 +35,6 @@ class UserSessionManager {
             }
             let user = try JSONDecoder().decode(User.self, from: data)
             self.currentUser = user
-            print(user)
             return /*true*/
         } catch {
             print("Failed to fetch user info: \(error.localizedDescription)")

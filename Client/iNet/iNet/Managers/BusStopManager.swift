@@ -73,9 +73,8 @@ final class BusStopManager {
         request.httpBody = httpBody
         
         do {
-            let (data, response) = try await URLSession.shared.data(for: request)
+            let (data, _) = try await URLSession.shared.data(for: request)
             let str = String(data: data, encoding: .utf8)
-            print("Received data:\n\(str ?? "")")
             await UserSessionManager.shared.fetchUserInfo()
         } catch {
             print("Error: \(error)")

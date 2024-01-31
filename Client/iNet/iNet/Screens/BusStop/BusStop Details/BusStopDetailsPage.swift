@@ -49,6 +49,7 @@ final class BusStopDetailsPage: UIViewController {
     
     private func setupViewAppearance() {
         view.backgroundColor = UIColor(resource: .background)
+        navigationController?.isNavigationBarHidden = false
     }
     
     private func addViewSubviews() {
