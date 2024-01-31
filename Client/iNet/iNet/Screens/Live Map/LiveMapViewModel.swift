@@ -10,7 +10,7 @@ import NetSwift
 
 protocol LiveMapViewModelDelegate: AnyObject {
     func locationsFetched(_ locations: Locations)
-    func busArrivalTimesFetched(_ stopID: ArrivalTimesResponse)
+    func busArrivalTimesFetched(_ arrivalTimes: ArrivalTimesResponse, _ stopID: String)
     func showError(_ error: Error)
 }
 
@@ -34,7 +34,7 @@ final class LiveMapViewModel {
         do {
             let arrivalTimes = try await BusStopManager.shared.fetchBusStopArrivalTimes(stopID: stopID)
             self.selectedBusStopArrivalTimes = arrivalTimes
-            delegate?.busArrivalTimesFetched(arrivalTimes)
+            delegate?.busArrivalTimesFetched(arrivalTimes, stopID)
         } catch {
             delegate?.showError(error)
         }

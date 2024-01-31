@@ -7,16 +7,17 @@
 
 import UIKit
 
-class BusStopDetailsPage: UIViewController {
+final class BusStopDetailsPage: UIViewController {
     // MARK: - Properties
     var mainStackView = UIStackView()
     var heroImage = UIImageView(image: UIImage(resource: .busStop))
     var titleWrapper = UIStackView()
     var titleLabel = UILabel()
     var busWaitIcon = UIImageView(image: UIImage(resource: .busWaitIcon))
-    var bookmarkIcon = UIImageView(image: UIImage(systemName: "bookmark"))
+    var bookmarkIcon = UIImageView()
     var collectionView: UICollectionView!
     var arrivalTimes: ArrivalTimesResponse?
+    var stopId: String
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -24,8 +25,9 @@ class BusStopDetailsPage: UIViewController {
         SetupUI()
     }
     
-    init(arrivalTimes: ArrivalTimesResponse?) {
+    init(arrivalTimes: ArrivalTimesResponse?, stopId: String) {
         self.arrivalTimes = arrivalTimes
+        self.stopId = stopId
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -149,9 +151,16 @@ class BusStopDetailsPage: UIViewController {
     }
     
     private func setupBookmarkIcon() {
+        updateBookmarkIcon()
         titleWrapper.addArrangedSubview(bookmarkIcon)
         setupBookmarkConstraints()
         setupBookmarkIconTapGesture()
+    }
+    
+    private func updateBookmarkIcon() {
+        let isBookmarked = UserSessionManager.shared.currentUser?.bookmarkedStops.contains(stopId) ?? false
+        let bookmarkImageName = isBookmarked ? "bookmark.fill" : "bookmark"
+        bookmarkIcon.image = UIImage(systemName: bookmarkImageName)
     }
     
     private func setupBookmarkConstraints() {
@@ -167,7 +176,16 @@ class BusStopDetailsPage: UIViewController {
     }
     
     @objc private func bookmarkIconTapped() {
-        print(UserSessionManager.shared.currentUser?.id)
+        Task {
+            await BusStopManager.shared.toggleBookmark(busStopID: stopId)
+            await UserSessionManager.shared.fetchUserInfo()
+            
+            DispatchQueue.main.async {
+                self.updateBookmarkIcon()
+            }
+            
+            NotificationCenter.default.post(name: .bookmarksUpdated, object: nil)
+        }
     }
     
     private func initializeCollectionViewLayout() -> UICollectionViewFlowLayout {
@@ -255,5 +273,5 @@ extension BusStopDetailsPage: UICollectionViewDelegateFlowLayout {
 
 @available(iOS 17, *)
 #Preview {
-    BusStopDetailsPage(arrivalTimes: ArrivalTimesResponse(arrivalTime: mockArrivalTimes.arrivalTime))
+    BusStopDetailsPage(arrivalTimes: ArrivalTimesResponse(arrivalTime: mockArrivalTimes.arrivalTime), stopId: "1234")
 }

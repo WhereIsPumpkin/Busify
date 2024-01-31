@@ -14,14 +14,14 @@ class UserSessionManager {
     
     var currentUser: User?
 
-    func fetchUserInfo() async -> Bool {
+    func fetchUserInfo() async -> Void {
         guard let token = UserDefaults.standard.string(forKey: "userToken") else {
-            return false
+            return /*false*/
         }
 
         guard let url = URL(string: "\(baseURL.production.rawValue)/api/user/info") else {
             print("Invalid URL")
-            return false
+            return /*false*/
         }
 
         var request = URLRequest(url: url)
@@ -31,14 +31,15 @@ class UserSessionManager {
             let (data, response) = try await URLSession.shared.data(for: request)
             guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
                 print("Server error")
-                return false
+                return /*false*/
             }
             let user = try JSONDecoder().decode(User.self, from: data)
             self.currentUser = user
-            return true
+            print(user)
+            return /*true*/
         } catch {
             print("Failed to fetch user info: \(error.localizedDescription)")
-            return false
+            return /*false*/
         }
     }
 }

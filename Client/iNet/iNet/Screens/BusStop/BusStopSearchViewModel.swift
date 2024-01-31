@@ -49,5 +49,4 @@ final class BusStopSearchViewModel {
             print("Error fetching bus stop arrival times: \(error.localizedDescription)")
         }
     }
-    
 }

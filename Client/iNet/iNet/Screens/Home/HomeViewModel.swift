@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 import NetSwift
 
 final class HomeViewModel: ObservableObject {
@@ -14,11 +15,28 @@ final class HomeViewModel: ObservableObject {
     @Published var error: String?
     @Published var bookmarkedBusStops: [Location] = []
     
+    private var cancellables = Set<AnyCancellable>()
+    
     init() {
         Task {
             await fetchPassengersData()
             await fetchBookmarkedBusStops()
         }
+        
+        setupBookmarkObserver()
+    }
+    
+    private func setupBookmarkObserver() {
+        let weakViewModel = Weak(self)
+        NotificationCenter.default.publisher(for: .bookmarksUpdated)
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                Task {
+                    guard let strongSelf = weakViewModel.value else { return }
+                    await strongSelf.fetchBookmarkedBusStops()
+                }
+            }
+            .store(in: &cancellables)
     }
     
     private func fetchPassengersData() async {
@@ -38,20 +56,40 @@ final class HomeViewModel: ObservableObject {
     }
     
     private func fetchBookmarkedBusStops() async {
-        guard let bookmarkedIds = UserSessionManager.shared.currentUser?.bookmarkedStops else {
-            self.bookmarkedBusStops = []
-            return
-        }
-        guard let allStops = BusStopManager.shared.getLocations() else {
-            self.bookmarkedBusStops = []
+        
+        if BusStopManager.shared.getLocations() == nil {
+            try? await Task.sleep(nanoseconds: 500_000_000)
+            await fetchBookmarkedBusStops()
             return
         }
         
-        DispatchQueue.main.async {
-            self.bookmarkedBusStops = allStops.filter { location in
-                bookmarkedIds.contains(where: { $0 == location.code })
+        guard let bookmarkedIds = UserSessionManager.shared.currentUser?.bookmarkedStops else {
+            DispatchQueue.main.async {
+                self.bookmarkedBusStops = []
             }
+            return
+        }
+        guard let allStops = BusStopManager.shared.getLocations() else {
+            DispatchQueue.main.async {
+                self.bookmarkedBusStops = []
+            }
+            return
+        }
+        
+        let filteredStops = allStops.filter { location in
+            bookmarkedIds.contains(where: { $0 == location.code })
+        }
+        
+        DispatchQueue.main.async {
+            self.bookmarkedBusStops = filteredStops
         }
     }
     
+}
+
+private struct Weak<T: AnyObject> {
+    weak var value: T?
+    init(_ value: T) {
+        self.value = value
+    }
 }

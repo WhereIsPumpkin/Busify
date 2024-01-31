@@ -1,13 +1,11 @@
 import express from "express"
 import {
-  addBookmark,
-  removeBookmark,
+  toggleBookmark,
 } from "../controller/bookmark-controller.js"
 import { authMiddleware } from "../middlewares/authMiddleware.js"
 
 const router = express.Router()
 
-router.post("/bookmark/add", authMiddleware, addBookmark)
-router.post("/bookmark/remove", authMiddleware, removeBookmark)
+router.post("/toggle", authMiddleware, toggleBookmark)
 
 export default router
