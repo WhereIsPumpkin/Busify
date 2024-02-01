@@ -177,10 +177,37 @@ final class ProfileViewController: UIViewController {
         setupNewCardPlaceholderStackMargins()
         setupCardIllustration()
         setupAddNewCardLabelStack()
-        newCardPlaceholderStack.addArrangedSubview(illustrationImage)
-        newCardPlaceholderStack.addArrangedSubview(addNewCardLabelStack)
+        addNewCardPlaceholderStackArrangedSubviews()
+        addNewCardPlaceholderTapGesture()
         newCardPlaceholderStack.setCustomSpacing(36, after: illustrationImage)
     }
+    
+    private func addNewCardPlaceholderStackArrangedSubviews() {
+        newCardPlaceholderStack.addArrangedSubview(illustrationImage)
+        newCardPlaceholderStack.addArrangedSubview(addNewCardLabelStack)
+    }
+    
+    private func addNewCardPlaceholderTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCardPlaceholderTapGesture))
+        newCardPlaceholderStack.isUserInteractionEnabled = true
+        newCardPlaceholderStack.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func handleCardPlaceholderTapGesture() {
+        let swiftUIView = AddNewCardView() // AddNewCardView is your SwiftUI view
+        let addNewCardVC = UIHostingController(rootView: swiftUIView)
+        
+        if let sheet = addNewCardVC.sheetPresentationController {
+            let customHeight = self.view.frame.height * 0.40
+            print(self.view.frame.height)
+            sheet.detents = [.custom { context in customHeight }]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 20
+        }
+        
+        present(addNewCardVC, animated: true)
+    }
+
     
     private func setupNewCardPlaceholderStackLayout() {
         newCardPlaceholderStack.axis = .vertical
@@ -259,7 +286,7 @@ final class ProfileViewController: UIViewController {
         addCardLabel.textColor = .white
         addCardLabel.font = UIFont(name: "Poppins-semibold", size: 16)
     }
-
+    
     
 }
 

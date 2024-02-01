@@ -38,7 +38,8 @@
 		758062842B6A9D6500A0A157 /* BookmarkToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062832B6A9D6500A0A157 /* BookmarkToggle.swift */; };
 		758062872B6AA8EB00A0A157 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062862B6AA8EB00A0A157 /* Notification+Extensions.swift */; };
 		758062892B6BD70000A0A157 /* UIViewController+Exntesions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062882B6BD70000A0A157 /* UIViewController+Exntesions.swift */; };
-		7580628B2B6BDCD700A0A157 /* EmptyCardIllustrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7580628A2B6BDCD700A0A157 /* EmptyCardIllustrationView.swift */; };
+		7580628D2B6BFB6C00A0A157 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7580628C2B6BFB6C00A0A157 /* ProfileViewModel.swift */; };
+		758062912B6BFEB100A0A157 /* AddNewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062902B6BFEB100A0A157 /* AddNewCardView.swift */; };
 		7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585CDB02B559D750087EC03 /* WelcomeView.swift */; };
 		7585CDCA2B55C9B60087EC03 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */; };
 		7585CDCB2B55C9B60087EC03 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */; };
@@ -107,7 +108,8 @@
 		758062832B6A9D6500A0A157 /* BookmarkToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkToggle.swift; sourceTree = "<group>"; };
 		758062862B6AA8EB00A0A157 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		758062882B6BD70000A0A157 /* UIViewController+Exntesions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Exntesions.swift"; sourceTree = "<group>"; };
-		7580628A2B6BDCD700A0A157 /* EmptyCardIllustrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCardIllustrationView.swift; sourceTree = "<group>"; };
+		7580628C2B6BFB6C00A0A157 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		758062902B6BFEB100A0A157 /* AddNewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCardView.swift; sourceTree = "<group>"; };
 		7585CDB02B559D750087EC03 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -163,7 +165,6 @@
 				7580626B2B681DE700A0A157 /* StatisticCard.swift */,
 				758062712B68D95900A0A157 /* TravelCard.swift */,
 				7580626D2B684B9900A0A157 /* BusStopCard.swift */,
-				7580628A2B6BDCD700A0A157 /* EmptyCardIllustrationView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -255,6 +256,8 @@
 			isa = PBXGroup;
 			children = (
 				753AA6D52B5A8166006A599B /* ProfileViewController.swift */,
+				7580628C2B6BFB6C00A0A157 /* ProfileViewModel.swift */,
+				758062902B6BFEB100A0A157 /* AddNewCardView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				7599CD192B58437700F4FD86 /* LoginView.swift in Sources */,
 				75A0BE072B5C50C400B90EEA /* BusStopDetailsPage.swift in Sources */,
 				753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */,
+				7580628D2B6BFB6C00A0A157 /* ProfileViewModel.swift in Sources */,
 				751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */,
 				7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */,
 				75D91B8C2B6009B30034F967 /* ReminderViewController.swift in Sources */,
@@ -514,13 +518,13 @@
 				7580626A2B68133500A0A157 /* HomeView.swift in Sources */,
 				7510F74A2B5B005D003C24BB /* BusStopSearchViewController.swift in Sources */,
 				758062632B66922300A0A157 /* LiveMapViewModel.swift in Sources */,
-				7580628B2B6BDCD700A0A157 /* EmptyCardIllustrationView.swift in Sources */,
 				7562A5062B64451300A2F50B /* IconLabelStackView.swift in Sources */,
 				7599CD232B5996AA00F4FD86 /* TabBarController.swift in Sources */,
 				758062842B6A9D6500A0A157 /* BookmarkToggle.swift in Sources */,
 				75217B2E2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift in Sources */,
 				75A0BE2A2B5EE2F000B90EEA /* ArrivalTimes.swift in Sources */,
 				7562A5002B63F9CF00A2F50B /* NotificationManager.swift in Sources */,
+				758062912B6BFEB100A0A157 /* AddNewCardView.swift in Sources */,
 				751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */,
 				75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */,
 				7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */,
