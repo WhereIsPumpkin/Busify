@@ -6,19 +6,30 @@
 //
 
 import UIKit
+import SwiftUI
 
 final class ProfileViewController: UIViewController {
-    // MARK: - Properties
+    // MARK: - UI Components
     private let mainStack = UIStackView()
     private let balanceStack = UIStackView()
+    private let balanceTitleStack = UIStackView()
+    private let appLabel = UILabel()
+    private let balanceLabel = UILabel()
+    private let balanceContainerView = UIView()
+    private let balanceAmountLabel = UILabel()
+    private let newCardPlaceholderStack = UIStackView()
+    private let illustrationImage = UIImageView()
+    private let addNewCardLabelStack = UIStackView()
+    private let plusIcon = UIImageView()
+    private let addCardLabel = UILabel()
     
-    // MARK: - Life cycle
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeUI()
     }
     
-    // MARK: - Initialization
+    // MARK: - Initial UI Setup
     private func initializeUI() {
         configureViewAppearance()
         configureMainStack()
@@ -28,10 +39,15 @@ final class ProfileViewController: UIViewController {
         view.backgroundColor = .background
     }
     
+    // MARK: - Main Stack View Configuration
     private func configureMainStack() {
         addMainStackToView()
         setMainStackConstraints()
         configureMainStackAppearance()
+        configureBalanceStack()
+        setupNewCardPlaceholderStack()
+        addMainStackSubviews()
+        setupMainStackCustomSpacings()
     }
     
     private func addMainStackToView() {
@@ -43,22 +59,212 @@ final class ProfileViewController: UIViewController {
         NSLayoutConstraint.activate([
             mainStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mainStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            mainStack.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainStack.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+            mainStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            mainStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
     }
     
     private func configureMainStackAppearance() {
-        mainStack.backgroundColor = .gray
         mainStack.axis = .vertical
-        mainStack.isLayoutMarginsRelativeArrangement = true
-        mainStack.layoutMargins = UIEdgeInsets(horizontal: 20, vertical: 8)
+        mainStack.spacing = 8
     }
+    
+    private func addMainStackSubviews() {
+        mainStack.addArrangedSubview(balanceStack)
+        mainStack.addArrangedSubview(newCardPlaceholderStack)
+        mainStack.addArrangedSubview(UIView())
+    }
+    
+    private func setupMainStackCustomSpacings() {
+        mainStack.setCustomSpacing(24, after: balanceStack)
+    }
+    
+    // MARK: - Balance Stack Setup
+    private func configureBalanceStack() {
+        configureBalanceStackAppearance()
+        addBalancedStackArrangedSubviews()
+        configureBalanceStackElements()
+    }
+    
+    private func configureBalanceStackAppearance() {
+        balanceStack.axis = .horizontal
+        balanceStack.distribution = .fill
+        balanceStack.alignment = .center
+    }
+    
+    private func addBalancedStackArrangedSubviews() {
+        balanceStack.addArrangedSubview(balanceTitleStack)
+        balanceStack.addArrangedSubview(balanceContainerView)
+    }
+    
+    private func configureBalanceStackElements() {
+        configureBalanceTitleStack()
+        configureBalancedContainer()
+        configureBalanceAmountLabel()
+    }
+    
+    private func configureBalancedContainer() {
+        setupBalanceContainerConstraints()
+        setupBalanceContainerLayer()
+        addBalancedContainerArrangedSubview()
+    }
+    
+    private func setupBalanceContainerConstraints() {
+        balanceContainerView.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        balanceContainerView.widthAnchor.constraint(equalToConstant: 112).isActive = true
+    }
+    
+    private func setupBalanceContainerLayer() {
+        balanceContainerView.layer.cornerRadius = 16
+        balanceContainerView.layer.borderWidth = 1
+        balanceContainerView.layer.borderColor = UIColor(.accent.opacity(0.2)).cgColor
+    }
+    
+    private func addBalancedContainerArrangedSubview() {
+        balanceContainerView.addSubview(balanceAmountLabel)
+    }
+    
+    private func configureBalanceAmountLabel() {
+        configureBalanceAmountLabelLayout()
+        setupBalanceAmountConstraints()
+    }
+    
+    private func configureBalanceAmountLabelLayout() {
+        balanceAmountLabel.text = "₾0.00"
+        balanceAmountLabel.font = UIFont(name: "Poppins-medium", size: 18)
+        balanceAmountLabel.textColor = .white
+    }
+    
+    private func setupBalanceAmountConstraints() {
+        balanceAmountLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            balanceAmountLabel.centerXAnchor.constraint(equalTo: balanceContainerView.centerXAnchor),
+            balanceAmountLabel.centerYAnchor.constraint(equalTo: balanceContainerView.centerYAnchor)
+        ])
+    }
+    
+    private func configureBalanceTitleStack() {
+        configureBalanceTitleStackAppearance()
+        setupBalancedTitleStackArrangedSubviews()
+    }
+    
+    private func configureBalanceTitleStackAppearance() {
+        balanceTitleStack.axis = .vertical
+    }
+    
+    private func setupBalancedTitleStackArrangedSubviews() {
+        setupAppLabel()
+        setupBalanceLabel()
+        
+        balanceTitleStack.addArrangedSubview(appLabel)
+        balanceTitleStack.addArrangedSubview(balanceLabel)
+    }
+    
+    private func setupAppLabel() {
+        appLabel.text = "App"
+        appLabel.textColor = UIColor(red: 214/255, green: 208/255, blue: 208/255, alpha: 0.8)
+        appLabel.font = UIFont(name: "Poppins-regular", size: 14)
+    }
+    
+    private func setupBalanceLabel() {
+        balanceLabel.text = "Balance:"
+        balanceLabel.textColor = .white
+        balanceLabel.font = UIFont(name: "Poppins-medium", size: 22)
+    }
+    
+    private func setupNewCardPlaceholderStack() {
+        setupNewCardPlaceholderStackLayout()
+        setupNewCardPlaceholderStackMargins()
+        setupCardIllustration()
+        setupAddNewCardLabelStack()
+        newCardPlaceholderStack.addArrangedSubview(illustrationImage)
+        newCardPlaceholderStack.addArrangedSubview(addNewCardLabelStack)
+        newCardPlaceholderStack.setCustomSpacing(36, after: illustrationImage)
+    }
+    
+    private func setupNewCardPlaceholderStackLayout() {
+        newCardPlaceholderStack.axis = .vertical
+        newCardPlaceholderStack.alignment = .center
+        newCardPlaceholderStack.backgroundColor = UIColor(.base.opacity(0.2))
+        newCardPlaceholderStack.layer.borderWidth = 1
+        newCardPlaceholderStack.layer.borderColor = UIColor(.accent.opacity(0.2)).cgColor
+        newCardPlaceholderStack.layer.cornerRadius = 20
+    }
+    
+    private func setupNewCardPlaceholderStackMargins() {
+        newCardPlaceholderStack.isLayoutMarginsRelativeArrangement = true
+        newCardPlaceholderStack.layoutMargins = UIEdgeInsets(top: 20, left: 0, bottom: 28, right: 0)
+    }
+    
+    private func setupCardIllustration() {
+        configCardIllustration()
+        setupCardIllustrationConstraints()
+    }
+    
+    private func configCardIllustration() {
+        illustrationImage.image = UIImage(resource: .cardIllustration)
+        illustrationImage.contentMode = .scaleAspectFit
+    }
+    
+    private func setupCardIllustrationConstraints() {
+        illustrationImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            illustrationImage.widthAnchor.constraint(equalToConstant: 84),
+        ])
+    }
+    
+    private func setupAddNewCardLabelStack() {
+        setupNewCardLabelStackLayout()
+        setupCardLabelStackArrangedSubviews()
+        addNewCardLabelStackArrangedSubviews()
+    }
+    
+    private func setupNewCardLabelStackLayout() {
+        addNewCardLabelStack.axis = .horizontal
+        addNewCardLabelStack.spacing = 8
+    }
+    
+    private func setupCardLabelStackArrangedSubviews() {
+        setupPlusIcon()
+        setupAddCardLabel()
+    }
+    
+    private func addNewCardLabelStackArrangedSubviews() {
+        addNewCardLabelStack.addArrangedSubview(plusIcon)
+        addNewCardLabelStack.addArrangedSubview(addCardLabel)
+    }
+    
+    private func setupPlusIcon() {
+        plusIconConfig()
+        plusIcon.tintColor = UIColor(resource: .alternate)
+        plusIcon.translatesAutoresizingMaskIntoConstraints = false
+        plusIcon.contentMode = .scaleAspectFill
+        
+        NSLayoutConstraint.activate([
+            plusIcon.widthAnchor.constraint(equalToConstant: 24)
+        ])
+    }
+    
+    private func plusIconConfig() {
+        let largeFont = UIFont.systemFont(ofSize: 24)
+        let config = UIImage.SymbolConfiguration(paletteColors: [.white, .alternate])
+        let configuration = UIImage.SymbolConfiguration(font: largeFont).applying(config)
+        if let locationIcon = UIImage(systemName: "plus.circle.fill", withConfiguration: configuration) {
+            plusIcon.image = locationIcon
+        }
+    }
+    
+    private func setupAddCardLabel() {
+        addCardLabel.text = "Add new card"
+        addCardLabel.textColor = .white
+        addCardLabel.font = UIFont(name: "Poppins-semibold", size: 16)
+    }
+
+    
 }
 
 @available(iOS 17, *)
 #Preview {
     ProfileViewController()
 }
-
 

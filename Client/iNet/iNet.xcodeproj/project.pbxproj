@@ -37,6 +37,8 @@
 		758062822B6A83F000A0A157 /* BusStopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062812B6A83F000A0A157 /* BusStopManager.swift */; };
 		758062842B6A9D6500A0A157 /* BookmarkToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062832B6A9D6500A0A157 /* BookmarkToggle.swift */; };
 		758062872B6AA8EB00A0A157 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062862B6AA8EB00A0A157 /* Notification+Extensions.swift */; };
+		758062892B6BD70000A0A157 /* UIViewController+Exntesions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062882B6BD70000A0A157 /* UIViewController+Exntesions.swift */; };
+		7580628B2B6BDCD700A0A157 /* EmptyCardIllustrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7580628A2B6BDCD700A0A157 /* EmptyCardIllustrationView.swift */; };
 		7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585CDB02B559D750087EC03 /* WelcomeView.swift */; };
 		7585CDCA2B55C9B60087EC03 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */; };
 		7585CDCB2B55C9B60087EC03 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */; };
@@ -61,12 +63,10 @@
 		75A0BE072B5C50C400B90EEA /* BusStopDetailsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE062B5C50C400B90EEA /* BusStopDetailsPage.swift */; };
 		75A0BE142B5D3C9C00B90EEA /* busAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 75A0BE132B5D3C9C00B90EEA /* busAnimation.json */; };
 		75A0BE172B5D410200B90EEA /* BusStopSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE162B5D410200B90EEA /* BusStopSearchTableViewCell.swift */; };
-		75A0BE202B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE1F2B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift */; };
 		75A0BE282B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE272B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift */; };
 		75A0BE2A2B5EE2F000B90EEA /* ArrivalTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */; };
 		75D91B8A2B5FBE730034F967 /* BusStopSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B892B5FBE730034F967 /* BusStopSearchViewModel.swift */; };
 		75D91B8C2B6009B30034F967 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B8B2B6009B30034F967 /* ReminderViewController.swift */; };
-		75D91B902B6041590034F967 /* TextToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B8F2B6041590034F967 /* TextToImage.swift */; };
 		75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DA2B57CE34006B9655 /* VerificationView.swift */; };
 		75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DC2B57D81B006B9655 /* OTPTextField.swift */; };
 		75E217E02B57E4FA006B9655 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DF2B57E4FA006B9655 /* User.swift */; };
@@ -106,6 +106,8 @@
 		758062812B6A83F000A0A157 /* BusStopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopManager.swift; sourceTree = "<group>"; };
 		758062832B6A9D6500A0A157 /* BookmarkToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkToggle.swift; sourceTree = "<group>"; };
 		758062862B6AA8EB00A0A157 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
+		758062882B6BD70000A0A157 /* UIViewController+Exntesions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Exntesions.swift"; sourceTree = "<group>"; };
+		7580628A2B6BDCD700A0A157 /* EmptyCardIllustrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCardIllustrationView.swift; sourceTree = "<group>"; };
 		7585CDB02B559D750087EC03 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -128,12 +130,10 @@
 		75A0BE062B5C50C400B90EEA /* BusStopDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopDetailsPage.swift; sourceTree = "<group>"; };
 		75A0BE132B5D3C9C00B90EEA /* busAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = busAnimation.json; sourceTree = "<group>"; };
 		75A0BE162B5D410200B90EEA /* BusStopSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopSearchTableViewCell.swift; sourceTree = "<group>"; };
-		75A0BE1F2B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponsiveModifier.swift; sourceTree = "<group>"; };
 		75A0BE272B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimeCollectionViewCell.swift; sourceTree = "<group>"; };
 		75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalTimes.swift; sourceTree = "<group>"; };
 		75D91B892B5FBE730034F967 /* BusStopSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopSearchViewModel.swift; sourceTree = "<group>"; };
 		75D91B8B2B6009B30034F967 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
-		75D91B8F2B6041590034F967 /* TextToImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToImage.swift; sourceTree = "<group>"; };
 		75E217DA2B57CE34006B9655 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		75E217DC2B57D81B006B9655 /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
 		75E217DF2B57E4FA006B9655 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -163,6 +163,7 @@
 				7580626B2B681DE700A0A157 /* StatisticCard.swift */,
 				758062712B68D95900A0A157 /* TravelCard.swift */,
 				7580626D2B684B9900A0A157 /* BusStopCard.swift */,
+				7580628A2B6BDCD700A0A157 /* EmptyCardIllustrationView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -212,7 +213,6 @@
 				75479BC72B56ECA600FD79F7 /* Custom Views */,
 				75E217DE2B57E4EE006B9655 /* Model */,
 				75217B2C2B62951B00D9FC19 /* Extensions */,
-				75A0BE1E2B5DF89800B90EEA /* Helpers */,
 				7599CD1A2B5942FF00F4FD86 /* Managers */,
 				75479BC22B56EC6A00FD79F7 /* Support */,
 				751B0BF12B544A5400ACBEAE /* Assets.xcassets */,
@@ -229,6 +229,7 @@
 				7562A5092B6582A500A2F50B /* Date+Extensions.swift */,
 				758062772B69320A00A0A157 /* Int+Extensions.swift */,
 				758062862B6AA8EB00A0A157 /* Notification+Extensions.swift */,
+				758062882B6BD70000A0A157 /* UIViewController+Exntesions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -380,15 +381,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		75A0BE1E2B5DF89800B90EEA /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				75A0BE1F2B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift */,
-				75D91B8F2B6041590034F967 /* TextToImage.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		75A0BE212B5EC0C900B90EEA /* BusStop Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -517,11 +509,12 @@
 				75D91B8C2B6009B30034F967 /* ReminderViewController.swift in Sources */,
 				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
 				75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */,
-				75D91B902B6041590034F967 /* TextToImage.swift in Sources */,
 				75A0BE282B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift in Sources */,
+				758062892B6BD70000A0A157 /* UIViewController+Exntesions.swift in Sources */,
 				7580626A2B68133500A0A157 /* HomeView.swift in Sources */,
 				7510F74A2B5B005D003C24BB /* BusStopSearchViewController.swift in Sources */,
 				758062632B66922300A0A157 /* LiveMapViewModel.swift in Sources */,
+				7580628B2B6BDCD700A0A157 /* EmptyCardIllustrationView.swift in Sources */,
 				7562A5062B64451300A2F50B /* IconLabelStackView.swift in Sources */,
 				7599CD232B5996AA00F4FD86 /* TabBarController.swift in Sources */,
 				758062842B6A9D6500A0A157 /* BookmarkToggle.swift in Sources */,
@@ -530,7 +523,6 @@
 				7562A5002B63F9CF00A2F50B /* NotificationManager.swift in Sources */,
 				751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */,
 				75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */,
-				75A0BE202B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift in Sources */,
 				7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */,
 				7562A50A2B6582A500A2F50B /* Date+Extensions.swift in Sources */,
 				758062742B692D8400A0A157 /* HomeViewModel.swift in Sources */,
@@ -693,7 +685,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -725,7 +717,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

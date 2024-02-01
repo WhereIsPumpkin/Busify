@@ -1,8 +1,8 @@
 //
-//  addTextToImage.swift
+//  UIViewController+Exntesions.swift
 //  iNet
 //
-//  Created by Saba Gogrichiani on 23.01.24.
+//  Created by Saba Gogrichiani on 01.02.24.
 //
 
 import UIKit
