@@ -150,7 +150,7 @@ export const loginUser = async (req, res) => {
 export const getUserInfo = async (req, res) => {
   try {
     const userID = req.userData.id
-    console.log("I am inside getuserinfo")
+
     const user = await User.findById(userID)
 
     const userInfo = {

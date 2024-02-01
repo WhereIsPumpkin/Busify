@@ -25,6 +25,11 @@ final class BusStopDetailsPage: UIViewController {
         SetupUI()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        returnToRootVC()
+    }
+    
     init(arrivalTimes: ArrivalTimesResponse?, stopId: String) {
         self.arrivalTimes = arrivalTimes
         self.stopId = stopId
@@ -46,6 +51,11 @@ final class BusStopDetailsPage: UIViewController {
         setupViewSubViews()
     }
     
+    private func returnToRootVC() {
+        if let navigationController = self.navigationController {
+            navigationController.popToRootViewController(animated: true)
+        }
+    }
     
     private func setupViewAppearance() {
         view.backgroundColor = UIColor(resource: .background)
