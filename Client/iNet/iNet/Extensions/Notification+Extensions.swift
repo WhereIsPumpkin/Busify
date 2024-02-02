@@ -10,4 +10,5 @@ import Foundation
 extension Notification.Name {
     static let bookmarksUpdated = Notification.Name("bookmarksUpdated")
     static let didUpdateCurrentUser = Notification.Name("didUpdateCurrentUser")
+    static let cardUpdated = Notification.Name("cardUpdatedNotification")
 }

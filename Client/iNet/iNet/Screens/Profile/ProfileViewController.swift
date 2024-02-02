@@ -27,16 +27,65 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeUI()
+        setupNotificationObserver()
     }
     
     // MARK: - Initial UI Setup
     private func initializeUI() {
         configureViewAppearance()
         configureMainStack()
+        configureCardDetailsView()
     }
     
     private func configureViewAppearance() {
         view.backgroundColor = .background
+    }
+    
+    private func setupNotificationObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(cardUpdatedNotificationReceived(_:)), name: .cardUpdated, object: nil)
+    }
+    
+    @objc private func cardUpdatedNotificationReceived(_ notification: Notification) {
+        configureCardDetailsView()
+    }
+    
+    private func configureCardDetailsView() {
+        clearNewCardPlaceholderStack()
+        
+        if let card = UserSessionManager.shared.currentUser?.card {
+            addCardViewToStack(card: card)
+        } else {
+            setupNewCardPlaceholderStack()
+        }
+    }
+
+    private func clearNewCardPlaceholderStack() {
+        newCardPlaceholderStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        removeTapGestureRecognizerFromNewCardPlaceholderStack()
+    }
+
+    private func removeTapGestureRecognizerFromNewCardPlaceholderStack() {
+        newCardPlaceholderStack.gestureRecognizers?.forEach {
+            newCardPlaceholderStack.removeGestureRecognizer($0)
+        }
+    }
+
+    private func addCardViewToStack(card: Card) {
+        let cardVC = UIHostingController(rootView: CardView(card: card))
+        cardVC.view.backgroundColor = .clear
+        newCardPlaceholderStack.addArrangedSubview(cardVC.view)
+        setupCardVCConstraints(cardVC)
+    }
+
+    private func setupCardVCConstraints(_ cardVC: UIViewController) {
+        cardVC.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            cardVC.view.leadingAnchor.constraint(equalTo: newCardPlaceholderStack.leadingAnchor),
+            cardVC.view.trailingAnchor.constraint(equalTo: newCardPlaceholderStack.trailingAnchor),
+            cardVC.view.topAnchor.constraint(equalTo: newCardPlaceholderStack.topAnchor),
+            cardVC.view.bottomAnchor.constraint(equalTo: newCardPlaceholderStack.bottomAnchor)
+        ])
     }
     
     // MARK: - Main Stack View Configuration
@@ -179,7 +228,13 @@ final class ProfileViewController: UIViewController {
         setupAddNewCardLabelStack()
         addNewCardPlaceholderStackArrangedSubviews()
         addNewCardPlaceholderTapGesture()
+        setupPlaceholderConstraints()
         newCardPlaceholderStack.setCustomSpacing(36, after: illustrationImage)
+    }
+    
+    private func setupPlaceholderConstraints() {
+        newCardPlaceholderStack.translatesAutoresizingMaskIntoConstraints = false
+        newCardPlaceholderStack.heightAnchor.constraint(equalToConstant: 182).isActive = true
     }
     
     private func addNewCardPlaceholderStackArrangedSubviews() {
@@ -207,7 +262,6 @@ final class ProfileViewController: UIViewController {
         
         present(addNewCardVC, animated: true)
     }
-
     
     private func setupNewCardPlaceholderStackLayout() {
         newCardPlaceholderStack.axis = .vertical
@@ -286,8 +340,6 @@ final class ProfileViewController: UIViewController {
         addCardLabel.textColor = .white
         addCardLabel.font = UIFont(name: "Poppins-semibold", size: 16)
     }
-    
-    
 }
 
 @available(iOS 17, *)

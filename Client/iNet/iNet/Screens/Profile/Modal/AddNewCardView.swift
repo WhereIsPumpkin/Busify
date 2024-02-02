@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddNewCardView: View {
     @StateObject var viewModel = AddNewCardViewModel()
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
@@ -156,6 +157,7 @@ struct AddNewCardView: View {
         Button(action: {
             Task {
                 await viewModel.addNewCard()
+                dismiss()
             }
         }, label: {
             saveButtonLabel

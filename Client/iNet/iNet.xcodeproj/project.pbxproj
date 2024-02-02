@@ -42,6 +42,7 @@
 		758062912B6BFEB100A0A157 /* AddNewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062902B6BFEB100A0A157 /* AddNewCardView.swift */; };
 		758062942B6C3E4600A0A157 /* AddNewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062932B6C3E4600A0A157 /* AddNewCardViewModel.swift */; };
 		758062962B6C414F00A0A157 /* Binding+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062952B6C414F00A0A157 /* Binding+Extensions.swift */; };
+		7580629C2B6CE2AC00A0A157 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7580629B2B6CE2AC00A0A157 /* CardView.swift */; };
 		7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585CDB02B559D750087EC03 /* WelcomeView.swift */; };
 		7585CDCA2B55C9B60087EC03 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */; };
 		7585CDCB2B55C9B60087EC03 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */; };
@@ -114,6 +115,7 @@
 		758062902B6BFEB100A0A157 /* AddNewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCardView.swift; sourceTree = "<group>"; };
 		758062932B6C3E4600A0A157 /* AddNewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCardViewModel.swift; sourceTree = "<group>"; };
 		758062952B6C414F00A0A157 /* Binding+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extensions.swift"; sourceTree = "<group>"; };
+		7580629B2B6CE2AC00A0A157 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		7585CDB02B559D750087EC03 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				753AA6D52B5A8166006A599B /* ProfileViewController.swift */,
+				7580629B2B6CE2AC00A0A157 /* CardView.swift */,
 				7580628C2B6BFB6C00A0A157 /* ProfileViewModel.swift */,
 				758062922B6C3E3100A0A157 /* Modal */,
 			);
@@ -520,6 +523,7 @@
 				7580627E2B6A578600A0A157 /* RegistrationDetails.swift in Sources */,
 				7599CD192B58437700F4FD86 /* LoginView.swift in Sources */,
 				75A0BE072B5C50C400B90EEA /* BusStopDetailsPage.swift in Sources */,
+				7580629C2B6CE2AC00A0A157 /* CardView.swift in Sources */,
 				753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */,
 				7580628D2B6BFB6C00A0A157 /* ProfileViewModel.swift in Sources */,
 				751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */,

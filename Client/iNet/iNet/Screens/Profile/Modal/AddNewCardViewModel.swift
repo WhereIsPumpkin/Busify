@@ -22,7 +22,6 @@ class AddNewCardViewModel: ObservableObject {
             return
         }
         
-        
         let requestBody = Card(
             cardNumber: cardNumber,
             cardName: cardName,
@@ -44,6 +43,10 @@ class AddNewCardViewModel: ObservableObject {
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
             await UserSessionManager.shared.fetchUserInfo()
+            
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .cardUpdated, object: nil)
+            }
         } catch {
             // TODO: - Handle Error
             print("Error: \(error)")
@@ -77,7 +80,7 @@ class AddNewCardViewModel: ObservableObject {
             }
         }
     }
-
+    
 }
 
 
