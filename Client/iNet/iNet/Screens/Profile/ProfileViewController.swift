@@ -42,7 +42,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setupNotificationObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(cardUpdatedNotificationReceived(_:)), name: .cardUpdated, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(cardUpdatedNotificationReceived(_:)), name: .didUpdateUser, object: nil)
     }
     
     @objc private func cardUpdatedNotificationReceived(_ notification: Notification) {

@@ -189,13 +189,10 @@ final class BusStopDetailsPage: UIViewController {
     @objc private func bookmarkIconTapped() {
         Task {
             await BusStopManager.shared.toggleBookmark(busStopID: stopId)
-            await UserSessionManager.shared.fetchUserInfo()
             
             DispatchQueue.main.async {
                 self.updateBookmarkIcon()
             }
-            
-            NotificationCenter.default.post(name: .bookmarksUpdated, object: nil)
         }
     }
     

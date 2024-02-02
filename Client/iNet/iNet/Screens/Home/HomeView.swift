@@ -17,7 +17,7 @@ struct HomeView: View {
             backgroundColor
             contentScroll
         }
-        .onReceive(NotificationCenter.default.publisher(for: .didUpdateCurrentUser)) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: .didUpdateUser)) { _ in
             self.user = UserSessionManager.shared.currentUser
         }
     }

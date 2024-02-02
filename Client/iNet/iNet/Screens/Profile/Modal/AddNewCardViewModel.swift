@@ -41,12 +41,8 @@ class AddNewCardViewModel: ObservableObject {
         request.httpBody = httpBody
         
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (_, _) = try await URLSession.shared.data(for: request)
             await UserSessionManager.shared.fetchUserInfo()
-            
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .cardUpdated, object: nil)
-            }
         } catch {
             // TODO: - Handle Error
             print("Error: \(error)")

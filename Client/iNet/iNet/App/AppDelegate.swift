@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func fetchUser() {
-        print("I'm fethicng user")
         Task {
             let _ = await UserSessionManager.shared.fetchUserInfo()
         }
