@@ -58,7 +58,9 @@ export const createUser = async (req, res) => {
       lastName,
       email: userEmail,
       password,
+      card: {},
     })
+    console.log(newUser)
     await newUser.save()
 
     return res.status(201).json(newUser)
@@ -140,6 +142,8 @@ export const loginUser = async (req, res) => {
         email: existingUser.email,
         bookmarkedStops: existingUser.bookmarkedStops,
         verified: existingUser.verified,
+        balance: existingUser.balance,
+        card: existingUser.card,
       },
     })
   } catch (error) {
@@ -160,6 +164,8 @@ export const getUserInfo = async (req, res) => {
       email: user.email,
       verified: user.verified,
       bookmarkedStops: user.bookmarkedStops,
+      balance: user.balance,
+      card: user.card,
     }
     res.json(userInfo)
   } catch (error) {

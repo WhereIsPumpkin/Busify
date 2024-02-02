@@ -14,4 +14,13 @@ struct User: Codable {
     var email: String
     var verified: Bool
     var bookmarkedStops: [String]
+    var balance: Double
+    var card: Card?
+}
+
+struct Card: Codable {
+    var cardNumber: String?
+    var cardName: String?
+    var cardDate: String?
+    var cardCVV: String?
 }

@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct AddNewCardView: View {
-    @State var cardNumber = ""
-    @State var cardName = ""
-    @State var cardDate = ""
-    @State var cardCVV = ""
+    @StateObject var viewModel = AddNewCardViewModel()
     
     var body: some View {
         ZStack {
@@ -57,10 +54,13 @@ struct AddNewCardView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 22, height: 22)
             
-            TextField("", text: $cardNumber, prompt: Text("Card number").foregroundStyle(.white.opacity(0.5)))
+            TextField("", text: $viewModel.cardNumber.max(19), prompt: Text("Card number").foregroundStyle(.white.opacity(0.5)))
                 .keyboardType(.numberPad)
                 .font(.custom("Poppins", size: 14))
-
+                .onChange(of: viewModel.cardNumber) { oldValue, newValue in
+                    viewModel.updateCardNumber(with: newValue, oldValue: oldValue)
+                }
+            
             Image(systemName: "creditcard.viewfinder")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -85,8 +85,8 @@ struct AddNewCardView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 22, height: 22)
             
-            TextField("", text: $cardName, prompt: Text("Name on card").foregroundStyle(.white.opacity(0.5)))
-                .keyboardType(.numberPad)
+            TextField("", text: $viewModel.cardName, prompt: Text("Name on card").foregroundStyle(.white.opacity(0.5)))
+                .keyboardType(.alphabet)
                 .font(.custom("Poppins", size: 14))
         }
         .padding(.vertical, 8)
@@ -106,7 +106,7 @@ struct AddNewCardView: View {
             cvvInput
         }
     }
-
+    
     private var dateInput: some View {
         HStack(spacing: 12) {
             Image(systemName: "calendar")
@@ -114,7 +114,11 @@ struct AddNewCardView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 22, height: 22)
             
-            TextField("", text: $cardDate, prompt: Text("MM/YY").foregroundStyle(.white.opacity(0.5)))
+            TextField("", text: $viewModel.cardDate, prompt: Text("MM/YY").foregroundStyle(.white.opacity(0.5)))
+                .onChange(of: viewModel.cardDate) { oldValue, newValue in
+                    viewModel.updateCardDate(with: newValue, oldValue: oldValue)
+                }
+                .keyboardType(.numberPad)
                 .font(.custom("Poppins", size: 14))
         }
         .padding(.vertical, 8)
@@ -122,10 +126,8 @@ struct AddNewCardView: View {
         .frame(height: 44)
         .foregroundStyle(.white)
         .background(Color(red: 67/255, green: 69/255, blue: 73/255))
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.gray, lineWidth: 1)
-        )
+        .overlay( RoundedRectangle(cornerRadius: 8)
+            .stroke(Color.gray, lineWidth: 1) )
     }
     
     private var cvvInput: some View {
@@ -135,7 +137,7 @@ struct AddNewCardView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 22, height: 22)
             
-            TextField("", text: $cardCVV, prompt: Text("CVV").foregroundStyle(.white.opacity(0.5)))
+            TextField("", text: $viewModel.cardCVV.max(3), prompt: Text("CVV").foregroundStyle(.white.opacity(0.5)))
                 .keyboardType(.numberPad)
                 .font(.custom("Poppins", size: 14))
         }
@@ -152,25 +154,30 @@ struct AddNewCardView: View {
     
     private var saveButton: some View {
         Button(action: {
-            print("Save info")
-            // TODO: - Save credit card info
-        }, label: {
-            HStack {
-                Spacer()
-                Text("Save")
-                    .foregroundStyle(.white)
-                    .font(.custom("Poppins-semibold", size: 16))
-                Spacer()
+            Task {
+                await viewModel.addNewCard()
             }
-            .frame(height: 44)
-            .background(Color.alternate)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+        }, label: {
+            saveButtonLabel
         })
         .padding(.top, 16)
+    }
+    
+    private var saveButtonLabel: some View {
+        HStack {
+            Spacer()
+            Text("Save")
+                .foregroundStyle(.white)
+                .font(.custom("Poppins-semibold", size: 16))
+            Spacer()
+        }
+        .frame(height: 44)
+        .background(Color.alternate)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
 
 #Preview {
     ProfileViewController()
 }
- 
+

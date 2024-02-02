@@ -35,11 +35,15 @@ class UserSessionManager {
         
         do { 
             let (data, response) = try await URLSession.shared.data(for: request)
+            if let jsonString = String(data: data, encoding: .utf8) {
+                   print("Received JSON string: \(jsonString)")
+               }
             guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
                 print("Server error")
                 return /*false*/
             }
             let user = try JSONDecoder().decode(User.self, from: data)
+            print(user)
             self.currentUser = user
             return /*true*/
         } catch {
