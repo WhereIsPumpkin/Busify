@@ -15,6 +15,26 @@ class AddNewCardViewModel: ObservableObject {
     @Published var cardDate = ""
     @Published var cardCVV = ""
     
+    var expireDateComponents: DateComponents? {
+        didSet {
+            // When expireDateComponents is set, update cardDate string
+            updateCardDateString()
+        }
+    }
+    
+    private func updateCardDateString() {
+        guard let expireDateComponents = expireDateComponents,
+              let month = expireDateComponents.month,
+              let year = expireDateComponents.year else {
+            cardDate = "" // Reset or handle as needed
+            return
+        }
+        
+        // Format the month and year to MM/YY
+        let formattedString = String(format: "%02d/%02d", month, year % 100) // Use modulo 100 to get last two digits of year
+        cardDate = formattedString
+    }
+    
     func addNewCard() async -> Void {
         guard let url = URL(string: "\(baseURL.production.rawValue)/api/card/add-card") else { return }
         
@@ -77,6 +97,23 @@ class AddNewCardViewModel: ObservableObject {
         }
     }
     
+    func addCardValidation() -> Bool {
+        if cardNumber.isEmpty || cardName.isEmpty || cardDate.isEmpty || cardCVV.isEmpty {
+            return false
+        }
+        
+        // Check if cardNumber contains only digits and spaces
+        let nonDigitCharacters = CharacterSet.decimalDigits.union(CharacterSet(charactersIn: " ")).inverted
+        if cardNumber.rangeOfCharacter(from: nonDigitCharacters) != nil {
+            return false
+        }
+        
+        if cardNumber.count < 16 {
+            return false
+        }
+        
+        return true
+    }
 }
 
 

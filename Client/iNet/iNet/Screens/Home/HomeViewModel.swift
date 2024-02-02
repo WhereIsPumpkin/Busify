@@ -29,14 +29,13 @@ final class HomeViewModel: ObservableObject {
     }
 
     private func setupBookmarkObserver() {
-        NotificationCenter.default.publisher(for: .didUpdateUser)
-            .receive(on: DispatchQueue.main)
-            .sink { _ in
-                Task {
-                    await self.fetchBookmarkedBusStops()
-                }
-            }
-            .store(in: &cancellables)
+        NotificationCenter.default.addObserver(self, selector: #selector(cardUpdatedNotificationReceived(_:)), name: .didUpdateUser, object: nil)
+    }
+    
+    @objc private func cardUpdatedNotificationReceived(_ notification: Notification) {
+        Task {
+            await fetchBookmarkedBusStops()
+        }
     }
 
     private func fetchPassengersData() async {

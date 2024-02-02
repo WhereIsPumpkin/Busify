@@ -24,3 +24,9 @@ struct Card: Codable {
     var cardDate: String?
     var cardCVV: String?
 }
+
+public struct CardDetails {
+    public var number: String?
+    public var name: String?
+    public var expiryDate: String?
+}

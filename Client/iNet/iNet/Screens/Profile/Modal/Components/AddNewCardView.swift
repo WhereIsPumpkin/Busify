@@ -10,6 +10,7 @@ import SwiftUI
 struct AddNewCardView: View {
     @StateObject var viewModel = AddNewCardViewModel()
     @Environment(\.dismiss) var dismiss
+    @State private var isShowingScanner = false
     
     var body: some View {
         ZStack {
@@ -57,7 +58,7 @@ struct AddNewCardView: View {
             
             TextField("", text: $viewModel.cardNumber.max(19), prompt: Text("Card number").foregroundStyle(.white.opacity(0.5)))
                 .keyboardType(.numberPad)
-                .font(.custom("Poppins", size: 14))
+                .font(.custom("Poppins-medium", size: 14))
                 .onChange(of: viewModel.cardNumber) { oldValue, newValue in
                     viewModel.updateCardNumber(with: newValue, oldValue: oldValue)
                 }
@@ -67,6 +68,21 @@ struct AddNewCardView: View {
                 .aspectRatio(contentMode: .fit)
                 .foregroundStyle(.accent)
                 .frame(height: 22)
+                .onTapGesture {
+                    isShowingScanner = true
+                }
+                .sheet(isPresented: $isShowingScanner) {
+                    CardScannerView(completion: { card in
+                        viewModel.cardNumber = card.number ?? ""
+                        viewModel.cardName = card.name ?? ""
+                        viewModel.expireDateComponents = card.expireDate
+                    }, dismissAction: {
+                        // This closure is passed down and called upon dismissal request
+                        isShowingScanner = false
+                    })
+                }
+            
+            
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 16)
@@ -88,7 +104,7 @@ struct AddNewCardView: View {
             
             TextField("", text: $viewModel.cardName, prompt: Text("Name on card").foregroundStyle(.white.opacity(0.5)))
                 .keyboardType(.alphabet)
-                .font(.custom("Poppins", size: 14))
+                .font(.custom("Poppins-medium", size: 14))
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 16)
@@ -120,7 +136,7 @@ struct AddNewCardView: View {
                     viewModel.updateCardDate(with: newValue, oldValue: oldValue)
                 }
                 .keyboardType(.numberPad)
-                .font(.custom("Poppins", size: 14))
+                .font(.custom("Poppins-medium", size: 14))
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 16)
@@ -139,8 +155,8 @@ struct AddNewCardView: View {
                 .frame(width: 22, height: 22)
             
             TextField("", text: $viewModel.cardCVV.max(3), prompt: Text("CVV").foregroundStyle(.white.opacity(0.5)))
+                .font(.custom("Poppins-medium", size: 14))
                 .keyboardType(.numberPad)
-                .font(.custom("Poppins", size: 14))
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 16)
@@ -163,6 +179,7 @@ struct AddNewCardView: View {
             saveButtonLabel
         })
         .padding(.top, 16)
+        .disabled(!viewModel.addCardValidation())
     }
     
     private var saveButtonLabel: some View {
@@ -174,10 +191,11 @@ struct AddNewCardView: View {
             Spacer()
         }
         .frame(height: 44)
-        .background(Color.alternate)
+        .background(viewModel.addCardValidation() ? Color.alternate : .gray)
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
+
 
 #Preview {
     ProfileViewController()
