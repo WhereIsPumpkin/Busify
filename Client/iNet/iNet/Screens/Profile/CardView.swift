@@ -21,7 +21,8 @@ struct CardView: View {
                 .frame(width: 76, height: 76)
         }
         .padding(.top, 20)
-        .padding(.horizontal, 24)
+        .padding(.leading, 24)
+        .padding(.trailing, 8)
         .padding(.bottom, 8)
         .frame(height: 182)
         .background(Color.alternate)

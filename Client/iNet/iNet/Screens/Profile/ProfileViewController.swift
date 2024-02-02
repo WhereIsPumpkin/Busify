@@ -34,7 +34,7 @@ final class ProfileViewController: UIViewController {
     private func initializeUI() {
         configureViewAppearance()
         configureMainStack()
-        configureCardDetailsView()
+        checkIfUserCardAvailable()
     }
     
     private func configureViewAppearance() {
@@ -51,32 +51,52 @@ final class ProfileViewController: UIViewController {
     
     private func configureCardDetailsView() {
         clearNewCardPlaceholderStack()
-        
+        checkIfUserCardAvailable()
+    }
+    
+    private func checkIfUserCardAvailable() {
         if let card = UserSessionManager.shared.currentUser?.card {
             addCardViewToStack(card: card)
         } else {
             setupNewCardPlaceholderStack()
         }
     }
-
+    
     private func clearNewCardPlaceholderStack() {
-        newCardPlaceholderStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        clearPlaceholderLayout()
         removeTapGestureRecognizerFromNewCardPlaceholderStack()
     }
-
+    
+    private func clearPlaceholderLayout() {
+        UIView.animate(withDuration: 0.3) {
+            self.newCardPlaceholderStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+            self.newCardPlaceholderStack.layer.borderWidth = 0
+            self.newCardPlaceholderStack.backgroundColor = .clear
+        }
+    }
+    
     private func removeTapGestureRecognizerFromNewCardPlaceholderStack() {
         newCardPlaceholderStack.gestureRecognizers?.forEach {
             newCardPlaceholderStack.removeGestureRecognizer($0)
         }
     }
-
+    
     private func addCardViewToStack(card: Card) {
         let cardVC = UIHostingController(rootView: CardView(card: card))
         cardVC.view.backgroundColor = .clear
+        cardVC.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Initially off-screen to the left
+        cardVC.view.transform = CGAffineTransform(translationX: -self.view.bounds.width, y: 0)
         newCardPlaceholderStack.addArrangedSubview(cardVC.view)
         setupCardVCConstraints(cardVC)
+        
+        // Animate slide in from the left
+        UIView.animate(withDuration: 0.5, delay: 0.3, options: [], animations: {
+            cardVC.view.transform = .identity
+        })
     }
-
+    
     private func setupCardVCConstraints(_ cardVC: UIViewController) {
         cardVC.view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -94,7 +114,6 @@ final class ProfileViewController: UIViewController {
         setMainStackConstraints()
         configureMainStackAppearance()
         configureBalanceStack()
-        setupNewCardPlaceholderStack()
         addMainStackSubviews()
         setupMainStackCustomSpacings()
     }
@@ -267,6 +286,10 @@ final class ProfileViewController: UIViewController {
         newCardPlaceholderStack.axis = .vertical
         newCardPlaceholderStack.alignment = .center
         newCardPlaceholderStack.backgroundColor = UIColor(.base.opacity(0.2))
+        setupCardPlaceholderLayer()
+    }
+    
+    private func setupCardPlaceholderLayer() {
         newCardPlaceholderStack.layer.borderWidth = 1
         newCardPlaceholderStack.layer.borderColor = UIColor(.accent.opacity(0.2)).cgColor
         newCardPlaceholderStack.layer.cornerRadius = 20
