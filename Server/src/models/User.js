@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose"
+import cardSchema from "./Card.js"
 
 const userSchema = new Schema({
   name: {
@@ -24,7 +25,15 @@ const userSchema = new Schema({
   },
   bookmarkedStops: {
     type: [Schema.Types.String],
-    default: []
+    default: [],
+  },
+  balance: {
+    type: Schema.Types.Number,
+    default: 0,
+  },
+  card: {
+    type: cardSchema,
+    default: () => ({ cardNumber: '', cardName: '', cardDate: '', cardCVV: '' })
   },
 })
 

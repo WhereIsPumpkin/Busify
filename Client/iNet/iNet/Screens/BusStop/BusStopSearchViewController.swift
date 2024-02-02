@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 
-class BusStopSearchViewController: UIViewController {
+final class BusStopSearchViewController: UIViewController {
     // MARK: - Properties
     private let titleLabel = UILabel()
     private var originalTopConstraint: NSLayoutConstraint!

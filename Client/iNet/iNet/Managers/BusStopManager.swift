@@ -20,6 +20,9 @@ final class BusStopManager {
         do {
             let fetchedData = try await NetworkManager.shared.fetchDecodableData(from: url, responseType: Locations.self)
             self.locations = fetchedData
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .didUpdateUser, object: nil)
+            }
         } catch {
             print("Error fetching bus stops: \(error)")
         }
@@ -73,10 +76,10 @@ final class BusStopManager {
         request.httpBody = httpBody
         
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
-            let str = String(data: data, encoding: .utf8)
+            let (_, _) = try await URLSession.shared.data(for: request)
             await UserSessionManager.shared.fetchUserInfo()
         } catch {
+            // TODO: - Handle Error
             print("Error: \(error)")
         }
     }

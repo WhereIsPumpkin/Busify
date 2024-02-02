@@ -58,7 +58,9 @@ export const createUser = async (req, res) => {
       lastName,
       email: userEmail,
       password,
+      card: {},
     })
+    console.log(newUser)
     await newUser.save()
 
     return res.status(201).json(newUser)
@@ -140,6 +142,8 @@ export const loginUser = async (req, res) => {
         email: existingUser.email,
         bookmarkedStops: existingUser.bookmarkedStops,
         verified: existingUser.verified,
+        balance: existingUser.balance,
+        card: existingUser.card,
       },
     })
   } catch (error) {
@@ -150,9 +154,9 @@ export const loginUser = async (req, res) => {
 export const getUserInfo = async (req, res) => {
   try {
     const userID = req.userData.id
-    console.log("I am inside getuserinfo")
     const user = await User.findById(userID)
 
+    // Prepare userInfo with card conditionally
     const userInfo = {
       id: user._id,
       name: user.name,
@@ -160,7 +164,17 @@ export const getUserInfo = async (req, res) => {
       email: user.email,
       verified: user.verified,
       bookmarkedStops: user.bookmarkedStops,
+      balance: user.balance,
     }
+
+    // Check if the card exists and has non-empty values
+    const hasCardDetails =
+      user.card &&
+      Object.values(user.card.toObject()).some((value) => value !== "")
+    if (hasCardDetails) {
+      userInfo.card = user.card
+    }
+
     res.json(userInfo)
   } catch (error) {
     console.error("Error fetching user info:", error)

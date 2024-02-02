@@ -37,6 +37,14 @@
 		758062822B6A83F000A0A157 /* BusStopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062812B6A83F000A0A157 /* BusStopManager.swift */; };
 		758062842B6A9D6500A0A157 /* BookmarkToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062832B6A9D6500A0A157 /* BookmarkToggle.swift */; };
 		758062872B6AA8EB00A0A157 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062862B6AA8EB00A0A157 /* Notification+Extensions.swift */; };
+		758062892B6BD70000A0A157 /* UIViewController+Exntesions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062882B6BD70000A0A157 /* UIViewController+Exntesions.swift */; };
+		7580628D2B6BFB6C00A0A157 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7580628C2B6BFB6C00A0A157 /* ProfileViewModel.swift */; };
+		758062912B6BFEB100A0A157 /* AddNewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062902B6BFEB100A0A157 /* AddNewCardView.swift */; };
+		758062942B6C3E4600A0A157 /* AddNewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062932B6C3E4600A0A157 /* AddNewCardViewModel.swift */; };
+		758062962B6C414F00A0A157 /* Binding+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062952B6C414F00A0A157 /* Binding+Extensions.swift */; };
+		7580629C2B6CE2AC00A0A157 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7580629B2B6CE2AC00A0A157 /* CardView.swift */; };
+		7580629E2B6D391500A0A157 /* CardScanManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7580629D2B6D391500A0A157 /* CardScanManager.swift */; };
+		758062A22B6D44BB00A0A157 /* CardScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758062A12B6D44BB00A0A157 /* CardScannerViewController.swift */; };
 		7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585CDB02B559D750087EC03 /* WelcomeView.swift */; };
 		7585CDCA2B55C9B60087EC03 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */; };
 		7585CDCB2B55C9B60087EC03 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */; };
@@ -47,6 +55,8 @@
 		7585CDD52B55C9B60087EC03 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDC22B55C9B60087EC03 /* Poppins-Thin.ttf */; };
 		7585CDD72B55C9B60087EC03 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDC42B55C9B60087EC03 /* Poppins-Light.ttf */; };
 		7585CDDA2B55C9B60087EC03 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDC72B55C9B60087EC03 /* Poppins-Medium.ttf */; };
+		758B9E5E2B6D70B100F23236 /* CreditCardScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 758B9E5D2B6D70B100F23236 /* CreditCardScanner */; };
+		758B9E612B6D795D00F23236 /* CardScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B9E602B6D795D00F23236 /* CardScannerView.swift */; };
 		7599CD132B57F35E00F4FD86 /* NetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7599CD122B57F35E00F4FD86 /* NetSwift */; };
 		7599CD152B5836E900F4FD86 /* EmailToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD142B5836E900F4FD86 /* EmailToken.swift */; };
 		7599CD172B583CB400F4FD86 /* VerifiedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD162B583CB400F4FD86 /* VerifiedView.swift */; };
@@ -61,12 +71,10 @@
 		75A0BE072B5C50C400B90EEA /* BusStopDetailsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE062B5C50C400B90EEA /* BusStopDetailsPage.swift */; };
 		75A0BE142B5D3C9C00B90EEA /* busAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 75A0BE132B5D3C9C00B90EEA /* busAnimation.json */; };
 		75A0BE172B5D410200B90EEA /* BusStopSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE162B5D410200B90EEA /* BusStopSearchTableViewCell.swift */; };
-		75A0BE202B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE1F2B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift */; };
 		75A0BE282B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE272B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift */; };
 		75A0BE2A2B5EE2F000B90EEA /* ArrivalTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */; };
 		75D91B8A2B5FBE730034F967 /* BusStopSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B892B5FBE730034F967 /* BusStopSearchViewModel.swift */; };
 		75D91B8C2B6009B30034F967 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B8B2B6009B30034F967 /* ReminderViewController.swift */; };
-		75D91B902B6041590034F967 /* TextToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D91B8F2B6041590034F967 /* TextToImage.swift */; };
 		75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DA2B57CE34006B9655 /* VerificationView.swift */; };
 		75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DC2B57D81B006B9655 /* OTPTextField.swift */; };
 		75E217E02B57E4FA006B9655 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DF2B57E4FA006B9655 /* User.swift */; };
@@ -106,6 +114,14 @@
 		758062812B6A83F000A0A157 /* BusStopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopManager.swift; sourceTree = "<group>"; };
 		758062832B6A9D6500A0A157 /* BookmarkToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkToggle.swift; sourceTree = "<group>"; };
 		758062862B6AA8EB00A0A157 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
+		758062882B6BD70000A0A157 /* UIViewController+Exntesions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Exntesions.swift"; sourceTree = "<group>"; };
+		7580628C2B6BFB6C00A0A157 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		758062902B6BFEB100A0A157 /* AddNewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCardView.swift; sourceTree = "<group>"; };
+		758062932B6C3E4600A0A157 /* AddNewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCardViewModel.swift; sourceTree = "<group>"; };
+		758062952B6C414F00A0A157 /* Binding+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extensions.swift"; sourceTree = "<group>"; };
+		7580629B2B6CE2AC00A0A157 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		7580629D2B6D391500A0A157 /* CardScanManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardScanManager.swift; sourceTree = "<group>"; };
+		758062A12B6D44BB00A0A157 /* CardScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardScannerViewController.swift; sourceTree = "<group>"; };
 		7585CDB02B559D750087EC03 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -116,6 +132,7 @@
 		7585CDC22B55C9B60087EC03 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		7585CDC42B55C9B60087EC03 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
 		7585CDC72B55C9B60087EC03 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		758B9E602B6D795D00F23236 /* CardScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardScannerView.swift; sourceTree = "<group>"; };
 		7599CD142B5836E900F4FD86 /* EmailToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailToken.swift; sourceTree = "<group>"; };
 		7599CD162B583CB400F4FD86 /* VerifiedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiedView.swift; sourceTree = "<group>"; };
 		7599CD182B58437600F4FD86 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -128,12 +145,10 @@
 		75A0BE062B5C50C400B90EEA /* BusStopDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopDetailsPage.swift; sourceTree = "<group>"; };
 		75A0BE132B5D3C9C00B90EEA /* busAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = busAnimation.json; sourceTree = "<group>"; };
 		75A0BE162B5D410200B90EEA /* BusStopSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopSearchTableViewCell.swift; sourceTree = "<group>"; };
-		75A0BE1F2B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponsiveModifier.swift; sourceTree = "<group>"; };
 		75A0BE272B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimeCollectionViewCell.swift; sourceTree = "<group>"; };
 		75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalTimes.swift; sourceTree = "<group>"; };
 		75D91B892B5FBE730034F967 /* BusStopSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopSearchViewModel.swift; sourceTree = "<group>"; };
 		75D91B8B2B6009B30034F967 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
-		75D91B8F2B6041590034F967 /* TextToImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToImage.swift; sourceTree = "<group>"; };
 		75E217DA2B57CE34006B9655 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		75E217DC2B57D81B006B9655 /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
 		75E217DF2B57E4FA006B9655 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -147,6 +162,7 @@
 			files = (
 				7599CD132B57F35E00F4FD86 /* NetSwift in Frameworks */,
 				75A0BDF92B5B14AE00B90EEA /* Lottie in Frameworks */,
+				758B9E5E2B6D70B100F23236 /* CreditCardScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,7 +228,6 @@
 				75479BC72B56ECA600FD79F7 /* Custom Views */,
 				75E217DE2B57E4EE006B9655 /* Model */,
 				75217B2C2B62951B00D9FC19 /* Extensions */,
-				75A0BE1E2B5DF89800B90EEA /* Helpers */,
 				7599CD1A2B5942FF00F4FD86 /* Managers */,
 				75479BC22B56EC6A00FD79F7 /* Support */,
 				751B0BF12B544A5400ACBEAE /* Assets.xcassets */,
@@ -229,6 +244,8 @@
 				7562A5092B6582A500A2F50B /* Date+Extensions.swift */,
 				758062772B69320A00A0A157 /* Int+Extensions.swift */,
 				758062862B6AA8EB00A0A157 /* Notification+Extensions.swift */,
+				758062882B6BD70000A0A157 /* UIViewController+Exntesions.swift */,
+				758062952B6C414F00A0A157 /* Binding+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -254,6 +271,9 @@
 			isa = PBXGroup;
 			children = (
 				753AA6D52B5A8166006A599B /* ProfileViewController.swift */,
+				7580628C2B6BFB6C00A0A157 /* ProfileViewModel.swift */,
+				758062A02B6D407700A0A157 /* Components */,
+				758062922B6C3E3100A0A157 /* Modal */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -336,6 +356,32 @@
 			path = BusStopDetailsCell;
 			sourceTree = "<group>";
 		};
+		758062922B6C3E3100A0A157 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				7580629F2B6D406400A0A157 /* Components */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		7580629F2B6D406400A0A157 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				758B9E622B6D797200F23236 /* Card Scanner */,
+				758062932B6C3E4600A0A157 /* AddNewCardViewModel.swift */,
+				758062902B6BFEB100A0A157 /* AddNewCardView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		758062A02B6D407700A0A157 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7580629B2B6CE2AC00A0A157 /* CardView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		7585CDB42B55C97E0087EC03 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -352,6 +398,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		758B9E622B6D797200F23236 /* Card Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				758062A12B6D44BB00A0A157 /* CardScannerViewController.swift */,
+				758B9E602B6D795D00F23236 /* CardScannerView.swift */,
+			);
+			path = "Card Scanner";
+			sourceTree = "<group>";
+		};
 		7599CD1A2B5942FF00F4FD86 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +414,7 @@
 				7562A4FF2B63F9CF00A2F50B /* NotificationManager.swift */,
 				7580627F2B6A613B00A0A157 /* UserSessionManager.swift */,
 				758062812B6A83F000A0A157 /* BusStopManager.swift */,
+				7580629D2B6D391500A0A157 /* CardScanManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -378,15 +434,6 @@
 				75A0BE162B5D410200B90EEA /* BusStopSearchTableViewCell.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		75A0BE1E2B5DF89800B90EEA /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				75A0BE1F2B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift */,
-				75D91B8F2B6041590034F967 /* TextToImage.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		75A0BE212B5EC0C900B90EEA /* BusStop Details */ = {
@@ -434,6 +481,7 @@
 			packageProductDependencies = (
 				7599CD122B57F35E00F4FD86 /* NetSwift */,
 				75A0BDF82B5B14AE00B90EEA /* Lottie */,
+				758B9E5D2B6D70B100F23236 /* CreditCardScanner */,
 			);
 			productName = iNet;
 			productReference = 751B0BE52B544A5300ACBEAE /* iNet.app */;
@@ -466,6 +514,7 @@
 			packageReferences = (
 				7599CD112B57F35E00F4FD86 /* XCRemoteSwiftPackageReference "SwiftNet" */,
 				75A0BDF72B5B14AE00B90EEA /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				758B9E5C2B6D70B100F23236 /* XCRemoteSwiftPackageReference "credit-card-scanner" */,
 			);
 			productRefGroup = 751B0BE62B544A5300ACBEAE /* Products */;
 			projectDirPath = "";
@@ -511,14 +560,19 @@
 				7580627E2B6A578600A0A157 /* RegistrationDetails.swift in Sources */,
 				7599CD192B58437700F4FD86 /* LoginView.swift in Sources */,
 				75A0BE072B5C50C400B90EEA /* BusStopDetailsPage.swift in Sources */,
+				7580629C2B6CE2AC00A0A157 /* CardView.swift in Sources */,
+				7580629E2B6D391500A0A157 /* CardScanManager.swift in Sources */,
 				753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */,
+				7580628D2B6BFB6C00A0A157 /* ProfileViewModel.swift in Sources */,
+				758B9E612B6D795D00F23236 /* CardScannerView.swift in Sources */,
 				751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */,
 				7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */,
 				75D91B8C2B6009B30034F967 /* ReminderViewController.swift in Sources */,
 				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
 				75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */,
-				75D91B902B6041590034F967 /* TextToImage.swift in Sources */,
 				75A0BE282B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift in Sources */,
+				758062A22B6D44BB00A0A157 /* CardScannerViewController.swift in Sources */,
+				758062892B6BD70000A0A157 /* UIViewController+Exntesions.swift in Sources */,
 				7580626A2B68133500A0A157 /* HomeView.swift in Sources */,
 				7510F74A2B5B005D003C24BB /* BusStopSearchViewController.swift in Sources */,
 				758062632B66922300A0A157 /* LiveMapViewModel.swift in Sources */,
@@ -528,17 +582,19 @@
 				75217B2E2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift in Sources */,
 				75A0BE2A2B5EE2F000B90EEA /* ArrivalTimes.swift in Sources */,
 				7562A5002B63F9CF00A2F50B /* NotificationManager.swift in Sources */,
+				758062912B6BFEB100A0A157 /* AddNewCardView.swift in Sources */,
 				751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */,
 				75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */,
-				75A0BE202B5DF8AE00B90EEA /* KeyboardResponsiveModifier.swift in Sources */,
 				7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */,
 				7562A50A2B6582A500A2F50B /* Date+Extensions.swift in Sources */,
 				758062742B692D8400A0A157 /* HomeViewModel.swift in Sources */,
+				758062942B6C3E4600A0A157 /* AddNewCardViewModel.swift in Sources */,
 				75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */,
 				7562A5082B65823500A2F50B /* String+Exntesions.swift in Sources */,
 				75A0BE052B5C217300B90EEA /* BusStop.swift in Sources */,
 				75A0BE032B5B202600B90EEA /* CustomStyleTextField.swift in Sources */,
 				75D91B8A2B5FBE730034F967 /* BusStopSearchViewModel.swift in Sources */,
+				758062962B6C414F00A0A157 /* Binding+Extensions.swift in Sources */,
 				75E217E32B57E5AA006B9655 /* AuthViewModel.swift in Sources */,
 				758062762B692E0600A0A157 /* Passengers.swift in Sources */,
 				7562A4FE2B6377C300A2F50B /* ReminderModel.swift in Sources */,
@@ -688,12 +744,13 @@
 				DEVELOPMENT_TEAM = 69GK54W8ZW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iNet/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "To scan your credit card for fast input, we need camera access. No data is stored or shared.";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We use your location to keep providing real-time updates about bus stops, even when you're not actively using the app.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to provide real-time information about bus stops near you.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -720,12 +777,13 @@
 				DEVELOPMENT_TEAM = 69GK54W8ZW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iNet/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "To scan your credit card for fast input, we need camera access. No data is stored or shared.";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We use your location to keep providing real-time updates about bus stops, even when you're not actively using the app.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to provide real-time information about bus stops near you.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -766,6 +824,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		758B9E5C2B6D70B100F23236 /* XCRemoteSwiftPackageReference "credit-card-scanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yhkaplan/credit-card-scanner.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.5;
+			};
+		};
 		7599CD112B57F35E00F4FD86 /* XCRemoteSwiftPackageReference "SwiftNet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WhereIsPumpkin/SwiftNet";
@@ -785,6 +851,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		758B9E5D2B6D70B100F23236 /* CreditCardScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 758B9E5C2B6D70B100F23236 /* XCRemoteSwiftPackageReference "credit-card-scanner" */;
+			productName = CreditCardScanner;
+		};
 		7599CD122B57F35E00F4FD86 /* NetSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7599CD112B57F35E00F4FD86 /* XCRemoteSwiftPackageReference "SwiftNet" */;

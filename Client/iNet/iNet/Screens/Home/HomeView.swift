@@ -17,7 +17,7 @@ struct HomeView: View {
             backgroundColor
             contentScroll
         }
-        .onReceive(NotificationCenter.default.publisher(for: .didUpdateCurrentUser)) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: .didUpdateUser)) { _ in
             self.user = UserSessionManager.shared.currentUser
         }
     }
@@ -152,7 +152,6 @@ struct HomeView: View {
                 ForEach(viewModel.bookmarkedBusStops, id: \.id) { stop in
                     BusStopCard(busStopName: stop.name, busStopNumber: stop.code ?? "N/A")
                         .onTapGesture {
-                            print("TapTap")
                             Task {
                                 let arrivalTimes = try await viewModel.fetchBusStopArrivalTimes(stopID: stop.code ?? "0000")
                                 NavigationManager.shared.navigateToBusStopDetailsPage(arrivalTimes: arrivalTimes, stopId: stop.code ?? "0000")
