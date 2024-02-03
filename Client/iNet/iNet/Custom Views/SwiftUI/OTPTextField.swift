@@ -37,7 +37,7 @@ struct OTPTextField: View {
                 )
                 .focused($fieldFocus, equals: index)
                 .tag(index)
-                .onChange(of: enterValue[index]) { newValue in
+                .onChange(of: enterValue[index]) { _, newValue in
                     if enterValue[index].count > 1 {
                         let currentValue = Array(enterValue[index])
                         if currentValue[0] == Character(oldValue) {

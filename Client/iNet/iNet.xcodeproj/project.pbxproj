@@ -57,6 +57,7 @@
 		7585CDDA2B55C9B60087EC03 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7585CDC72B55C9B60087EC03 /* Poppins-Medium.ttf */; };
 		758B9E5E2B6D70B100F23236 /* CreditCardScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 758B9E5D2B6D70B100F23236 /* CreditCardScanner */; };
 		758B9E612B6D795D00F23236 /* CardScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B9E602B6D795D00F23236 /* CardScannerView.swift */; };
+		758B9E642B6E50F000F23236 /* QuickActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B9E632B6E50F000F23236 /* QuickActionViewController.swift */; };
 		7599CD132B57F35E00F4FD86 /* NetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7599CD122B57F35E00F4FD86 /* NetSwift */; };
 		7599CD152B5836E900F4FD86 /* EmailToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD142B5836E900F4FD86 /* EmailToken.swift */; };
 		7599CD172B583CB400F4FD86 /* VerifiedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD162B583CB400F4FD86 /* VerifiedView.swift */; };
@@ -133,6 +134,7 @@
 		7585CDC42B55C9B60087EC03 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
 		7585CDC72B55C9B60087EC03 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		758B9E602B6D795D00F23236 /* CardScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardScannerView.swift; sourceTree = "<group>"; };
+		758B9E632B6E50F000F23236 /* QuickActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionViewController.swift; sourceTree = "<group>"; };
 		7599CD142B5836E900F4FD86 /* EmailToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailToken.swift; sourceTree = "<group>"; };
 		7599CD162B583CB400F4FD86 /* VerifiedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiedView.swift; sourceTree = "<group>"; };
 		7599CD182B58437600F4FD86 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				7580629B2B6CE2AC00A0A157 /* CardView.swift */,
+				758B9E632B6E50F000F23236 /* QuickActionViewController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				75A0BE052B5C217300B90EEA /* BusStop.swift in Sources */,
 				75A0BE032B5B202600B90EEA /* CustomStyleTextField.swift in Sources */,
 				75D91B8A2B5FBE730034F967 /* BusStopSearchViewModel.swift in Sources */,
+				758B9E642B6E50F000F23236 /* QuickActionViewController.swift in Sources */,
 				758062962B6C414F00A0A157 /* Binding+Extensions.swift in Sources */,
 				75E217E32B57E5AA006B9655 /* AuthViewModel.swift in Sources */,
 				758062762B692E0600A0A157 /* Passengers.swift in Sources */,

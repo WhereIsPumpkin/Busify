@@ -22,6 +22,10 @@ final class ProfileViewController: UIViewController {
     private let addNewCardLabelStack = UIStackView()
     private let plusIcon = UIImageView()
     private let addCardLabel = UILabel()
+    private let quickActionsStackView = UIStackView()
+    private let fillFundsAction = QuickActionStackView()
+    private let deleteCardAction = QuickActionStackView()
+    private let viewModel = ProfileViewModel()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -57,14 +61,40 @@ final class ProfileViewController: UIViewController {
     private func checkIfUserCardAvailable() {
         if let card = UserSessionManager.shared.currentUser?.card {
             addCardViewToStack(card: card)
+            print("Card is present")
+            addQuickActionsStackView()
         } else {
             setupNewCardPlaceholderStack()
+            print("Card is not Present")
+            mainStack.addArrangedSubview(UIView())
         }
     }
+    
+    private func addQuickActionsStackView() {
+        mainStack.addArrangedSubview(quickActionsStackView)
+        mainStack.addArrangedSubview(UIView())
+        quickActionsStackView.transform = CGAffineTransform(translationX: self.view.bounds.width, y: 0)
+        animateQuickActionsStackView()
+    }
+    
+    private func animateQuickActionsStackView() {
+        UIView.animate(withDuration: 0.5, delay: 0.3, options: [], animations: {
+            self.quickActionsStackView.transform = .identity
+        })
+    }
+    
     
     private func clearNewCardPlaceholderStack() {
         clearPlaceholderLayout()
         removeTapGestureRecognizerFromNewCardPlaceholderStack()
+        removeQuickActionsStackView()
+    }
+    
+    private func removeQuickActionsStackView() {
+        if mainStack.arrangedSubviews.contains(quickActionsStackView) {
+            mainStack.removeArrangedSubview(quickActionsStackView)
+            quickActionsStackView.removeFromSuperview()
+        }
     }
     
     private func clearPlaceholderLayout() {
@@ -86,12 +116,10 @@ final class ProfileViewController: UIViewController {
         cardVC.view.backgroundColor = .clear
         cardVC.view.translatesAutoresizingMaskIntoConstraints = false
         
-        // Initially off-screen to the left
         cardVC.view.transform = CGAffineTransform(translationX: -self.view.bounds.width, y: 0)
         newCardPlaceholderStack.addArrangedSubview(cardVC.view)
         setupCardVCConstraints(cardVC)
         
-        // Animate slide in from the left
         UIView.animate(withDuration: 0.5, delay: 0.3, options: [], animations: {
             cardVC.view.transform = .identity
         })
@@ -114,6 +142,7 @@ final class ProfileViewController: UIViewController {
         setMainStackConstraints()
         configureMainStackAppearance()
         configureBalanceStack()
+        setupQuickActionsStack()  // TODO: Move somewhere else
         addMainStackSubviews()
         setupMainStackCustomSpacings()
     }
@@ -134,17 +163,18 @@ final class ProfileViewController: UIViewController {
     
     private func configureMainStackAppearance() {
         mainStack.axis = .vertical
+        mainStack.distribution = .fill
         mainStack.spacing = 8
     }
     
     private func addMainStackSubviews() {
         mainStack.addArrangedSubview(balanceStack)
         mainStack.addArrangedSubview(newCardPlaceholderStack)
-        mainStack.addArrangedSubview(UIView())
     }
     
     private func setupMainStackCustomSpacings() {
         mainStack.setCustomSpacing(24, after: balanceStack)
+        mainStack.setCustomSpacing(20, after: newCardPlaceholderStack)
     }
     
     // MARK: - Balance Stack Setup
@@ -362,6 +392,40 @@ final class ProfileViewController: UIViewController {
         addCardLabel.text = "Add new card"
         addCardLabel.textColor = .white
         addCardLabel.font = UIFont(name: "Poppins-semibold", size: 16)
+    }
+    
+    private func setupQuickActionsStack() {
+        setupQuickActionStackAppearance()
+        setupActionItems()
+        setupQuickActionStackArrangedSubviews()
+        
+    }
+    
+    private func setupQuickActionStackAppearance() {
+        quickActionsStackView.axis = .horizontal
+        quickActionsStackView.distribution = .fill
+        quickActionsStackView.spacing = 16
+    }
+    
+    private func setupActionItems() {
+        fillFundsAction.configure(icon: UIImage(systemName: "plus.circle"), title: "Fill \nBalance") {
+            print("Fill Funds tapped")
+        }
+        fillFundsAction.icon = UIImage(named: "moneyPlus")
+        
+        deleteCardAction.configure(icon: UIImage(systemName: "trash.fill"), title: "Delete \nCard") { [self] in
+            Task {
+                await viewModel.deleteCard()
+            }
+            print("Delete Card tapped")
+        }
+        deleteCardAction.tintColor = .red
+    }
+    
+    private func setupQuickActionStackArrangedSubviews() {
+        quickActionsStackView.addArrangedSubview(fillFundsAction)
+        quickActionsStackView.addArrangedSubview(deleteCardAction)
+        quickActionsStackView.addArrangedSubview(UIView())
     }
 }
 

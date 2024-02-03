@@ -17,7 +17,6 @@ class AddNewCardViewModel: ObservableObject {
     
     var expireDateComponents: DateComponents? {
         didSet {
-            // When expireDateComponents is set, update cardDate string
             updateCardDateString()
         }
     }
@@ -31,16 +30,13 @@ class AddNewCardViewModel: ObservableObject {
         }
         
         // Format the month and year to MM/YY
-        let formattedString = String(format: "%02d/%02d", month, year % 100) // Use modulo 100 to get last two digits of year
+        let formattedString = String(format: "%02d/%02d", month, year % 100)
         cardDate = formattedString
     }
     
     func addNewCard() async -> Void {
-        guard let url = URL(string: "\(baseURL.production.rawValue)/api/card/add-card") else { return }
-        
-        guard let token = UserDefaults.standard.string(forKey: "userToken") else {
-            return
-        }
+        guard let url = URL(string: "\(baseURL.production.rawValue)/api/card/add") else { return }
+        guard let token = UserDefaults.standard.string(forKey: "userToken") else { return }
         
         let requestBody = Card(
             cardNumber: cardNumber,
@@ -49,22 +45,12 @@ class AddNewCardViewModel: ObservableObject {
             cardCVV: cardCVV
         )
         
-        guard let httpBody = try? JSONEncoder().encode(requestBody) else {
-            print("Failed to encode request body")
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = httpBody
+        let headers: [String: String] = ["Authorization": "Bearer \(token)", "Content-Type": "application/json"]
         
         do {
-            let (_, _) = try await URLSession.shared.data(for: request)
+            let (_, _) = try await NetworkManager.shared.postDataWithHeaders(to: url, body: requestBody, headers: headers)
             await UserSessionManager.shared.fetchUserInfo()
         } catch {
-            // TODO: - Handle Error
             print("Error: \(error)")
         }
     }
@@ -102,7 +88,6 @@ class AddNewCardViewModel: ObservableObject {
             return false
         }
         
-        // Check if cardNumber contains only digits and spaces
         let nonDigitCharacters = CharacterSet.decimalDigits.union(CharacterSet(charactersIn: " ")).inverted
         if cardNumber.rangeOfCharacter(from: nonDigitCharacters) != nil {
             return false
