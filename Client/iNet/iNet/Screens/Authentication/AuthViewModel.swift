@@ -11,6 +11,7 @@ import NetSwift
 enum baseURL: String {
     case local = "https://dull-ruby-python.cyclic.app"
     case production = "http://localhost:3000"
+    
 }
 
 final class AuthViewModel: ObservableObject {
