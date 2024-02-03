@@ -198,6 +198,6 @@ struct AddNewCardView: View {
 
 
 #Preview {
-    ProfileViewController()
+    AddNewCardView()
 }
 
