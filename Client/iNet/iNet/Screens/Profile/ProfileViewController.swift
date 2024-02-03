@@ -26,6 +26,7 @@ final class ProfileViewController: UIViewController {
     private let fillFundsAction = QuickActionStackView()
     private let deleteCardAction = QuickActionStackView()
     private let viewModel = ProfileViewModel()
+    private var isCardPresent: Bool = false
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -50,8 +51,16 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc private func cardUpdatedNotificationReceived(_ notification: Notification) {
-        configureCardDetailsView()
+        configureBalanceAmountLabelLayout()
+        
+        let cardAvailable = UserSessionManager.shared.currentUser?.card != nil
+        
+        if cardAvailable != isCardPresent {
+            configureCardDetailsView()
+            isCardPresent = cardAvailable
+        }
     }
+    
     
     private func configureCardDetailsView() {
         clearNewCardPlaceholderStack()
@@ -61,11 +70,11 @@ final class ProfileViewController: UIViewController {
     private func checkIfUserCardAvailable() {
         if let card = UserSessionManager.shared.currentUser?.card {
             addCardViewToStack(card: card)
-            print("Card is present")
             addQuickActionsStackView()
+            isCardPresent = true
         } else {
             setupNewCardPlaceholderStack()
-            print("Card is not Present")
+            isCardPresent = false
             mainStack.addArrangedSubview(UIView())
         }
     }
@@ -228,7 +237,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func configureBalanceAmountLabelLayout() {
-        balanceAmountLabel.text = "₾0.00"
+        balanceAmountLabel.text = "₾\(UserSessionManager.shared.currentUser?.balance ?? 0.00 / 100)"
         balanceAmountLabel.font = UIFont(name: "Poppins-medium", size: 18)
         balanceAmountLabel.textColor = .white
     }
@@ -428,6 +437,7 @@ final class ProfileViewController: UIViewController {
         
         deleteCardAction.configure(icon: UIImage(systemName: "trash.fill"), title: "Delete \nCard") { [self] in
             Task {
+                
                 await viewModel.deleteCard()
             }
             print("Delete Card tapped")

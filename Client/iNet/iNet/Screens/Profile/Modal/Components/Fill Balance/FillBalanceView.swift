@@ -23,9 +23,10 @@ struct FillBalanceView: View {
     }
     
     private var content: some View {
-        VStack(spacing: 20) {
+        VStack(alignment: .leading, spacing: 20) {
             title
             amountFieldWrap
+            errorText
             confirmButtonLabelButton
             Spacer()
         }
@@ -37,6 +38,19 @@ struct FillBalanceView: View {
         Text("Top Up Balance")
             .font(.custom("Poppins-medium", size: 18))
             .foregroundStyle(.white)
+    }
+    
+    private var errorText: some View {
+        Group {
+            if viewModel.error.isEmpty {
+                EmptyView()
+            } else {
+                Text(viewModel.error)
+                    .foregroundStyle(.red)
+                    .font(.custom("Poppins-medium", size: 12))
+                    .padding(.top, -12)
+            }
+        }
     }
     
     private var amountFieldWrap: some View {
@@ -65,9 +79,6 @@ struct FillBalanceView: View {
                 .onChange(of: viewModel.amount) { oldValue, newValue in
                     viewModel.updateAmount(oldValue: oldValue, newValue: newValue)
                 }
-            
-            
-            
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 16)
@@ -76,20 +87,22 @@ struct FillBalanceView: View {
         .background(Color(red: 67/255, green: 69/255, blue: 73/255))
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.gray, lineWidth: 1)
+                .stroke(viewModel.isValid || viewModel.error.isEmpty ? .gray : .red, lineWidth: 1)
         )
     }
     
     private var confirmButtonLabelButton: some View {
         Button(action: {
             Task {
-                
+                Task {
+                    await viewModel.fillBalance()
+                }
                 dismiss()
             }
         }, label: {
             confirmButtonLabel
         })
-        .padding(.top, 16)
+        .padding(.top, viewModel.error.isEmpty ? 16 : 0)
         
     }
     
@@ -102,8 +115,9 @@ struct FillBalanceView: View {
             Spacer()
         }
         .frame(height: 44)
-        .background(Color.alternate)
+        .background(viewModel.isValid ? Color.alternate : .gray)
         .clipShape(RoundedRectangle(cornerRadius: 10))
+        
     }
 }
 
