@@ -58,6 +58,8 @@
 		758B9E5E2B6D70B100F23236 /* CreditCardScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 758B9E5D2B6D70B100F23236 /* CreditCardScanner */; };
 		758B9E612B6D795D00F23236 /* CardScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B9E602B6D795D00F23236 /* CardScannerView.swift */; };
 		758B9E642B6E50F000F23236 /* QuickActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B9E632B6E50F000F23236 /* QuickActionViewController.swift */; };
+		758B9E6A2B6EA0C700F23236 /* FillBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B9E692B6EA0C700F23236 /* FillBalanceView.swift */; };
+		758B9E6C2B6EB10800F23236 /* FillBalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B9E6B2B6EB10800F23236 /* FillBalanceViewModel.swift */; };
 		7599CD132B57F35E00F4FD86 /* NetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7599CD122B57F35E00F4FD86 /* NetSwift */; };
 		7599CD152B5836E900F4FD86 /* EmailToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD142B5836E900F4FD86 /* EmailToken.swift */; };
 		7599CD172B583CB400F4FD86 /* VerifiedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD162B583CB400F4FD86 /* VerifiedView.swift */; };
@@ -135,6 +137,8 @@
 		7585CDC72B55C9B60087EC03 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		758B9E602B6D795D00F23236 /* CardScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardScannerView.swift; sourceTree = "<group>"; };
 		758B9E632B6E50F000F23236 /* QuickActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionViewController.swift; sourceTree = "<group>"; };
+		758B9E692B6EA0C700F23236 /* FillBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillBalanceView.swift; sourceTree = "<group>"; };
+		758B9E6B2B6EB10800F23236 /* FillBalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillBalanceViewModel.swift; sourceTree = "<group>"; };
 		7599CD142B5836E900F4FD86 /* EmailToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailToken.swift; sourceTree = "<group>"; };
 		7599CD162B583CB400F4FD86 /* VerifiedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiedView.swift; sourceTree = "<group>"; };
 		7599CD182B58437600F4FD86 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -369,9 +373,9 @@
 		7580629F2B6D406400A0A157 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				758B9E682B6EA0B900F23236 /* Fill Balance */,
+				758B9E672B6EA0AF00F23236 /* Add New Card */,
 				758B9E622B6D797200F23236 /* Card Scanner */,
-				758062932B6C3E4600A0A157 /* AddNewCardViewModel.swift */,
-				758062902B6BFEB100A0A157 /* AddNewCardView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -408,6 +412,24 @@
 				758B9E602B6D795D00F23236 /* CardScannerView.swift */,
 			);
 			path = "Card Scanner";
+			sourceTree = "<group>";
+		};
+		758B9E672B6EA0AF00F23236 /* Add New Card */ = {
+			isa = PBXGroup;
+			children = (
+				758062932B6C3E4600A0A157 /* AddNewCardViewModel.swift */,
+				758062902B6BFEB100A0A157 /* AddNewCardView.swift */,
+			);
+			path = "Add New Card";
+			sourceTree = "<group>";
+		};
+		758B9E682B6EA0B900F23236 /* Fill Balance */ = {
+			isa = PBXGroup;
+			children = (
+				758B9E692B6EA0C700F23236 /* FillBalanceView.swift */,
+				758B9E6B2B6EB10800F23236 /* FillBalanceViewModel.swift */,
+			);
+			path = "Fill Balance";
 			sourceTree = "<group>";
 		};
 		7599CD1A2B5942FF00F4FD86 /* Managers */ = {
@@ -556,6 +578,7 @@
 			files = (
 				75479BC02B56E37B00FD79F7 /* RadioButtonField.swift in Sources */,
 				75E217DB2B57CE34006B9655 /* VerificationView.swift in Sources */,
+				758B9E6C2B6EB10800F23236 /* FillBalanceViewModel.swift in Sources */,
 				7580627A2B6A569000A0A157 /* LoginResponse.swift in Sources */,
 				753AA6D42B5A815F006A599B /* LiveMapViewController.swift in Sources */,
 				758062872B6AA8EB00A0A157 /* Notification+Extensions.swift in Sources */,
@@ -566,6 +589,7 @@
 				7580629C2B6CE2AC00A0A157 /* CardView.swift in Sources */,
 				7580629E2B6D391500A0A157 /* CardScanManager.swift in Sources */,
 				753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */,
+				758B9E6A2B6EA0C700F23236 /* FillBalanceView.swift in Sources */,
 				7580628D2B6BFB6C00A0A157 /* ProfileViewModel.swift in Sources */,
 				758B9E612B6D795D00F23236 /* CardScannerView.swift in Sources */,
 				751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */,

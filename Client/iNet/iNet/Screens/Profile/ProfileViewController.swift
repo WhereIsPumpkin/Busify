@@ -409,8 +409,21 @@ final class ProfileViewController: UIViewController {
     
     private func setupActionItems() {
         fillFundsAction.configure(icon: UIImage(systemName: "plus.circle"), title: "Fill \nBalance") {
-            print("Fill Funds tapped")
+            
+            let swiftUIView = FillBalanceView()
+            let FillBalanceVC = UIHostingController(rootView: swiftUIView)
+            
+            if let sheet = FillBalanceVC.sheetPresentationController {
+                let customHeight = self.view.frame.height * 0.3
+                print(self.view.frame.height)
+                sheet.detents = [.custom { context in customHeight }]
+                sheet.prefersGrabberVisible = true
+                sheet.preferredCornerRadius = 20
+            }
+            
+            self.present(FillBalanceVC, animated: true)
         }
+        
         fillFundsAction.icon = UIImage(named: "moneyPlus")
         
         deleteCardAction.configure(icon: UIImage(systemName: "trash.fill"), title: "Delete \nCard") { [self] in
