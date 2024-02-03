@@ -73,7 +73,7 @@ struct FillBalanceView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 22, height: 22)
             
-            TextField("", text: $viewModel.amount, prompt: Text("E.g 50$").foregroundStyle(.white.opacity(0.5)))
+            TextField("", text: $viewModel.amount, prompt: Text("E.g 50₾").foregroundStyle(.white.opacity(0.5)))
                 .keyboardType(.numberPad)
                 .font(.custom("Poppins-medium", size: 14))
                 .onChange(of: viewModel.amount) { oldValue, newValue in

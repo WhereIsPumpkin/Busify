@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddNewCardView: View {
-    @StateObject var viewModel = AddNewCardViewModel()
+    @StateObject var viewModel: AddNewCardViewModel
     @Environment(\.dismiss) var dismiss
     @State private var isShowingScanner = false
     
@@ -77,7 +77,6 @@ struct AddNewCardView: View {
                         viewModel.cardName = card.name ?? ""
                         viewModel.expireDateComponents = card.expireDate
                     }, dismissAction: {
-                        // This closure is passed down and called upon dismissal request
                         isShowingScanner = false
                     })
                 }
@@ -172,8 +171,8 @@ struct AddNewCardView: View {
     private var saveButton: some View {
         Button(action: {
             Task {
-                await viewModel.addNewCard()
                 dismiss()
+                await viewModel.addNewCard()
             }
         }, label: {
             saveButtonLabel
@@ -196,8 +195,4 @@ struct AddNewCardView: View {
     }
 }
 
-
-#Preview {
-    AddNewCardView()
-}
 

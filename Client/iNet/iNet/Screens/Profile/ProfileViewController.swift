@@ -27,6 +27,7 @@ final class ProfileViewController: UIViewController {
     private let deleteCardAction = QuickActionStackView()
     private let viewModel = ProfileViewModel()
     private var isCardPresent: Bool = false
+    private var cardCheckAnimation: CardCheckAnimation?
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -307,12 +308,13 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc private func handleCardPlaceholderTapGesture() {
-        let swiftUIView = AddNewCardView() // AddNewCardView is your SwiftUI view
-        let addNewCardVC = UIHostingController(rootView: swiftUIView)
+        
+        let addNewCardVC = UIHostingController(rootView: AddNewCardView(viewModel: AddNewCardViewModel(completion: {
+            self.showCardCheckAnimation()
+        })))
         
         if let sheet = addNewCardVC.sheetPresentationController {
             let customHeight = self.view.frame.height * 0.40
-            print(self.view.frame.height)
             sheet.detents = [.custom { context in customHeight }]
             sheet.prefersGrabberVisible = true
             sheet.preferredCornerRadius = 20
@@ -320,6 +322,24 @@ final class ProfileViewController: UIViewController {
         
         present(addNewCardVC, animated: true)
     }
+    
+    private func showCardCheckAnimation() {
+        DispatchQueue.main.async {
+            let animationView = CardCheckAnimation()
+            animationView.translatesAutoresizingMaskIntoConstraints = false
+            self.view.addSubview(animationView)
+            
+            NSLayoutConstraint.activate([
+                animationView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                animationView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            ])
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                animationView.removeFromSuperview()
+            }
+        }
+    }
+    
     
     private func setupNewCardPlaceholderStackLayout() {
         newCardPlaceholderStack.axis = .vertical
