@@ -35,7 +35,7 @@ class AddNewCardViewModel: ObservableObject {
     }
     
     func addNewCard() async -> Void {
-        guard let url = URL(string: "\(baseURL.production.rawValue)/api/card/add-card") else { return }
+        guard let url = URL(string: "\(baseURL.production.rawValue)/api/card/add") else { return }
         guard let token = UserDefaults.standard.string(forKey: "userToken") else { return }
         
         let requestBody = Card(

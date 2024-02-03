@@ -25,6 +25,7 @@ final class ProfileViewController: UIViewController {
     private let quickActionsStackView = UIStackView()
     private let fillFundsAction = QuickActionStackView()
     private let deleteCardAction = QuickActionStackView()
+    private let viewModel = ProfileViewModel()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -60,11 +61,11 @@ final class ProfileViewController: UIViewController {
     private func checkIfUserCardAvailable() {
         if let card = UserSessionManager.shared.currentUser?.card {
             addCardViewToStack(card: card)
-            print("Card is not present")
+            print("Card is present")
             addQuickActionsStackView()
         } else {
             setupNewCardPlaceholderStack()
-            print("Card is Present")
+            print("Card is not Present")
             mainStack.addArrangedSubview(UIView())
         }
     }
@@ -412,7 +413,10 @@ final class ProfileViewController: UIViewController {
         }
         fillFundsAction.icon = UIImage(named: "moneyPlus")
         
-        deleteCardAction.configure(icon: UIImage(systemName: "trash.fill"), title: "Delete \nCard") {
+        deleteCardAction.configure(icon: UIImage(systemName: "trash.fill"), title: "Delete \nCard") { [self] in
+            Task {
+                await viewModel.deleteCard()
+            }
             print("Delete Card tapped")
         }
         deleteCardAction.tintColor = .red
