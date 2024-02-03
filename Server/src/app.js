@@ -5,6 +5,7 @@ import bodyParser from "body-parser"
 import userRoutes from "./routes/userRoutes.js"
 import bookmarkRoutes from "./routes/bookmarkRoutes.js"
 import cardRoutes from "./routes/cardRoutes.js"
+import balanceRoutes from "./routes/balanceRoutes.js"
 
 dotenv.config()
 connectToMongoDB()
@@ -19,6 +20,8 @@ app.use("/api/user", userRoutes)
 app.use("/api/bookmark", bookmarkRoutes)
 
 app.use("/api/card", cardRoutes)
+
+app.use("/api/balance", balanceRoutes)
 
 connectToMongoDB().then(() => {
   app.listen(3000, () => {

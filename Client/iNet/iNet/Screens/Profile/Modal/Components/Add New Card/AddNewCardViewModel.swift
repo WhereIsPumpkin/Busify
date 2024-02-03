@@ -14,11 +14,16 @@ class AddNewCardViewModel: ObservableObject {
     @Published var cardName = ""
     @Published var cardDate = ""
     @Published var cardCVV = ""
+    var completion: (() -> Void)?
     
     var expireDateComponents: DateComponents? {
         didSet {
             updateCardDateString()
         }
+    }
+    
+    init(completion: @escaping () -> Void) {
+        self.completion = completion
     }
     
     private func updateCardDateString() {
@@ -49,11 +54,15 @@ class AddNewCardViewModel: ObservableObject {
         
         do {
             let (_, _) = try await NetworkManager.shared.postDataWithHeaders(to: url, body: requestBody, headers: headers)
+            // Introduce a delay before fetching user info to simulate backend processing time
+            completion!()
+            try await Task.sleep(nanoseconds: 5_000_000_000) // 5 seconds delay
             await UserSessionManager.shared.fetchUserInfo()
         } catch {
             print("Error: \(error)")
         }
     }
+
     
     func updateCardNumber(with newValue: String, oldValue: String) {
         let nonSpaceCount = newValue.filter { $0 != " " }.count
