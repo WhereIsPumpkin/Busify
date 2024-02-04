@@ -8,6 +8,18 @@ export const validTicketTemplate = (
   const formattedFirstName = capitalizeFirstLetter(names[0])
   const formattedLastName = capitalizeFirstLetter(names.slice(1).join(" "))
 
+  const durationMap = {
+    "90min": "60 წუთი",
+    Daily: "1 დღე",
+    Weekly: "1 კვირა",
+    Monthly: "1 თვე",
+    Quarterly: "3 თვე",
+    Semiannual: "6 თვე",
+    Annual: "1 წელი",
+  }
+
+  const formattedDuration = durationMap[ticketDuration] || ticketDuration
+
   return ` 
   <!DOCTYPE html>
   <html>
@@ -53,8 +65,8 @@ export const validTicketTemplate = (
       </div>
       <div class="content">
       <p><span class="bold">მგზავრის სახელი:</span> ${formattedFirstName} ${formattedLastName}</p>
-        <p><span class="bold">ბილეთის ვადა:</span> ${ticketDuration}</p>
-        <p><span class="bold">ფასი:</span> ${ticketPrice}</p>
+        <p><span class="bold">ბილეთის ვადა:</span> ${formattedDuration}</p>
+        <p><span class="bold">ფასი:</span> ${ticketPrice} ლარი</p>
         <p><span class="bold">ყიდვის დრო:</span> ${purchaseDate}</p>
       </div>
     </div>
