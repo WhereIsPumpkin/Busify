@@ -11,6 +11,7 @@ import SwiftUI
 final class ProfileViewController: UIViewController {
     // MARK: - UI Components
     private let mainStack = UIStackView()
+    private let settingsLabel = UILabel()
     private let balanceStack = UIStackView()
     private let balanceTitleStack = UIStackView()
     private let appLabel = UILabel()
@@ -28,6 +29,7 @@ final class ProfileViewController: UIViewController {
     private let viewModel = ProfileViewModel()
     private var isCardPresent: Bool = false
     private var cardCheckAnimation: CardCheckAnimation?
+    private let languageStack = LanguageChangeViewController()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -41,6 +43,7 @@ final class ProfileViewController: UIViewController {
         configureViewAppearance()
         configureMainStack()
         checkIfUserCardAvailable()
+        setupLanguageViewController()
     }
     
     private func configureViewAppearance() {
@@ -49,6 +52,10 @@ final class ProfileViewController: UIViewController {
     
     private func setupNotificationObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(cardUpdatedNotificationReceived(_:)), name: .didUpdateUser, object: nil)
+    }
+    
+    private func setupLanguageViewController() {
+        languageStack.delegate = self
     }
     
     @objc private func cardUpdatedNotificationReceived(_ notification: Notification) {
@@ -81,18 +88,28 @@ final class ProfileViewController: UIViewController {
     }
     
     private func addQuickActionsStackView() {
-        mainStack.addArrangedSubview(quickActionsStackView)
-        mainStack.addArrangedSubview(UIView())
+        guard let index = mainStack.arrangedSubviews.firstIndex(of: newCardPlaceholderStack) else { return }
+        let nextIndex = index + 1
+        
+        if !mainStack.arrangedSubviews.contains(quickActionsStackView) {
+            if mainStack.arrangedSubviews.count > nextIndex {
+                mainStack.insertArrangedSubview(quickActionsStackView, at: nextIndex)
+                mainStack.setCustomSpacing(22, after: quickActionsStackView)
+                mainStack.addArrangedSubview(UIView())
+            } else {
+                mainStack.addArrangedSubview(quickActionsStackView)
+            }
+        }
+        
         quickActionsStackView.transform = CGAffineTransform(translationX: self.view.bounds.width, y: 0)
         animateQuickActionsStackView()
     }
-    
+
     private func animateQuickActionsStackView() {
         UIView.animate(withDuration: 0.5, delay: 0.3, options: [], animations: {
             self.quickActionsStackView.transform = .identity
         })
     }
-    
     
     private func clearNewCardPlaceholderStack() {
         clearPlaceholderLayout()
@@ -152,7 +169,9 @@ final class ProfileViewController: UIViewController {
         setMainStackConstraints()
         configureMainStackAppearance()
         configureBalanceStack()
-        setupQuickActionsStack()  // TODO: Move somewhere else
+        setupQuickActionsStack()
+        // TODO: Move somewhere else
+        setupSettingsLabel()
         addMainStackSubviews()
         setupMainStackCustomSpacings()
     }
@@ -180,11 +199,14 @@ final class ProfileViewController: UIViewController {
     private func addMainStackSubviews() {
         mainStack.addArrangedSubview(balanceStack)
         mainStack.addArrangedSubview(newCardPlaceholderStack)
+        mainStack.addArrangedSubview(settingsLabel)
+        mainStack.addArrangedSubview(languageStack)
     }
     
     private func setupMainStackCustomSpacings() {
         mainStack.setCustomSpacing(24, after: balanceStack)
         mainStack.setCustomSpacing(20, after: newCardPlaceholderStack)
+        mainStack.setCustomSpacing(16, after: settingsLabel)
     }
     
     // MARK: - Balance Stack Setup
@@ -340,7 +362,6 @@ final class ProfileViewController: UIViewController {
         }
     }
     
-    
     private func setupNewCardPlaceholderStackLayout() {
         newCardPlaceholderStack.axis = .vertical
         newCardPlaceholderStack.alignment = .center
@@ -395,6 +416,12 @@ final class ProfileViewController: UIViewController {
     private func addNewCardLabelStackArrangedSubviews() {
         addNewCardLabelStack.addArrangedSubview(plusIcon)
         addNewCardLabelStack.addArrangedSubview(addCardLabel)
+    }
+    
+    private func setupSettingsLabel() {
+        settingsLabel.text = "Settings"
+        settingsLabel.textColor = .white
+        settingsLabel.font = UIFont(name: "Poppins-Medium", size: 18)
     }
     
     private func setupPlusIcon() {
@@ -469,6 +496,12 @@ final class ProfileViewController: UIViewController {
         quickActionsStackView.addArrangedSubview(fillFundsAction)
         quickActionsStackView.addArrangedSubview(deleteCardAction)
         quickActionsStackView.addArrangedSubview(UIView())
+    }
+}
+
+extension ProfileViewController: LanguageChangeViewControllerDelegate {
+    func didSelectLanguage(language: Language) {
+        print(language.rawValue)
     }
 }
 

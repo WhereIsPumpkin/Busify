@@ -18,6 +18,10 @@
 		<string>Poppins-Bold.ttf</string>
 		<string>Poppins-Regular.ttf</string>
 		<string>Poppins-Medium.ttf</string>
+		<string>NotoSansGeorgian-SemiBold.ttf</string>
+		<string>NotoSansGeorgian-Bold.ttf</string>
+		<string>NotoSansGeorgian-Regular.ttf</string>
+		<string>NotoSansGeorgian-Medium.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

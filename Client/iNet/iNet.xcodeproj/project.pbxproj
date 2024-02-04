@@ -16,6 +16,9 @@
 		751CBD6E2B701419000A7DA0 /* purchase.json in Resources */ = {isa = PBXBuildFile; fileRef = 751CBD6D2B701419000A7DA0 /* purchase.json */; };
 		751CBD702B701440000A7DA0 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751CBD6F2B701440000A7DA0 /* PurchaseView.swift */; };
 		751CBD732B701809000A7DA0 /* PurchaseAnimationOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751CBD722B701809000A7DA0 /* PurchaseAnimationOverlay.swift */; };
+		751CBD752B701E28000A7DA0 /* LanguageChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751CBD742B701E28000A7DA0 /* LanguageChangeViewController.swift */; };
+		751CBD782B702E86000A7DA0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 751CBD7A2B702E86000A7DA0 /* Localizable.strings */; };
+		751CBD882B7032D6000A7DA0 /* App Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751CBD872B7032D6000A7DA0 /* App Language.swift */; };
 		75217B2E2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75217B2D2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift */; };
 		753AA6D42B5A815F006A599B /* LiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D32B5A815F006A599B /* LiveMapViewController.swift */; };
 		753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D52B5A8166006A599B /* ProfileViewController.swift */; };
@@ -103,6 +106,19 @@
 		751CBD6D2B701419000A7DA0 /* purchase.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = purchase.json; sourceTree = "<group>"; };
 		751CBD6F2B701440000A7DA0 /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
 		751CBD722B701809000A7DA0 /* PurchaseAnimationOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseAnimationOverlay.swift; sourceTree = "<group>"; };
+		751CBD742B701E28000A7DA0 /* LanguageChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageChangeViewController.swift; sourceTree = "<group>"; };
+		751CBD792B702E86000A7DA0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		751CBD7B2B702EDD000A7DA0 /* ka */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ka; path = ka.lproj/Localizable.strings; sourceTree = "<group>"; };
+		751CBD7C2B70316F000A7DA0 /* NotoSansGeorgian-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansGeorgian-ExtraLight.ttf"; sourceTree = "<group>"; };
+		751CBD7D2B70316F000A7DA0 /* NotoSansGeorgian-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansGeorgian-Light.ttf"; sourceTree = "<group>"; };
+		751CBD7E2B70316F000A7DA0 /* NotoSansGeorgian-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansGeorgian-Medium.ttf"; sourceTree = "<group>"; };
+		751CBD7F2B70316F000A7DA0 /* NotoSansGeorgian-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansGeorgian-Bold.ttf"; sourceTree = "<group>"; };
+		751CBD802B70316F000A7DA0 /* NotoSansGeorgian-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansGeorgian-Regular.ttf"; sourceTree = "<group>"; };
+		751CBD812B70316F000A7DA0 /* NotoSansGeorgian-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansGeorgian-Black.ttf"; sourceTree = "<group>"; };
+		751CBD822B70316F000A7DA0 /* NotoSansGeorgian-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansGeorgian-SemiBold.ttf"; sourceTree = "<group>"; };
+		751CBD832B70316F000A7DA0 /* NotoSansGeorgian-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansGeorgian-ExtraBold.ttf"; sourceTree = "<group>"; };
+		751CBD842B70316F000A7DA0 /* NotoSansGeorgian-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansGeorgian-Thin.ttf"; sourceTree = "<group>"; };
+		751CBD872B7032D6000A7DA0 /* App Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App Language.swift"; sourceTree = "<group>"; };
 		75217B2D2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		753AA6D32B5A815F006A599B /* LiveMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveMapViewController.swift; sourceTree = "<group>"; };
 		753AA6D52B5A8166006A599B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -265,6 +281,38 @@
 			path = "Ticket Animation";
 			sourceTree = "<group>";
 		};
+		751CBD852B703175000A7DA0 /* GeorgianFont */ = {
+			isa = PBXGroup;
+			children = (
+				751CBD812B70316F000A7DA0 /* NotoSansGeorgian-Black.ttf */,
+				751CBD7F2B70316F000A7DA0 /* NotoSansGeorgian-Bold.ttf */,
+				751CBD832B70316F000A7DA0 /* NotoSansGeorgian-ExtraBold.ttf */,
+				751CBD7C2B70316F000A7DA0 /* NotoSansGeorgian-ExtraLight.ttf */,
+				751CBD7D2B70316F000A7DA0 /* NotoSansGeorgian-Light.ttf */,
+				751CBD7E2B70316F000A7DA0 /* NotoSansGeorgian-Medium.ttf */,
+				751CBD802B70316F000A7DA0 /* NotoSansGeorgian-Regular.ttf */,
+				751CBD822B70316F000A7DA0 /* NotoSansGeorgian-SemiBold.ttf */,
+				751CBD842B70316F000A7DA0 /* NotoSansGeorgian-Thin.ttf */,
+			);
+			path = GeorgianFont;
+			sourceTree = "<group>";
+		};
+		751CBD862B703181000A7DA0 /* Poppins */ = {
+			isa = PBXGroup;
+			children = (
+				7585CDBF2B55C9B60087EC03 /* Poppins-Black.ttf */,
+				7585CDBE2B55C9B60087EC03 /* Poppins-Bold.ttf */,
+				7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */,
+				7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */,
+				7585CDC42B55C9B60087EC03 /* Poppins-Light.ttf */,
+				7585CDC72B55C9B60087EC03 /* Poppins-Medium.ttf */,
+				7585CDC12B55C9B60087EC03 /* Poppins-Regular.ttf */,
+				7585CDBB2B55C9B60087EC03 /* Poppins-SemiBold.ttf */,
+				7585CDC22B55C9B60087EC03 /* Poppins-Thin.ttf */,
+			);
+			path = Poppins;
+			sourceTree = "<group>";
+		};
 		75217B2C2B62951B00D9FC19 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +371,7 @@
 				75A0BE132B5D3C9C00B90EEA /* busAnimation.json */,
 				751CBD6D2B701419000A7DA0 /* purchase.json */,
 				7585CDB42B55C97E0087EC03 /* Fonts */,
+				751CBD7A2B702E86000A7DA0 /* Localizable.strings */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -411,6 +460,7 @@
 				7580629B2B6CE2AC00A0A157 /* CardView.swift */,
 				758B9E632B6E50F000F23236 /* QuickActionViewController.swift */,
 				758B9E6F2B6EE49800F23236 /* CardCheckAnimation.swift */,
+				751CBD742B701E28000A7DA0 /* LanguageChangeViewController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -418,15 +468,8 @@
 		7585CDB42B55C97E0087EC03 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				7585CDBF2B55C9B60087EC03 /* Poppins-Black.ttf */,
-				7585CDBE2B55C9B60087EC03 /* Poppins-Bold.ttf */,
-				7585CDB72B55C9B60087EC03 /* Poppins-ExtraBold.ttf */,
-				7585CDB82B55C9B60087EC03 /* Poppins-ExtraLight.ttf */,
-				7585CDC42B55C9B60087EC03 /* Poppins-Light.ttf */,
-				7585CDC72B55C9B60087EC03 /* Poppins-Medium.ttf */,
-				7585CDC12B55C9B60087EC03 /* Poppins-Regular.ttf */,
-				7585CDBB2B55C9B60087EC03 /* Poppins-SemiBold.ttf */,
-				7585CDC22B55C9B60087EC03 /* Poppins-Thin.ttf */,
+				751CBD862B703181000A7DA0 /* Poppins */,
+				751CBD852B703175000A7DA0 /* GeorgianFont */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -500,6 +543,7 @@
 		75E217DE2B57E4EE006B9655 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				751CBD872B7032D6000A7DA0 /* App Language.swift */,
 				751CBD6B2B700EB1000A7DA0 /* BaseURL.swift */,
 				75E217DF2B57E4FA006B9655 /* User.swift */,
 				7599CD142B5836E900F4FD86 /* EmailToken.swift */,
@@ -563,6 +607,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ka,
 			);
 			mainGroup = 751B0BDC2B544A5300ACBEAE;
 			packageReferences = (
@@ -587,6 +632,7 @@
 				7585CDCB2B55C9B60087EC03 /* Poppins-ExtraLight.ttf in Resources */,
 				7585CDD72B55C9B60087EC03 /* Poppins-Light.ttf in Resources */,
 				75A0BE142B5D3C9C00B90EEA /* busAnimation.json in Resources */,
+				751CBD782B702E86000A7DA0 /* Localizable.strings in Resources */,
 				7585CDCA2B55C9B60087EC03 /* Poppins-ExtraBold.ttf in Resources */,
 				758B9E6E2B6EE3C800F23236 /* cardScan.json in Resources */,
 				7585CDD22B55C9B60087EC03 /* Poppins-Black.ttf in Resources */,
@@ -640,6 +686,7 @@
 				7599CD232B5996AA00F4FD86 /* TabBarController.swift in Sources */,
 				758062842B6A9D6500A0A157 /* BookmarkToggle.swift in Sources */,
 				75217B2E2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift in Sources */,
+				751CBD752B701E28000A7DA0 /* LanguageChangeViewController.swift in Sources */,
 				75A0BE2A2B5EE2F000B90EEA /* ArrivalTimes.swift in Sources */,
 				7562A5002B63F9CF00A2F50B /* NotificationManager.swift in Sources */,
 				758062912B6BFEB100A0A157 /* AddNewCardView.swift in Sources */,
@@ -668,6 +715,7 @@
 				758062802B6A613B00A0A157 /* UserSessionManager.swift in Sources */,
 				758062782B69320A00A0A157 /* Int+Extensions.swift in Sources */,
 				75E217E02B57E4FA006B9655 /* User.swift in Sources */,
+				751CBD882B7032D6000A7DA0 /* App Language.swift in Sources */,
 				758062822B6A83F000A0A157 /* BusStopManager.swift in Sources */,
 				7580626C2B681DE700A0A157 /* StatisticCard.swift in Sources */,
 				75A0BE012B5B1FB900B90EEA /* CustomStyleButton.swift in Sources */,
@@ -678,12 +726,25 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		751CBD7A2B702E86000A7DA0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				751CBD792B702E86000A7DA0 /* en */,
+				751CBD7B2B702EDD000A7DA0 /* ka */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		751B0BF72B544A5400ACBEAE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -747,6 +808,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

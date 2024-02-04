@@ -44,13 +44,13 @@ struct LoginView: View {
     private var loginText: some View {
         HStack {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Login")
+                Text(LocalizedStringKey("loginTitle"))
                     .foregroundStyle(.accent)
-                    .font(.custom("Poppins-Bold", size: 24))
+                    .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .bold).font(size: Locale.current.language.languageCode?.identifier == "en" ? 24 : 22))
                 
-                Text("Log In to Access All Features")
+                Text(LocalizedStringKey("login-description"))
                     .foregroundStyle(.accent.opacity(0.5))
-                    .font(.custom("Poppins-medium", size: 14))
+                    .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .medium).font(size: Locale.current.language.languageCode?.identifier == "en" ? 14 : 12))
             }
             Spacer()
         }
@@ -65,36 +65,36 @@ struct LoginView: View {
     
     private var emailField: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Email")
+            Text(LocalizedStringKey("email"))
                 .foregroundStyle(.accent)
-                .font(.custom("Poppins-medium", size: 16))
+                .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .medium).font(size : 16))
             
-            StyledTextField(text: $viewModel.email, placeholder: "Enter your email", isSecure: false)
+            StyledTextField(text: $viewModel.email, placeholder: "email-enter", isSecure: false)
         }
     }
     
-     private var passwordField: some View {
+    private var passwordField: some View {
         VStack(alignment: .trailing, spacing: 16) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Password")
+                Text(LocalizedStringKey("password"))
                     .foregroundStyle(.accent)
-                    .font(.custom("Poppins-medium", size: 16))
+                    .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .medium).font(size : 16))
                 
-                StyledTextField(text: $viewModel.password, placeholder: "Enter Password", isSecure: true)
+                StyledTextField(text: $viewModel.password, placeholder: "password-enter", isSecure: true)
             }
             
             Button(action: {
                 // TODO: Forgot Password
             }, label: {
-                Text("Forgot Password?")
+                Text(LocalizedStringKey("forgot-password"))
                     .foregroundStyle(.accent.opacity(0.8))
-                    .font(.custom("Poppins", size: 12))
+                    .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .regular).font(size: 12))
             })
         }
     }
     
     private var loginButton: some View {
-        StyledButton(buttonText: "Log In", buttonColor: Color(.alternate), textColor: .white) {
+        StyledButton(buttonText: "login", buttonColor: Color(.alternate), textColor: .white) {
             Task {
                 let isSuccess = await viewModel.loginUser()
                 if isSuccess {
