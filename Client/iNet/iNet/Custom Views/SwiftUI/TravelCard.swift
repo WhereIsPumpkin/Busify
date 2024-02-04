@@ -10,10 +10,11 @@ import SwiftUI
 struct TravelCard: View {
     // MARK: - Properties
     let cardName: String
-    let price: Double
+    let price: Int
     let duration: String
     let descriptions: [String]
-
+    @ObservedObject var viewModel: HomeViewModel
+    
     // MARK: - Body
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -59,7 +60,7 @@ struct TravelCard: View {
                 .foregroundStyle(.white)
                 .padding(.top, 4)
             
-            Text(String(format: "%.0f", price))
+            Text(String(price))
                 .font(.custom("Poppins-bold", size: 32))
                 .minimumScaleFactor(0.4)
                 .foregroundStyle(.white)
@@ -89,7 +90,12 @@ struct TravelCard: View {
     
     private var buyButton: some View {
         Button(action: {
-            // TODO: - Buy Action
+            Task {
+                await viewModel.buyTicket(card: TransitCard(cardName: cardName,
+                                                            price: price,
+                                                            duration: duration,
+                                                            descriptions: descriptions))
+            }
         }, label: {
             Text("Buy")
                 .frame(width: 64, height: 24)
@@ -104,5 +110,5 @@ struct TravelCard: View {
 }
 
 #Preview {
-    TravelCard(cardName: "MetroQuickaasd", price: 250, duration: "Semiannual", descriptions: ["90-Minute Freedom", "Brief adventure"])
+    TravelCard(cardName: "MetroQuickaasd", price: 250, duration: "Semiannual", descriptions: ["90-Minute Freedom", "Brief adventure"], viewModel: HomeViewModel())
 }

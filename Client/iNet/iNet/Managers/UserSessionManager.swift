@@ -25,7 +25,7 @@ class UserSessionManager {
             return
         }
         
-        guard let url = URL(string: "\(baseURL.production.rawValue)/api/user/info") else {
+        guard let url = URL(string: "\(BaseURL.production.rawValue)/api/user/info") else {
             print("Invalid URL")
             return
         }

@@ -3,16 +3,9 @@ import nodemailer from "nodemailer"
 import EmailToken from "../models/EmailToken.js"
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
-import { confirmationEmailTemplate } from "../utils/confirmEmailTemplate.js"
+import { confirmationEmailTemplate } from "../utils/templates/confirmEmailTemplate.js"
+import transporter from "../utils/configs/emailTransporter.js"
 dotenv.config()
-
-let transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "inetsupersocial@gmail.com",
-    pass: process.env.AUTH_PASSWORD,
-  },
-})
 
 export const createUser = async (req, res) => {
   try {
@@ -156,7 +149,6 @@ export const getUserInfo = async (req, res) => {
     const userID = req.userData.id
     const user = await User.findById(userID)
 
-    // Prepare userInfo with card conditionally
     const userInfo = {
       id: user._id,
       name: user.name,
@@ -167,7 +159,6 @@ export const getUserInfo = async (req, res) => {
       balance: user.balance,
     }
 
-    // Check if the card exists and has non-empty values
     const hasCardDetails =
       user.card &&
       Object.values(user.card.toObject()).some((value) => value !== "")
@@ -177,7 +168,6 @@ export const getUserInfo = async (req, res) => {
 
     res.json(userInfo)
   } catch (error) {
-    console.error("Error fetching user info:", error)
     res.status(500).send("Server error: " + error.message)
   }
 }

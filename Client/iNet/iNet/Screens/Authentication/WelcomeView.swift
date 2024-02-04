@@ -48,6 +48,7 @@ struct WelcomeView: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Bus Stops, Schedules, and Alerts in One")
                     .font(.custom("Poppins-Bold", size: 24))
+                    .minimumScaleFactor(0.6)
                     .foregroundColor(Color(.accent))
                 
                 Text("Track, and Get Notified: All Your Bus Stops and Schedules, Right at Your Fingertips!")

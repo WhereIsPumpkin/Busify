@@ -11,6 +11,7 @@
 		751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BE82B544A5300ACBEAE /* AppDelegate.swift */; };
 		751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */; };
 		751B0BF22B544A5400ACBEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 751B0BF12B544A5400ACBEAE /* Assets.xcassets */; };
+		751CBD6A2B6F91EA000A7DA0 /* TransitCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751CBD692B6F91EA000A7DA0 /* TransitCard.swift */; };
 		75217B2E2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75217B2D2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift */; };
 		753AA6D42B5A815F006A599B /* LiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D32B5A815F006A599B /* LiveMapViewController.swift */; };
 		753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D52B5A8166006A599B /* ProfileViewController.swift */; };
@@ -93,6 +94,7 @@
 		751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		751B0BF12B544A5400ACBEAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		751B0BF62B544A5400ACBEAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		751CBD692B6F91EA000A7DA0 /* TransitCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitCard.swift; sourceTree = "<group>"; };
 		75217B2D2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		753AA6D32B5A815F006A599B /* LiveMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveMapViewController.swift; sourceTree = "<group>"; };
 		753AA6D52B5A8166006A599B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 				758062792B6A569000A0A157 /* LoginResponse.swift */,
 				7580627D2B6A578600A0A157 /* RegistrationDetails.swift */,
 				758062832B6A9D6500A0A157 /* BookmarkToggle.swift */,
+				751CBD692B6F91EA000A7DA0 /* TransitCard.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				758B9E702B6EE49800F23236 /* CardCheckAnimation.swift in Sources */,
 				75479BCB2B56F18300FD79F7 /* StyledButton.swift in Sources */,
 				7585CDB12B559D750087EC03 /* WelcomeView.swift in Sources */,
+				751CBD6A2B6F91EA000A7DA0 /* TransitCard.swift in Sources */,
 				7562A50A2B6582A500A2F50B /* Date+Extensions.swift in Sources */,
 				758062742B692D8400A0A157 /* HomeViewModel.swift in Sources */,
 				758062942B6C3E4600A0A157 /* AddNewCardViewModel.swift in Sources */,
