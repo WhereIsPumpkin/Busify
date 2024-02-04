@@ -3,16 +3,9 @@ import nodemailer from "nodemailer"
 import EmailToken from "../models/EmailToken.js"
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
-import { confirmationEmailTemplate } from "../utils/confirmEmailTemplate.js"
+import { confirmationEmailTemplate } from "../utils/templates/confirmEmailTemplate.js"
+import transporter from "../utils/configs/emailTransporter.js"
 dotenv.config()
-
-let transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "inetsupersocial@gmail.com",
-    pass: process.env.AUTH_PASSWORD,
-  },
-})
 
 export const createUser = async (req, res) => {
   try {

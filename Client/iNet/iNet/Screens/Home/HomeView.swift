@@ -11,6 +11,7 @@ struct HomeView: View {
     // MARK: - Properties
     @StateObject var viewModel = HomeViewModel()
     @State private var user: User? = UserSessionManager.shared.currentUser
+    @State private var showingErrorAlert = false
     
     var body: some View {
         ZStack {
@@ -19,6 +20,11 @@ struct HomeView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: .didUpdateUser)) { _ in
             self.user = UserSessionManager.shared.currentUser
+        }
+        .alert(isPresented: $viewModel.showingErrorAlert) {
+            Alert(title: Text("Error Notification"),
+                  message: Text(viewModel.error ?? "An unknown error occurred."),
+                  dismissButton: .default(Text("OK")))
         }
     }
     
@@ -221,6 +227,11 @@ struct HomeView: View {
     private var cardsStack: some View {
         HStack(spacing: 8) {
             cardsForEach
+        }
+        .onReceive(viewModel.$error) { error in
+            if error != nil {
+                showingErrorAlert = true
+            }
         }
     }
     

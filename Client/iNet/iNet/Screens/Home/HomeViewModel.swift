@@ -12,6 +12,7 @@ import NetSwift
 final class HomeViewModel: ObservableObject {
     @Published var passengerStatistic: TransactionsResponse?
     @Published var error: String?
+    @Published var showingErrorAlert = false
     @Published var bookmarkedBusStops: [Location] = []
     
     private var cancellables = Set<AnyCancellable>()
@@ -48,6 +49,7 @@ final class HomeViewModel: ObservableObject {
                 self.passengerStatistic = passengerCount
             }
         } catch let fetchError {
+            updateError(error as! Error)
             DispatchQueue.main.async {
                 self.error = fetchError.localizedDescription
             }
@@ -85,13 +87,24 @@ final class HomeViewModel: ObservableObject {
         let body = BuyTicketRequest(cardName: card.cardName, price: card.price, duration: card.duration)
         
         do {
-            let x = try await NetworkManager.shared.postDataWithHeaders(to: url, body: body, headers: headers)
-            print(x)
+            let _ = try await NetworkManager.shared.postDataWithHeaders(to: url, body: body, headers: headers)
+            let _ = await UserSessionManager.shared.fetchUserInfo()
         } catch {
-            print(error)
+            updateError(error)
         }
         
     }
     
+    func updateError(_ error: Error) {
+        DispatchQueue.main.async {
+            if let networkError = error as? NetSwift.NetworkError,
+               case let .backendError(backendError) = networkError {
+                self.error = backendError.message
+            } else {
+                self.error = error.localizedDescription
+            }
+            self.showingErrorAlert = true
+        }
+    }
 }
 

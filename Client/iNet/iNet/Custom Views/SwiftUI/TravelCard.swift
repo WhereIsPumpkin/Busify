@@ -14,7 +14,7 @@ struct TravelCard: View {
     let duration: String
     let descriptions: [String]
     @ObservedObject var viewModel: HomeViewModel
-
+    
     // MARK: - Body
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
