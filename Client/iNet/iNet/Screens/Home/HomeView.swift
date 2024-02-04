@@ -213,32 +213,23 @@ struct HomeView: View {
     
     private var travelCard: some View {
         ScrollView(.horizontal) {
-            HStack(spacing: 8) {
-                TravelCard(cardName: "MetroQuick", price: 1, duration: "90min", descriptions: [
-                    "90-Minute Freedom", "Brief adventure"
-                ])
-                TravelCard(cardName: "MetroDay", price: 3, duration: "Daily", descriptions: [
-                    "All-Day Access", "Tourist's Favorite"
-                ])
-                TravelCard(cardName: "MetroWeek", price: 20, duration: "Weekly", descriptions: [
-                    "Week-Long Travel", "7-Day Explorer"
-                ])
-                TravelCard(cardName: "MetroMonth", price: 40, duration: "Monthly", descriptions: [
-                    "Monthly Commuter", "30-Day Pass"
-                ])
-                TravelCard(cardName: "MetroSeasonal", price: 100, duration: "Quarterly", descriptions: [
-                    "Quarter-Year Tour", "Seasonal Freedom"
-                ])
-                TravelCard(cardName: "MetroBiannual", price: 150, duration: "Semiannual", descriptions: [
-                    "Six-Month Journey", "Half-Year Pass"
-                ])
-                TravelCard(cardName: "MetroYearly", price: 250, duration: "Annual", descriptions: [
-                    "Year-Round Travel", "Annual Unlimited"
-                ])
-            }
+            cardsStack
         }
         .scrollIndicators(.hidden)
     }
+    
+    private var cardsStack: some View {
+        HStack(spacing: 8) {
+            cardsForEach
+        }
+    }
+    
+    private var cardsForEach: some View {
+        ForEach(TransitCard.allCards) { card in
+            TravelCard(cardName: card.cardName, price: card.price, duration: card.duration, descriptions: card.descriptions)
+        }
+    }
+    
 }
 
 #Preview {

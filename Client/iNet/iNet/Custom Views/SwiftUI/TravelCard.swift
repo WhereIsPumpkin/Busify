@@ -10,7 +10,7 @@ import SwiftUI
 struct TravelCard: View {
     // MARK: - Properties
     let cardName: String
-    let price: Double
+    let price: Int
     let duration: String
     let descriptions: [String]
 
@@ -59,7 +59,7 @@ struct TravelCard: View {
                 .foregroundStyle(.white)
                 .padding(.top, 4)
             
-            Text(String(format: "%.0f", price))
+            Text(String(price))
                 .font(.custom("Poppins-bold", size: 32))
                 .minimumScaleFactor(0.4)
                 .foregroundStyle(.white)
@@ -89,7 +89,7 @@ struct TravelCard: View {
     
     private var buyButton: some View {
         Button(action: {
-            // TODO: - Buy Action
+           print(price)
         }, label: {
             Text("Buy")
                 .frame(width: 64, height: 24)

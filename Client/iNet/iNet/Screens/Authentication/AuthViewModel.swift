@@ -8,9 +8,13 @@
 import Foundation
 import NetSwift
 
-enum baseURL: String {
-    case local = "https://dull-ruby-python.cyclic.app"
-    case production = "http://localhost:3000"
+enum BaseURL: String {
+    case remote = "https://dull-ruby-python.cyclic.app"
+    case local = "http://localhost:3000"
+    
+    static var production: BaseURL {
+        return .local
+    }
 }
 
 final class AuthViewModel: ObservableObject {
@@ -32,7 +36,7 @@ final class AuthViewModel: ObservableObject {
     }
     
     func registerUser() async {
-        let url = URL(string: "\(baseURL.production.rawValue)/api/user/register")!
+        let url = URL(string: "\(BaseURL.production.rawValue)/api/user/register")!
         let user = RegistrationDetails(name: name, lastName: lastName, email: email, password: password)
         do {
             let (_, _) = try await NetworkManager.shared.postData(to: url, body: user)
@@ -42,7 +46,7 @@ final class AuthViewModel: ObservableObject {
     }
     
     func verifyUser(with token: String) async -> Bool {
-        let url = URL(string: "\(baseURL.production.rawValue)/api/user/verify")!
+        let url = URL(string: "\(BaseURL.production.rawValue)/api/user/verify")!
         let emailToken = EmailToken(email: email, token: token)
         
         defer {
@@ -67,7 +71,7 @@ final class AuthViewModel: ObservableObject {
     }
     
     func loginUser() async -> Bool {
-        let url = URL(string: "\(baseURL.production.rawValue)/api/user/login")!
+        let url = URL(string: "\(BaseURL.production.rawValue)/api/user/login")!
         let loginDetails = LoginDetails(email: email, password: password)
         
         do {

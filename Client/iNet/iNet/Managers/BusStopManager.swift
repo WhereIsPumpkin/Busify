@@ -55,7 +55,7 @@ final class BusStopManager {
     }
     
     func toggleBookmark(busStopID: String) async -> Void {
-        guard let url = URL(string: "\(baseURL.production.rawValue)/api/bookmark/toggle") else { return }
+        guard let url = URL(string: "\(BaseURL.production.rawValue)/api/bookmark/toggle") else { return }
         guard let token = UserDefaults.standard.string(forKey: "userToken") else { return }
         guard let userID = UserSessionManager.shared.currentUser?.id else { return }
         

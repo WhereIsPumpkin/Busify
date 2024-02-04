@@ -50,7 +50,7 @@ final class FillBalanceViewModel: ObservableObject {
     }
     
     func fillBalance() async {
-        guard let url = URL(string: "\(baseURL.production.rawValue)/api/balance/fill") else { return }
+        guard let url = URL(string: "\(BaseURL.production.rawValue)/api/balance/fill") else { return }
         guard let token = UserDefaults.standard.string(forKey: "userToken") else { return }
         
         let headers: [String: String] = ["Authorization": "Bearer \(token)", "Content-Type": "application/json"]
