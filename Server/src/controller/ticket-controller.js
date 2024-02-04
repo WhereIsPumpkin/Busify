@@ -4,6 +4,7 @@ import BusTicket from "../models/BusTicket.js"
 import User from "../models/User.js"
 import { ticketReceiptTemplate } from "../utils/templates/ticketReceiptTemplate.js"
 import transporter from "../utils/configs/emailTransporter.js"
+import { validTicketTemplate } from "../utils/templates/validTicketTemplate.js"
 dotenv.config()
 
 export const buyTicket = async (req, res) => {
@@ -32,7 +33,7 @@ export const buyTicket = async (req, res) => {
     const savedTicket = await ticket.save()
 
     const qrCodeBuffer = await QRCode.toBuffer(
-      `https://www.facebook.com/NRdental`
+      `${process.env.BASE_URL}/api/ticket/verify/${savedTicket._id}`
     )
 
     let mailOptions = {
@@ -64,5 +65,38 @@ export const buyTicket = async (req, res) => {
     res
       .status(500)
       .json({ message: "Error purchasing ticket", error: error.message })
+  }
+}
+
+export const verifyTicket = async (req, res) => {
+  const { ticketId } = req.params
+
+  try {
+    const ticket = await BusTicket.findById(ticketId).populate(
+      "userId",
+      "name lastName"
+    )
+
+    if (!ticket) {
+      return res
+        .status(404)
+        .send("<html><body><h1>Ticket not found</h1></body></html>")
+    }
+
+    const purchaseDate = ticket.createdAt.toLocaleString()
+
+    const htmlTemplate = validTicketTemplate(
+      `${ticket.userId.name} ${ticket.userId.lastName}`,
+      ticket.duration,
+      ticket.price,
+      purchaseDate
+    )
+
+    res.send(htmlTemplate)
+  } catch (error) {
+    console.error("Error in verifyTicket:", error)
+    res
+      .status(500)
+      .json({ message: "Error verifying ticket", error: error.message })
   }
 }
