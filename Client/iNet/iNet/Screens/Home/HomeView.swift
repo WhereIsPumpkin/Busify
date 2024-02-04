@@ -12,11 +12,13 @@ struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
     @State private var user: User? = UserSessionManager.shared.currentUser
     @State private var showingErrorAlert = false
+    @State private var isPurchasing = false
     
     var body: some View {
         ZStack {
             backgroundColor
             contentScroll
+            purchasingAnimation
         }
         .onReceive(NotificationCenter.default.publisher(for: .didUpdateUser)) { _ in
             self.user = UserSessionManager.shared.currentUser
@@ -30,6 +32,15 @@ struct HomeView: View {
     
     private var backgroundColor: some View {
         Color.background.ignoresSafeArea()
+    }
+    
+    private var purchasingAnimation: some View {
+        Group {
+            if isPurchasing {
+                PurchaseAnimationOverlay()
+                    .edgesIgnoringSafeArea(.all)
+            }
+        }
     }
     
     private var contentScroll: some View {
@@ -237,10 +248,9 @@ struct HomeView: View {
     
     private var cardsForEach: some View {
         ForEach(TransitCard.allCards) { card in
-            TravelCard(cardName: card.cardName, price: card.price, duration: card.duration, descriptions: card.descriptions, viewModel: viewModel)
+            TravelCard(cardName: card.cardName, price: card.price, duration: card.duration, descriptions: card.descriptions, viewModel: viewModel, isPurchasing: $isPurchasing)
         }
     }
-    
 }
 
 #Preview {
