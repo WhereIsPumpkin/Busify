@@ -15,7 +15,7 @@ export const validTicketTemplate = (
     Monthly: "1 თვე",
     Quarterly: "3 თვე",
     Semiannual: "6 თვე",
-    Annual: "1 წელი",
+    Annual: "1 წელი ",
   }
 
   const formattedDuration = durationMap[ticketDuration] || ticketDuration
