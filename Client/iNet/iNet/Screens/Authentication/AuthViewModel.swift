@@ -8,15 +8,6 @@
 import Foundation
 import NetSwift
 
-enum BaseURL: String {
-    case remote = "https://dull-ruby-python.cyclic.app"
-    case local = "http://localhost:3000"
-    
-    static var production: BaseURL {
-        return .local
-    }
-}
-
 final class AuthViewModel: ObservableObject {
     //MARK: - Properties
     @Published var name = ""

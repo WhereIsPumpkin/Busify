@@ -12,6 +12,10 @@
 		751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */; };
 		751B0BF22B544A5400ACBEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 751B0BF12B544A5400ACBEAE /* Assets.xcassets */; };
 		751CBD6A2B6F91EA000A7DA0 /* TransitCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751CBD692B6F91EA000A7DA0 /* TransitCard.swift */; };
+		751CBD6C2B700EB1000A7DA0 /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751CBD6B2B700EB1000A7DA0 /* BaseURL.swift */; };
+		751CBD6E2B701419000A7DA0 /* purchase.json in Resources */ = {isa = PBXBuildFile; fileRef = 751CBD6D2B701419000A7DA0 /* purchase.json */; };
+		751CBD702B701440000A7DA0 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751CBD6F2B701440000A7DA0 /* PurchaseView.swift */; };
+		751CBD732B701809000A7DA0 /* PurchaseAnimationOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751CBD722B701809000A7DA0 /* PurchaseAnimationOverlay.swift */; };
 		75217B2E2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75217B2D2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift */; };
 		753AA6D42B5A815F006A599B /* LiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D32B5A815F006A599B /* LiveMapViewController.swift */; };
 		753AA6D62B5A8166006A599B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D52B5A8166006A599B /* ProfileViewController.swift */; };
@@ -95,6 +99,10 @@
 		751B0BF12B544A5400ACBEAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		751B0BF62B544A5400ACBEAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		751CBD692B6F91EA000A7DA0 /* TransitCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitCard.swift; sourceTree = "<group>"; };
+		751CBD6B2B700EB1000A7DA0 /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
+		751CBD6D2B701419000A7DA0 /* purchase.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = purchase.json; sourceTree = "<group>"; };
+		751CBD6F2B701440000A7DA0 /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
+		751CBD722B701809000A7DA0 /* PurchaseAnimationOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseAnimationOverlay.swift; sourceTree = "<group>"; };
 		75217B2D2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		753AA6D32B5A815F006A599B /* LiveMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveMapViewController.swift; sourceTree = "<group>"; };
 		753AA6D52B5A8166006A599B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -248,6 +256,15 @@
 			path = iNet;
 			sourceTree = "<group>";
 		};
+		751CBD712B7017F0000A7DA0 /* Ticket Animation */ = {
+			isa = PBXGroup;
+			children = (
+				751CBD6F2B701440000A7DA0 /* PurchaseView.swift */,
+				751CBD722B701809000A7DA0 /* PurchaseAnimationOverlay.swift */,
+			);
+			path = "Ticket Animation";
+			sourceTree = "<group>";
+		};
 		75217B2C2B62951B00D9FC19 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +321,7 @@
 			children = (
 				758B9E6D2B6EE3C800F23236 /* cardScan.json */,
 				75A0BE132B5D3C9C00B90EEA /* busAnimation.json */,
+				751CBD6D2B701419000A7DA0 /* purchase.json */,
 				7585CDB42B55C97E0087EC03 /* Fonts */,
 			);
 			path = Support;
@@ -455,6 +473,7 @@
 		7599CD1F2B59961D00F4FD86 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				751CBD712B7017F0000A7DA0 /* Ticket Animation */,
 				758062692B68133500A0A157 /* HomeView.swift */,
 				758062732B692D8400A0A157 /* HomeViewModel.swift */,
 			);
@@ -481,6 +500,7 @@
 		75E217DE2B57E4EE006B9655 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				751CBD6B2B700EB1000A7DA0 /* BaseURL.swift */,
 				75E217DF2B57E4FA006B9655 /* User.swift */,
 				7599CD142B5836E900F4FD86 /* EmailToken.swift */,
 				7599CD1D2B59907600F4FD86 /* LoginDetails.swift */,
@@ -570,6 +590,7 @@
 				7585CDCA2B55C9B60087EC03 /* Poppins-ExtraBold.ttf in Resources */,
 				758B9E6E2B6EE3C800F23236 /* cardScan.json in Resources */,
 				7585CDD22B55C9B60087EC03 /* Poppins-Black.ttf in Resources */,
+				751CBD6E2B701419000A7DA0 /* purchase.json in Resources */,
 				7585CDD52B55C9B60087EC03 /* Poppins-Thin.ttf in Resources */,
 				751B0BF22B544A5400ACBEAE /* Assets.xcassets in Resources */,
 				7585CDD42B55C9B60087EC03 /* Poppins-Regular.ttf in Resources */,
@@ -608,6 +629,8 @@
 				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
 				75479BBB2B56A1E900FD79F7 /* RegisterView.swift in Sources */,
 				75A0BE282B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift in Sources */,
+				751CBD732B701809000A7DA0 /* PurchaseAnimationOverlay.swift in Sources */,
+				751CBD6C2B700EB1000A7DA0 /* BaseURL.swift in Sources */,
 				758062A22B6D44BB00A0A157 /* CardScannerViewController.swift in Sources */,
 				758062892B6BD70000A0A157 /* UIViewController+Exntesions.swift in Sources */,
 				7580626A2B68133500A0A157 /* HomeView.swift in Sources */,
@@ -633,6 +656,7 @@
 				75A0BE052B5C217300B90EEA /* BusStop.swift in Sources */,
 				75A0BE032B5B202600B90EEA /* CustomStyleTextField.swift in Sources */,
 				75D91B8A2B5FBE730034F967 /* BusStopSearchViewModel.swift in Sources */,
+				751CBD702B701440000A7DA0 /* PurchaseView.swift in Sources */,
 				758B9E642B6E50F000F23236 /* QuickActionViewController.swift in Sources */,
 				758062962B6C414F00A0A157 /* Binding+Extensions.swift in Sources */,
 				75E217E32B57E5AA006B9655 /* AuthViewModel.swift in Sources */,
