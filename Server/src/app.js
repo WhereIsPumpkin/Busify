@@ -6,6 +6,7 @@ import userRoutes from "./routes/userRoutes.js"
 import bookmarkRoutes from "./routes/bookmarkRoutes.js"
 import cardRoutes from "./routes/cardRoutes.js"
 import balanceRoutes from "./routes/balanceRoutes.js"
+import ticketRoutes from "./routes/ticketRoutes.js"
 
 dotenv.config()
 connectToMongoDB()
@@ -22,6 +23,8 @@ app.use("/api/bookmark", bookmarkRoutes)
 app.use("/api/card", cardRoutes)
 
 app.use("/api/balance", balanceRoutes)
+
+app.use("/api/ticket", ticketRoutes)
 
 connectToMongoDB().then(() => {
   app.listen(3000, () => {

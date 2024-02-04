@@ -156,7 +156,6 @@ export const getUserInfo = async (req, res) => {
     const userID = req.userData.id
     const user = await User.findById(userID)
 
-    // Prepare userInfo with card conditionally
     const userInfo = {
       id: user._id,
       name: user.name,
@@ -167,7 +166,6 @@ export const getUserInfo = async (req, res) => {
       balance: user.balance,
     }
 
-    // Check if the card exists and has non-empty values
     const hasCardDetails =
       user.card &&
       Object.values(user.card.toObject()).some((value) => value !== "")
@@ -177,7 +175,6 @@ export const getUserInfo = async (req, res) => {
 
     res.json(userInfo)
   } catch (error) {
-    console.error("Error fetching user info:", error)
     res.status(500).send("Server error: " + error.message)
   }
 }

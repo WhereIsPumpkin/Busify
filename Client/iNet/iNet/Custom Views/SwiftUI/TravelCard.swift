@@ -13,6 +13,7 @@ struct TravelCard: View {
     let price: Int
     let duration: String
     let descriptions: [String]
+    @ObservedObject var viewModel: HomeViewModel
 
     // MARK: - Body
     var body: some View {
@@ -89,7 +90,12 @@ struct TravelCard: View {
     
     private var buyButton: some View {
         Button(action: {
-           print(price)
+            Task {
+                await viewModel.buyTicket(card: TransitCard(cardName: cardName,
+                                                            price: price,
+                                                            duration: duration,
+                                                            descriptions: descriptions))
+            }
         }, label: {
             Text("Buy")
                 .frame(width: 64, height: 24)
@@ -104,5 +110,5 @@ struct TravelCard: View {
 }
 
 #Preview {
-    TravelCard(cardName: "MetroQuickaasd", price: 250, duration: "Semiannual", descriptions: ["90-Minute Freedom", "Brief adventure"])
+    TravelCard(cardName: "MetroQuickaasd", price: 250, duration: "Semiannual", descriptions: ["90-Minute Freedom", "Brief adventure"], viewModel: HomeViewModel())
 }

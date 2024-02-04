@@ -226,7 +226,7 @@ struct HomeView: View {
     
     private var cardsForEach: some View {
         ForEach(TransitCard.allCards) { card in
-            TravelCard(cardName: card.cardName, price: card.price, duration: card.duration, descriptions: card.descriptions)
+            TravelCard(cardName: card.cardName, price: card.price, duration: card.duration, descriptions: card.descriptions, viewModel: viewModel)
         }
     }
     

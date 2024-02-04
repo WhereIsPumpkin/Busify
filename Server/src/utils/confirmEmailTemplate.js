@@ -47,4 +47,4 @@ export const confirmationEmailTemplate = (token) => `
 </body>
 
 </html>
-`;
+`

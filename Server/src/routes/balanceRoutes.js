@@ -1,11 +1,9 @@
 import express from "express"
-import {
-  fillBalance,
-} from "../controller/balance-controller.js"
+import { fillBalance } from "../controller/balance-controller.js"
 import { authMiddleware } from "../middlewares/authMiddleware.js"
 
 const router = express.Router()
 
-router.post('/fill', authMiddleware, fillBalance);
+router.post("/fill", authMiddleware, fillBalance)
 
-export default router;
+export default router

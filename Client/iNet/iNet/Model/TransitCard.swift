@@ -24,3 +24,10 @@ struct TransitCard: Identifiable {
         TransitCard(cardName: "MetroYearly", price: 250, duration: "Annual", descriptions: ["Year-Round Travel", "Annual Unlimited"])
     ]
 }
+
+/// used for request body
+struct BuyTicketRequest: Codable {
+    let cardName: String
+    let price: Int
+    let duration: String
+}

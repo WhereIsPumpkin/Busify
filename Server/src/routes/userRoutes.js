@@ -3,7 +3,7 @@ import {
   createUser,
   verifyUser,
   loginUser,
-  getUserInfo
+  getUserInfo,
 } from "../controller/user-controller.js"
 import { authMiddleware } from "../middlewares/authMiddleware.js"
 

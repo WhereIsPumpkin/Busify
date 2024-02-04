@@ -33,7 +33,12 @@ const userSchema = new Schema({
   },
   card: {
     type: cardSchema,
-    default: () => ({ cardNumber: '', cardName: '', cardDate: '', cardCVV: '' })
+    default: () => ({
+      cardNumber: "",
+      cardName: "",
+      cardDate: "",
+      cardCVV: "",
+    }),
   },
 })
 
