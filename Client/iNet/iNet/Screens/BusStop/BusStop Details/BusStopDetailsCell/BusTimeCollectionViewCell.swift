@@ -29,7 +29,7 @@ class BusTimeCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with arrivalTime: ArrivalTime) {
-        busWaitTime.text = "\(arrivalTime.arrivalTime) Min"
+        busWaitTime.text = String(format: NSLocalizedString("arrivalTime", comment: ""), "\(arrivalTime.arrivalTime)")
         busNumber.text = arrivalTime.routeNumber
         busRoute.text = arrivalTime.destinationStopName
     }

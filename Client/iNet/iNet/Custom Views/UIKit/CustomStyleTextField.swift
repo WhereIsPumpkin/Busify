@@ -16,13 +16,12 @@ class CustomStyledTextField: UITextField {
     }
     
     var onClearAction: (() -> Void)?
-    
-    let placeholderText = NSAttributedString(string: "e.g Baratashvili... or 4230", attributes: [NSAttributedString.Key.foregroundColor: UIColor(.gray)])
-    
-    init(placeholder: String, isSecure: Bool) {
+        
+    init(placeholderKey: String, isSecure: Bool) {
         self.isSecure = isSecure
         super.init(frame: .zero)
-        commonInit(placeholder: placeholder)
+        let localizedPlaceholder = NSLocalizedString(placeholderKey, comment: "Placeholder text for the custom styled text field")
+        commonInit(placeholder: localizedPlaceholder)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -55,14 +54,13 @@ class CustomStyledTextField: UITextField {
     }
     
     private func styleTextField() {
-        self.borderStyle = .none
-        self.backgroundColor = UIColor(resource: .base)
-        self.layer.cornerRadius = 8
-        self.autocapitalizationType = .none
-        self.returnKeyType = .done
-        self.clearButtonMode = .whileEditing
-        self.font = UIFont.systemFont(ofSize: 16)
-        self.attributedPlaceholder = placeholderText
+        borderStyle = .none
+        backgroundColor = UIColor(resource: .base)
+        layer.cornerRadius = 8
+        autocapitalizationType = .none
+        returnKeyType = .done
+        clearButtonMode = .whileEditing
+        font = UIFont.systemFont(ofSize: 16)
     }
     
     private func setupLeftImageView() {

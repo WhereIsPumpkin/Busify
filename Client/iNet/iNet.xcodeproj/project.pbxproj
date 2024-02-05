@@ -313,6 +313,16 @@
 			path = Poppins;
 			sourceTree = "<group>";
 		};
+		751CBD892B716748000A7DA0 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				758B9E6D2B6EE3C800F23236 /* cardScan.json */,
+				75A0BE132B5D3C9C00B90EEA /* busAnimation.json */,
+				751CBD6D2B701419000A7DA0 /* purchase.json */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		75217B2C2B62951B00D9FC19 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,9 +377,7 @@
 		75479BC22B56EC6A00FD79F7 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				758B9E6D2B6EE3C800F23236 /* cardScan.json */,
-				75A0BE132B5D3C9C00B90EEA /* busAnimation.json */,
-				751CBD6D2B701419000A7DA0 /* purchase.json */,
+				751CBD892B716748000A7DA0 /* Animations */,
 				7585CDB42B55C97E0087EC03 /* Fonts */,
 				751CBD7A2B702E86000A7DA0 /* Localizable.strings */,
 			);

@@ -16,7 +16,7 @@ final class BusStopSearchViewController: UIViewController {
     private let mainVerticalStack = UIStackView()
     private let busAnimationView = LottieAnimationView(name: "busAnimation")
     private var busAnimationHeight: NSLayoutConstraint!
-    private let busSearchTextField = CustomStyledTextField(placeholder: "e.g Baratashvili... or 4230", isSecure: false)
+    private let busSearchTextField = CustomStyledTextField(placeholderKey: "searchPlaceholder", isSecure: false)
     private let searchButton = CustomStyledButton(buttonText: "Search", buttonColor: UIColor(resource: .background), textColor: .white)
     private var viewModel = BusStopSearchViewModel()
     private var tableView: UITableView?
@@ -38,7 +38,7 @@ final class BusStopSearchViewController: UIViewController {
     }
     
     private func configureViewController() {
-        title = "Bus Stop"
+        title = NSLocalizedString("busStop", comment: "")
         view.backgroundColor = UIColor(.background)
         view.addSubview(mainVerticalStack)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
@@ -97,8 +97,8 @@ final class BusStopSearchViewController: UIViewController {
     }
     
     private func setupTitleLabel() {
-        titleLabel.text = "Enter Stop ID or Enter Address"
-        titleLabel.font = UIFont(name: "Poppins-Medium", size: 16)
+        titleLabel.text = NSLocalizedString("busSearch", comment: "Prompt to enter bus stop ID or address")
+        titleLabel.font = AppFont.forLanguage(Locale.current.language.languageCode?.identifier == "ge" ? "ge" : "en", style: .medium).uiFont(size: 16)
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
     }

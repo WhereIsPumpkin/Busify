@@ -27,7 +27,7 @@
 "cableCar" = "Cable Car";
 "miniBus" = "Minibus";
 "subway" = "Subway";
-"savedStops" = "Saved Stops";
+"savedStops" = "Saved Stops";	
 "noTemplates" = "No templates yet – let's create!";
 "templateDescription" = "To create a template, click the 'Bookmark' icon on the Bus Stop page.";
 "travelCard" = "Travel Card";
@@ -40,3 +40,12 @@
 "duration_Quarterly" = "/Quarterly";
 "duration_Semiannual" = "/Semiannual";
 "duration_Annual" = "/Annual";
+"searchPlaceholder" = "e.g Baratashvili... or 4230";
+"busSearch" = "Enter Stop ID or Enter Address";
+"stopID" = "Stop ID: #%@";
+"busStop" = "Bus Stop";
+"arrivalTimes" = "Arrival Times:";
+"arrivalTime" = "%@ Min";
+"home" = "Home";
+"liveMap" = "Live Map";
+"services" = "Services";

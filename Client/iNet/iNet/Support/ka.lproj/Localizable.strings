@@ -40,3 +40,12 @@
 "duration_Quarterly" = "/3 თვე";
 "duration_Semiannual" = "/6 თვე";
 "duration_Annual" = "/წელი";
+"searchPlaceholder" = "მაგ. ბარათაშვილის... ან 4230";
+"busSearch" = "გაჩერების ნომერი ან მისამართი";
+"stopID" = "გაჩერება: #%@";
+"busStop" = "გაჩერებები";
+"arrivalTimes" = "განრიგები:";
+"arrivalTime" = "%@ წთ";
+"home" = "მთავარი";
+"liveMap" = "რუკა";
+"services" = "სერვისები";
