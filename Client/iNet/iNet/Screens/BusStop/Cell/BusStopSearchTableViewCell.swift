@@ -48,7 +48,7 @@ class BusStopSearchTableViewCell: UITableViewCell {
     private let busStopIdLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Poppins-Medium", size: 16)
+        label.font =  AppFont.forLanguage(Locale.current.language.languageCode?.identifier == "ge" ? "ge" : "en", style: .medium).uiFont(size: 16)
         label.textColor = UIColor(resource: .accent)
         return label
     }()
@@ -83,13 +83,13 @@ class BusStopSearchTableViewCell: UITableViewCell {
             mainStack.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             mainStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
             
-            busIconImageView.widthAnchor.constraint(equalToConstant: 40) // Adjust size as needed
+            busIconImageView.widthAnchor.constraint(equalToConstant: 40)
         ])
     }
     
     func configure(with address: String, id: String) {
         busStopAddressLabel.text = address
-        busStopIdLabel.text = "Stop ID: \(id)"
+        busStopIdLabel.text = String(format: NSLocalizedString("stopID", comment: ""), id)
     }
 }
 

@@ -42,16 +42,16 @@ struct RegisterView: View {
     
     private var titleText: some View {
         HStack {
-            Text("Enter Your Details")
+            Text(LocalizedStringKey("enterDetails"))
                 .foregroundStyle(.accent)
-                .font(.custom("Poppins-semibold", size: 20))
+                .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .semibold).font(size : 20))
             Spacer()
         }
     }
     
     private var descriptionText: some View {
-        Text("it's quick and easy")
-            .font(Font.custom("Poppins", size: 16))
+        Text(LocalizedStringKey("quickAndEasy"))
+            .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .regular).font(size : 16))
             .foregroundColor(Color.accentColor.opacity(0.5))
     }
     
@@ -65,17 +65,17 @@ struct RegisterView: View {
     
     private var nameField: some View {
         HStack(spacing: 16) {
-            StyledTextField(text: $viewModel.name, placeholder: "Name", isSecure: false)
-            StyledTextField(text: $viewModel.lastName, placeholder: "Last name", isSecure: false)
+            StyledTextField(text: $viewModel.name, placeholder: "name", isSecure: false)
+            StyledTextField(text: $viewModel.lastName, placeholder: "lastName", isSecure: false)
         }
     }
     
     private var emailField: some View {
-        StyledTextField(text: $viewModel.email, placeholder: "Email", isSecure: false)
+        StyledTextField(text: $viewModel.email, placeholder: "email", isSecure: false)
     }
     
     private var passwordField: some View {
-        StyledTextField(text: $viewModel.password, placeholder: "Password", isSecure: true)
+        StyledTextField(text: $viewModel.password, placeholder: "password", isSecure: true)
     }
     
     private var buttonWrapper: some View {
@@ -86,7 +86,7 @@ struct RegisterView: View {
     }
     
     private var nextButton: some View {
-        StyledButton(buttonText: "Next", buttonColor: viewModel.isNextButtonDisabled ? .accent.opacity(0.5) : Color.alternate, textColor: .white) {
+        StyledButton(buttonText: "next", buttonColor: viewModel.isNextButtonDisabled ? .accent.opacity(0.5) : Color.alternate, textColor: .white) {
             if !viewModel.isNextButtonDisabled {
                 NavigationManager.shared.navigateToVerification()
                 Task {

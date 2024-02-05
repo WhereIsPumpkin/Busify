@@ -15,9 +15,9 @@ struct StyledTextField: View {
     var body: some View {
         Group {
             if isSecure {
-                SecureField("", text: $text, prompt: Text(placeholder).foregroundColor(.accentColor.opacity(0.5)).font(.custom("Poppins", size: 14)))
+                SecureField("", text: $text, prompt: Text(LocalizedStringKey(placeholder)).foregroundColor(.accentColor.opacity(0.5)).font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .bold).font(size: Locale.current.language.languageCode?.identifier == "en" ? 14 : 12)))
             } else {
-                TextField("", text: $text, prompt: Text(placeholder).foregroundColor(.accentColor.opacity(0.5)).font(.custom("Poppins", size: 14)))
+                TextField("", text: $text, prompt: Text(LocalizedStringKey(placeholder)).foregroundColor(.accentColor.opacity(0.5)).font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .bold).font(size: Locale.current.language.languageCode?.identifier == "en" ? 14 : 12)))
             }
         }
         .keyboardType(.emailAddress)

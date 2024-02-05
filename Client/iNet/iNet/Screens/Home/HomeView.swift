@@ -82,8 +82,8 @@ struct HomeView: View {
     
     private var welcomeText: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Hello,")
-                .font(Font.custom("Poppins-regular", size: 18))
+            Text(LocalizedStringKey("hello"))
+                .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .regular).font(size: 18))
                 .foregroundStyle(.accent)
             
             if let user = user {
@@ -102,8 +102,8 @@ struct HomeView: View {
     }
     
     private var dailyStatisticTitle: some View {
-        Text("Daily Statistic")
-            .font(.custom("Poppins-semibold", size: 18))
+        Text(LocalizedStringKey("dailyStats"))
+            .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .semibold).font(size: 18))
             .foregroundStyle(.accent)
     }
     
@@ -111,10 +111,10 @@ struct HomeView: View {
         ScrollView(.horizontal) {
             HStack {
                 if let stats = viewModel.passengerStatistic?.transactionsByTransportTypes {
-                    StatisticCard(iconName: .busIcon, count: stats.bus.formattedWithSeparator(), transportType: "Bus")
-                    StatisticCard(iconName: .cableCar, count: stats.cableCar.formattedWithSeparator(), transportType: "Cable car")
-                    StatisticCard(iconName: .minibus, count: stats.minibus.formattedWithSeparator(), transportType: "Minibus")
-                    StatisticCard(iconName: .metro, count: stats.subway.formattedWithSeparator(), transportType: "Subway")
+                    StatisticCard(iconName: .busIcon, count: stats.bus.formattedWithSeparator(), transportType: "bus")
+                    StatisticCard(iconName: .cableCar, count: stats.cableCar.formattedWithSeparator(), transportType: "cableCar")
+                    StatisticCard(iconName: .minibus, count: stats.minibus.formattedWithSeparator(), transportType: "miniBus")
+                    StatisticCard(iconName: .metro, count: stats.subway.formattedWithSeparator(), transportType: "subway")
                 } else {
                     statisticEmptyState
                 }
@@ -154,8 +154,8 @@ struct HomeView: View {
     
     private var savedStopsTitle: some View {
         HStack {
-            Text("Saved Stops")
-                .font(.custom("Poppins-semibold", size: 18))
+            Text(LocalizedStringKey("savedStops"))
+                .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .semibold).font(size: 18))
                 .foregroundStyle(.accent)
             
             Image(systemName: "bookmark.fill")
@@ -188,12 +188,12 @@ struct HomeView: View {
                 .frame(width: 32, height: 32)
             
             VStack(spacing: 4) {
-                Text("No templates yet – let's create!")
-                    .font(.custom("Poppins-semibold", size: 14))
+                Text(LocalizedStringKey("noTemplates"))
+                    .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .semibold).font(size: 14))
                     .foregroundColor(.white)
                 
-                Text("To create a template, click the 'Save' icon on the Bus Stop page.")
-                    .font(.custom("Poppins", size: 12))
+                Text(LocalizedStringKey("templateDescription"))
+                    .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .regular).font(size: 12))
                     .multilineTextAlignment(.center)
                     .foregroundColor(.white.opacity(0.5))
             }
@@ -217,12 +217,12 @@ struct HomeView: View {
     
     private var travelCardText: some View {
         VStack(alignment:. leading, spacing: 4) {
-            Text("Travel card")
-                .font(.custom("Poppins-semibold", size: 18))
+            Text(LocalizedStringKey("travelCard"))
+                .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .semibold).font(size: 18))
                 .foregroundColor(.white)
             
-            Text("Select your ideal Travel Card for enjoyable public transport in Tbilisi.")
-                .font(Font.custom("Poppins", size: 11))
+            Text(LocalizedStringKey("travel-description"))
+                .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .regular).font(size: 11))
                 .foregroundColor(Color(red: 0.87, green: 0.87, blue: 0.87).opacity(0.7))
                 .frame(width: 240, alignment: .topLeading)
         }

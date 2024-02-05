@@ -18,12 +18,12 @@ struct StyledButton: View {
         Button(action: buttonAction, label: {
             Group {
                 if let icon = icon {
-                    Label(buttonText, systemImage: icon)
+                    Label(LocalizedStringKey(buttonText), systemImage: icon)
                 } else {
-                    Text(buttonText)
+                    Text(LocalizedStringKey(buttonText))
                 }
             }
-            .font(.custom("Poppins-semibold", size: 20))
+            .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .semibold).font(size: 20))
             .foregroundStyle(textColor)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 16)

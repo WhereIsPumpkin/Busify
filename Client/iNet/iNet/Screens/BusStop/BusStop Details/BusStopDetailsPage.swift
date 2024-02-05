@@ -151,7 +151,7 @@ final class BusStopDetailsPage: UIViewController {
     }
     
     private func setupTitleLabel() {
-        titleLabel.text = "Arrival Times:"
+        titleLabel.text = NSLocalizedString("arrivalTimes", comment: "")
         titleLabel.textColor = UIColor(.accent)
         titleLabel.font = UIFont(name: "Poppins-Bold", size: 20)
         titleWrapper.addArrangedSubview(titleLabel)

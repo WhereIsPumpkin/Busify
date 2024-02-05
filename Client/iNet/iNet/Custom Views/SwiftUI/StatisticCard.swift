@@ -18,7 +18,8 @@ struct StatisticCard: View {
             statisticText
             Spacer()
         }
-        .padding(.horizontal, 16)
+        .padding(.leading, 16)
+        .padding(.trailing, 8)
         .frame(width: 160, height: 64)
         .background(.base)
         .clipShape(RoundedRectangle(cornerRadius: 20))
@@ -43,9 +44,11 @@ struct StatisticCard: View {
                 .font(.custom("Poppins-bold", size: 14))
                 .foregroundStyle(.accent)
             
-            Text(transportType)
-                .font(.custom("Poppins", size: 12))
+            Text(LocalizedStringKey(transportType))
+                .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .regular).font(size: 12))
                 .foregroundStyle(.accent.opacity(0.6))
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
         }
     }
 }
