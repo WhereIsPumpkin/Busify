@@ -42,19 +42,19 @@ struct VerifiedView: View {
     }
     
     private var title: some View {
-        Text("Verified")
+        Text(LocalizedStringKey("verified"))
             .foregroundStyle(.accent)
-            .font(.custom("Poppins-semibold", size: 24))
+            .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .semibold).font(size : 24))
     }
     
     private var description: some View {
-        Text("Your account has been verified\nsuccessfully")
-          .font(Font.custom("Poppins", size: 12))
+        Text(LocalizedStringKey("verified-description"))
+            .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .regular).font(size : 12))
           .foregroundColor(Color.accentColor.opacity(0.5))
     }
     
     private var finishButton: some View {
-        StyledButton(buttonText: "Log In", buttonColor: Color.alternate, textColor: .white) {
+        StyledButton(buttonText: "login", buttonColor: Color.alternate, textColor: .white) {
             NavigationManager.shared.navigateToLogIn()
         }
     }

@@ -70,7 +70,7 @@ struct TravelCard: View {
     }
     
     private var durationView: some View {
-        Text("/\(duration)")
+        Text(LocalizedStringKey(duration))
             .font(.custom("Poppins-medium", size: 12))
             .padding(.top, 10)
             .lineLimit(0)
@@ -100,10 +100,10 @@ struct TravelCard: View {
                 isPurchasing = false
             }
         }, label: {
-            Text("Buy")
+            Text(LocalizedStringKey("buy"))
                 .frame(width: 64, height: 24)
                 .background(Color.alternate)
-                .font(.custom("Poppins-semibold", size: 10))
+                .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .semibold).font(size: 10))
                 .foregroundStyle(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
             

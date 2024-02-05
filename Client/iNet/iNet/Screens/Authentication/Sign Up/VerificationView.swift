@@ -38,12 +38,12 @@ struct VerificationView: View {
     private var textWrapper: some View {
         HStack {
             VStack(alignment: .leading, spacing: 14) {
-                Text("OTP Verification")
+                Text(LocalizedStringKey("otpVerification"))
                     .foregroundStyle(.accent )
-                    .font(.custom("Poppins-semibold", size: 24))
+                    .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .semibold).font(size : 24))
                 
-                Text("Enter the verification code we just send on your email adress")
-                    .font(Font.custom("Poppins", size: 12))
+                Text(LocalizedStringKey("otpDescription"))
+                    .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .semibold).font(size : 12))
                     .foregroundColor(Color.accentColor.opacity(0.5))
             }
             .padding(.top, 32)
@@ -57,7 +57,7 @@ struct VerificationView: View {
     }
     
     private var verifyButton: some View {
-        StyledButton(buttonText: "Verify", buttonColor: otpValue.allSatisfy { !$0.isEmpty } ? Color.alternate : .accent.opacity(0.5), textColor: .white) {
+        StyledButton(buttonText: "verify", buttonColor: otpValue.allSatisfy { !$0.isEmpty } ? Color.alternate : .accent.opacity(0.5), textColor: .white) {
             let token = otpValue.joined()
             Task {
                 let isVerified = await signUpViewModel.verifyUser(with: token)
@@ -72,11 +72,11 @@ struct VerificationView: View {
     
     private var resendButton: some View {
         HStack(spacing: 0) {
-            Text("Didn’t receive code? ")
-                .font(Font.custom("Poppins", size: 14))
+            Text(LocalizedStringKey("no-receive"))
+                .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .regular).font(size : 14))
                 .foregroundColor(.white.opacity(0.7))
-            Text("Resend")
-                .font(Font.custom("Poppins-Bold", size: 14))
+            Text(LocalizedStringKey("resend"))
+                .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .bold).font(size : 14))
                 .foregroundColor(.white)
                 .onTapGesture {
                     print("Resend tapped")
