@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-struct VerifiedView: View {
-    // MARK: Properties
-    
+struct VerifiedScreen: View {
+
     // MARK: Body
     var body: some View {
         VStack(spacing: 40) {
@@ -61,5 +60,5 @@ struct VerifiedView: View {
 }
 
 #Preview {
-    VerifiedView()
+    VerifiedScreen()
 }

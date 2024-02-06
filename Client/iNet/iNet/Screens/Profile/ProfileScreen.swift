@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-final class ProfileViewController: UIViewController {
+final class ProfileScreen: UIViewController {
     // MARK: - UI Components
     private let mainStack = UIStackView()
     private let balanceStack = UIStackView()
@@ -499,14 +499,8 @@ final class ProfileViewController: UIViewController {
     }
 }
 
-extension ProfileViewController: LanguageChangeViewControllerDelegate {
-    func didSelectLanguage(language: Language) {
-        print(language.rawValue)
-    }
-}
-
 @available(iOS 17, *)
 #Preview {
-    ProfileViewController()
+    ProfileScreen()
 }
 

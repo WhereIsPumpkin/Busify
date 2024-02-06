@@ -31,14 +31,14 @@ final class NavigationManager {
     }
     
     func setupNavigationController() -> UINavigationController {
-        let welcomeVC = WelcomeView(signUpViewModel: authViewModel)
+        let welcomeVC = WelcomeScreen(signUpViewModel: authViewModel)
         let welcomeViewController = UIHostingController(rootView: welcomeVC)
         return UINavigationController(rootViewController: welcomeViewController)
     }
     
     // MARK: - Log In Process
     func navigateToLogIn() {
-        let loginView = LoginView(viewModel: authViewModel)
+        let loginView = LoginScreen(viewModel: authViewModel)
         let loginViewController = UIHostingController(rootView: loginView)
         if let navigationController = window?.rootViewController as? UINavigationController {
             navigationController.popToRootViewController(animated: false)
@@ -54,26 +54,26 @@ final class NavigationManager {
     
     // MARK: - Sign Up Process
     func navigateToSignUp() {
-        let signUpView = RegisterView(viewModel: authViewModel)
+        let signUpView = RegisterScreen(viewModel: authViewModel)
         navigateToViewController(UIHostingController(rootView: signUpView))
     }
     
     func navigateToVerification() {
-        let verificationView = VerificationView(signUpViewModel: authViewModel)
+        let verificationView = VerificationScreen(signUpViewModel: authViewModel)
         navigateToViewController(UIHostingController(rootView: verificationView))
     }
     
     func navigateToVerified() {
-        let verifiedView = VerifiedView()
+        let verifiedView = VerifiedScreen()
         navigateToViewController(UIHostingController(rootView: verifiedView))
     }
     
     func navigateToBusViewController() {
-        navigateToViewController(BusStopSearchViewController())
+        navigateToViewController(BusStopSearchScreen())
     }
     
     func navigateToBusStopDetailsPage(arrivalTimes: ArrivalTimesResponse?, stopId: String) {
-        let busStopDetailsPage = BusStopDetailsPage(arrivalTimes: arrivalTimes, stopId: stopId)
+        let busStopDetailsPage = BusStopDetailsScreen(arrivalTimes: arrivalTimes, stopId: stopId)
         
         if let tabBarController = window?.rootViewController as? UITabBarController,
            let navigationController = tabBarController.selectedViewController as? UINavigationController {

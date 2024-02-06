@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct VerificationView: View {
+struct VerificationScreen: View {
     // MARK: - Properties
     @ObservedObject var signUpViewModel: AuthViewModel
     @State private var otpValue: [String] = Array(repeating: "", count: 4)
@@ -88,5 +88,5 @@ struct VerificationView: View {
 }
 
 #Preview {
-    VerificationView(signUpViewModel: AuthViewModel())
+    VerificationScreen(signUpViewModel: AuthViewModel())
 }

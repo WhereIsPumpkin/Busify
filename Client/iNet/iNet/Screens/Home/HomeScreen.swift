@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct HomeScreen: View {
     // MARK: - Properties
     @StateObject var viewModel = HomeViewModel()
     @State private var user: User? = UserSessionManager.shared.currentUser
@@ -254,5 +254,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeScreen()
 }

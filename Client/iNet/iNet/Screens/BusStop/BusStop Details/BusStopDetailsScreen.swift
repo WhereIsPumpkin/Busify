@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class BusStopDetailsPage: UIViewController {
+final class BusStopDetailsScreen: UIViewController {
     // MARK: - Properties
     var mainStackView = UIStackView()
     var heroImage = UIImageView(image: UIImage(resource: .busStop))
@@ -229,7 +229,7 @@ final class BusStopDetailsPage: UIViewController {
     }
 }
 
-extension BusStopDetailsPage: UICollectionViewDelegate, UICollectionViewDataSource {
+extension BusStopDetailsScreen: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let arrivalTimes = arrivalTimes {
             return arrivalTimes.arrivalTime.count
@@ -266,7 +266,7 @@ extension BusStopDetailsPage: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 
-extension BusStopDetailsPage: UICollectionViewDelegateFlowLayout {
+extension BusStopDetailsScreen: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.width
         let height: CGFloat = 80
@@ -281,5 +281,5 @@ extension BusStopDetailsPage: UICollectionViewDelegateFlowLayout {
 
 @available(iOS 17, *)
 #Preview {
-    BusStopDetailsPage(arrivalTimes: ArrivalTimesResponse(arrivalTime: mockArrivalTimes.arrivalTime), stopId: "1234")
+    BusStopDetailsScreen(arrivalTimes: ArrivalTimesResponse(arrivalTime: mockArrivalTimes.arrivalTime), stopId: "1234")
 }

@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 
-final class BusStopSearchViewController: UIViewController {
+final class BusStopSearchScreen: UIViewController {
     // MARK: - Properties
     private let titleLabel = UILabel()
     private var originalTopConstraint: NSLayoutConstraint!
@@ -163,7 +163,7 @@ final class BusStopSearchViewController: UIViewController {
 }
 
 // MARK: - Extensions
-extension BusStopSearchViewController: UITextFieldDelegate {
+extension BusStopSearchScreen: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == busSearchTextField {
@@ -197,7 +197,7 @@ extension BusStopSearchViewController: UITextFieldDelegate {
     
 }
 
-extension BusStopSearchViewController: UITableViewDelegate, UITableViewDataSource {
+extension BusStopSearchScreen: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfFilteredLocations
@@ -223,7 +223,7 @@ extension BusStopSearchViewController: UITableViewDelegate, UITableViewDataSourc
         Task {
              await viewModel.fetchBusStopArrivalTimes(stopID: selectedBusStop.code ?? "1466") {
                 DispatchQueue.main.async { [weak self] in
-                    let detailsVC = BusStopDetailsPage(arrivalTimes: self?.viewModel.selectedBusStopArrivalTimes, stopId: selectedBusStop.code ?? "1466")
+                    let detailsVC = BusStopDetailsScreen(arrivalTimes: self?.viewModel.selectedBusStopArrivalTimes, stopId: selectedBusStop.code ?? "1466")
                     detailsVC.title = String(format: NSLocalizedString("stopN", comment: "Bus stop title"), selectedBusStop.code ?? "0000")
                     self?.navigationController?.pushViewController(detailsVC, animated: true)
                 }
@@ -233,7 +233,7 @@ extension BusStopSearchViewController: UITableViewDelegate, UITableViewDataSourc
 }
 
 // MARK: - Animation Controll
-extension BusStopSearchViewController {
+extension BusStopSearchScreen {
     private func animateTextFieldFocused(_ focused: Bool) {
         UIView.animate(withDuration: 0.3) {
             if focused {

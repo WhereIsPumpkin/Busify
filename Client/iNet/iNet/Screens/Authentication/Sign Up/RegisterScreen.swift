@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RegisterView: View {
+struct RegisterScreen: View {
     // MARK: - Properties
     @ObservedObject var viewModel: AuthViewModel
     
@@ -106,5 +106,5 @@ struct RegisterView: View {
 }
 
 #Preview {
-    RegisterView(viewModel: AuthViewModel())
+    RegisterScreen(viewModel: AuthViewModel())
 }
