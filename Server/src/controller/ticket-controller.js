@@ -29,6 +29,18 @@ export const buyTicket = async (req, res) => {
       duration,
       userId,
     })
+    
+    const durationMap = {
+      duration_90min: "60 წუთი",
+      duration_Daily: "1 დღე",
+      duration_Weekly: "1 კვირა",
+      Monthly: "1 თვე",
+      Quarterly: "3 თვე",
+      Semiannual: "6 თვე",
+      Annual: "1 წელი ",
+    }
+    
+    const formattedDuration = durationMap[duration]
 
     const savedTicket = await ticket.save()
 
@@ -40,7 +52,7 @@ export const buyTicket = async (req, res) => {
       from: "inetsupersocial@gmail.com",
       to: user.email,
       subject: "Your Bus Ticket",
-      html: ticketReceiptTemplate(cardName, price, duration),
+      html: ticketReceiptTemplate(cardName, price, formattedDuration),
       attachments: [
         {
           filename: "qrcode.png",

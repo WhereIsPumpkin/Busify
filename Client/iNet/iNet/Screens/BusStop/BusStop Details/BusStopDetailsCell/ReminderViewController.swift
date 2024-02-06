@@ -232,16 +232,35 @@ final class ReminderViewController: UIViewController {
             NotificationManager.shared.dispatchNotification(
                 identifier: "nearbyReminder",
                 title: "Reminder‼",
-                body: "Your bus, #\(busInfo.routeNumber), will arrive in\(nearbyTime.toMinutes()) minutes.",
+                body: "Your bus, #\(busInfo.routeNumber), will arrive in \(nearbyTime.toMinutes()) minutes.",
                 hour: hour,
                 minute: minute,
                 isDaily: false
             )
             dismiss(animated: true)
         } else if let timeReminder = timeReminderTime {
-            print("Time Reminder is set for: \(timeReminder)")
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm"
+            
+            if let reminderDate = formatter.date(from: timeReminder) {
+                let calendar = Calendar.current
+                let hour = calendar.component(.hour, from: reminderDate)
+                let minute = calendar.component(.minute, from: reminderDate)
+                
+                NotificationManager.shared.dispatchNotification(
+                    identifier: "timeReminder",
+                    title: "Time to Go!",
+                    body: "It's time for your bus, #\(busInfo.routeNumber). Departure in just a few!",
+                    hour: hour,
+                    minute: minute,
+                    isDaily: allDaySwitch.isOn
+                )
+                dismiss(animated: true)
+            }
         } else {
-            print("No reminder is set")
+            let alert = UIAlertController(title: "No Reminder Set", message: "Please select a reminder time.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
     }
     
