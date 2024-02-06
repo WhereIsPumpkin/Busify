@@ -22,7 +22,7 @@ class IconLabelStackView: UIView {
     
     init(icon: String, title: String, datePickerStyle: UIDatePicker.Mode) {
         iconImageView = UIImageView(image: UIImage(systemName: icon))
-        titleLabel.text = title
+        titleLabel.text = NSLocalizedString(title, comment: "")
         self.datePickerStyle = datePickerStyle
         super.init(frame: .zero)
         addSubview(mainStack)

@@ -11,7 +11,6 @@ import SwiftUI
 final class ProfileViewController: UIViewController {
     // MARK: - UI Components
     private let mainStack = UIStackView()
-    private let settingsLabel = UILabel()
     private let balanceStack = UIStackView()
     private let balanceTitleStack = UIStackView()
     private let appLabel = UILabel()
@@ -29,8 +28,7 @@ final class ProfileViewController: UIViewController {
     private let viewModel = ProfileViewModel()
     private var isCardPresent: Bool = false
     private var cardCheckAnimation: CardCheckAnimation?
-    private let languageStack = LanguageChangeViewController()
-    
+
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +41,6 @@ final class ProfileViewController: UIViewController {
         configureViewAppearance()
         configureMainStack()
         checkIfUserCardAvailable()
-        setupLanguageViewController()
     }
     
     private func configureViewAppearance() {
@@ -52,10 +49,6 @@ final class ProfileViewController: UIViewController {
     
     private func setupNotificationObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(cardUpdatedNotificationReceived(_:)), name: .didUpdateUser, object: nil)
-    }
-    
-    private func setupLanguageViewController() {
-        languageStack.delegate = self
     }
     
     @objc private func cardUpdatedNotificationReceived(_ notification: Notification) {
@@ -68,7 +61,6 @@ final class ProfileViewController: UIViewController {
             isCardPresent = cardAvailable
         }
     }
-    
     
     private func configureCardDetailsView() {
         clearNewCardPlaceholderStack()
@@ -88,19 +80,8 @@ final class ProfileViewController: UIViewController {
     }
     
     private func addQuickActionsStackView() {
-        guard let index = mainStack.arrangedSubviews.firstIndex(of: newCardPlaceholderStack) else { return }
-        let nextIndex = index + 1
-        
-        if !mainStack.arrangedSubviews.contains(quickActionsStackView) {
-            if mainStack.arrangedSubviews.count > nextIndex {
-                mainStack.insertArrangedSubview(quickActionsStackView, at: nextIndex)
-                mainStack.setCustomSpacing(22, after: quickActionsStackView)
-                mainStack.addArrangedSubview(UIView())
-            } else {
-                mainStack.addArrangedSubview(quickActionsStackView)
-            }
-        }
-        
+        mainStack.addArrangedSubview(quickActionsStackView)
+        mainStack.addArrangedSubview(UIView())
         quickActionsStackView.transform = CGAffineTransform(translationX: self.view.bounds.width, y: 0)
         animateQuickActionsStackView()
     }
@@ -171,7 +152,6 @@ final class ProfileViewController: UIViewController {
         configureBalanceStack()
         setupQuickActionsStack()
         // TODO: Move somewhere else
-        setupSettingsLabel()
         addMainStackSubviews()
         setupMainStackCustomSpacings()
     }
@@ -199,14 +179,11 @@ final class ProfileViewController: UIViewController {
     private func addMainStackSubviews() {
         mainStack.addArrangedSubview(balanceStack)
         mainStack.addArrangedSubview(newCardPlaceholderStack)
-        mainStack.addArrangedSubview(settingsLabel)
-        mainStack.addArrangedSubview(languageStack)
     }
     
     private func setupMainStackCustomSpacings() {
         mainStack.setCustomSpacing(24, after: balanceStack)
         mainStack.setCustomSpacing(20, after: newCardPlaceholderStack)
-        mainStack.setCustomSpacing(16, after: settingsLabel)
     }
     
     // MARK: - Balance Stack Setup
@@ -330,13 +307,17 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc private func handleCardPlaceholderTapGesture() {
-        
+        var customHeight = 0.0
         let addNewCardVC = UIHostingController(rootView: AddNewCardView(viewModel: AddNewCardViewModel(completion: {
             self.showCardCheckAnimation()
         })))
         
         if let sheet = addNewCardVC.sheetPresentationController {
-            let customHeight = self.view.frame.height * 0.40
+            if view.frame.height < 670 {
+                customHeight = self.view.frame.height * 0.5
+            } else {
+                customHeight = self.view.frame.height * 0.40
+            }
             sheet.detents = [.custom { context in customHeight }]
             sheet.prefersGrabberVisible = true
             sheet.preferredCornerRadius = 20
@@ -418,12 +399,6 @@ final class ProfileViewController: UIViewController {
         addNewCardLabelStack.addArrangedSubview(addCardLabel)
     }
     
-    private func setupSettingsLabel() {
-        settingsLabel.text = "Settings"
-        settingsLabel.textColor = .white
-        settingsLabel.font = UIFont(name: "Poppins-Medium", size: 18)
-    }
-    
     private func setupPlusIcon() {
         plusIconConfig()
         plusIcon.tintColor = UIColor(resource: .alternate)
@@ -470,8 +445,12 @@ final class ProfileViewController: UIViewController {
             let FillBalanceVC = UIHostingController(rootView: swiftUIView)
             
             if let sheet = FillBalanceVC.sheetPresentationController {
-                let customHeight = self.view.frame.height * 0.3
-                print(self.view.frame.height)
+                var customHeight: Double = 0.0
+                if self.view.frame.height < 670 {
+                    customHeight = self.view.frame.height * 0.36
+                } else {
+                    customHeight = self.view.frame.height * 0.3
+                }
                 sheet.detents = [.custom { context in customHeight }]
                 sheet.prefersGrabberVisible = true
                 sheet.preferredCornerRadius = 20
@@ -482,12 +461,16 @@ final class ProfileViewController: UIViewController {
         
         fillFundsAction.icon = UIImage(named: "moneyPlus")
         
-        deleteCardAction.configure(icon: UIImage(systemName: "trash.fill"), title: "Delete \nCard") { [self] in
-            Task {
-                
-                await viewModel.deleteCard()
-            }
-            print("Delete Card tapped")
+        deleteCardAction.configure(icon: UIImage(systemName: "trash.fill"), title: "Delete \nCard") { [weak self] in
+            let alert = UIAlertController(title: "Delete Card", message: "Are you sure you want to delete this card?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                Task {
+                    await self?.viewModel.deleteCard()
+                }
+                print("Card deletion confirmed")
+            }))
+            self?.present(alert, animated: true)
         }
         deleteCardAction.tintColor = .red
     }
