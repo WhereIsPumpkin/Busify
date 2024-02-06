@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Reminder {
+final class Reminder {
     enum AlertType {
         case quick(minutes: Int)
         case specificDate(date: Date, isAllDay: Bool)

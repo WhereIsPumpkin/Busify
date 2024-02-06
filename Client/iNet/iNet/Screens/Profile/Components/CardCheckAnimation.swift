@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 
-class CardCheckAnimation: UIStackView {
+final class CardCheckAnimation: UIStackView {
     // MARK: - Properties
     private let busAnimationView = LottieAnimationView(name: "cardScan")
     private let titleLabel = UILabel()

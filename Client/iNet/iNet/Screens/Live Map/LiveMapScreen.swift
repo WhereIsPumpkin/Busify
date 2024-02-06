@@ -1,8 +1,7 @@
 import UIKit
 import MapKit
 
-class LiveMapScreen: UIViewController {
-    
+final class LiveMapScreen: UIViewController {
     // MARK: - Properties
     private let locationManager = CLLocationManager()
     private var mapView: MKMapView?

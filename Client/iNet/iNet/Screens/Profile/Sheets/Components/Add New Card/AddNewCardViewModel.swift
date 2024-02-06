@@ -8,7 +8,7 @@
 import Foundation
 import NetSwift
 
-class AddNewCardViewModel: ObservableObject {
+final class AddNewCardViewModel: ObservableObject {
     // MARK: - Properties
     @Published var cardNumber = ""
     @Published var cardName = ""

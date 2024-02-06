@@ -7,7 +7,7 @@
 
 import UIKit
 
-class QuickActionStackView: UIStackView {
+final class QuickActionStackView: UIStackView {
     
     // MARK: - Properties
     private let iconHolderView = UIView()

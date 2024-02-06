@@ -203,31 +203,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7510F73C2B5A96BC003C24BB /* SwiftUI */ = {
-			isa = PBXGroup;
-			children = (
-				75479BBF2B56E37B00FD79F7 /* RadioButtonField.swift */,
-				75479BC82B56ED7500FD79F7 /* StyledTextField.swift */,
-				75479BCA2B56F18300FD79F7 /* StyledButton.swift */,
-				75E217DC2B57D81B006B9655 /* OTPTextField.swift */,
-				7580626B2B681DE700A0A157 /* StatisticCard.swift */,
-				758062712B68D95900A0A157 /* TravelCard.swift */,
-				7580626D2B684B9900A0A157 /* BusStopCard.swift */,
-			);
-			path = SwiftUI;
-			sourceTree = "<group>";
-		};
-		7510F73D2B5A96D5003C24BB /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-				75A0BE002B5B1FB900B90EEA /* CustomStyleButton.swift */,
-				75A0BE022B5B202600B90EEA /* CustomStyleTextField.swift */,
-				7562A5052B64451300A2F50B /* IconLabelStackView.swift */,
-				758E2B722B72580000D19792 /* RoundedIconButton.swift */,
-			);
-			path = UIKit;
-			sourceTree = "<group>";
-		};
 		7510F7482B5B0032003C24BB /* BusStop */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,8 +403,9 @@
 		75479BC72B56ECA600FD79F7 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				7510F73C2B5A96BC003C24BB /* SwiftUI */,
-				7510F73D2B5A96D5003C24BB /* UIKit */,
+				758E2B782B728C9C00D19792 /* Views */,
+				758E2B772B728C8900D19792 /* Text Fields */,
+				758E2B762B728C6E00D19792 /* Buttons */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -507,6 +483,65 @@
 			path = "Fill Balance";
 			sourceTree = "<group>";
 		};
+		758E2B762B728C6E00D19792 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				75479BCA2B56F18300FD79F7 /* StyledButton.swift */,
+				75479BBF2B56E37B00FD79F7 /* RadioButtonField.swift */,
+				758E2B722B72580000D19792 /* RoundedIconButton.swift */,
+				75A0BE002B5B1FB900B90EEA /* CustomStyleButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		758E2B772B728C8900D19792 /* Text Fields */ = {
+			isa = PBXGroup;
+			children = (
+				75A0BE022B5B202600B90EEA /* CustomStyleTextField.swift */,
+				75479BC82B56ED7500FD79F7 /* StyledTextField.swift */,
+				75E217DC2B57D81B006B9655 /* OTPTextField.swift */,
+			);
+			path = "Text Fields";
+			sourceTree = "<group>";
+		};
+		758E2B782B728C9C00D19792 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7580626B2B681DE700A0A157 /* StatisticCard.swift */,
+				758062712B68D95900A0A157 /* TravelCard.swift */,
+				7580626D2B684B9900A0A157 /* BusStopCard.swift */,
+				7562A5052B64451300A2F50B /* IconLabelStackView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		758E2B792B728CC000D19792 /* Http Body */ = {
+			isa = PBXGroup;
+			children = (
+				7599CD142B5836E900F4FD86 /* EmailToken.swift */,
+				75E217DF2B57E4FA006B9655 /* User.swift */,
+				7599CD1D2B59907600F4FD86 /* LoginDetails.swift */,
+				7580627D2B6A578600A0A157 /* RegistrationDetails.swift */,
+				758062792B6A569000A0A157 /* LoginResponse.swift */,
+				758062832B6A9D6500A0A157 /* BookmarkToggle.swift */,
+			);
+			path = "Http Body";
+			sourceTree = "<group>";
+		};
+		758E2B7A2B728CEF00D19792 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				75A0BE042B5C217300B90EEA /* BusStop.swift */,
+				75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */,
+				7562A4FD2B6377C300A2F50B /* ReminderModel.swift */,
+				758062752B692E0600A0A157 /* Passengers.swift */,
+				751CBD872B7032D6000A7DA0 /* App Language.swift */,
+				751CBD692B6F91EA000A7DA0 /* TransitCard.swift */,
+				751CBD6B2B700EB1000A7DA0 /* BaseURL.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		7599CD1A2B5942FF00F4FD86 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -548,19 +583,8 @@
 		75E217DE2B57E4EE006B9655 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				751CBD872B7032D6000A7DA0 /* App Language.swift */,
-				751CBD6B2B700EB1000A7DA0 /* BaseURL.swift */,
-				75E217DF2B57E4FA006B9655 /* User.swift */,
-				7599CD142B5836E900F4FD86 /* EmailToken.swift */,
-				7599CD1D2B59907600F4FD86 /* LoginDetails.swift */,
-				75A0BE042B5C217300B90EEA /* BusStop.swift */,
-				75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */,
-				7562A4FD2B6377C300A2F50B /* ReminderModel.swift */,
-				758062752B692E0600A0A157 /* Passengers.swift */,
-				758062792B6A569000A0A157 /* LoginResponse.swift */,
-				7580627D2B6A578600A0A157 /* RegistrationDetails.swift */,
-				758062832B6A9D6500A0A157 /* BookmarkToggle.swift */,
-				751CBD692B6F91EA000A7DA0 /* TransitCard.swift */,
+				758E2B7A2B728CEF00D19792 /* App */,
+				758E2B792B728CC000D19792 /* Http Body */,
 			);
 			path = Model;
 			sourceTree = "<group>";

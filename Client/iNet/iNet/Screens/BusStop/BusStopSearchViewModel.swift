@@ -9,9 +9,11 @@ import Foundation
 import NetSwift
 
 final class BusStopSearchViewModel {
+    // MARK: - Properties
     private var filteredLocations: Locations = []
     var selectedBusStopArrivalTimes: ArrivalTimesResponse?
     
+    // MARK: - Initialization
     init() {
         Task {
             await initializeBusStops()

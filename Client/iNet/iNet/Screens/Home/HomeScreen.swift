@@ -14,6 +14,7 @@ struct HomeScreen: View {
     @State private var showingErrorAlert = false
     @State private var isPurchasing = false
     
+    // MARK: - Body
     var body: some View {
         ZStack {
             backgroundColor
@@ -30,6 +31,7 @@ struct HomeScreen: View {
         }
     }
     
+    // MARK: - Computer Properties
     private var backgroundColor: some View {
         Color.background.ignoresSafeArea()
     }

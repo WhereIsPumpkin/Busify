@@ -7,7 +7,7 @@
 import CreditCardScanner
 import UIKit
 
-class CardScannerViewController: UIViewController, CreditCardScannerViewControllerDelegate {
+final class CardScannerViewController: UIViewController, CreditCardScannerViewControllerDelegate {
     var completion: ((CreditCard) -> Void)?
 
     override func viewDidAppear(_ animated: Bool) {
