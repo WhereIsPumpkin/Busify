@@ -70,6 +70,7 @@
 		758B9E6C2B6EB10800F23236 /* FillBalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B9E6B2B6EB10800F23236 /* FillBalanceViewModel.swift */; };
 		758B9E6E2B6EE3C800F23236 /* cardScan.json in Resources */ = {isa = PBXBuildFile; fileRef = 758B9E6D2B6EE3C800F23236 /* cardScan.json */; };
 		758B9E702B6EE49800F23236 /* CardCheckAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B9E6F2B6EE49800F23236 /* CardCheckAnimation.swift */; };
+		758E2B732B72580000D19792 /* RoundedIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758E2B722B72580000D19792 /* RoundedIconButton.swift */; };
 		7599CD132B57F35E00F4FD86 /* NetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7599CD122B57F35E00F4FD86 /* NetSwift */; };
 		7599CD152B5836E900F4FD86 /* EmailToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD142B5836E900F4FD86 /* EmailToken.swift */; };
 		7599CD172B583CB400F4FD86 /* VerifiedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD162B583CB400F4FD86 /* VerifiedView.swift */; };
@@ -169,6 +170,7 @@
 		758B9E6B2B6EB10800F23236 /* FillBalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillBalanceViewModel.swift; sourceTree = "<group>"; };
 		758B9E6D2B6EE3C800F23236 /* cardScan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardScan.json; sourceTree = "<group>"; };
 		758B9E6F2B6EE49800F23236 /* CardCheckAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCheckAnimation.swift; sourceTree = "<group>"; };
+		758E2B722B72580000D19792 /* RoundedIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedIconButton.swift; sourceTree = "<group>"; };
 		7599CD142B5836E900F4FD86 /* EmailToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailToken.swift; sourceTree = "<group>"; };
 		7599CD162B583CB400F4FD86 /* VerifiedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiedView.swift; sourceTree = "<group>"; };
 		7599CD182B58437600F4FD86 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				75A0BE002B5B1FB900B90EEA /* CustomStyleButton.swift */,
 				75A0BE022B5B202600B90EEA /* CustomStyleTextField.swift */,
 				7562A5052B64451300A2F50B /* IconLabelStackView.swift */,
+				758E2B722B72580000D19792 /* RoundedIconButton.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				758062632B66922300A0A157 /* LiveMapViewModel.swift in Sources */,
 				7562A5062B64451300A2F50B /* IconLabelStackView.swift in Sources */,
 				7599CD232B5996AA00F4FD86 /* TabBarController.swift in Sources */,
+				758E2B732B72580000D19792 /* RoundedIconButton.swift in Sources */,
 				758062842B6A9D6500A0A157 /* BookmarkToggle.swift in Sources */,
 				75217B2E2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift in Sources */,
 				751CBD752B701E28000A7DA0 /* LanguageChangeViewController.swift in Sources */,

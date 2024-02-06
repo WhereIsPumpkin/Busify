@@ -89,4 +89,11 @@ final class NavigationManager {
             navigationController.pushViewController(viewController, animated: true)
         }
     }
+    
+    // MARK: - Log Out Process
+    func logout() {
+        UserDefaults.standard.removeObject(forKey: "userToken")
+        
+        navigateToInitialScreen()
+    }
 }

@@ -28,7 +28,13 @@ final class ProfileViewController: UIViewController {
     private let viewModel = ProfileViewModel()
     private var isCardPresent: Bool = false
     private var cardCheckAnimation: CardCheckAnimation?
-
+    private let logoutButton: RoundedIconButton = {
+        let config = ButtonConfig(title: "logOut", systemImageName: "door.left.hand.open", action: {
+            NavigationManager.shared.logout()
+        })
+        return RoundedIconButton(config: config)
+    }()
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +91,7 @@ final class ProfileViewController: UIViewController {
         quickActionsStackView.transform = CGAffineTransform(translationX: self.view.bounds.width, y: 0)
         animateQuickActionsStackView()
     }
-
+    
     private func animateQuickActionsStackView() {
         UIView.animate(withDuration: 0.5, delay: 0.3, options: [], animations: {
             self.quickActionsStackView.transform = .identity
@@ -151,9 +157,9 @@ final class ProfileViewController: UIViewController {
         configureMainStackAppearance()
         configureBalanceStack()
         setupQuickActionsStack()
-        // TODO: Move somewhere else
         addMainStackSubviews()
         setupMainStackCustomSpacings()
+        setupLogoutButton()
     }
     
     private func addMainStackToView() {
@@ -479,6 +485,17 @@ final class ProfileViewController: UIViewController {
         quickActionsStackView.addArrangedSubview(fillFundsAction)
         quickActionsStackView.addArrangedSubview(deleteCardAction)
         quickActionsStackView.addArrangedSubview(UIView())
+    }
+    
+    private func setupLogoutButton() {
+        view.addSubview(logoutButton)
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            logoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            logoutButton.heightAnchor.constraint(equalToConstant: 48)
+        ])
     }
 }
 
