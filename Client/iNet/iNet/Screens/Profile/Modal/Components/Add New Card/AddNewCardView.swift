@@ -35,7 +35,7 @@ struct AddNewCardView: View {
     }
     
     private var title: some View {
-        Text("Add card")
+        Text(LocalizedStringKey("addCardTitle"))
             .font(.custom("Poppins-medium", size: 18))
             .foregroundStyle(.white)
     }
@@ -56,7 +56,7 @@ struct AddNewCardView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 22, height: 22)
             
-            TextField("", text: $viewModel.cardNumber.max(19), prompt: Text("Card number").foregroundStyle(.white.opacity(0.5)))
+            TextField("", text: $viewModel.cardNumber.max(19), prompt: Text(LocalizedStringKey("cardNumber")).foregroundStyle(.white.opacity(0.5)))
                 .keyboardType(.numberPad)
                 .font(.custom("Poppins-medium", size: 14))
                 .onChange(of: viewModel.cardNumber) { oldValue, newValue in
@@ -101,7 +101,7 @@ struct AddNewCardView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 22, height: 22)
             
-            TextField("", text: $viewModel.cardName, prompt: Text("Name on card").foregroundStyle(.white.opacity(0.5)))
+            TextField("", text: $viewModel.cardName, prompt: Text(LocalizedStringKey("cardName")).foregroundStyle(.white.opacity(0.5)))
                 .keyboardType(.alphabet)
                 .font(.custom("Poppins-medium", size: 14))
         }
@@ -130,7 +130,7 @@ struct AddNewCardView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 22, height: 22)
             
-            TextField("", text: $viewModel.cardDate, prompt: Text("MM/YY").foregroundStyle(.white.opacity(0.5)))
+            TextField("", text: $viewModel.cardDate, prompt: Text(LocalizedStringKey("monthYear")).foregroundStyle(.white.opacity(0.5)))
                 .onChange(of: viewModel.cardDate) { oldValue, newValue in
                     viewModel.updateCardDate(with: newValue, oldValue: oldValue)
                 }
@@ -184,7 +184,7 @@ struct AddNewCardView: View {
     private var saveButtonLabel: some View {
         HStack {
             Spacer()
-            Text("Save")
+            Text(LocalizedStringKey("save"))
                 .foregroundStyle(.white)
                 .font(.custom("Poppins-semibold", size: 16))
             Spacer()

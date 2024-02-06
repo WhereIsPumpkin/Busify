@@ -268,13 +268,13 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setupAppLabel() {
-        appLabel.text = "App"
+        appLabel.text = NSLocalizedString("app", comment: "")
         appLabel.textColor = UIColor(red: 214/255, green: 208/255, blue: 208/255, alpha: 0.8)
         appLabel.font = UIFont(name: "Poppins-regular", size: 14)
     }
     
     private func setupBalanceLabel() {
-        balanceLabel.text = "Balance:"
+        balanceLabel.text =  NSLocalizedString("balance", comment: "")
         balanceLabel.textColor = .white
         balanceLabel.font = UIFont(name: "Poppins-medium", size: 22)
     }
@@ -420,7 +420,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setupAddCardLabel() {
-        addCardLabel.text = "Add new card"
+        addCardLabel.text = NSLocalizedString("addCard", comment: "")
         addCardLabel.textColor = .white
         addCardLabel.font = UIFont(name: "Poppins-semibold", size: 16)
     }
@@ -439,7 +439,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setupActionItems() {
-        fillFundsAction.configure(icon: UIImage(systemName: "plus.circle"), title: "Fill \nBalance") {
+        fillFundsAction.configure(icon: UIImage(systemName: "plus.circle"), title: "fillBalance") {
             
             let swiftUIView = FillBalanceView()
             let FillBalanceVC = UIHostingController(rootView: swiftUIView)
@@ -461,7 +461,7 @@ final class ProfileViewController: UIViewController {
         
         fillFundsAction.icon = UIImage(named: "moneyPlus")
         
-        deleteCardAction.configure(icon: UIImage(systemName: "trash.fill"), title: "Delete \nCard") { [weak self] in
+        deleteCardAction.configure(icon: UIImage(systemName: "trash.fill"), title: "deleteCard") { [weak self] in
             let alert = UIAlertController(title: "Delete Card", message: "Are you sure you want to delete this card?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
