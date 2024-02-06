@@ -30,7 +30,7 @@ class TabBarController: UITabBarController {
     private func createHomeScreenVC() -> UINavigationController {
         let homeVC = UIHostingController(rootView: HomeView())
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
-        homeVC.title = "Home"
+        homeVC.title = NSLocalizedString("home", comment: "")
         homeVC.navigationItem.title = ""
         let navigationController = UINavigationController(rootViewController: homeVC)
         navigationController.hidesBarsOnSwipe = true
@@ -40,21 +40,21 @@ class TabBarController: UITabBarController {
     
     private func createServicesVC() -> UINavigationController {
         let busStopVC = UINavigationController(rootViewController: BusStopSearchViewController())
-        busStopVC.tabBarItem = UITabBarItem(title: "Bus Stop", image: UIImage(resource: .busStopIconTest), selectedImage: nil)
+        busStopVC.tabBarItem = UITabBarItem(title: NSLocalizedString("busStop", comment: ""), image: UIImage(resource: .busStopIconTest), selectedImage: nil)
         return busStopVC
     }
     
     private func createLiveMapVC() -> UINavigationController {
         let liveMapVC = UINavigationController(rootViewController: LiveMapViewController())
         liveMapVC.tabBarItem.image = UIImage(systemName: "mappin.and.ellipse")
-        liveMapVC.title = "Live Map"
+        liveMapVC.title = NSLocalizedString("liveMap", comment: "")
         return liveMapVC
     }
     
     private func createProfileVC() -> UINavigationController {
         let profileVC = UINavigationController(rootViewController: ProfileViewController())
-        profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
-        profileVC.title = "Profile"
+        profileVC.tabBarItem.image = UIImage(systemName: "circle.grid.2x2.fill")
+        profileVC.title = NSLocalizedString("services", comment: "")
         return profileVC
     }
     

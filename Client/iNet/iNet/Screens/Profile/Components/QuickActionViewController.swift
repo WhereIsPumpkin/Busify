@@ -41,7 +41,7 @@ class QuickActionStackView: UIStackView {
     
     func configure(icon: UIImage?, title: String, action: @escaping () -> Void) {
         iconImageView.image = icon
-        actionTitleLabel.text = title
+        actionTitleLabel.text = NSLocalizedString(title, comment: "")
         self.actionHandler = action
         setupTapGesture()
     }

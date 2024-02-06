@@ -224,7 +224,7 @@ extension BusStopSearchViewController: UITableViewDelegate, UITableViewDataSourc
              await viewModel.fetchBusStopArrivalTimes(stopID: selectedBusStop.code ?? "1466") {
                 DispatchQueue.main.async { [weak self] in
                     let detailsVC = BusStopDetailsPage(arrivalTimes: self?.viewModel.selectedBusStopArrivalTimes, stopId: selectedBusStop.code ?? "1466")
-                    detailsVC.title = "Stop: #\(selectedBusStop.code ?? "0000")"
+                    detailsVC.title = String(format: NSLocalizedString("stopN", comment: "Bus stop title"), selectedBusStop.code ?? "0000")
                     self?.navigationController?.pushViewController(detailsVC, animated: true)
                 }
             }

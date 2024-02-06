@@ -8,7 +8,6 @@
 import Foundation
 import NetSwift
 
-
 final class ProfileViewModel {
     
     func deleteCard() async -> Void {

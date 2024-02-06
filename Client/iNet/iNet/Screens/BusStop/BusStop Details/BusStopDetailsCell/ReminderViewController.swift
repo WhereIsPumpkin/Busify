@@ -23,8 +23,8 @@ final class ReminderViewController: UIViewController {
     private let allDaySwitch = UISwitch()
     private let setReminderButton = UIButton()
     var busInfo: ArrivalTime = ArrivalTime(routeNumber: "000", destinationStopName: "NAN", arrivalTime: 0)
-    let nearbyReminderStack = IconLabelStackView(icon: "deskclock", title: "Set Nearby Reminder", datePickerStyle: .countDownTimer)
-    let timeReminderStack = IconLabelStackView(icon: "cursorarrow.click.badge.clock", title: "Set Time Reminder", datePickerStyle: .time)
+    let nearbyReminderStack = IconLabelStackView(icon: "deskclock", title: "setNearbyReminder", datePickerStyle: .countDownTimer)
+    let timeReminderStack = IconLabelStackView(icon: "cursorarrow.click.badge.clock", title: "setTimeReminder", datePickerStyle: .time)
     private var nearbyReminderTime: String?
     private var timeReminderTime: String?
     
@@ -122,13 +122,13 @@ final class ReminderViewController: UIViewController {
     }
     
     private func setupTitleLabel() {
-        titleLabel.text = "Set a Reminder"
+        titleLabel.text = NSLocalizedString("setReminderTitle", comment: "Title for set a reminder screen")
         titleLabel.textColor = UIColor(resource: .accent)
         titleLabel.font = UIFont(name: "Poppins-SemiBold", size: 20)
     }
     
     private func setupdescriptionLabel() {
-        descriptionLabel.text = "Manage your bus schedules for with personalized reminders."
+        descriptionLabel.text = NSLocalizedString("setReminderDescription", comment: "Description for set a reminder screen")
         descriptionLabel.textColor = UIColor(red: 0.933, green: 0.933, blue: 0.933, alpha: 0.69)
         descriptionLabel.font = UIFont(name: "Poppins-medium", size: 14)
         descriptionLabel.numberOfLines = 0
@@ -206,7 +206,7 @@ final class ReminderViewController: UIViewController {
     }
     
     private func setupAllDayLabel() {
-        allDayLabel.text = "All day"
+        allDayLabel.text = NSLocalizedString("allDay", comment: "Label for all day switch")
         allDayLabel.textColor = UIColor(resource: .accent)
         allDayLabel.font = UIFont(name: "Poppins-semibold", size: 16)
     }
@@ -214,7 +214,7 @@ final class ReminderViewController: UIViewController {
     private func setupReminderButton() {
         setReminderButton.backgroundColor = UIColor(resource: .alternate)
         setReminderButton.layer.cornerRadius = 12
-        setReminderButton.setTitle("Set Reminder", for: .normal)
+        setReminderButton.setTitle(NSLocalizedString("setReminder", comment: "Button title for setting a reminder"), for: .normal)
         setReminderButton.translatesAutoresizingMaskIntoConstraints = false
         setReminderButton.addTarget(self, action: #selector(setReminderButtonTapped), for: .touchUpInside)
         setReminderButton.heightAnchor.constraint(equalToConstant: 52).isActive = true

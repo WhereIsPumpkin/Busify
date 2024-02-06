@@ -18,7 +18,7 @@ class BusTimeCollectionViewCell: UICollectionViewCell {
     private let busWaitTime = UILabel()
     private let busRoute = UILabel()
     
-    // MARK: - Initialization
+    // MARK: - Initializationტე
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupContentLayout()
