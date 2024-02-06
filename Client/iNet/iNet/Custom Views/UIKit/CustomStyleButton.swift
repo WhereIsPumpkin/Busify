@@ -34,7 +34,7 @@ class CustomStyledButton: UIButton {
         config.cornerStyle = .medium
         config.title = buttonText
         config.image = icon
-        config.imagePadding = 10  // Adjust as needed
+        config.imagePadding = 10
         config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
             var outgoing = incoming
             outgoing.font = UIFont(name: "Poppins-Medium", size: 16)
