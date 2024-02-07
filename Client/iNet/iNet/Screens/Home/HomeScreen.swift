@@ -7,13 +7,14 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct HomeScreen: View {
     // MARK: - Properties
     @StateObject var viewModel = HomeViewModel()
     @State private var user: User? = UserSessionManager.shared.currentUser
     @State private var showingErrorAlert = false
     @State private var isPurchasing = false
     
+    // MARK: - Body
     var body: some View {
         ZStack {
             backgroundColor
@@ -30,6 +31,7 @@ struct HomeView: View {
         }
     }
     
+    // MARK: - Computer Properties
     private var backgroundColor: some View {
         Color.background.ignoresSafeArea()
     }
@@ -254,5 +256,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeScreen()
 }

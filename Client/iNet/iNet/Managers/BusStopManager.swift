@@ -60,7 +60,7 @@ final class BusStopManager {
         guard let userID = UserSessionManager.shared.currentUser?.id else { return }
         
         let requestBody = BookmarkToggleRequest(busStopID: busStopID, userID: userID)
-        guard let httpBody = try? JSONEncoder().encode(requestBody) else {
+        guard (try? JSONEncoder().encode(requestBody)) != nil else {
             print("Failed to encode request body")
             return
         }

@@ -7,8 +7,8 @@
 
 import UIKit
 
-class BusStopSearchTableViewCell: UITableViewCell {
-    
+final class BusStopSearchTableViewCell: UITableViewCell {
+    // MARK: - UI Properties
     private let mainStack: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +52,8 @@ class BusStopSearchTableViewCell: UITableViewCell {
         label.textColor = UIColor(resource: .accent)
         return label
     }()
-
+    
+    // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -62,6 +63,7 @@ class BusStopSearchTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - UI Methods
     private func setupUI() {
         backgroundColor = UIColor(resource: .base)
         addSubview(mainStack)

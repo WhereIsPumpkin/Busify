@@ -29,8 +29,6 @@ struct PurchaseView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIView, context: Context) {
-        // This function can be used to update the view.
-        // For example, you might restart the animation or adjust its properties based on external changes.
     }
 }
 

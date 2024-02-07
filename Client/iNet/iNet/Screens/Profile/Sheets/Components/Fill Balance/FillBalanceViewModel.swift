@@ -14,24 +14,22 @@ final class FillBalanceViewModel: ObservableObject {
     @Published var isValid = false
     
     func updateAmount(oldValue: String, newValue: String) {
-        if !newValue.contains("₾") {
-            if newValue.count == 1, !oldValue.contains("₾") {
-                amount = newValue + "₾"
-            } else if newValue.count != 0 {
-                let x = newValue.dropLast()
-                amount = x + "₾"
+        if newValue.hasSuffix("₾") {
+            amount = newValue
+        } else {
+            var numericValue = newValue.replacingOccurrences(of: "₾", with: "")
+            
+            if newValue.count < oldValue.count {
+                numericValue = String(numericValue.dropLast())
             }
-        } else if newValue.count < oldValue.count {
-            amount = newValue + "₾"
-        } else if newValue.contains("₾") {
-            let dropped = newValue.replacingOccurrences(of: "₾", with: "")
-            amount = dropped + "₾"
+            
+            amount = numericValue + "₾"
         }
         
-        self.isValid = validateAmount()
+        isValid = validateAmount()
     }
     
-    private func validateAmount() -> Bool {
+    func validateAmount() -> Bool {
         let amountWithoutSymbol = amount.dropLast()
         
         guard let amountNumber = Int(amountWithoutSymbol), amountNumber >= 0 else {

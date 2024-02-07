@@ -1,8 +1,7 @@
 import UIKit
 import MapKit
 
-class LiveMapViewController: UIViewController {
-    
+final class LiveMapScreen: UIViewController {
     // MARK: - Properties
     private let locationManager = CLLocationManager()
     private var mapView: MKMapView?
@@ -137,7 +136,7 @@ class LiveMapViewController: UIViewController {
 }
 
 // MARK: - Extensions
-extension LiveMapViewController: CLLocationManagerDelegate {
+extension LiveMapScreen: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
         case .notDetermined:
@@ -172,7 +171,7 @@ extension LiveMapViewController: CLLocationManagerDelegate {
     }
 }
 
-extension LiveMapViewController: MKMapViewDelegate {
+extension LiveMapScreen: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             return nil
@@ -205,10 +204,10 @@ extension LiveMapViewController: MKMapViewDelegate {
     }
 }
 
-extension LiveMapViewController: LiveMapViewModelDelegate {
+extension LiveMapScreen: LiveMapViewModelDelegate {
     func busArrivalTimesFetched(_ arrivalTimes: ArrivalTimesResponse, _ stopID: String) {
         DispatchQueue.main.async {
-            let vc = BusStopDetailsPage(arrivalTimes: arrivalTimes, stopId: stopID)
+            let vc = BusStopDetailsScreen(arrivalTimes: arrivalTimes, stopId: stopID)
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class TabBarController: UITabBarController {
     
     // MARK: - Create TabBarItem View Controllers
     private func createHomeScreenVC() -> UINavigationController {
-        let homeVC = UIHostingController(rootView: HomeView())
+        let homeVC = UIHostingController(rootView: HomeScreen())
         homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.title = NSLocalizedString("home", comment: "")
         homeVC.navigationItem.title = ""
@@ -39,20 +39,20 @@ class TabBarController: UITabBarController {
     }
     
     private func createServicesVC() -> UINavigationController {
-        let busStopVC = UINavigationController(rootViewController: BusStopSearchViewController())
+        let busStopVC = UINavigationController(rootViewController: BusStopSearchScreen())
         busStopVC.tabBarItem = UITabBarItem(title: NSLocalizedString("busStop", comment: ""), image: UIImage(resource: .busStopIconTest), selectedImage: nil)
         return busStopVC
     }
     
     private func createLiveMapVC() -> UINavigationController {
-        let liveMapVC = UINavigationController(rootViewController: LiveMapViewController())
+        let liveMapVC = UINavigationController(rootViewController: LiveMapScreen())
         liveMapVC.tabBarItem.image = UIImage(systemName: "mappin.and.ellipse")
         liveMapVC.title = NSLocalizedString("liveMap", comment: "")
         return liveMapVC
     }
     
     private func createProfileVC() -> UINavigationController {
-        let profileVC = UINavigationController(rootViewController: ProfileViewController())
+        let profileVC = UINavigationController(rootViewController: ProfileScreen())
         profileVC.tabBarItem.image = UIImage(systemName: "circle.grid.2x2.fill")
         profileVC.title = NSLocalizedString("services", comment: "")
         return profileVC

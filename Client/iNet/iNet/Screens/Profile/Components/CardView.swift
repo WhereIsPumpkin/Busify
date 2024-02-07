@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct CardView: View {
-    
+    // MARK: - Properties
     let card: Card
     
+    // MARK: - Body
     var body: some View {
         HStack(alignment: .bottom) {
             cardInfo
@@ -29,6 +30,7 @@ struct CardView: View {
         .clipShape(RoundedRectangle(cornerRadius: 20))
     }
     
+    // MARK: - Computer Properties
     private var cardInfo: some View {
         VStack(alignment: .leading, spacing: 16) {
             cardNumberStack

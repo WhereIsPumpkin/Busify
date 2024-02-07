@@ -8,7 +8,6 @@
 import UIKit
 
 final class ReminderViewController: UIViewController {
-    
     // MARK: - Properties
     private let mainStack = UIStackView()
     private let configurationStack = UIStackView()

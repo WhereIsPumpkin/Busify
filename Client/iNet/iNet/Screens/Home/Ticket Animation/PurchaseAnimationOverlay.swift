@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct PurchaseAnimationOverlay: View {
+    // MARK: - Properties
     @State private var dots = ""
     
+    // MARK: - Body
     var body: some View {
         VStack {
             PurchaseView()

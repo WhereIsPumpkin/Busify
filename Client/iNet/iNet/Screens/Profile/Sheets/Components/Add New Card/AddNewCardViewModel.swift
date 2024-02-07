@@ -8,7 +8,7 @@
 import Foundation
 import NetSwift
 
-class AddNewCardViewModel: ObservableObject {
+final class AddNewCardViewModel: ObservableObject {
     // MARK: - Properties
     @Published var cardNumber = ""
     @Published var cardName = ""
@@ -30,11 +30,10 @@ class AddNewCardViewModel: ObservableObject {
         guard let expireDateComponents = expireDateComponents,
               let month = expireDateComponents.month,
               let year = expireDateComponents.year else {
-            cardDate = "" // Reset or handle as needed
+            cardDate = ""
             return
         }
         
-        // Format the month and year to MM/YY
         let formattedString = String(format: "%02d/%02d", month, year % 100)
         cardDate = formattedString
     }
@@ -54,7 +53,6 @@ class AddNewCardViewModel: ObservableObject {
         
         do {
             let (_, _) = try await NetworkManager.shared.postDataWithHeaders(to: url, body: requestBody, headers: headers)
-            // Introduce a delay before fetching user info to simulate backend processing time
             completion!()
             try await Task.sleep(nanoseconds: 5_000_000_000) // 5 seconds delay
             await UserSessionManager.shared.fetchUserInfo()

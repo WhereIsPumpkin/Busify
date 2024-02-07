@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BusTimeCollectionViewCell: UICollectionViewCell {
+final class BusTimeCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     private let mainHorizontalStack = UIStackView()

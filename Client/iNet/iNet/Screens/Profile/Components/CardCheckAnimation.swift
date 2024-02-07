@@ -8,12 +8,12 @@
 import UIKit
 import Lottie
 
-class CardCheckAnimation: UIStackView {
+final class CardCheckAnimation: UIStackView {
     // MARK: - Properties
     private let busAnimationView = LottieAnimationView(name: "cardScan")
     private let titleLabel = UILabel()
     private var timer: Timer?
-    private var dotCount = 0 // To track the number of dots
+    private var dotCount = 0
     
     // MARK: - Initializers
     override init(frame: CGRect) {
@@ -22,7 +22,7 @@ class CardCheckAnimation: UIStackView {
         DispatchQueue.main.async {
             self.widthAnchor.constraint(equalToConstant: 400).isActive = true
         }
-
+        
     }
     
     required init(coder: NSCoder) {
@@ -99,7 +99,6 @@ class CardCheckAnimation: UIStackView {
             ])
         }
     }
-
     
     // MARK: - Animated Title Label
     private func startAnimatingTitleLabel() {

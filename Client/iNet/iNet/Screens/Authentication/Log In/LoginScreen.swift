@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LoginView: View {
+struct LoginScreen: View {
     // MARK: - Properties
     @ObservedObject var viewModel: AuthViewModel
     
@@ -109,5 +109,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView(viewModel: AuthViewModel())
+    LoginScreen(viewModel: AuthViewModel())
 }
