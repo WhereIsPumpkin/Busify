@@ -31,7 +31,7 @@ final class FillBalanceViewModel: ObservableObject {
         self.isValid = validateAmount()
     }
     
-    private func validateAmount() -> Bool {
+     func validateAmount() -> Bool {
         let amountWithoutSymbol = amount.dropLast()
         
         guard let amountNumber = Int(amountWithoutSymbol), amountNumber >= 0 else {
