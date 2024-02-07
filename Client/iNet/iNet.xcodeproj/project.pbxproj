@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		750703382B73926700B16BAB /* FillBalanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750703372B73926700B16BAB /* FillBalanceTests.swift */; };
+		7507033A2B73A87B00B16BAB /* AddNewCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750703392B73A87B00B16BAB /* AddNewCardTests.swift */; };
 		7510F74A2B5B005D003C24BB /* BusStopSearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7492B5B005D003C24BB /* BusStopSearchScreen.swift */; };
 		751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BE82B544A5300ACBEAE /* AppDelegate.swift */; };
 		751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */; };
@@ -107,6 +108,7 @@
 
 /* Begin PBXFileReference section */
 		750703372B73926700B16BAB /* FillBalanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillBalanceTests.swift; sourceTree = "<group>"; };
+		750703392B73A87B00B16BAB /* AddNewCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCardTests.swift; sourceTree = "<group>"; };
 		7510F7492B5B005D003C24BB /* BusStopSearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopSearchScreen.swift; sourceTree = "<group>"; };
 		751B0BE52B544A5300ACBEAE /* iNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		751B0BE82B544A5300ACBEAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 			children = (
 				756738662B73834200C4736E /* AuthenticationTests.swift */,
 				750703372B73926700B16BAB /* FillBalanceTests.swift */,
+				750703392B73A87B00B16BAB /* AddNewCardTests.swift */,
 			);
 			path = BusifyAppTests;
 			sourceTree = "<group>";
@@ -819,6 +822,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7507033A2B73A87B00B16BAB /* AddNewCardTests.swift in Sources */,
 				750703382B73926700B16BAB /* FillBalanceTests.swift in Sources */,
 				756738672B73834200C4736E /* AuthenticationTests.swift in Sources */,
 			);
