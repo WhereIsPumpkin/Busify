@@ -74,6 +74,25 @@ final class BusStopManager {
             print("Error: \(error)")
         }
     }
-
 }
 
+extension BusStopManager {
+    func fetchBusRoute(routeNumber: String) async throws -> Route {
+        let urlString = "https://transfer.msplus.ge:1443/otp/routers/ttc/routeInfo?routeNumber=\(routeNumber)&type=bus"
+        guard let url = URL(string: urlString) else {
+            throw NetworkError.invalidURL
+        }
+        print("---------------------------------------- This is fetchBusRoute")
+        return try await NetworkManager.shared.fetchDecodableData(from: url, responseType: Route.self)
+    }
+    
+    func fetchCurrentBusLocations(routeNumber: String) async throws -> [Bus] {
+        let urlString = "https://transfer.msplus.ge:1443/otp/routers/ttc/buses?routeNumber=\(routeNumber)"
+        guard let url = URL(string: urlString) else {
+            throw NetworkError.invalidURL
+        }
+        let busResponse = try await NetworkManager.shared.fetchDecodableData(from: url, responseType: BusResponse.self)
+        print("---------------------------------------- This is fetchCurrentLocation")
+        return busResponse.bus
+    }
+}

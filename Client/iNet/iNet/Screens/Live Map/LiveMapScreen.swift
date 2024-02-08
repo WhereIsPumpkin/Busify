@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 import MapKit
 
 final class LiveMapScreen: UIViewController {
@@ -7,8 +8,12 @@ final class LiveMapScreen: UIViewController {
     private var mapView: MKMapView?
     private let viewModel = LiveMapViewModel()
     private var locations = Locations()
-    private var busStopIcon: UIImageView?
-    
+    private var modeSegmentedControl: UISegmentedControl!
+    private let busIcon = UIImage(resource: .busIcon)
+    private var busStopAnnotations: [MKAnnotation] = []
+    private var busRouteAnnotations: [MKAnnotation] = []
+    private var busNumberTextFieldHostingController: UIHostingController<BusSearchTextField>?
+
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,15 +30,15 @@ final class LiveMapScreen: UIViewController {
         setupBackground()
         setupMapView()
         setupViewModel()
+        setupModeSegmentControl()
     }
     
     private func setupBackground() {
-        view.backgroundColor = UIColor(resource: .background)
+        view.backgroundColor = .background
     }
     
     private func setupMapView() {
         setupMapViewProperties()
-        setupIcon()
         centerMapOnUserLocation()
         setupUserLocationButton()
         view = mapView
@@ -43,15 +48,6 @@ final class LiveMapScreen: UIViewController {
         mapView = MKMapView(frame: view.bounds)
         mapView?.showsUserLocation = true
         mapView?.delegate = self
-    }
-    
-    private func setupIcon() {
-        if let image = UIImage(systemName: "circle.fill.square.fill") {
-            let tintedImage = image.withRenderingMode(.alwaysOriginal)
-            let imageView = UIImageView(image: tintedImage)
-            imageView.tintColor = UIColor(resource: .base)
-            busStopIcon = imageView
-        }
     }
     
     private func setupViewModel() {
@@ -70,14 +66,17 @@ final class LiveMapScreen: UIViewController {
     }
     
     private func loadBusStopsOnMap() {
+        busStopAnnotations.removeAll()
         for location in locations {
             let annotation = MKPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.lon)
             annotation.title = location.name
             annotation.subtitle = location.code
-            mapView?.addAnnotation(annotation)
+            busStopAnnotations.append(annotation)
         }
+        mapView?.addAnnotations(busStopAnnotations)
     }
+
     
     private func setupUserLocationButton() {
         let userLocationButton = createUserLocationButton()
@@ -153,18 +152,18 @@ extension LiveMapScreen: CLLocationManagerDelegate {
             fatalError("Unknown authorization status")
         }
     }
-
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed to get user's location: \(error.localizedDescription)")
         presentLocationAccessAlert("Location Error", "Failed to obtain location.")
     }
-
+    
     private func presentLocationAccessAlert(_ title: String, _ message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true)
     }
-
+    
     private func centerMapOn(_ location: CLLocationCoordinate2D) {
         let region = MKCoordinateRegion(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
         mapView?.setRegion(region, animated: true)
@@ -173,28 +172,55 @@ extension LiveMapScreen: CLLocationManagerDelegate {
 
 extension LiveMapScreen: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
-            return nil
-        }
-        
-        let identifier = "MyMarker"
-        var annotationView: MKMarkerAnnotationView
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
-            dequeuedView.annotation = annotation
-            annotationView = dequeuedView
-        } else {
-            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-        }
-        
-        annotationView.markerTintColor = UIColor.alternate
-        return annotationView
-    }
+         if annotation is MKUserLocation {
+             return nil
+         }
+         
+         if let annotationTitle = annotation.title, annotationTitle?.contains("Bus") ?? false {
+             let busAnnotationIdentifier = "BusAnnotation"
+             
+             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: busAnnotationIdentifier)
+             if annotationView == nil {
+                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: busAnnotationIdentifier)
+                 annotationView?.canShowCallout = true
+             }
+             annotationView?.annotation = annotation
+             
+             annotationView?.image = busIcon.resizeImage(targetSize: CGSize(width: 32, height: 32))
+             
+             return annotationView
+         } else {
+             let busStopIdentifier = "BusStopMarker"
+             
+             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: busStopIdentifier) as? MKMarkerAnnotationView
+             if annotationView == nil {
+                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: busStopIdentifier)
+                 annotationView?.canShowCallout = true
+             }
+             annotationView?.annotation = annotation
+             annotationView?.markerTintColor = .alternate
+             
+             annotationView?.glyphImage = UIImage(resource: .busStopIcon)
+             
+             return annotationView
+         }
+     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation as? MKPointAnnotation,
            let busStopCode = annotation.subtitle {
             fetchArrivalTimes(forBusStop: busStopCode)
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let polyline = overlay as? MKPolyline {
+            let renderer = MKPolylineRenderer(overlay: polyline)
+            renderer.strokeColor = .systemBlue
+            renderer.lineWidth = 5
+            return renderer
+        }
+        return MKOverlayRenderer()
     }
     
     private func fetchArrivalTimes(forBusStop busStopCode: String) {
@@ -219,8 +245,134 @@ extension LiveMapScreen: LiveMapViewModelDelegate {
         }
     }
     
+    func busRouteFetched(_ route: Route) {
+        guard let shape = route.Shape, !shape.isEmpty else { return }
+        let coordinates = convertShapeToCoordinates(shapeString: shape)
+        drawRoute(with: coordinates)
+    }
+    
+    func busLocationsFetched(_ buses: [Bus]) {
+        buses.forEach { bus in
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: bus.lat, longitude: bus.lon)
+            annotation.title = "Bus \(bus.routeNumber)"
+            mapView?.addAnnotation(annotation)
+        }
+    }
+    
+    private func convertShapeToCoordinates(shapeString: String) -> [CLLocationCoordinate2D] {
+        let pairs = shapeString.split(separator: ",").map(String.init)
+        var coordinates: [CLLocationCoordinate2D] = []
+        for pair in pairs {
+            let parts = pair.split(separator: ":").map(String.init)
+            if parts.count == 2, let lon = Double(parts[0]), let lat = Double(parts[1]) {
+                coordinates.append(CLLocationCoordinate2D(latitude: lat, longitude: lon))
+            }
+        }
+        return coordinates
+    }
+    
+    private func drawRoute(with coordinates: [CLLocationCoordinate2D]) {
+        DispatchQueue.main.async { [weak self] in
+            guard let mapView = self?.mapView else { return }
+            let polyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
+            mapView.addOverlay(polyline)
+        }
+    }
+    
     func showError(_ error: Error) {
         // TODO: - Error Handling
         print(error)
     }
 }
+
+// MARK: - Segment Control and Mode Handling
+private extension LiveMapScreen {
+    func setupModeSegmentControl() {
+        let headerBackgroundView = UIView()
+        headerBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        headerBackgroundView.backgroundColor = .background
+        headerBackgroundView.isUserInteractionEnabled = true
+        
+        modeSegmentedControl = UISegmentedControl(items: ["Bus Stops", "Bus Routes"])
+        modeSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        modeSegmentedControl.selectedSegmentIndex = 0
+        modeSegmentedControl.addTarget(self, action: #selector(modeChanged), for: .valueChanged)
+        
+        view.addSubview(headerBackgroundView)
+        headerBackgroundView.addSubview(modeSegmentedControl)
+        
+        NSLayoutConstraint.activate([
+            headerBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            headerBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            headerBackgroundView.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.16),
+            
+            
+            modeSegmentedControl.bottomAnchor.constraint(equalTo: headerBackgroundView.bottomAnchor, constant: -20),
+            modeSegmentedControl.centerXAnchor.constraint(equalTo: headerBackgroundView.centerXAnchor),
+            modeSegmentedControl.widthAnchor.constraint(equalTo: headerBackgroundView.widthAnchor, multiplier: 0.9),
+            modeSegmentedControl.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
+    @objc func modeChanged() {
+        updateUIForSelectedMode()
+    }
+    
+    func updateUIForSelectedMode() {
+        switch modeSegmentedControl.selectedSegmentIndex {
+        case 0: // Bus Stops selected
+            mapView?.removeAnnotations(mapView?.annotations ?? [])
+            mapView?.addAnnotations(busStopAnnotations)
+            removeBusNumberTextField()
+        case 1: // Bus Routes selected
+            mapView?.removeAnnotations(mapView?.annotations ?? [])
+            mapView?.addAnnotations(busRouteAnnotations)
+            setupBusNumberTextField()
+        default: break
+        }
+    }
+    
+    func removeBusNumberTextField() {
+        busNumberTextFieldHostingController?.view.removeFromSuperview()
+        busNumberTextFieldHostingController?.removeFromParent()
+        busNumberTextFieldHostingController = nil
+    }
+}
+
+// MARK: - UI Setup for Bus Number TextField and Fetch Route Button
+private extension LiveMapScreen {
+    func setupBusNumberTextField() {
+        let swiftUIView = BusSearchTextField(onSearch: { text in
+            print(text)
+            Task {
+                await self.viewModel.fetchRouteAndBuses(for: text)
+            }
+        }, onResend: {
+            // Handle resend action
+            print("Resend tapped")
+        })
+        
+        // Use the property to keep track of the hosting controller
+        busNumberTextFieldHostingController = UIHostingController(rootView: swiftUIView)
+        guard let busNumberTextFieldView = busNumberTextFieldHostingController?.view else { return }
+        
+        addChild(busNumberTextFieldHostingController!)
+        busNumberTextFieldView.translatesAutoresizingMaskIntoConstraints = false
+        busNumberTextFieldView.backgroundColor = .clear
+        busNumberTextFieldView.isOpaque = false
+        view.addSubview(busNumberTextFieldView)
+        busNumberTextFieldHostingController?.didMove(toParent: self)
+        
+        NSLayoutConstraint.activate([
+            busNumberTextFieldView.topAnchor.constraint(equalTo: modeSegmentedControl.bottomAnchor, constant: 32),
+            busNumberTextFieldView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            busNumberTextFieldView.widthAnchor.constraint(equalToConstant: 160),
+            busNumberTextFieldView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+
+}
+
+
