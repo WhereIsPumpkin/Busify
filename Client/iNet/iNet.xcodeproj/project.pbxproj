@@ -10,6 +10,8 @@
 		750703382B73926700B16BAB /* FillBalanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750703372B73926700B16BAB /* FillBalanceTests.swift */; };
 		7507033A2B73A87B00B16BAB /* AddNewCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750703392B73A87B00B16BAB /* AddNewCardTests.swift */; };
 		7507033E2B73BBCD00B16BAB /* BusRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7507033D2B73BBCD00B16BAB /* BusRoute.swift */; };
+		75082ABD2B7542FA001B5813 /* BusSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75082ABC2B7542FA001B5813 /* BusSearchTextField.swift */; };
+		75082ABF2B755EEF001B5813 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75082ABE2B755EEF001B5813 /* UIImage+Extensions.swift */; };
 		7510F74A2B5B005D003C24BB /* BusStopSearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7492B5B005D003C24BB /* BusStopSearchScreen.swift */; };
 		751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BE82B544A5300ACBEAE /* AppDelegate.swift */; };
 		751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */; };
@@ -111,6 +113,8 @@
 		750703372B73926700B16BAB /* FillBalanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillBalanceTests.swift; sourceTree = "<group>"; };
 		750703392B73A87B00B16BAB /* AddNewCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCardTests.swift; sourceTree = "<group>"; };
 		7507033D2B73BBCD00B16BAB /* BusRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusRoute.swift; sourceTree = "<group>"; };
+		75082ABC2B7542FA001B5813 /* BusSearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusSearchTextField.swift; sourceTree = "<group>"; };
+		75082ABE2B755EEF001B5813 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		7510F7492B5B005D003C24BB /* BusStopSearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopSearchScreen.swift; sourceTree = "<group>"; };
 		751B0BE52B544A5300ACBEAE /* iNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		751B0BE82B544A5300ACBEAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -345,6 +349,7 @@
 				758062862B6AA8EB00A0A157 /* Notification+Extensions.swift */,
 				758062882B6BD70000A0A157 /* UIViewController+Exntesions.swift */,
 				758062952B6C414F00A0A157 /* Binding+Extensions.swift */,
+				75082ABE2B755EEF001B5813 /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -548,6 +553,7 @@
 				75A0BE022B5B202600B90EEA /* CustomStyleTextField.swift */,
 				75479BC82B56ED7500FD79F7 /* StyledTextField.swift */,
 				75E217DC2B57D81B006B9655 /* OTPTextField.swift */,
+				75082ABC2B7542FA001B5813 /* BusSearchTextField.swift */,
 			);
 			path = "Text Fields";
 			sourceTree = "<group>";
@@ -776,6 +782,7 @@
 				758B9E612B6D795D00F23236 /* CardScannerView.swift in Sources */,
 				751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */,
 				7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */,
+				75082ABF2B755EEF001B5813 /* UIImage+Extensions.swift in Sources */,
 				75D91B8C2B6009B30034F967 /* ReminderViewController.swift in Sources */,
 				7507033E2B73BBCD00B16BAB /* BusRoute.swift in Sources */,
 				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
@@ -825,6 +832,7 @@
 				758062822B6A83F000A0A157 /* BusStopManager.swift in Sources */,
 				7580626C2B681DE700A0A157 /* StatisticCard.swift in Sources */,
 				75A0BE012B5B1FB900B90EEA /* CustomStyleButton.swift in Sources */,
+				75082ABD2B7542FA001B5813 /* BusSearchTextField.swift in Sources */,
 				75A0BE172B5D410200B90EEA /* BusStopSearchTableViewCell.swift in Sources */,
 				758062722B68D95900A0A157 /* TravelCard.swift in Sources */,
 			);

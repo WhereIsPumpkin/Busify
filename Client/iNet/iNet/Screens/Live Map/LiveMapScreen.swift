@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 import MapKit
 
 final class LiveMapScreen: UIViewController {
@@ -7,10 +8,12 @@ final class LiveMapScreen: UIViewController {
     private var mapView: MKMapView?
     private let viewModel = LiveMapViewModel()
     private var locations = Locations()
-    private var busStopIcon: UIImageView?
-    private var busNumberTextField: UITextField!
-    private var fetchRouteButton: UIButton!
-    
+    private var modeSegmentedControl: UISegmentedControl!
+    private let busIcon = UIImage(resource: .busIcon)
+    private var busStopAnnotations: [MKAnnotation] = []
+    private var busRouteAnnotations: [MKAnnotation] = []
+    private var busNumberTextFieldHostingController: UIHostingController<BusSearchTextField>?
+
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,65 +29,16 @@ final class LiveMapScreen: UIViewController {
     private func setupView() {
         setupBackground()
         setupMapView()
-        setupBusNumberTextField()
-        setupFetchRouteButton()
         setupViewModel()
+        setupModeSegmentControl()
     }
     
     private func setupBackground() {
-        view.backgroundColor = UIColor(resource: .background)
+        view.backgroundColor = .background
     }
-    
-    private func setupBusNumberTextField() {
-        busNumberTextField = UITextField()
-        busNumberTextField.translatesAutoresizingMaskIntoConstraints = false
-        busNumberTextField.placeholder = "Enter Bus Number"
-        busNumberTextField.borderStyle = .roundedRect
-        busNumberTextField.backgroundColor = .background
-        busNumberTextField.textColor = .white
-        busNumberTextField.textAlignment = .center
-        
-        mapView?.addSubview(busNumberTextField)
-        
-        NSLayoutConstraint.activate([
-            busNumberTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            busNumberTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            busNumberTextField.widthAnchor.constraint(equalToConstant: 192),
-            busNumberTextField.heightAnchor.constraint(equalToConstant: 40)
-        ])
-    }
-    
-    private func setupFetchRouteButton() {
-        fetchRouteButton = UIButton(type: .system)
-        fetchRouteButton.translatesAutoresizingMaskIntoConstraints = false
-        fetchRouteButton.setTitle("Show Route", for: .normal)
-        fetchRouteButton.addTarget(self, action: #selector(fetchRouteButtonTapped), for: .touchUpInside)
-        
-        mapView?.addSubview(fetchRouteButton)
-        
-        NSLayoutConstraint.activate([
-            fetchRouteButton.topAnchor.constraint(equalTo: busNumberTextField.bottomAnchor, constant: 10),
-            fetchRouteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            fetchRouteButton.heightAnchor.constraint(equalToConstant: 40),
-            fetchRouteButton.widthAnchor.constraint(equalToConstant: 120)
-        ])
-    }
-    
-    @objc private func fetchRouteButtonTapped() {
-        guard let busNumber = busNumberTextField.text, !busNumber.isEmpty else {
-            print("Bus number is empty")
-            return
-        }
-        
-        Task {
-            await viewModel.fetchRouteAndBuses(for: busNumber)
-        }
-    }
-    
     
     private func setupMapView() {
         setupMapViewProperties()
-        setupIcon()
         centerMapOnUserLocation()
         setupUserLocationButton()
         view = mapView
@@ -94,15 +48,6 @@ final class LiveMapScreen: UIViewController {
         mapView = MKMapView(frame: view.bounds)
         mapView?.showsUserLocation = true
         mapView?.delegate = self
-    }
-    
-    private func setupIcon() {
-        if let image = UIImage(systemName: "circle.fill.square.fill") {
-            let tintedImage = image.withRenderingMode(.alwaysOriginal)
-            let imageView = UIImageView(image: tintedImage)
-            imageView.tintColor = UIColor(resource: .base)
-            busStopIcon = imageView
-        }
     }
     
     private func setupViewModel() {
@@ -121,14 +66,17 @@ final class LiveMapScreen: UIViewController {
     }
     
     private func loadBusStopsOnMap() {
+        busStopAnnotations.removeAll()
         for location in locations {
             let annotation = MKPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.lon)
             annotation.title = location.name
             annotation.subtitle = location.code
-            mapView?.addAnnotation(annotation)
+            busStopAnnotations.append(annotation)
         }
+        mapView?.addAnnotations(busStopAnnotations)
     }
+
     
     private func setupUserLocationButton() {
         let userLocationButton = createUserLocationButton()
@@ -224,35 +172,39 @@ extension LiveMapScreen: CLLocationManagerDelegate {
 
 extension LiveMapScreen: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
-            return nil
-        }
-        
-        if let annotationTitle = annotation.title, annotationTitle?.contains("Bus") ?? false {
-            let busAnnotationIdentifier = "BusAnnotation"
-            
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: busAnnotationIdentifier)
-            if annotationView == nil {
-                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: busAnnotationIdentifier)
-                annotationView?.image = UIImage(systemName: "bus")?.withTintColor(.alternate)
-                annotationView?.canShowCallout = true
-            } else {
-                annotationView?.annotation = annotation
-            }
-            return annotationView
-        } else {
-            let identifier = "BusStopMarker"
-            var annotationView: MKMarkerAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
-                dequeuedView.annotation = annotation
-                annotationView = dequeuedView
-            } else {
-                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                annotationView.markerTintColor = UIColor.alternate
-            }
-            return annotationView
-        }
-    }
+         if annotation is MKUserLocation {
+             return nil
+         }
+         
+         if let annotationTitle = annotation.title, annotationTitle?.contains("Bus") ?? false {
+             let busAnnotationIdentifier = "BusAnnotation"
+             
+             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: busAnnotationIdentifier)
+             if annotationView == nil {
+                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: busAnnotationIdentifier)
+                 annotationView?.canShowCallout = true
+             }
+             annotationView?.annotation = annotation
+             
+             annotationView?.image = busIcon.resizeImage(targetSize: CGSize(width: 32, height: 32))
+             
+             return annotationView
+         } else {
+             let busStopIdentifier = "BusStopMarker"
+             
+             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: busStopIdentifier) as? MKMarkerAnnotationView
+             if annotationView == nil {
+                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: busStopIdentifier)
+                 annotationView?.canShowCallout = true
+             }
+             annotationView?.annotation = annotation
+             annotationView?.markerTintColor = .alternate
+             
+             annotationView?.glyphImage = UIImage(resource: .busStopIcon)
+             
+             return annotationView
+         }
+     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation as? MKPointAnnotation,
@@ -328,9 +280,99 @@ extension LiveMapScreen: LiveMapViewModelDelegate {
         }
     }
     
-    
     func showError(_ error: Error) {
         // TODO: - Error Handling
         print(error)
     }
 }
+
+// MARK: - Segment Control and Mode Handling
+private extension LiveMapScreen {
+    func setupModeSegmentControl() {
+        let headerBackgroundView = UIView()
+        headerBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        headerBackgroundView.backgroundColor = .background
+        headerBackgroundView.isUserInteractionEnabled = true
+        
+        modeSegmentedControl = UISegmentedControl(items: ["Bus Stops", "Bus Routes"])
+        modeSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        modeSegmentedControl.selectedSegmentIndex = 0
+        modeSegmentedControl.addTarget(self, action: #selector(modeChanged), for: .valueChanged)
+        
+        view.addSubview(headerBackgroundView)
+        headerBackgroundView.addSubview(modeSegmentedControl)
+        
+        NSLayoutConstraint.activate([
+            headerBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            headerBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            headerBackgroundView.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.16),
+            
+            
+            modeSegmentedControl.bottomAnchor.constraint(equalTo: headerBackgroundView.bottomAnchor, constant: -20),
+            modeSegmentedControl.centerXAnchor.constraint(equalTo: headerBackgroundView.centerXAnchor),
+            modeSegmentedControl.widthAnchor.constraint(equalTo: headerBackgroundView.widthAnchor, multiplier: 0.9),
+            modeSegmentedControl.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
+    @objc func modeChanged() {
+        updateUIForSelectedMode()
+    }
+    
+    func updateUIForSelectedMode() {
+        switch modeSegmentedControl.selectedSegmentIndex {
+        case 0: // Bus Stops selected
+            mapView?.removeAnnotations(mapView?.annotations ?? [])
+            mapView?.addAnnotations(busStopAnnotations)
+            removeBusNumberTextField()
+        case 1: // Bus Routes selected
+            mapView?.removeAnnotations(mapView?.annotations ?? [])
+            mapView?.addAnnotations(busRouteAnnotations)
+            setupBusNumberTextField()
+        default: break
+        }
+    }
+    
+    func removeBusNumberTextField() {
+        busNumberTextFieldHostingController?.view.removeFromSuperview()
+        busNumberTextFieldHostingController?.removeFromParent()
+        busNumberTextFieldHostingController = nil
+    }
+}
+
+// MARK: - UI Setup for Bus Number TextField and Fetch Route Button
+private extension LiveMapScreen {
+    func setupBusNumberTextField() {
+        let swiftUIView = BusSearchTextField(onSearch: { text in
+            print(text)
+            Task {
+                await self.viewModel.fetchRouteAndBuses(for: text)
+            }
+        }, onResend: {
+            // Handle resend action
+            print("Resend tapped")
+        })
+        
+        // Use the property to keep track of the hosting controller
+        busNumberTextFieldHostingController = UIHostingController(rootView: swiftUIView)
+        guard let busNumberTextFieldView = busNumberTextFieldHostingController?.view else { return }
+        
+        addChild(busNumberTextFieldHostingController!)
+        busNumberTextFieldView.translatesAutoresizingMaskIntoConstraints = false
+        busNumberTextFieldView.backgroundColor = .clear
+        busNumberTextFieldView.isOpaque = false
+        view.addSubview(busNumberTextFieldView)
+        busNumberTextFieldHostingController?.didMove(toParent: self)
+        
+        NSLayoutConstraint.activate([
+            busNumberTextFieldView.topAnchor.constraint(equalTo: modeSegmentedControl.bottomAnchor, constant: 32),
+            busNumberTextFieldView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            busNumberTextFieldView.widthAnchor.constraint(equalToConstant: 160),
+            busNumberTextFieldView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+
+}
+
+
