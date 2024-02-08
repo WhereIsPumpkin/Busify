@@ -8,6 +8,8 @@ final class LiveMapScreen: UIViewController {
     private let viewModel = LiveMapViewModel()
     private var locations = Locations()
     private var busStopIcon: UIImageView?
+    private var busNumberTextField: UITextField!
+    private var fetchRouteButton: UIButton!
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -24,12 +26,61 @@ final class LiveMapScreen: UIViewController {
     private func setupView() {
         setupBackground()
         setupMapView()
+        setupBusNumberTextField()
+        setupFetchRouteButton()
         setupViewModel()
     }
     
     private func setupBackground() {
         view.backgroundColor = UIColor(resource: .background)
     }
+    
+    private func setupBusNumberTextField() {
+        busNumberTextField = UITextField()
+        busNumberTextField.translatesAutoresizingMaskIntoConstraints = false
+        busNumberTextField.placeholder = "Enter Bus Number"
+        busNumberTextField.borderStyle = .roundedRect
+        busNumberTextField.backgroundColor = .background
+        busNumberTextField.textColor = .white
+        busNumberTextField.textAlignment = .center
+        
+        mapView?.addSubview(busNumberTextField)
+        
+        NSLayoutConstraint.activate([
+            busNumberTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            busNumberTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            busNumberTextField.widthAnchor.constraint(equalToConstant: 192),
+            busNumberTextField.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+    
+    private func setupFetchRouteButton() {
+        fetchRouteButton = UIButton(type: .system)
+        fetchRouteButton.translatesAutoresizingMaskIntoConstraints = false
+        fetchRouteButton.setTitle("Show Route", for: .normal)
+        fetchRouteButton.addTarget(self, action: #selector(fetchRouteButtonTapped), for: .touchUpInside)
+        
+        mapView?.addSubview(fetchRouteButton)
+        
+        NSLayoutConstraint.activate([
+            fetchRouteButton.topAnchor.constraint(equalTo: busNumberTextField.bottomAnchor, constant: 10),
+            fetchRouteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            fetchRouteButton.heightAnchor.constraint(equalToConstant: 40),
+            fetchRouteButton.widthAnchor.constraint(equalToConstant: 120)
+        ])
+    }
+    
+    @objc private func fetchRouteButtonTapped() {
+        guard let busNumber = busNumberTextField.text, !busNumber.isEmpty else {
+            print("Bus number is empty")
+            return
+        }
+        
+        Task {
+            await viewModel.fetchRouteAndBuses(for: busNumber)
+        }
+    }
+    
     
     private func setupMapView() {
         setupMapViewProperties()
@@ -153,18 +204,18 @@ extension LiveMapScreen: CLLocationManagerDelegate {
             fatalError("Unknown authorization status")
         }
     }
-
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed to get user's location: \(error.localizedDescription)")
         presentLocationAccessAlert("Location Error", "Failed to obtain location.")
     }
-
+    
     private func presentLocationAccessAlert(_ title: String, _ message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true)
     }
-
+    
     private func centerMapOn(_ location: CLLocationCoordinate2D) {
         let region = MKCoordinateRegion(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
         mapView?.setRegion(region, animated: true)
@@ -177,17 +228,30 @@ extension LiveMapScreen: MKMapViewDelegate {
             return nil
         }
         
-        let identifier = "MyMarker"
-        var annotationView: MKMarkerAnnotationView
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
-            dequeuedView.annotation = annotation
-            annotationView = dequeuedView
+        if let annotationTitle = annotation.title, annotationTitle?.contains("Bus") ?? false {
+            let busAnnotationIdentifier = "BusAnnotation"
+            
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: busAnnotationIdentifier)
+            if annotationView == nil {
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: busAnnotationIdentifier)
+                annotationView?.image = UIImage(systemName: "bus")?.withTintColor(.alternate)
+                annotationView?.canShowCallout = true
+            } else {
+                annotationView?.annotation = annotation
+            }
+            return annotationView
         } else {
-            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            let identifier = "BusStopMarker"
+            var annotationView: MKMarkerAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
+                dequeuedView.annotation = annotation
+                annotationView = dequeuedView
+            } else {
+                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                annotationView.markerTintColor = UIColor.alternate
+            }
+            return annotationView
         }
-        
-        annotationView.markerTintColor = UIColor.alternate
-        return annotationView
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -195,6 +259,16 @@ extension LiveMapScreen: MKMapViewDelegate {
            let busStopCode = annotation.subtitle {
             fetchArrivalTimes(forBusStop: busStopCode)
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let polyline = overlay as? MKPolyline {
+            let renderer = MKPolylineRenderer(overlay: polyline)
+            renderer.strokeColor = .systemBlue
+            renderer.lineWidth = 5
+            return renderer
+        }
+        return MKOverlayRenderer()
     }
     
     private func fetchArrivalTimes(forBusStop busStopCode: String) {
@@ -218,6 +292,42 @@ extension LiveMapScreen: LiveMapViewModelDelegate {
             self.loadBusStopsOnMap()
         }
     }
+    
+    func busRouteFetched(_ route: Route) {
+        guard let shape = route.Shape, !shape.isEmpty else { return }
+        let coordinates = convertShapeToCoordinates(shapeString: shape)
+        drawRoute(with: coordinates)
+    }
+    
+    func busLocationsFetched(_ buses: [Bus]) {
+        buses.forEach { bus in
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: bus.lat, longitude: bus.lon)
+            annotation.title = "Bus \(bus.routeNumber)"
+            mapView?.addAnnotation(annotation)
+        }
+    }
+    
+    private func convertShapeToCoordinates(shapeString: String) -> [CLLocationCoordinate2D] {
+        let pairs = shapeString.split(separator: ",").map(String.init)
+        var coordinates: [CLLocationCoordinate2D] = []
+        for pair in pairs {
+            let parts = pair.split(separator: ":").map(String.init)
+            if parts.count == 2, let lon = Double(parts[0]), let lat = Double(parts[1]) {
+                coordinates.append(CLLocationCoordinate2D(latitude: lat, longitude: lon))
+            }
+        }
+        return coordinates
+    }
+    
+    private func drawRoute(with coordinates: [CLLocationCoordinate2D]) {
+        DispatchQueue.main.async { [weak self] in
+            guard let mapView = self?.mapView else { return }
+            let polyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
+            mapView.addOverlay(polyline)
+        }
+    }
+    
     
     func showError(_ error: Error) {
         // TODO: - Error Handling

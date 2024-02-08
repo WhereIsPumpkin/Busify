@@ -11,6 +11,8 @@ import NetSwift
 protocol LiveMapViewModelDelegate: AnyObject {
     func locationsFetched(_ locations: Locations)
     func busArrivalTimesFetched(_ arrivalTimes: ArrivalTimesResponse, _ stopID: String)
+    func busRouteFetched(_ route: Route)
+    func busLocationsFetched(_ buses: [Bus])
     func showError(_ error: Error)
 }
 
@@ -41,4 +43,19 @@ final class LiveMapViewModel {
     }
     
 }
+
+extension LiveMapViewModel {
+    func fetchRouteAndBuses(for routeNumber: String, forward: Bool = true) async {
+        do {
+            let route = try await BusStopManager.shared.fetchBusRoute(routeNumber: routeNumber)
+            delegate?.busRouteFetched(route)
+            let buses = try await BusStopManager.shared.fetchCurrentBusLocations(routeNumber: routeNumber)
+            delegate?.busLocationsFetched(buses)
+        } catch {
+            delegate?.showError(error)
+        }
+    }
+}
+
+
 

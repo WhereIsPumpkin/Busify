@@ -22,7 +22,7 @@ final class NavigationManager {
     
     func navigateToInitialScreen() {
         if UserDefaults.standard.string(forKey: "userToken") != nil {
-            navigateToMainViewScreen()
+            navigateToMainViewScreen() 
         } else {
             let navigationController = setupNavigationController()
             window?.rootViewController = navigationController

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		750703382B73926700B16BAB /* FillBalanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750703372B73926700B16BAB /* FillBalanceTests.swift */; };
 		7507033A2B73A87B00B16BAB /* AddNewCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750703392B73A87B00B16BAB /* AddNewCardTests.swift */; };
+		7507033E2B73BBCD00B16BAB /* BusRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7507033D2B73BBCD00B16BAB /* BusRoute.swift */; };
 		7510F74A2B5B005D003C24BB /* BusStopSearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510F7492B5B005D003C24BB /* BusStopSearchScreen.swift */; };
 		751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BE82B544A5300ACBEAE /* AppDelegate.swift */; };
 		751B0BEB2B544A5300ACBEAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */; };
@@ -109,6 +110,7 @@
 /* Begin PBXFileReference section */
 		750703372B73926700B16BAB /* FillBalanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillBalanceTests.swift; sourceTree = "<group>"; };
 		750703392B73A87B00B16BAB /* AddNewCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCardTests.swift; sourceTree = "<group>"; };
+		7507033D2B73BBCD00B16BAB /* BusRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusRoute.swift; sourceTree = "<group>"; };
 		7510F7492B5B005D003C24BB /* BusStopSearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopSearchScreen.swift; sourceTree = "<group>"; };
 		751B0BE52B544A5300ACBEAE /* iNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		751B0BE82B544A5300ACBEAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -227,6 +229,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7507033B2B73BB5100B16BAB /* Bus Stop */ = {
+			isa = PBXGroup;
+			children = (
+				75A0BE042B5C217300B90EEA /* BusStop.swift */,
+				75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */,
+				7562A4FD2B6377C300A2F50B /* ReminderModel.swift */,
+			);
+			path = "Bus Stop";
+			sourceTree = "<group>";
+		};
 		7510F7482B5B0032003C24BB /* BusStop */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,13 +579,10 @@
 		758E2B7A2B728CEF00D19792 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				75A0BE042B5C217300B90EEA /* BusStop.swift */,
-				75A0BE292B5EE2F000B90EEA /* ArrivalTimes.swift */,
-				7562A4FD2B6377C300A2F50B /* ReminderModel.swift */,
+				7507033B2B73BB5100B16BAB /* Bus Stop */,
 				758062752B692E0600A0A157 /* Passengers.swift */,
-				751CBD872B7032D6000A7DA0 /* App Language.swift */,
 				751CBD692B6F91EA000A7DA0 /* TransitCard.swift */,
-				751CBD6B2B700EB1000A7DA0 /* BaseURL.swift */,
+				7507033D2B73BBCD00B16BAB /* BusRoute.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -619,6 +628,8 @@
 		75E217DE2B57E4EE006B9655 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				751CBD6B2B700EB1000A7DA0 /* BaseURL.swift */,
+				751CBD872B7032D6000A7DA0 /* App Language.swift */,
 				758E2B7A2B728CEF00D19792 /* App */,
 				758E2B792B728CC000D19792 /* Http Body */,
 			);
@@ -766,6 +777,7 @@
 				751B0BE92B544A5300ACBEAE /* AppDelegate.swift in Sources */,
 				7599CD1E2B59907600F4FD86 /* LoginDetails.swift in Sources */,
 				75D91B8C2B6009B30034F967 /* ReminderViewController.swift in Sources */,
+				7507033E2B73BBCD00B16BAB /* BusRoute.swift in Sources */,
 				75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */,
 				75479BBB2B56A1E900FD79F7 /* RegisterScreen.swift in Sources */,
 				75A0BE282B5EC15D00B90EEA /* BusTimeCollectionViewCell.swift in Sources */,
