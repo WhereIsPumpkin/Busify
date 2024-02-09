@@ -13,7 +13,6 @@ final class LiveMapScreen: UIViewController {
     private var busStopAnnotations: [MKAnnotation] = []
     private var busRouteAnnotations: [MKAnnotation] = []
     private var busLocationAnnotations: [MKAnnotation] = []
-    
     private var busNumberTextFieldHostingController: UIHostingController<BusSearchTextField>?
     
     // MARK: - Life Cycle
@@ -79,7 +78,6 @@ final class LiveMapScreen: UIViewController {
         }
         mapView?.addAnnotations(busStopAnnotations)
     }
-    
     
     private func setupUserLocationButton() {
         let userLocationButton = createUserLocationButton()
@@ -294,8 +292,7 @@ extension LiveMapScreen: LiveMapViewModelDelegate {
     }
     
     func showError(_ error: Error) {
-        // TODO: - Error Handling
-        print(error)
+        showErrorAlert(error)
     }
 }
 
