@@ -12,8 +12,9 @@ final class LiveMapScreen: UIViewController {
     private let busIcon = UIImage(resource: .busIcon)
     private var busStopAnnotations: [MKAnnotation] = []
     private var busRouteAnnotations: [MKAnnotation] = []
+    private var busLocationAnnotations: [MKAnnotation] = []
     private var busNumberTextFieldHostingController: UIHostingController<BusSearchTextField>?
-
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,7 @@ final class LiveMapScreen: UIViewController {
         setupMapView()
         setupViewModel()
         setupModeSegmentControl()
+        setupDismissKeyboardGesture()
     }
     
     private func setupBackground() {
@@ -76,7 +78,6 @@ final class LiveMapScreen: UIViewController {
         }
         mapView?.addAnnotations(busStopAnnotations)
     }
-
     
     private func setupUserLocationButton() {
         let userLocationButton = createUserLocationButton()
@@ -172,39 +173,39 @@ extension LiveMapScreen: CLLocationManagerDelegate {
 
 extension LiveMapScreen: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-         if annotation is MKUserLocation {
-             return nil
-         }
-         
-         if let annotationTitle = annotation.title, annotationTitle?.contains("Bus") ?? false {
-             let busAnnotationIdentifier = "BusAnnotation"
-             
-             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: busAnnotationIdentifier)
-             if annotationView == nil {
-                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: busAnnotationIdentifier)
-                 annotationView?.canShowCallout = true
-             }
-             annotationView?.annotation = annotation
-             
-             annotationView?.image = busIcon.resizeImage(targetSize: CGSize(width: 32, height: 32))
-             
-             return annotationView
-         } else {
-             let busStopIdentifier = "BusStopMarker"
-             
-             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: busStopIdentifier) as? MKMarkerAnnotationView
-             if annotationView == nil {
-                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: busStopIdentifier)
-                 annotationView?.canShowCallout = true
-             }
-             annotationView?.annotation = annotation
-             annotationView?.markerTintColor = .alternate
-             
-             annotationView?.glyphImage = UIImage(resource: .busStopIcon)
-             
-             return annotationView
-         }
-     }
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        if let annotationTitle = annotation.title, annotationTitle?.contains("Bus") ?? false {
+            let busAnnotationIdentifier = "BusAnnotation"
+            
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: busAnnotationIdentifier)
+            if annotationView == nil {
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: busAnnotationIdentifier)
+                annotationView?.canShowCallout = true
+            }
+            annotationView?.annotation = annotation
+            
+            annotationView?.image = busIcon.resizeImage(targetSize: CGSize(width: 32, height: 32))
+            
+            return annotationView
+        } else {
+            let busStopIdentifier = "BusStopMarker"
+            
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: busStopIdentifier) as? MKMarkerAnnotationView
+            if annotationView == nil {
+                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: busStopIdentifier)
+                annotationView?.canShowCallout = true
+            }
+            annotationView?.annotation = annotation
+            annotationView?.markerTintColor = .alternate
+            
+            annotationView?.glyphImage = UIImage(resource: .busStopIcon)
+            
+            return annotationView
+        }
+    }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation as? MKPointAnnotation,
@@ -252,13 +253,23 @@ extension LiveMapScreen: LiveMapViewModelDelegate {
     }
     
     func busLocationsFetched(_ buses: [Bus]) {
-        buses.forEach { bus in
+        updateBusLocations(buses)
+    }
+    
+    func updateBusLocations(_ buses: [Bus]) {
+        mapView?.removeAnnotations(busLocationAnnotations)
+        busLocationAnnotations.removeAll()
+        
+        let newAnnotations = buses.map { bus -> MKAnnotation in
             let annotation = MKPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(latitude: bus.lat, longitude: bus.lon)
             annotation.title = "Bus \(bus.routeNumber)"
-            mapView?.addAnnotation(annotation)
+            return annotation
         }
+        mapView?.addAnnotations(newAnnotations)
+        busLocationAnnotations.append(contentsOf: newAnnotations)
     }
+    
     
     private func convertShapeToCoordinates(shapeString: String) -> [CLLocationCoordinate2D] {
         let pairs = shapeString.split(separator: ",").map(String.init)
@@ -281,8 +292,7 @@ extension LiveMapScreen: LiveMapViewModelDelegate {
     }
     
     func showError(_ error: Error) {
-        // TODO: - Error Handling
-        print(error)
+        showErrorAlert(error)
     }
 }
 
@@ -322,11 +332,12 @@ private extension LiveMapScreen {
     
     func updateUIForSelectedMode() {
         switch modeSegmentedControl.selectedSegmentIndex {
-        case 0: // Bus Stops selected
+        case 0:
             mapView?.removeAnnotations(mapView?.annotations ?? [])
             mapView?.addAnnotations(busStopAnnotations)
+            clearPreviousRoutesAndLocations()
             removeBusNumberTextField()
-        case 1: // Bus Routes selected
+        case 1:
             mapView?.removeAnnotations(mapView?.annotations ?? [])
             mapView?.addAnnotations(busRouteAnnotations)
             setupBusNumberTextField()
@@ -334,27 +345,36 @@ private extension LiveMapScreen {
         }
     }
     
+    
     func removeBusNumberTextField() {
         busNumberTextFieldHostingController?.view.removeFromSuperview()
         busNumberTextFieldHostingController?.removeFromParent()
         busNumberTextFieldHostingController = nil
     }
+    
+    func clearPreviousRoutesAndLocations() {
+        mapView?.removeOverlays(mapView?.overlays ?? [])
+        mapView?.removeAnnotations(busRouteAnnotations)
+        mapView?.removeAnnotations(busLocationAnnotations)
+        busRouteAnnotations.removeAll()
+        busLocationAnnotations.removeAll()
+    }
+    
 }
 
 // MARK: - UI Setup for Bus Number TextField and Fetch Route Button
 private extension LiveMapScreen {
     func setupBusNumberTextField() {
         let swiftUIView = BusSearchTextField(onSearch: { text in
-            print(text)
+            self.dismissKeyboard()
+            self.clearPreviousRoutesAndLocations()
             Task {
                 await self.viewModel.fetchRouteAndBuses(for: text)
             }
         }, onResend: {
-            // Handle resend action
             print("Resend tapped")
         })
         
-        // Use the property to keep track of the hosting controller
         busNumberTextFieldHostingController = UIHostingController(rootView: swiftUIView)
         guard let busNumberTextFieldView = busNumberTextFieldHostingController?.view else { return }
         
@@ -372,7 +392,17 @@ private extension LiveMapScreen {
             busNumberTextFieldView.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
-
+    
 }
 
-
+extension LiveMapScreen {
+    private func setupDismissKeyboardGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}

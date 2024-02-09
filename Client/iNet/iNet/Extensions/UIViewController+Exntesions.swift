@@ -30,3 +30,24 @@ extension UIViewController {
         return newImage!
     }
 }
+
+extension UIViewController {
+    func showErrorAlert(_ error: Error) {
+        let alertController = UIAlertController(
+            title: "Error",
+            message: error.localizedDescription,
+            preferredStyle: .alert
+        )
+
+        alertController.addAction(UIAlertAction(
+            title: "OK",
+            style: .default,
+            handler: nil)
+        )
+
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+}
+
