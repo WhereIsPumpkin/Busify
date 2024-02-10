@@ -117,6 +117,7 @@ export const loginUser = async (req, res) => {
 
     const validPassword = password === existingUser.password
     if (!validPassword) {
+      print("Invalid Passwor")
       return res.status(401).send("Invalid password")
     }
 

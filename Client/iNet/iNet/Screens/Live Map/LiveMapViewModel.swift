@@ -57,5 +57,18 @@ extension LiveMapViewModel {
     }
 }
 
-
+extension LiveMapViewModel {
+    func refreshBusLocations(routeNumber: String) async {
+        do {
+            let buses = try await BusStopManager.shared.fetchCurrentBusLocations(routeNumber: routeNumber)
+            DispatchQueue.main.async {
+                self.delegate?.busLocationsFetched(buses)
+            }
+        } catch {
+            DispatchQueue.main.async {
+                self.delegate?.showError(error)
+            }
+        }
+    }
+}
 

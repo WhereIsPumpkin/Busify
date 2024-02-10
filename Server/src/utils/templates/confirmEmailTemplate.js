@@ -20,7 +20,7 @@ export const confirmationEmailTemplate = (token) => `
               <tr>
                 <td style="padding: 40px 0px 0px;">
                   <div style="text-align: left;">
-                    <div style="padding-bottom: 0px;"><img src="https://i.postimg.cc/WbR8VrHf/iNet.png'" alt="Company" style="width: 80px;"></div>
+                    <div style="padding-bottom: 0px;"><img src="https://i.postimg.cc/HkYtYZ1H/ios-marketing.png'" alt="Company" style="width: 80px;"></div>
                   </div>
                   <div style="padding: 20px; background-color: rgb(255, 255, 255);">
                     <div style="color: rgb(0, 0, 0); text-align: left;">
@@ -32,7 +32,7 @@ export const confirmationEmailTemplate = (token) => `
 
                       <p style="padding-bottom: 16px"> If you didn't request this code, you can safely ignore this email. Someone else might have
                         typed your email address by mistake.</p>
-                      <p style="padding-bottom: 16px">Thanks,<br>The iNet team</p>
+                      <p style="padding-bottom: 16px">Thanks,<br>The Busify team</p>
                     </div>
                   </div>
                   <div style="padding-top: 20px; color: rgb(153, 153, 153); text-align: center;"></div>

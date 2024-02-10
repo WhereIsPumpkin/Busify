@@ -82,7 +82,6 @@ extension BusStopManager {
         guard let url = URL(string: urlString) else {
             throw NetworkError.invalidURL
         }
-        print("---------------------------------------- This is fetchBusRoute")
         return try await NetworkManager.shared.fetchDecodableData(from: url, responseType: Route.self)
     }
     
@@ -92,7 +91,6 @@ extension BusStopManager {
             throw NetworkError.invalidURL
         }
         let busResponse = try await NetworkManager.shared.fetchDecodableData(from: url, responseType: BusResponse.self)
-        print("---------------------------------------- This is fetchCurrentLocation")
         return busResponse.bus
     }
 }

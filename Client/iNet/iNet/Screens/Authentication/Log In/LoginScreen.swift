@@ -63,6 +63,7 @@ struct LoginScreen: View {
         }
     }
     
+    
     private var emailField: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(LocalizedStringKey("email"))
@@ -83,25 +84,41 @@ struct LoginScreen: View {
                 StyledTextField(text: $viewModel.password, placeholder: "password-enter", isSecure: true)
             }
             
-            Button(action: {
-                // TODO: Forgot Password
-            }, label: {
-                Text(LocalizedStringKey("forgot-password"))
-                    .foregroundStyle(.accent.opacity(0.8))
-                    .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .regular).font(size: 12))
-            })
+            HStack {
+                errorMessageView
+                
+                Spacer()
+                
+                Button(action: {
+                    // TODO: Forgot Password
+                }, label: {
+                    Text(LocalizedStringKey("forgot-password"))
+                        .foregroundStyle(.accent.opacity(0.8))
+                        .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .regular).font(size: 12))
+                })
+            }
         }
     }
     
     private var loginButton: some View {
+        
         StyledButton(buttonText: "login", buttonColor: Color(.alternate), textColor: .white) {
             Task {
                 let isSuccess = await viewModel.loginUser()
                 if isSuccess {
                     NavigationManager.shared.navigateToMainViewScreen()
-                } else {
-                    // TODO: - Handle Login Error
                 }
+            }
+        }
+    }
+    
+    private var errorMessageView: some View {
+        Group {
+            if let errorMessage = viewModel.errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .font(.system(size: 14))
+                
             }
         }
     }

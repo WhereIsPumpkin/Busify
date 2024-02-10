@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct BusSearchTextField: View {
-
+    // MARK: - Properties
     @State var text = ""
     var onSearch: (String) -> Void
-    var onResend: () -> Void
+    var onResend: (String) -> Void
     
+    // MARK: - Body
     var body: some View {
         HStack {
             textField
@@ -20,6 +21,7 @@ struct BusSearchTextField: View {
         }
     }
     
+    // MARK: - Computer Properties
     private var textField: some View {
         HStack {
             Image(.busIcon)
@@ -27,7 +29,7 @@ struct BusSearchTextField: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 22, height: 22)
             
-            TextField("", text: $text, prompt: Text("321"))
+            TextField("", text: $text.max(3), prompt: Text("321"))
                 .keyboardType(.numberPad)
                 .multilineTextAlignment(.center)
             
@@ -57,7 +59,7 @@ struct BusSearchTextField: View {
     
     private var resendButton: some View {
         Button(action: {
-            onResend()
+            onResend(text)
         }, label: {
             Image(systemName: "arrow.triangle.2.circlepath")
                 .resizable()
@@ -75,5 +77,5 @@ struct BusSearchTextField: View {
 }
 
 #Preview {
-    BusSearchTextField(onSearch: {_ in }, onResend: {})
+    BusSearchTextField(onSearch: {_ in }, onResend: {_ in})
 }

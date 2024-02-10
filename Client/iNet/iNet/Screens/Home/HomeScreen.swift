@@ -85,7 +85,7 @@ struct HomeScreen: View {
     private var welcomeText: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(LocalizedStringKey("hello"))
-                .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .regular).font(size: 18))
+                .font(AppFont.forLanguage(Locale.current.language.languageCode?.identifier ?? "en", style: .medium).font(size: 18))
                 .foregroundStyle(.accent)
             
             if let user = user {

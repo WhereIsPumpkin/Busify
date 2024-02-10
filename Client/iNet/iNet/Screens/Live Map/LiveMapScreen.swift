@@ -391,8 +391,10 @@ private extension LiveMapScreen {
             Task {
                 await self.viewModel.fetchRouteAndBuses(for: text)
             }
-        }, onResend: {
-            print("Resend tapped")
+        }, onResend: { text in
+            Task {
+                await self.viewModel.refreshBusLocations(routeNumber: text)
+            }
         })
         
         busNumberTextFieldHostingController = UIHostingController(rootView: swiftUIView)

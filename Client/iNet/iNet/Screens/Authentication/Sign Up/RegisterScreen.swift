@@ -60,6 +60,7 @@ struct RegisterScreen: View {
             nameField
             emailField
             passwordField
+            errorMessageView
         }
     }
     
@@ -88,21 +89,37 @@ struct RegisterScreen: View {
     private var nextButton: some View {
         StyledButton(buttonText: "next", buttonColor: viewModel.isNextButtonDisabled ? .accent.opacity(0.5) : Color.alternate, textColor: .white) {
             if !viewModel.isNextButtonDisabled {
-                NavigationManager.shared.navigateToVerification()
                 Task {
-                    await viewModel.registerUser()
+                    let registrationSuccess = await viewModel.registerUser()
+                    if registrationSuccess {
+                        NavigationManager.shared.navigateToVerification()
+                    }
                 }
-                
             }
         }
         .disabled(viewModel.isNextButtonDisabled)
     }
+    
     
     private var appleRegisterButton: some View {
         StyledButton(buttonText: "Sign up with Apple", buttonColor: .accent, textColor: .black, icon: "applelogo") {
             print("Apple Sign")
         }
     }
+    
+    private var errorMessageView: some View {
+        Group {
+            if let errorMessage = viewModel.errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .font(.system(size: 14))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .transition(.opacity)
+                    .animation(.easeInOut, value: viewModel.errorMessage)
+            }
+        }
+    }
+    
 }
 
 #Preview {

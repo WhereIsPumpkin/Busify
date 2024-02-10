@@ -219,7 +219,6 @@ extension BusStopSearchScreen: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedBusStop = viewModel.filteredLocation(at: indexPath.row)
         
-        // TODO: - Removed try
         Task {
              await viewModel.fetchBusStopArrivalTimes(stopID: selectedBusStop.code ?? "1466") {
                 DispatchQueue.main.async { [weak self] in
