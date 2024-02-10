@@ -12,6 +12,6 @@ enum BaseURL: String {
     case local = "http://localhost:3000"
     
     static var production: BaseURL {
-        return .local
+        return .remote
     }
 }

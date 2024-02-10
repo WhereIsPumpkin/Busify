@@ -66,7 +66,7 @@ final class AuthViewModel: ObservableObject {
     func verifyUser(with token: String) async -> Bool {
         let url = URL(string: "\(BaseURL.production.rawValue)/api/user/verify")!
         let emailToken = EmailToken(email: email, token: token)
-        
+        print(emailToken)
         defer {
             DispatchQueue.main.async {
                 self.clearUserData()
