@@ -32,6 +32,7 @@ final class BusTimeCollectionViewCell: UICollectionViewCell {
         busWaitTime.text = String(format: NSLocalizedString("arrivalTime", comment: ""), "\(arrivalTime.arrivalTime)")
         busNumber.text = arrivalTime.routeNumber
         busRoute.text = arrivalTime.destinationStopName
+        blinkCheck(with: arrivalTime)
     }
     
     // MARK: - Private Methods
@@ -166,10 +167,22 @@ final class BusTimeCollectionViewCell: UICollectionViewCell {
             busRoute.widthAnchor.constraint(lessThanOrEqualToConstant: 200)
         ])
     }
-
+    
     
     private func addInfoVerticalStackArrangedSubviews() {
         infoVerticalStack.addArrangedSubview(busWaitTime)
         infoVerticalStack.addArrangedSubview(busRoute)
     }
 }
+
+private extension BusTimeCollectionViewCell {
+    func blinkCheck(with arrivalTime: ArrivalTime) {
+        if arrivalTime.arrivalTime < 2 {
+            busWaitTime.flash(numberOfFlashes: Float.greatestFiniteMagnitude)
+        } else {
+            busWaitTime.layer.removeAllAnimations()
+            busWaitTime.alpha = 1
+        }
+    }
+}
+

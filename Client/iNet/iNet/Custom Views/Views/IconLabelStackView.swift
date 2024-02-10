@@ -49,7 +49,7 @@ class IconLabelStackView: UIView {
     }
     
     func updateTitleLabel(with text: String) {
-        titleLabel.text = text
+        titleLabel.text = NSLocalizedString(text, comment: "")
     }
     
     private func setupMainStackAppearance() {

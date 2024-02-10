@@ -53,23 +53,23 @@ final class ReminderViewController: UIViewController {
         nearbyReminderStack.onDateSelected = { [weak self] selectedTime in
             self?.timeReminderStack.resetView()
             self?.nearbyReminderTime = selectedTime
-            self?.timeReminderTime = nil // Clear the time reminder
+            self?.timeReminderTime = nil
             
             let newText = selectedTime.isEmpty ? "Set Nearby Reminder" : "\(selectedTime)"
             self?.nearbyReminderStack.updateTitleLabel(with: newText)
             
-            self?.timeReminderStack.updateTitleLabel(with: "Set Time Reminder")
+            self?.timeReminderStack.updateTitleLabel(with: "setTimeReminder")
         }
         
         timeReminderStack.onDateSelected = { [weak self] selectedTime in
             self?.nearbyReminderStack.resetView()
             self?.timeReminderTime = selectedTime
-            self?.nearbyReminderTime = nil // Clear the nearby reminder
+            self?.nearbyReminderTime = nil
             
             let newText = selectedTime.isEmpty ? "Set Time Reminder" : "\(selectedTime)"
             self?.timeReminderStack.updateTitleLabel(with: newText)
             
-            self?.nearbyReminderStack.updateTitleLabel(with: "Set Nearby Reminder")
+            self?.nearbyReminderStack.updateTitleLabel(with: "setNearbyReminder")
         }
     }
     
@@ -227,17 +227,30 @@ final class ReminderViewController: UIViewController {
     @objc private func setReminderButtonTapped(_ sender: UIButton) {
         if let nearbyTime = nearbyReminderTime {
             let reminderTimeInMinutes = busInfo.arrivalTime - nearbyTime.toMinutes()
+            
+            if nearbyTime.toMinutes() >= busInfo.arrivalTime {
+                let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Nearby time is greater than or equal to bus arrival time."])
+                self.showErrorAlert(error)
+                return
+            }
+            
             let (hour, minute) = Date().adding(minutes: reminderTimeInMinutes)
+            
+            let localizedBody = NSLocalizedString("busArrivalBody-string", comment: "Bus arrival notification body")
+            guard let routeNumberInt = Int(busInfo.routeNumber) else { return }
+            let formattedBody = String(format: localizedBody, routeNumberInt, nearbyTime.toMinutes())
+            
             NotificationManager.shared.dispatchNotification(
                 identifier: "nearbyReminder",
                 title: "Reminder‼",
-                body: "Your bus, #\(busInfo.routeNumber), will arrive in \(nearbyTime.toMinutes()) minutes.",
+                body: formattedBody,
                 hour: hour,
                 minute: minute,
                 isDaily: false
             )
             dismiss(animated: true)
-        } else if let timeReminder = timeReminderTime {
+        }
+        else if let timeReminder = timeReminderTime {
             let formatter = DateFormatter()
             formatter.dateFormat = "HH:mm"
             

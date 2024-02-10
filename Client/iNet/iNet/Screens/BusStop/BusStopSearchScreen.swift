@@ -246,7 +246,7 @@ extension BusStopSearchScreen {
     private func configureViewForTextFieldFocus() {
         hideBusAnimation()
         showReturnButton()
-        adjustSpacingsForFocus()
+ 
         hideTitleLabel()
         addTableViewToStack()
     }
@@ -277,10 +277,6 @@ extension BusStopSearchScreen {
     private func unhideBusAnimation() {
         busAnimationView.alpha = 1
         busAnimationView.isHidden = false
-    }
-    
-    private func adjustSpacingsForFocus() {
-        // Sizing Adjust //TODO: - Look for sizes
     }
     
     private func resetSpacings() {

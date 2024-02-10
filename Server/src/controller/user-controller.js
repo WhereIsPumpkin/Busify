@@ -51,7 +51,7 @@ export const createUser = async (req, res) => {
       lastName,
       email: userEmail,
       password,
-      card: {},
+      card: null,
     })
     console.log(newUser)
     await newUser.save()
