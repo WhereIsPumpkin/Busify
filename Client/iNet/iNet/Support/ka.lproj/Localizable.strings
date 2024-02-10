@@ -66,9 +66,12 @@
 "egAmount" = "მაგ 50₾";
 "confirm" = "დადასტურება";
 "setReminderTitle" = "შეხსენების დაყენება";
+"busArrivalBody-string" = "შენი ავტობუსი, #%d, მოვა %d წუთში.";
 "setReminderDescription" = "მართე შენი ავტობუსის განრიგები პერსონალიზებული შეხსენებების საშუალებით.";
 "setNearbyReminder" = "მოახლოების შეხსენება";
 "setTimeReminder" = "დროითი შეხსენება";
 "allDay" = "ყოველ დღე";
 "setReminder" = "შეხსენების დაყენება";
 "logOut" = "გასვლა";
+"busStops" = "გაჩერებები";
+"busRoutes" = "ავტობუსები";

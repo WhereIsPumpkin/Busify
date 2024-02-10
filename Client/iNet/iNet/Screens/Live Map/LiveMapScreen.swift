@@ -4,6 +4,7 @@ import MapKit
 
 final class LiveMapScreen: UIViewController {
     // MARK: - Properties
+    let currentLanguage = Locale.current.language.languageCode?.identifier ?? "en"
     private let locationManager = CLLocationManager()
     private var mapView: MKMapView?
     private let viewModel = LiveMapViewModel()
@@ -270,7 +271,6 @@ extension LiveMapScreen: LiveMapViewModelDelegate {
         busLocationAnnotations.append(contentsOf: newAnnotations)
     }
     
-    
     private func convertShapeToCoordinates(shapeString: String) -> [CLLocationCoordinate2D] {
         let pairs = shapeString.split(separator: ",").map(String.init)
         var coordinates: [CLLocationCoordinate2D] = []
@@ -304,10 +304,30 @@ private extension LiveMapScreen {
         headerBackgroundView.backgroundColor = .background
         headerBackgroundView.isUserInteractionEnabled = true
         
-        modeSegmentedControl = UISegmentedControl(items: ["Bus Stops", "Bus Routes"])
+        
+        modeSegmentedControl = UISegmentedControl(items: [NSLocalizedString("busStops", comment: ""), NSLocalizedString("busRoutes", comment: "")])
         modeSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
         modeSegmentedControl.selectedSegmentIndex = 0
         modeSegmentedControl.addTarget(self, action: #selector(modeChanged), for: .valueChanged)
+        
+        let font: UIFont
+        if currentLanguage == "ka" {
+            font = AppFont.forLanguage("ka", style: .semibold).uiFont(size: 14)
+        } else {
+            font = AppFont.forLanguage("en", style: .medium).uiFont(size: 14)
+        }
+        
+        let normalAttributes: [NSAttributedString.Key: Any] = [
+            .font: font,
+            .foregroundColor: UIColor.gray
+        ]
+        let selectedAttributes: [NSAttributedString.Key: Any] = [
+            .font: font,
+            .foregroundColor: UIColor.white
+        ]
+        
+        modeSegmentedControl.setTitleTextAttributes(normalAttributes, for: .normal)
+        modeSegmentedControl.setTitleTextAttributes(selectedAttributes, for: .selected)
         
         view.addSubview(headerBackgroundView)
         headerBackgroundView.addSubview(modeSegmentedControl)

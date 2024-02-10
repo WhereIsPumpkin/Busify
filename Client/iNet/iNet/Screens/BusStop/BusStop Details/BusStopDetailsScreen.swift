@@ -251,10 +251,15 @@ extension BusStopDetailsScreen: UICollectionViewDelegate, UICollectionViewDataSo
         if let arrivalTimes = arrivalTimes {
             let modalViewController = ReminderViewController(busNumber: arrivalTimes.arrivalTime[indexPath.row])
             modalViewController.modalPresentationStyle = .pageSheet
+            var customHeight = 0.0
             
             if let sheet = modalViewController.sheetPresentationController {
-                let customHeight = self.view.frame.height * 0.65
-                print(self.view.frame.height)
+                if view.frame.height < 670 {
+                    customHeight = self.view.frame.height * 0.84
+                } else {
+                    customHeight = self.view.frame.height * 0.65
+                }
+
                 sheet.detents = [.custom { context in customHeight }]
                 sheet.prefersGrabberVisible = true
                 sheet.preferredCornerRadius = 20

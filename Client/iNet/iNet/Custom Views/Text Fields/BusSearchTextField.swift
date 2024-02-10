@@ -27,8 +27,7 @@ struct BusSearchTextField: View {
                 .frame(width: 22, height: 22)
             
             TextField("", text: $text, prompt: Text("321"))
-                .keyboardType(.phonePad)
-                .textContentType(.telephoneNumber)
+                .keyboardType(.numberPad)
                 .multilineTextAlignment(.center)
             
             Image(systemName: "magnifyingglass")

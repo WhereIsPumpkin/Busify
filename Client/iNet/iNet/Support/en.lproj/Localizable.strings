@@ -66,9 +66,12 @@
 "egAmount" = "E.g 50₾";
 "confirm" = "Confirm";
 "setReminderTitle" = "Set a Reminder";
+"busArrivalBody-string" = "Your bus, #%d, will arrive in %d minutes.";
 "setReminderDescription" = "Manage your bus schedules for with personalized reminders.";
 "setNearbyReminder" = "Set Nearby Reminder";
 "setTimeReminder" = "Set Time Reminder";
 "allDay" = "All day";
 "setReminder" = "Set Reminder";
 "logOut" = "Log out";
+"busStops" = "Bus Stops";
+"busRoutes" = "Bus Routes";

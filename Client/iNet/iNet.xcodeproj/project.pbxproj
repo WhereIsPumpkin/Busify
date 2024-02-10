@@ -97,6 +97,7 @@
 		75E217DD2B57D81B006B9655 /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DC2B57D81B006B9655 /* OTPTextField.swift */; };
 		75E217E02B57E4FA006B9655 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217DF2B57E4FA006B9655 /* User.swift */; };
 		75E217E32B57E5AA006B9655 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E217E22B57E5AA006B9655 /* AuthViewModel.swift */; };
+		75F976982B77AE7200261C0F /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F976972B77AE7200261C0F /* UIView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +211,7 @@
 		75E217DC2B57D81B006B9655 /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
 		75E217DF2B57E4FA006B9655 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		75E217E22B57E5AA006B9655 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		75F976972B77AE7200261C0F /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,7 +299,7 @@
 			path = "Ticket Animation";
 			sourceTree = "<group>";
 		};
-		751CBD852B703175000A7DA0 /* GeorgianFont */ = {
+		751CBD852B703175000A7DA0 /* NotoSansGeorgian */ = {
 			isa = PBXGroup;
 			children = (
 				751CBD812B70316F000A7DA0 /* NotoSansGeorgian-Black.ttf */,
@@ -310,7 +312,7 @@
 				751CBD822B70316F000A7DA0 /* NotoSansGeorgian-SemiBold.ttf */,
 				751CBD842B70316F000A7DA0 /* NotoSansGeorgian-Thin.ttf */,
 			);
-			path = GeorgianFont;
+			path = NotoSansGeorgian;
 			sourceTree = "<group>";
 		};
 		751CBD862B703181000A7DA0 /* Poppins */ = {
@@ -350,6 +352,7 @@
 				758062882B6BD70000A0A157 /* UIViewController+Exntesions.swift */,
 				758062952B6C414F00A0A157 /* Binding+Extensions.swift */,
 				75082ABE2B755EEF001B5813 /* UIImage+Extensions.swift */,
+				75F976972B77AE7200261C0F /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -504,7 +507,7 @@
 			isa = PBXGroup;
 			children = (
 				751CBD862B703181000A7DA0 /* Poppins */,
-				751CBD852B703175000A7DA0 /* GeorgianFont */,
+				751CBD852B703175000A7DA0 /* NotoSansGeorgian */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -797,6 +800,7 @@
 				758062632B66922300A0A157 /* LiveMapViewModel.swift in Sources */,
 				7562A5062B64451300A2F50B /* IconLabelStackView.swift in Sources */,
 				7599CD232B5996AA00F4FD86 /* TabBarController.swift in Sources */,
+				75F976982B77AE7200261C0F /* UIView+Extensions.swift in Sources */,
 				758E2B732B72580000D19792 /* RoundedIconButton.swift in Sources */,
 				758062842B6A9D6500A0A157 /* BookmarkToggle.swift in Sources */,
 				75217B2E2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift in Sources */,
