@@ -11,7 +11,7 @@ struct BusSearchTextField: View {
     // MARK: - Properties
     @State var text = ""
     var onSearch: (String) -> Void
-    var onResend: () -> Void
+    var onResend: (String) -> Void
     
     // MARK: - Body
     var body: some View {
@@ -59,7 +59,7 @@ struct BusSearchTextField: View {
     
     private var resendButton: some View {
         Button(action: {
-            onResend()
+            onResend(text)
         }, label: {
             Image(systemName: "arrow.triangle.2.circlepath")
                 .resizable()
@@ -77,5 +77,5 @@ struct BusSearchTextField: View {
 }
 
 #Preview {
-    BusSearchTextField(onSearch: {_ in }, onResend: {})
+    BusSearchTextField(onSearch: {_ in }, onResend: {_ in})
 }
