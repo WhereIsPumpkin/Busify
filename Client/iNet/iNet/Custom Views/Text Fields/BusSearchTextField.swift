@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BusSearchTextField: View {
+
     @State var text = ""
     var onSearch: (String) -> Void
     var onResend: () -> Void
