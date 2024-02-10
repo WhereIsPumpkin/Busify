@@ -72,7 +72,3 @@ class RoundedIconButton: UIButton {
         action?()
     }
 }
-
-#Preview {
-    ProfileScreen()
-}

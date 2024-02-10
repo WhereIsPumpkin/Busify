@@ -116,6 +116,3 @@ final class CardCheckAnimation: UIStackView {
     }
 }
 
-#Preview {
-    CardCheckAnimation()
-}
