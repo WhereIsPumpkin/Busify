@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "751B0BE42B544A5300ACBEAE"
-               BuildableName = "iNet.app"
-               BlueprintName = "iNet"
-               ReferencedContainer = "container:iNet.xcodeproj">
+               BuildableName = "Busify.app"
+               BlueprintName = "Busify"
+               ReferencedContainer = "container:Busify.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -37,7 +37,7 @@
                BlueprintIdentifier = "7567385C2B7381D500C4736E"
                BuildableName = "authenticationTests.xctest"
                BlueprintName = "authenticationTests"
-               ReferencedContainer = "container:iNet.xcodeproj">
+               ReferencedContainer = "container:Busify.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "751B0BE42B544A5300ACBEAE"
-            BuildableName = "iNet.app"
-            BlueprintName = "iNet"
-            ReferencedContainer = "container:iNet.xcodeproj">
+            BuildableName = "Busify.app"
+            BlueprintName = "Busify"
+            ReferencedContainer = "container:Busify.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -74,9 +74,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "751B0BE42B544A5300ACBEAE"
-            BuildableName = "iNet.app"
-            BlueprintName = "iNet"
-            ReferencedContainer = "container:iNet.xcodeproj">
+            BuildableName = "Busify.app"
+            BlueprintName = "Busify"
+            ReferencedContainer = "container:Busify.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

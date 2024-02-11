@@ -117,7 +117,7 @@
 		75082ABC2B7542FA001B5813 /* BusSearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusSearchTextField.swift; sourceTree = "<group>"; };
 		75082ABE2B755EEF001B5813 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		7510F7492B5B005D003C24BB /* BusStopSearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopSearchScreen.swift; sourceTree = "<group>"; };
-		751B0BE52B544A5300ACBEAE /* iNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		751B0BE52B544A5300ACBEAE /* Busify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Busify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		751B0BE82B544A5300ACBEAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		751B0BEA2B544A5300ACBEAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		751B0BF12B544A5400ACBEAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 		751B0BDC2B544A5300ACBEAE = {
 			isa = PBXGroup;
 			children = (
-				751B0BE72B544A5300ACBEAE /* iNet */,
+				751B0BE72B544A5300ACBEAE /* Busify */,
 				7567385E2B7381D500C4736E /* BusifyAppTests */,
 				751B0BE62B544A5300ACBEAE /* Products */,
 			);
@@ -268,13 +268,13 @@
 		751B0BE62B544A5300ACBEAE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				751B0BE52B544A5300ACBEAE /* iNet.app */,
+				751B0BE52B544A5300ACBEAE /* Busify.app */,
 				7567385D2B7381D500C4736E /* authenticationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		751B0BE72B544A5300ACBEAE /* iNet */ = {
+		751B0BE72B544A5300ACBEAE /* Busify */ = {
 			isa = PBXGroup;
 			children = (
 				75479BC12B56EC6300FD79F7 /* App */,
@@ -287,7 +287,7 @@
 				751B0BF12B544A5400ACBEAE /* Assets.xcassets */,
 				751B0BF62B544A5400ACBEAE /* Info.plist */,
 			);
-			path = iNet;
+			path = Busify;
 			sourceTree = "<group>";
 		};
 		751CBD712B7017F0000A7DA0 /* Ticket Animation */ = {
@@ -648,9 +648,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		751B0BE42B544A5300ACBEAE /* iNet */ = {
+		751B0BE42B544A5300ACBEAE /* Busify */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 751B0BF92B544A5400ACBEAE /* Build configuration list for PBXNativeTarget "iNet" */;
+			buildConfigurationList = 751B0BF92B544A5400ACBEAE /* Build configuration list for PBXNativeTarget "Busify" */;
 			buildPhases = (
 				751B0BE12B544A5300ACBEAE /* Sources */,
 				751B0BE22B544A5300ACBEAE /* Frameworks */,
@@ -660,14 +660,14 @@
 			);
 			dependencies = (
 			);
-			name = iNet;
+			name = Busify;
 			packageProductDependencies = (
 				7599CD122B57F35E00F4FD86 /* NetSwift */,
 				75A0BDF82B5B14AE00B90EEA /* Lottie */,
 				758B9E5D2B6D70B100F23236 /* CreditCardScanner */,
 			);
 			productName = iNet;
-			productReference = 751B0BE52B544A5300ACBEAE /* iNet.app */;
+			productReference = 751B0BE52B544A5300ACBEAE /* Busify.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7567385C2B7381D500C4736E /* authenticationTests */ = {
@@ -707,7 +707,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 751B0BE02B544A5300ACBEAE /* Build configuration list for PBXProject "iNet" */;
+			buildConfigurationList = 751B0BE02B544A5300ACBEAE /* Build configuration list for PBXProject "Busify" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -726,7 +726,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				751B0BE42B544A5300ACBEAE /* iNet */,
+				751B0BE42B544A5300ACBEAE /* Busify */,
 				7567385C2B7381D500C4736E /* authenticationTests */,
 			);
 		};
@@ -857,7 +857,7 @@
 /* Begin PBXTargetDependency section */
 		756738622B7381D500C4736E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 751B0BE42B544A5300ACBEAE /* iNet */;
+			target = 751B0BE42B544A5300ACBEAE /* Busify */;
 			targetProxy = 756738612B7381D500C4736E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1005,7 +1005,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 69GK54W8ZW;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = iNet/Info.plist;
+				INFOPLIST_FILE = Busify/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "To scan your credit card for fast input, we need camera access. No data is stored or shared.";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We use your location to keep providing real-time updates about bus stops, even when you're not actively using the app.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to provide real-time information about bus stops near you.";
@@ -1038,7 +1038,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 69GK54W8ZW;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = iNet/Info.plist;
+				INFOPLIST_FILE = Busify/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "To scan your credit card for fast input, we need camera access. No data is stored or shared.";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We use your location to keep providing real-time updates about bus stops, even when you're not actively using the app.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to provide real-time information about bus stops near you.";
@@ -1077,7 +1077,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iNet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iNet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Busify.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Busify";
 			};
 			name = Debug;
 		};
@@ -1096,14 +1096,14 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iNet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iNet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Busify.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Busify";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		751B0BE02B544A5300ACBEAE /* Build configuration list for PBXProject "iNet" */ = {
+		751B0BE02B544A5300ACBEAE /* Build configuration list for PBXProject "Busify" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				751B0BF72B544A5400ACBEAE /* Debug */,
@@ -1112,7 +1112,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		751B0BF92B544A5400ACBEAE /* Build configuration list for PBXNativeTarget "iNet" */ = {
+		751B0BF92B544A5400ACBEAE /* Build configuration list for PBXNativeTarget "Busify" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				751B0BFA2B544A5400ACBEAE /* Debug */,
