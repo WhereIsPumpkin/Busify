@@ -61,6 +61,7 @@ struct VerificationScreen: View {
             let token = otpValue.joined()
             Task {
                 let isVerified = await signUpViewModel.verifyUser(with: token)
+                print(isVerified)
                 if isVerified {
                     NavigationManager.shared.navigateToVerified()
                 }

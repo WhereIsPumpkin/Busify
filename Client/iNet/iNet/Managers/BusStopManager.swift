@@ -16,7 +16,6 @@ final class BusStopManager {
     
     func fetchBusStops() async {
         guard let url = URL(string: "http://transfer.ttc.com.ge:8080/otp/routers/ttc/index/stops") else { return }
-        print("I'm from bus manager making call")
         do {
             let fetchedData = try await NetworkManager.shared.fetchDecodableData(from: url, responseType: Locations.self)
             self.locations = fetchedData
