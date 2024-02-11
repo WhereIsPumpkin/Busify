@@ -32,4 +32,3 @@ export const fillBalance = async (req, res) => {
       .json({ message: "An error occurred while updating the balance" })
   }
 }
-  

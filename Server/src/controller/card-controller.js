@@ -15,7 +15,7 @@ export const addCard = async (req, res) => {
     user.card = { cardNumber, cardName, cardDate, cardCVV }
 
     await user.save()
-    console.log("It is added")
+    
     res.status(200).json({ message: "Card added successfully", user: user })
   } catch (error) {
     res.status(500).json({ message: "An error occurred", error: error.message })

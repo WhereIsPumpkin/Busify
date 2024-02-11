@@ -23,23 +23,23 @@ export const buyTicket = async (req, res) => {
       })
     }
 
-    const ticket = new BusTicket({
-      cardName,
-      price,
-      duration,
-      userId,
-    })
-    
     const durationMap = {
       duration_90min: "60 წუთი",
       duration_Daily: "1 დღე",
       duration_Weekly: "1 კვირა",
-      Monthly: "1 თვე",
-      Quarterly: "3 თვე",
-      Semiannual: "6 თვე",
-      Annual: "1 წელი ",
+      duration_Monthly: "1 თვე",
+      duration_Quarterly: "3 თვე",
+      duration_Semiannual: "6 თვე",
+      duration_Annual: "1 წელი",
     }
-    
+
+    const ticket = new BusTicket({
+      cardName,
+      price,
+      duration: durationMap[duration],
+      userId,
+    })
+
     const formattedDuration = durationMap[duration]
 
     const savedTicket = await ticket.save()

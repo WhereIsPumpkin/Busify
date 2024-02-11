@@ -23,7 +23,6 @@ final class BusStopSearchViewModel {
     // MARK: - Stop Configure Methods
     private func initializeBusStops() async {
         if BusStopManager.shared.getLocations() == nil {
-            print("Bus stop locations not available, fetching now...")
             await BusStopManager.shared.fetchBusStops()
         }
         self.filteredLocations = BusStopManager.shared.getLocations() ?? []
