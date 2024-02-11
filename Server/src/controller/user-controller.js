@@ -107,7 +107,7 @@ export const verifyUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body
-
+    
     const userEmail = email.toLowerCase()
 
     const existingUser = await User.findOne({ email: userEmail })
