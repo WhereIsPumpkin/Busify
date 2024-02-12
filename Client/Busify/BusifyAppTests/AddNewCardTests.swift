@@ -5,7 +5,7 @@
 //
 
 import XCTest
-@testable import iNet
+@testable import Busify
 
 final class AddNewCardTests: XCTestCase {
 
