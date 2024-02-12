@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import iNet
+@testable import Busify
 
 final class AuthenticationTests: XCTestCase {
     
