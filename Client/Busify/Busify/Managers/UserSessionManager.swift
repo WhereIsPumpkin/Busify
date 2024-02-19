@@ -30,7 +30,7 @@ class UserSessionManager {
             return
         }
         
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: url) 
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         do { 
