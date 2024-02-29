@@ -23,6 +23,7 @@ struct HomeScreen: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: .didUpdateUser)) { _ in
             self.user = UserSessionManager.shared.currentUser
+            print("I'm from homescreen")
         }
         .alert(isPresented: $viewModel.showingErrorAlert) {
             Alert(title: Text("Error Notification"),

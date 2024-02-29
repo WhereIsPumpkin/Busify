@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 import NetSwift
 
 final class HomeViewModel: ObservableObject {
@@ -14,8 +13,6 @@ final class HomeViewModel: ObservableObject {
     @Published var error: String?
     @Published var showingErrorAlert = false
     @Published var bookmarkedBusStops: [Location] = []
-    
-    private var cancellables = Set<AnyCancellable>()
     
     init() {
         Task {
@@ -36,6 +33,7 @@ final class HomeViewModel: ObservableObject {
     @objc private func cardUpdatedNotificationReceived(_ notification: Notification) {
         Task {
             await fetchBookmarkedBusStops()
+            print("I'm from viewModel")
         }
     }
     
