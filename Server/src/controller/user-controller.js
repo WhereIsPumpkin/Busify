@@ -3,21 +3,13 @@ import nodemailer from "nodemailer"
 import EmailToken from "../models/EmailToken.js"
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
-import OpenAI from "openai"
-import { confirmationEmailTemplate } from "../utils/confirmEmailTemplate.js"
+import { confirmationEmailTemplate } from "../utils/templates/confirmEmailTemplate.js"
+import transporter from "../utils/configs/emailTransporter.js"
 dotenv.config()
-
-let transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "inetsupersocial@gmail.com",
-    pass: process.env.AUTH_PASSWORD,
-  },
-})
 
 export const createUser = async (req, res) => {
   try {
-    const { name, lastName, email, password, gender } = req.body
+    const { name, lastName, email, password } = req.body
 
     const userEmail = email.toLowerCase()
     const existingUserEmail = await User.findOne({ email: userEmail })
@@ -59,8 +51,9 @@ export const createUser = async (req, res) => {
       lastName,
       email: userEmail,
       password,
-      gender,
+      card: null,
     })
+    console.log(newUser)
     await newUser.save()
 
     return res.status(201).json(newUser)
@@ -114,7 +107,7 @@ export const verifyUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body
-
+    
     const userEmail = email.toLowerCase()
 
     const existingUser = await User.findOne({ email: userEmail })
@@ -124,53 +117,58 @@ export const loginUser = async (req, res) => {
 
     const validPassword = password === existingUser.password
     if (!validPassword) {
+      print("Invalid Passwor")
       return res.status(401).send("Invalid password")
     }
 
     const payload = {
       id: existingUser._id,
-      name: existingUser.name,
-      lastName: existingUser.lastName,
-      gender: existingUser.gender,
-      verified: existingUser.verified,
     }
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" })
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1w" })
 
-    res.json({ token })
+    res.json({
+      token,
+      user: {
+        id: existingUser._id,
+        name: existingUser.name,
+        lastName: existingUser.lastName,
+        email: existingUser.email,
+        bookmarkedStops: existingUser.bookmarkedStops,
+        verified: existingUser.verified,
+        balance: existingUser.balance,
+        card: existingUser.card,
+      },
+    })
   } catch (error) {
     res.status(500).send("Server error")
   }
 }
 
-export const debateUser = async (req, res) => {
-  const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-  })
+export const getUserInfo = async (req, res) => {
+  try {
+    const userID = req.userData.id
+    const user = await User.findById(userID)
 
-  const userMessage = req.body.message
+    const userInfo = {
+      id: user._id,
+      name: user.name,
+      lastName: user.lastName,
+      email: user.email,
+      verified: user.verified,
+      bookmarkedStops: user.bookmarkedStops,
+      balance: user.balance,
+    }
 
-  const response = await openai.chat.completions.create({
-    model: "gpt-4",
-    messages: [
-      {
-        role: "user",
-        content:
-          "What i say you say opposite, no matter what, i say earth is flat, you say it is round... Before u start saying opposite, just roast me at first and then prove your point... Your Text's shouldn't be long, short and to the point and panfiul... As a humorous debater, your main role is to entertain and bring laughter to the conversation. No matter what the user says, your task is to respond in a playfully contrary manner, using humor and a variety of emojis. It's important to keep the conversation lighthearted, witty, and filled with playful sarcasm. To oppose playfully, your goal is to find a humorous way to disagree or present an opposite view when the user makes a statement. For example, if they say 'I love sunny weather', you might respond with something like 'Really? I heard rain makes the world go round 😂🌧️'. Be creative and think of witty responses that will make the user smile. Emojis are your tools for adding fun and expression to your responses. Use them creatively to complement your words and enhance the humor. Emojis can bring additional playfulness to your replies and make them even more enjoyable. While injecting humor, it's important to stay lighthearted and maintain a friendly tone. Avoid sensitive topics and keep the conversation light and enjoyable for everyone involved. Your ultimate goal is to make the user laugh and enjoy the playful debate. Use puns, jokes, and witty remarks to engage the user and create a fun atmosphere. Remember, the key is to keep the conversation engaging, fun, and full of laughter! When crafting your responses, take a moment to think about the best way to bring humor into the conversation. Consider the user's statement or question, and make a thoughtful decision on how to playfully oppose it. This will ensure that your responses are tailored to the situation and maximize the entertainment value. Now, go ahead and spread some laughter with your playful and humorous responses! Have fun and enjoy the conversation!",
-      },
-      {
-        role: "user",
-        content: userMessage,
-      },
-    ],
-    temperature: 1.1,
-    max_tokens: 200,
-    top_p: 1,
-    frequency_penalty: 0,
-    presence_penalty: 0,
-  })
+    const hasCardDetails =
+      user.card &&
+      Object.values(user.card.toObject()).some((value) => value !== "")
+    if (hasCardDetails) {
+      userInfo.card = user.card
+    }
 
-  const assistantMessage = response.choices[0].message.content
-
-  res.send({ message: assistantMessage })
+    res.json(userInfo)
+  } catch (error) {
+    res.status(500).send("Server error: " + error.message)
+  }
 }

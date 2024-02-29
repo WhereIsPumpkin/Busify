@@ -1,13 +1,12 @@
 import express from "express"
 import connectToMongoDB from "./database/mongo.js"
 import dotenv from "dotenv"
-import {
-  createUser,
-  verifyUser,
-  loginUser,
-  debateUser
-} from "./controller/user-controller.js"
 import bodyParser from "body-parser"
+import userRoutes from "./routes/userRoutes.js"
+import bookmarkRoutes from "./routes/bookmarkRoutes.js"
+import cardRoutes from "./routes/cardRoutes.js"
+import balanceRoutes from "./routes/balanceRoutes.js"
+import ticketRoutes from "./routes/ticketRoutes.js"
 
 dotenv.config()
 connectToMongoDB()
@@ -17,14 +16,15 @@ const app = express()
 app.use(bodyParser.json())
 app.use(express.json())
 
-app.post("/api/user/register", createUser)
+app.use("/api/user", userRoutes)
 
-app.post("/api/user/verify", verifyUser)
+app.use("/api/bookmark", bookmarkRoutes)
 
-app.post("/api/user/login", loginUser)
+app.use("/api/card", cardRoutes)
 
-app.post("/api/assistant/debate", debateUser);
+app.use("/api/balance", balanceRoutes)
 
+app.use("/api/ticket", ticketRoutes)
 
 connectToMongoDB().then(() => {
   app.listen(3000, () => {
