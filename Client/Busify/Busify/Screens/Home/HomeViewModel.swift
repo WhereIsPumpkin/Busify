@@ -33,7 +33,6 @@ final class HomeViewModel: ObservableObject {
     @objc private func cardUpdatedNotificationReceived(_ notification: Notification) {
         Task {
             await fetchBookmarkedBusStops()
-            print("I'm from viewModel")
         }
     }
     

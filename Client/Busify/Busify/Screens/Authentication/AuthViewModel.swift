@@ -11,23 +11,16 @@ final class AuthViewModel: ObservableObject {
     
     // MARK: - Computed Properties
     var isNextButtonDisabled: Bool {
-        name.isEmpty || lastName.isEmpty || !isValidEmail(email) || password.count < 6
-    }
-    
-    // MARK: - Validation
-     func isValidEmail(_ email: String) -> Bool {
-        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
-        return emailPredicate.evaluate(with: email)
+        name.isEmpty || lastName.isEmpty || !email.isValidEmail || !password.isValidPassword
     }
     
     // MARK: - User Registration
     func registerUser() async -> Bool {
         let url = URL(string: "\(BaseURL.production.rawValue)/api/user/register")!
-        let user = RegistrationDetails(name: name, lastName: lastName, email: email, password: password)
+        let body = RegistrationDetails(name: name, lastName: lastName, email: email, password: password)
         
         do {
-            let (data, response) = try await postRegistrationRequest(to: url, with: user)
+            let (data, response) = try await postRegistrationRequest(to: url, with: body)
             return handleResponse(response, data: data)
         } catch {
             handleErrorMessage("Failed to register user: \(error.localizedDescription)")
