@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import NetSwift
+import NetSwiftly
 
 final class AddNewCardViewModel: ObservableObject {
     // MARK: - Properties
@@ -39,7 +39,7 @@ final class AddNewCardViewModel: ObservableObject {
     }
     
     func addNewCard() async -> Void {
-        guard let url = URL(string: "\(BaseURL.production.rawValue)/api/card/add") else { return }
+        var request = URLRequestBuilder(baseURL: BaseURL.production.url).post("/api/card/add")
         guard let token = UserDefaults.standard.string(forKey: "userToken") else { return }
         
         let requestBody = Card(
@@ -49,12 +49,13 @@ final class AddNewCardViewModel: ObservableObject {
             cardCVV: cardCVV
         )
         
-        let headers: [String: String] = ["Authorization": "Bearer \(token)", "Content-Type": "application/json"]
+        request.setBearerToken(token)
         
         do {
-            let (_, _) = try await NetworkManager.shared.postDataWithHeaders(to: url, body: requestBody, headers: headers)
+            try request.setJSONBody(requestBody)
+            _ = try await NetSwiftly.shared.performRequest(request: request, responseType: Empty.self)
             completion!()
-            try await Task.sleep(nanoseconds: 5_000_000_000) // 5 seconds delay
+            try await Task.sleep(nanoseconds: 5_000_000_000)
             await UserSessionManager.shared.fetchUserInfo()
         } catch {
             print("Error: \(error)")

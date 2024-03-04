@@ -44,15 +44,6 @@
         "revision" : "ce0d8cad4df8a5050be8c1ad3e42378eb3b80950",
         "version" : "0.1.0"
       }
-    },
-    {
-      "identity" : "swiftnet",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/WhereIsPumpkin/SwiftNet",
-      "state" : {
-        "branch" : "main",
-        "revision" : "48729d1d02e80ac2f4a7cca2fb651f5e26126513"
-      }
     }
   ],
   "version" : 2

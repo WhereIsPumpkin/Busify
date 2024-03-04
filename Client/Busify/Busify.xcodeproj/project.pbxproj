@@ -76,7 +76,6 @@
 		758B9E702B6EE49800F23236 /* CardCheckAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758B9E6F2B6EE49800F23236 /* CardCheckAnimation.swift */; };
 		758E2B732B72580000D19792 /* RoundedIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758E2B722B72580000D19792 /* RoundedIconButton.swift */; };
 		758EAA892B834BC800EEE199 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758EAA882B834BC800EEE199 /* NotificationManager.swift */; };
-		7599CD132B57F35E00F4FD86 /* NetSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7599CD122B57F35E00F4FD86 /* NetSwift */; };
 		7599CD152B5836E900F4FD86 /* EmailToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD142B5836E900F4FD86 /* EmailToken.swift */; };
 		7599CD172B583CB400F4FD86 /* VerifiedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD162B583CB400F4FD86 /* VerifiedScreen.swift */; };
 		7599CD192B58437700F4FD86 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599CD182B58437600F4FD86 /* LoginScreen.swift */; };
@@ -220,7 +219,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7599CD132B57F35E00F4FD86 /* NetSwift in Frameworks */,
 				75A0BDF92B5B14AE00B90EEA /* Lottie in Frameworks */,
 				758B9E5E2B6D70B100F23236 /* CreditCardScanner in Frameworks */,
 				75458C312B959089007279F8 /* NetSwiftly in Frameworks */,
@@ -664,7 +662,6 @@
 			);
 			name = Busify;
 			packageProductDependencies = (
-				7599CD122B57F35E00F4FD86 /* NetSwift */,
 				75A0BDF82B5B14AE00B90EEA /* Lottie */,
 				758B9E5D2B6D70B100F23236 /* CreditCardScanner */,
 				75458C302B959089007279F8 /* NetSwiftly */,
@@ -721,7 +718,6 @@
 			);
 			mainGroup = 751B0BDC2B544A5300ACBEAE;
 			packageReferences = (
-				7599CD112B57F35E00F4FD86 /* XCRemoteSwiftPackageReference "SwiftNet" */,
 				75A0BDF72B5B14AE00B90EEA /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				758B9E5C2B6D70B100F23236 /* XCRemoteSwiftPackageReference "credit-card-scanner" */,
 				75458C2F2B959089007279F8 /* XCRemoteSwiftPackageReference "NetSwiftly" */,
@@ -1153,14 +1149,6 @@
 				minimumVersion = 0.1.5;
 			};
 		};
-		7599CD112B57F35E00F4FD86 /* XCRemoteSwiftPackageReference "SwiftNet" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/WhereIsPumpkin/SwiftNet";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		75A0BDF72B5B14AE00B90EEA /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
@@ -1181,11 +1169,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 758B9E5C2B6D70B100F23236 /* XCRemoteSwiftPackageReference "credit-card-scanner" */;
 			productName = CreditCardScanner;
-		};
-		7599CD122B57F35E00F4FD86 /* NetSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7599CD112B57F35E00F4FD86 /* XCRemoteSwiftPackageReference "SwiftNet" */;
-			productName = NetSwift;
 		};
 		75A0BDF82B5B14AE00B90EEA /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
