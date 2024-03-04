@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  iNet
+//  Busify
 //
 //  Created by Saba Gogrichiani on 14.01.24.
 //

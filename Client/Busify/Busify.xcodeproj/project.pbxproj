@@ -26,6 +26,7 @@
 		75217B2E2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75217B2D2B62953000D9FC19 /* UIEdgeInsets+Extensions.swift */; };
 		753AA6D42B5A815F006A599B /* LiveMapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D32B5A815F006A599B /* LiveMapScreen.swift */; };
 		753AA6D62B5A8166006A599B /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AA6D52B5A8166006A599B /* ProfileScreen.swift */; };
+		75458C312B959089007279F8 /* NetSwiftly in Frameworks */ = {isa = PBXBuildFile; productRef = 75458C302B959089007279F8 /* NetSwiftly */; };
 		75479BBB2B56A1E900FD79F7 /* RegisterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BBA2B56A1E900FD79F7 /* RegisterScreen.swift */; };
 		75479BC02B56E37B00FD79F7 /* RadioButtonField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BBF2B56E37B00FD79F7 /* RadioButtonField.swift */; };
 		75479BC92B56ED7500FD79F7 /* StyledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75479BC82B56ED7500FD79F7 /* StyledTextField.swift */; };
@@ -222,6 +223,7 @@
 				7599CD132B57F35E00F4FD86 /* NetSwift in Frameworks */,
 				75A0BDF92B5B14AE00B90EEA /* Lottie in Frameworks */,
 				758B9E5E2B6D70B100F23236 /* CreditCardScanner in Frameworks */,
+				75458C312B959089007279F8 /* NetSwiftly in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,6 +667,7 @@
 				7599CD122B57F35E00F4FD86 /* NetSwift */,
 				75A0BDF82B5B14AE00B90EEA /* Lottie */,
 				758B9E5D2B6D70B100F23236 /* CreditCardScanner */,
+				75458C302B959089007279F8 /* NetSwiftly */,
 			);
 			productName = iNet;
 			productReference = 751B0BE52B544A5300ACBEAE /* Busify.app */;
@@ -721,6 +724,7 @@
 				7599CD112B57F35E00F4FD86 /* XCRemoteSwiftPackageReference "SwiftNet" */,
 				75A0BDF72B5B14AE00B90EEA /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				758B9E5C2B6D70B100F23236 /* XCRemoteSwiftPackageReference "credit-card-scanner" */,
+				75458C2F2B959089007279F8 /* XCRemoteSwiftPackageReference "NetSwiftly" */,
 			);
 			productRefGroup = 751B0BE62B544A5300ACBEAE /* Products */;
 			projectDirPath = "";
@@ -1133,6 +1137,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		75458C2F2B959089007279F8 /* XCRemoteSwiftPackageReference "NetSwiftly" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WhereIsPumpkin/NetSwiftly";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		758B9E5C2B6D70B100F23236 /* XCRemoteSwiftPackageReference "credit-card-scanner" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/yhkaplan/credit-card-scanner.git";
@@ -1160,6 +1172,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		75458C302B959089007279F8 /* NetSwiftly */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75458C2F2B959089007279F8 /* XCRemoteSwiftPackageReference "NetSwiftly" */;
+			productName = NetSwiftly;
+		};
 		758B9E5D2B6D70B100F23236 /* CreditCardScanner */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 758B9E5C2B6D70B100F23236 /* XCRemoteSwiftPackageReference "credit-card-scanner" */;

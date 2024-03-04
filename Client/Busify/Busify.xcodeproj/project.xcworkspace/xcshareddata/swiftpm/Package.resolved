@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "netswiftly",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/WhereIsPumpkin/NetSwiftly",
+      "state" : {
+        "branch" : "main",
+        "revision" : "78be13fca97a911437134517cb474090388e3e61"
+      }
+    },
+    {
       "identity" : "reg",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/yhkaplan/Reg.git",

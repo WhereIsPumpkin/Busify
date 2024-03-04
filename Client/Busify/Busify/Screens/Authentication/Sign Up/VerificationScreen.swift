@@ -1,6 +1,6 @@
 //
 //  verificationView.swift
-//  iNet
+//  Busify
 //
 //  Created by Saba Gogrichiani on 17.01.24.
 //

@@ -1,6 +1,6 @@
 //
 //  WelcomeView.swift
-//  iNet
+//  Busify
 //
 //  Created by Saba Gogrichiani on 15.01.24.
 //

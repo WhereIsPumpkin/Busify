@@ -1,3 +1,10 @@
+//
+//  AuthViewModel.swift
+//  Busify
+//
+//  Created by Saba Gogrichiani on 15.01.24.
+//
+
 import Foundation
 import NetSwift
 
