@@ -6,7 +6,8 @@
 //
 
 import Foundation
-import NetSwift
+//import NetSwift
+import NetSwiftly
 
 final class AuthViewModel: ObservableObject {
     // MARK: - Properties
@@ -15,6 +16,16 @@ final class AuthViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
     @Published var errorMessage: String?
+    
+    private let baseURL = BaseURL.production.rawValue
+    private let builder: URLRequestBuilder
+    
+    init() {
+        guard let baseURL = URL(string: self.baseURL) else {
+            fatalError("Invalid base URL")
+        }
+        self.builder = URLRequestBuilder(baseURL: baseURL)
+    }
     
     // MARK: - Computed Properties
     var isNextButtonDisabled: Bool {
@@ -26,18 +37,23 @@ final class AuthViewModel: ObservableObject {
         let url = URL(string: "\(BaseURL.production.rawValue)/api/user/register")!
         let body = RegistrationDetails(name: name, lastName: lastName, email: email, password: password)
         
+        var request = builder.post("/api/user/register")
+        
         do {
-            let (data, response) = try await postRegistrationRequest(to: url, with: body)
-            return handleResponse(response, data: data)
+            try request.setJSONBody(body)
+            _ = try await NetSwiftly.shared.performRequest(request: request, responseType: Empty.self)
+            return true
+        } catch let error as NetworkError {
+            await handleError(error)
+            return false
         } catch {
-            handleErrorMessage("Failed to register user: \(error.localizedDescription)")
+            print(error.localizedDescription)
             return false
         }
     }
-    
-    private func postRegistrationRequest(to url: URL, with user: RegistrationDetails) async throws -> (Data, URLResponse) {
-        return try await NetworkManager.shared.postData(to: url, body: user)
-    }
+    //    private func postRegistrationRequest(to url: URL, with user: RegistrationDetails) async throws -> (Data, URLResponse) {
+    //        return try await NetworkManager.shared.postData(to: url, body: user)
+    //    }
     
     private func handleResponse(_ response: URLResponse, data: Data) -> Bool {
         if let httpResponse = response as? HTTPURLResponse {
@@ -62,62 +78,76 @@ final class AuthViewModel: ObservableObject {
         }
     }
     
-    // MARK: - User Verification
-    func verifyUser(with token: String) async -> Bool {
-        let url = URL(string: "\(BaseURL.production.rawValue)/api/user/verify")!
-        let emailToken = EmailToken(email: email, token: token)
-        print(emailToken)
-        defer {
-            DispatchQueue.main.async {
-                self.clearUserData()
+    @MainActor
+    private func handleError(_ error: Error) {
+        if let networkError = error as? NetworkError {
+            switch networkError {
+            case .serverMessage(let message):
+                self.errorMessage = message
+            default:
+                self.errorMessage = "An unexpected network error occurred."
             }
-        }
-        
-        do {
-            let (_, response) = try await NetworkManager.shared.postData(to: url, body: emailToken)
-            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                return true
-            } else {
-                return false
-            }
-        } catch {
-            return false
+        } else {
+            self.errorMessage = error.localizedDescription
         }
     }
+    
+    // MARK: - User Verification
+    //    func verifyUser(with token: String) async -> Bool {
+    //        let url = URL(string: "\(BaseURL.production.rawValue)/api/user/verify")!
+    //        let emailToken = EmailToken(email: email, token: token)
+    //        print(emailToken)
+    //        defer {
+    //            DispatchQueue.main.async {
+    //                self.clearUserData()
+    //            }
+    //        }
+    //
+    //        do {
+    //            let (_, response) = try await NetworkManager.shared.postData(to: url, body: emailToken)
+    //            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+    //                return true
+    //            } else {
+    //                return false
+    //            }
+    //        } catch {
+    //            return false
+    //        }
+    //    }
     
     // MARK: - User Login
-    func loginUser() async -> Bool {
-        guard !email.isEmpty, !password.isEmpty else {
-            DispatchQueue.main.async {
-                self.errorMessage = "Please fill in all fields."
-            }
-            return false
-        }
-        
-        let loginDetails = LoginDetails(email: email, password: password)
-        
-        do {
-            let (data, response) = try await sendLoginRequest(with: loginDetails)
-            let isSuccess = try handleResponse(data: data, response: response)
-            if isSuccess {
-                DispatchQueue.main.async {
-                    self.clearLoginCredentials()
-                    self.errorMessage = nil
-                }
-            }
-            return isSuccess
-        } catch {
-            DispatchQueue.main.async {
-                self.errorMessage = error.localizedDescription
-            }
-            return false
-        }
-    }
+    //    func loginUser() async -> Bool {
+    //        guard !email.isEmpty, !password.isEmpty else {
+    //            DispatchQueue.main.async {
+    //                self.errorMessage = "Please fill in all fields."
+    //            }
+    //            return false
+    //        }
+    //
+    //        let loginDetails = LoginDetails(email: email, password: password)
+    //
+    //        do {
+    //            let (data, response) = try await sendLoginRequest(with: loginDetails)
+    //            let isSuccess = try handleResponse(data: data, response: response)
+    //            if isSuccess {
+    //                DispatchQueue.main.async {
+    //                    self.clearLoginCredentials()
+    //                    self.errorMessage = nil
+    //                }
+    //            }
+    //            return isSuccess
+    //        } catch {
+    //            DispatchQueue.main.async {
+    //                self.errorMessage = error.localizedDescription
+    //            }
+    //            return false
+    //        }
+    //    }
     
-    private func sendLoginRequest(with loginDetails: LoginDetails) async throws -> (Data, URLResponse) {
-        let url = URL(string: "\(BaseURL.production.rawValue)/api/user/login")!
-        return try await NetworkManager.shared.postData(to: url, body: loginDetails)
-    }
+    //    private func sendLoginRequest(with loginDetails: LoginDetails) async throws -> (Data, URLResponse) {
+    //        let url = URL(string: "\(BaseURL.production.rawValue)/api/user/login")!
+    //        return try await NetworkManager.shared.postData(to: url, body: loginDetails)
+    //    }
     
     private func handleResponse(data: Data, response: URLResponse) throws -> Bool {
         guard let httpResponse = response as? HTTPURLResponse else {

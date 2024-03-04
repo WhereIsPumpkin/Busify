@@ -104,10 +104,10 @@ struct LoginScreen: View {
         
         StyledButton(buttonText: "login", buttonColor: Color(.alternate), textColor: .white) {
             Task {
-                let isSuccess = await viewModel.loginUser()
-                if isSuccess {
-                    NavigationManager.shared.navigateToMainViewScreen()
-                }
+//                let isSuccess = await viewModel.loginUser()
+//                if isSuccess {
+//                    NavigationManager.shared.navigateToMainViewScreen()
+//                }
             }
         }
     }

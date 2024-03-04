@@ -60,11 +60,11 @@ struct VerificationScreen: View {
         StyledButton(buttonText: "verify", buttonColor: otpValue.allSatisfy { !$0.isEmpty } ? Color.alternate : .accent.opacity(0.5), textColor: .white) {
             let token = otpValue.joined()
             Task {
-                let isVerified = await signUpViewModel.verifyUser(with: token)
-                print(isVerified)
-                if isVerified {
-                    NavigationManager.shared.navigateToVerified()
-                }
+//                let isVerified = await signUpViewModel.verifyUser(with: token)
+//                print(isVerified)
+//                if isVerified {
+//                    NavigationManager.shared.navigateToVerified()
+//                }
             }
         }
         .padding(.top, 16)
