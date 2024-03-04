@@ -74,7 +74,6 @@ final class AuthViewModel: ObservableObject {
             }
             return false
         }
-        NetSwiftly.shared.debugEnabled = true
         let loginDetails = LoginDetails(email: email, password: password)
         var request = builder.post("/api/user/login")
         
