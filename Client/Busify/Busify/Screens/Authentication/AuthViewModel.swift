@@ -34,9 +34,7 @@ final class AuthViewModel: ObservableObject {
     
     // MARK: - User Registration
     func registerUser() async -> Bool {
-        let url = URL(string: "\(BaseURL.production.rawValue)/api/user/register")!
         let body = RegistrationDetails(name: name, lastName: lastName, email: email, password: password)
-        
         var request = builder.post("/api/user/register")
         
         do {
@@ -47,102 +45,55 @@ final class AuthViewModel: ObservableObject {
             await handleError(error)
             return false
         } catch {
-            print(error.localizedDescription)
+            await handleError(error)
             return false
-        }
-    }
-    //    private func postRegistrationRequest(to url: URL, with user: RegistrationDetails) async throws -> (Data, URLResponse) {
-    //        return try await NetworkManager.shared.postData(to: url, body: user)
-    //    }
-    
-    private func handleResponse(_ response: URLResponse, data: Data) -> Bool {
-        if let httpResponse = response as? HTTPURLResponse {
-            if httpResponse.statusCode == 201 {
-                return true
-            } else {
-                if let responseData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                   let message = responseData["message"] as? String {
-                    handleErrorMessage(message)
-                } else {
-                    handleErrorMessage("An error occurred.")
-                }
-                return false
-            }
-        }
-        return false
-    }
-    
-    private func handleErrorMessage(_ message: String) {
-        DispatchQueue.main.async {
-            self.errorMessage = message
-        }
-    }
-    
-    @MainActor
-    private func handleError(_ error: Error) {
-        if let networkError = error as? NetworkError {
-            switch networkError {
-            case .serverMessage(let message):
-                self.errorMessage = message
-            default:
-                self.errorMessage = "An unexpected network error occurred."
-            }
-        } else {
-            self.errorMessage = error.localizedDescription
         }
     }
     
     // MARK: - User Verification
-    //    func verifyUser(with token: String) async -> Bool {
-    //        let url = URL(string: "\(BaseURL.production.rawValue)/api/user/verify")!
-    //        let emailToken = EmailToken(email: email, token: token)
-    //        print(emailToken)
-    //        defer {
-    //            DispatchQueue.main.async {
-    //                self.clearUserData()
-    //            }
-    //        }
-    //
-    //        do {
-    //            let (_, response) = try await NetworkManager.shared.postData(to: url, body: emailToken)
-    //            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-    //                return true
-    //            } else {
-    //                return false
-    //            }
-    //        } catch {
-    //            return false
-    //        }
-    //    }
+    func verifyUser(with token: String) async -> Bool {
+        let emailTokenBody = EmailToken(email: email, token: token)
+        var request = builder.post("/api/user/verify")
+        
+        do {
+            try request.setJSONBody(emailTokenBody)
+            _ = try await NetSwiftly.shared.performRequest(request: request, responseType: Empty.self)
+            return true
+        } catch let error as NetworkError {
+            await handleError(error)
+            return false
+        } catch {
+            await handleError(error)
+            return false
+        }
+    }
     
     // MARK: - User Login
-    //    func loginUser() async -> Bool {
-    //        guard !email.isEmpty, !password.isEmpty else {
-    //            DispatchQueue.main.async {
-    //                self.errorMessage = "Please fill in all fields."
-    //            }
-    //            return false
-    //        }
-    //
-    //        let loginDetails = LoginDetails(email: email, password: password)
-    //
-    //        do {
-    //            let (data, response) = try await sendLoginRequest(with: loginDetails)
-    //            let isSuccess = try handleResponse(data: data, response: response)
-    //            if isSuccess {
-    //                DispatchQueue.main.async {
-    //                    self.clearLoginCredentials()
-    //                    self.errorMessage = nil
-    //                }
-    //            }
-    //            return isSuccess
-    //        } catch {
-    //            DispatchQueue.main.async {
-    //                self.errorMessage = error.localizedDescription
-    //            }
-    //            return false
-    //        }
-    //    }
+    func loginUser() async -> Bool {
+        guard !email.isEmpty, !password.isEmpty else {
+            DispatchQueue.main.async {
+                self.errorMessage = "Please fill in all fields."
+            }
+            return false
+        }
+        NetSwiftly.shared.debugEnabled = true
+        let loginDetails = LoginDetails(email: email, password: password)
+        var request = builder.post("/api/user/login")
+        
+        
+        do {
+            try request.setJSONBody(loginDetails)
+            let loginResponse = try await NetSwiftly.shared.performRequest(request: request, responseType: LoginResponse.self)
+            
+            UserDefaults.standard.set(loginResponse.token, forKey: "userToken")
+            UserSessionManager.shared.currentUser = loginResponse.user
+            
+            return true
+        } catch {
+            await handleError(error)
+            return false
+        }
+    }
     
     //    private func sendLoginRequest(with loginDetails: LoginDetails) async throws -> (Data, URLResponse) {
     //        let url = URL(string: "\(BaseURL.production.rawValue)/api/user/login")!
@@ -195,6 +146,18 @@ final class AuthViewModel: ObservableObject {
     }
 }
 
-struct ErrorResponse: Codable {
-    let message: String
+extension AuthViewModel {
+    @MainActor
+    private func handleError(_ error: Error) {
+        if let networkError = error as? NetworkError {
+            switch networkError {
+            case .serverMessage(let message):
+                self.errorMessage = message
+            default:
+                self.errorMessage = "An unexpected network error occurred."
+            }
+        } else {
+            self.errorMessage = error.localizedDescription
+        }
+    }
 }
