@@ -9,6 +9,7 @@ dotenv.config()
 
 export const buyTicket = async (req, res) => {
   const userId = req.userData.id
+ 
   const { cardName, price, duration } = req.body
 
   try {

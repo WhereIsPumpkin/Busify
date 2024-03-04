@@ -14,4 +14,11 @@ enum BaseURL: String {
     static var production: BaseURL {
         return .local
     }
+    
+    var url: URL {
+        guard let url = URL(string: self.rawValue) else {
+            fatalError("Invalid base URL: \(self.rawValue)")
+        }
+        return url
+    }
 }

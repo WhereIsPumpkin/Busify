@@ -59,7 +59,6 @@ final class AuthViewModel: ObservableObject {
             try request.setJSONBody(emailTokenBody)
             _ = try await NetSwiftly.shared.performRequest(request: request, responseType: Empty.self)
             await clearUserData()
-            NetSwiftly.shared.debugEnabled = true
             return true
         } catch {
             await handleError(error)
