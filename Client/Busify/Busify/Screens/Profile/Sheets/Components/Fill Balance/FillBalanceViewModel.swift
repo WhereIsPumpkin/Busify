@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import NetSwift
+import NetSwiftly
 
 final class FillBalanceViewModel: ObservableObject {
     @Published var amount = ""
@@ -48,16 +48,18 @@ final class FillBalanceViewModel: ObservableObject {
     }
     
     func fillBalance() async {
-        guard let url = URL(string: "\(BaseURL.production.rawValue)/api/balance/fill") else { return }
+        var request = URLRequestBuilder(baseURL: BaseURL.production.url).post("/api/balance/fill")
         guard let token = UserDefaults.standard.string(forKey: "userToken") else { return }
+        request.setBearerToken(token)
         
-        let headers: [String: String] = ["Authorization": "Bearer \(token)", "Content-Type": "application/json"]
         let currencysignRemovedAmount = amount.dropLast()
         guard let convertAmountToInt = Int(currencysignRemovedAmount) else { return }
+        
         let requestBody = FillBalanceRequestBody(amountToAdd: convertAmountToInt)
         
         do {
-            let _ = try await NetworkManager.shared.postDataWithHeaders(to: url, body: requestBody, headers: headers)
+            try request.setJSONBody(requestBody)
+            let _ = try await NetSwiftly.shared.performRequest(request: request, responseType: Empty.self)
             await UserSessionManager.shared.fetchUserInfo()
         } catch {
             print("Unexpected error: \(error.localizedDescription)")

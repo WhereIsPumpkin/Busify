@@ -6,16 +6,14 @@
 //
 
 import Foundation
-import Combine
-import NetSwift
+import NetSwiftly
 
 final class HomeViewModel: ObservableObject {
     @Published var passengerStatistic: TransactionsResponse?
     @Published var error: String?
     @Published var showingErrorAlert = false
     @Published var bookmarkedBusStops: [Location] = []
-    
-    private var cancellables = Set<AnyCancellable>()
+    let baseURL = BaseURL.production.url
     
     init() {
         Task {
@@ -41,18 +39,16 @@ final class HomeViewModel: ObservableObject {
     
     private func fetchPassengersData() async {
         do {
-            guard let url = URL(string: "https://ttc.com.ge/api/passengers") else {
+            guard let url = URL(string: "https://ttc.com.ge/api") else {
                 throw URLError(.badURL)
             }
-            let passengerCount = try await NetworkManager.shared.fetchDecodableData(from: url, responseType: TransactionsResponse.self)
+            let builder = URLRequestBuilder(baseURL: url).get("/passengers")
+            let passengerCount = try await NetSwiftly.shared.performRequest(request: builder, responseType: TransactionsResponse.self)
             DispatchQueue.main.async {
                 self.passengerStatistic = passengerCount
             }
-        } catch let fetchError {
-            updateError(error as! Error)
-            DispatchQueue.main.async {
-                self.error = fetchError.localizedDescription
-            }
+        } catch {
+            await handleError(error)
         }
     }
     
@@ -79,32 +75,38 @@ final class HomeViewModel: ObservableObject {
     }
     
     func buyTicket(card: TransitCard) async -> Void {
-        guard let url = URL(string: "\(BaseURL.production.rawValue)/api/ticket/buy") else { return }
-        guard let token = UserDefaults.standard.string(forKey: "userToken") else { return }
         
-        let headers: [String: String] = ["Authorization": "Bearer \(token)", "Content-Type": "application/json"]
+        var builder = URLRequestBuilder(baseURL: baseURL).post("/api/ticket/buy")
+        guard let token = UserDefaults.standard.string(forKey: "userToken") else { return }
         
         let body = BuyTicketRequest(cardName: card.cardName, price: card.price, duration: card.duration)
         
         do {
-            let _ = try await NetworkManager.shared.postDataWithHeaders(to: url, body: body, headers: headers)
+            builder.setBearerToken(token)
+            try builder.setJSONBody(body)
+            let _ = try await NetSwiftly.shared.performRequest(request: builder, responseType: Empty.self)
             let _ = await UserSessionManager.shared.fetchUserInfo()
         } catch {
-            updateError(error)
+            await handleError(error)
         }
         
     }
-    
-    func updateError(_ error: Error) {
-        DispatchQueue.main.async {
-            if let networkError = error as? NetSwift.NetworkError,
-               case let .backendError(backendError) = networkError {
-                self.error = backendError.message
-            } else {
-                self.error = error.localizedDescription
+}
+
+extension HomeViewModel {
+    @MainActor
+    private func handleError(_ error: Error) {
+        if let networkError = error as? NetworkError {
+            switch networkError {
+            case .serverMessage(let message):
+                self.error = message
+            default:
+                self.error = "An unexpected network error occurred."
             }
-            self.showingErrorAlert = true
+        } else {
+            self.error = error.localizedDescription
         }
+        self.showingErrorAlert = true
     }
 }
 

@@ -1,6 +1,6 @@
 //
 //  verificationView.swift
-//  iNet
+//  Busify
 //
 //  Created by Saba Gogrichiani on 17.01.24.
 //
@@ -61,7 +61,6 @@ struct VerificationScreen: View {
             let token = otpValue.joined()
             Task {
                 let isVerified = await signUpViewModel.verifyUser(with: token)
-                print(isVerified)
                 if isVerified {
                     NavigationManager.shared.navigateToVerified()
                 }

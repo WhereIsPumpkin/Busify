@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RegistrationDetails: Codable {
+struct RegistrationDetails: Encodable {
     var name: String
     var lastName: String
     var email: String

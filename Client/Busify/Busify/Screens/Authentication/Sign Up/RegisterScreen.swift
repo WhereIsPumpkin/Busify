@@ -1,6 +1,6 @@
 //
 //  RegisterView.swift
-//  iNet
+//  Busify
 //
 //  Created by Saba Gogrichiani on 16.01.24.
 //

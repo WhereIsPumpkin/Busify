@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import NetSwift
 
 protocol LiveMapViewModelDelegate: AnyObject {
     func locationsFetched(_ locations: Locations)

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import NetSwift
 
 final class BusStopSearchViewModel {
     // MARK: - Properties

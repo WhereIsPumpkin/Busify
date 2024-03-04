@@ -1,6 +1,6 @@
 //
 //  MainScreenViewController.swift
-//  iNet
+//  Busify
 //
 //  Created by Saba Gogrichiani on 18.01.24.
 //

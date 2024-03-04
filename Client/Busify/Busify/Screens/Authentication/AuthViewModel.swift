@@ -1,5 +1,12 @@
+//
+//  AuthViewModel.swift
+//  Busify
+//
+//  Created by Saba Gogrichiani on 15.01.24.
+//
+
 import Foundation
-import NetSwift
+import NetSwiftly
 
 final class AuthViewModel: ObservableObject {
     // MARK: - Properties
@@ -7,80 +14,54 @@ final class AuthViewModel: ObservableObject {
     @Published var lastName = ""
     @Published var email = ""
     @Published var password = ""
-    @Published var errorMessage: String?
+    @Published var errorMessage: String? {
+        didSet {
+            clearErrorMessage()
+        }
+    }
+    
+    private let baseURL = BaseURL.production.rawValue
+    private let builder: URLRequestBuilder
+    
+    init() {
+        guard let baseURL = URL(string: self.baseURL) else {
+            fatalError("Invalid base URL")
+        }
+        self.builder = URLRequestBuilder(baseURL: baseURL)
+    }
     
     // MARK: - Computed Properties
     var isNextButtonDisabled: Bool {
-        name.isEmpty || lastName.isEmpty || !isValidEmail(email) || password.count < 6
-    }
-    
-    // MARK: - Validation
-     func isValidEmail(_ email: String) -> Bool {
-        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
-        return emailPredicate.evaluate(with: email)
+        name.isEmpty || lastName.isEmpty || !email.isValidEmail || !password.isValidPassword
     }
     
     // MARK: - User Registration
     func registerUser() async -> Bool {
-        let url = URL(string: "\(BaseURL.production.rawValue)/api/user/register")!
-        let user = RegistrationDetails(name: name, lastName: lastName, email: email, password: password)
+        let body = RegistrationDetails(name: name, lastName: lastName, email: email, password: password)
+        var request = builder.post("/api/user/register")
         
         do {
-            let (data, response) = try await postRegistrationRequest(to: url, with: user)
-            return handleResponse(response, data: data)
+            try request.setJSONBody(body)
+            _ = try await NetSwiftly.shared.performRequest(request: request, responseType: Empty.self)
+            return true
         } catch {
-            handleErrorMessage("Failed to register user: \(error.localizedDescription)")
+            await handleError(error)
             return false
-        }
-    }
-    
-    private func postRegistrationRequest(to url: URL, with user: RegistrationDetails) async throws -> (Data, URLResponse) {
-        return try await NetworkManager.shared.postData(to: url, body: user)
-    }
-    
-    private func handleResponse(_ response: URLResponse, data: Data) -> Bool {
-        if let httpResponse = response as? HTTPURLResponse {
-            if httpResponse.statusCode == 201 {
-                return true
-            } else {
-                if let responseData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                   let message = responseData["message"] as? String {
-                    handleErrorMessage(message)
-                } else {
-                    handleErrorMessage("An error occurred.")
-                }
-                return false
-            }
-        }
-        return false
-    }
-    
-    private func handleErrorMessage(_ message: String) {
-        DispatchQueue.main.async {
-            self.errorMessage = message
         }
     }
     
     // MARK: - User Verification
     func verifyUser(with token: String) async -> Bool {
-        let url = URL(string: "\(BaseURL.production.rawValue)/api/user/verify")!
-        let emailToken = EmailToken(email: email, token: token)
-        print(emailToken)
-        defer {
-            DispatchQueue.main.async {
-                self.clearUserData()
-            }
-        }
+        let emailTokenBody = EmailToken(email: email, token: token)
+        var request = builder.post("/api/user/verify")
         
         do {
-            let (_, response) = try await NetworkManager.shared.postData(to: url, body: emailToken)
-            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                return true
-            } else {
-                return false
-            }
+            try request.setJSONBody(emailTokenBody)
+            _ = try await NetSwiftly.shared.performRequest(request: request, responseType: Empty.self)
+            await clearUserData()
+            return true
         } catch {
+            await handleError(error)
             return false
         }
     }
@@ -93,78 +74,70 @@ final class AuthViewModel: ObservableObject {
             }
             return false
         }
-        
         let loginDetails = LoginDetails(email: email, password: password)
+        var request = builder.post("/api/user/login")
+        
         
         do {
-            let (data, response) = try await sendLoginRequest(with: loginDetails)
-            let isSuccess = try handleResponse(data: data, response: response)
-            if isSuccess {
-                DispatchQueue.main.async {
-                    self.clearLoginCredentials()
-                    self.errorMessage = nil
-                }
-            }
-            return isSuccess
+            try request.setJSONBody(loginDetails)
+            let loginResponse = try await NetSwiftly.shared.performRequest(request: request, responseType: LoginResponse.self)
+            
+            UserDefaults.standard.set(loginResponse.token, forKey: "userToken")
+            UserSessionManager.shared.currentUser = loginResponse.user
+            await clearUserData()
+            
+            return true
         } catch {
-            DispatchQueue.main.async {
-                self.errorMessage = error.localizedDescription
+            await handleError(error)
+            return false
+        }
+    }
+}
+
+extension AuthViewModel {
+    @MainActor
+    private func handleError(_ error: Error) {
+        if let networkError = error as? NetworkError {
+            switch networkError {
+            case .serverMessage(let message):
+                self.errorMessage = message
+            default:
+                self.errorMessage = "An unexpected network error occurred."
             }
-            return false
-        }
-    }
-    
-    private func sendLoginRequest(with loginDetails: LoginDetails) async throws -> (Data, URLResponse) {
-        let url = URL(string: "\(BaseURL.production.rawValue)/api/user/login")!
-        return try await NetworkManager.shared.postData(to: url, body: loginDetails)
-    }
-    
-    private func handleResponse(data: Data, response: URLResponse) throws -> Bool {
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw URLError(.badServerResponse)
-        }
-        
-        switch httpResponse.statusCode {
-        case 200...299:
-            return try handleSuccessResponse(data: data)
-        case 400...499:
-            return handleErrorResponse(data: data)
-        default:
-            DispatchQueue.main.async { self.errorMessage = "Server error" }
-            return false
-        }
-    }
-    
-    private func handleSuccessResponse(data: Data) throws -> Bool {
-        let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
-        UserDefaults.standard.set(loginResponse.token, forKey: "userToken")
-        UserSessionManager.shared.currentUser = loginResponse.user
-        DispatchQueue.main.async { self.errorMessage = nil }
-        return true
-    }
-    
-    private func handleErrorResponse(data: Data) -> Bool {
-        if let errorMessage = String(data: data, encoding: .utf8) {
-            DispatchQueue.main.async { self.errorMessage = errorMessage }
         } else {
-            DispatchQueue.main.async { self.errorMessage = "Error occurred" }
+            self.errorMessage = error.localizedDescription
         }
-        return false
     }
-    
-    private func clearLoginCredentials() {
-        email = ""
-        password = ""
-    }
-    
+}
+
+// Helper funcs
+extension AuthViewModel {
+    @MainActor
     private func clearUserData() {
         name = ""
         lastName = ""
         email = ""
         password = ""
     }
-}
-
-struct ErrorResponse: Codable {
-    let message: String
+    
+    private func clearErrorMessage() {
+        if errorMessage != nil {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                self.errorMessage = nil
+            }
+        }
+    }
+    
+    @MainActor
+    private func performNetworkRequest<T: Codable, U: Codable>(path: String, body: T, responseType: U.Type) async -> Result<U, Error> {
+        var request = builder.post(path)
+        do {
+            try request.setJSONBody(body)
+            let response = try await NetSwiftly.shared.performRequest(request: request, responseType: responseType)
+            return .success(response)
+        } catch {
+            return .failure(error)
+        }
+    }
+    
 }
