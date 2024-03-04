@@ -6,18 +6,17 @@
 //
 
 import Foundation
-import NetSwift
+import NetSwiftly
 
 final class ProfileViewModel {
     
     func deleteCard() async -> Void {
-        guard let url = URL(string: "\(BaseURL.production.rawValue)/api/card/delete") else { return }
         guard let token = UserDefaults.standard.string(forKey: "userToken") else { return }
-        
-        let headers: [String: String] = ["Authorization": "Bearer \(token)", "Content-Type": "application/json"]
+        var request = URLRequestBuilder(baseURL: BaseURL.production.url).delete("/api/card/delete")
+        request.setBearerToken(token)
         
         do {
-            let (_, _) = try await NetworkManager.shared.deleteDataWithHeaders(to: url, headers: headers)
+            _ = try await NetSwiftly.shared.performRequest(request: request, responseType: Empty.self)
             await UserSessionManager.shared.fetchUserInfo()
         } catch {
             print("Error: \(error)")
