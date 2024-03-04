@@ -44,9 +44,6 @@ final class AuthViewModel: ObservableObject {
             try request.setJSONBody(body)
             _ = try await NetSwiftly.shared.performRequest(request: request, responseType: Empty.self)
             return true
-        } catch let error as NetworkError {
-            await handleError(error)
-            return false
         } catch {
             await handleError(error)
             return false
@@ -64,9 +61,6 @@ final class AuthViewModel: ObservableObject {
             await clearUserData()
             NetSwiftly.shared.debugEnabled = true
             return true
-        } catch let error as NetworkError {
-            await handleError(error)
-            return false
         } catch {
             await handleError(error)
             return false
@@ -135,4 +129,17 @@ extension AuthViewModel {
             }
         }
     }
+    
+    @MainActor
+    private func performNetworkRequest<T: Codable, U: Codable>(path: String, body: T, responseType: U.Type) async -> Result<U, Error> {
+        var request = builder.post(path)
+        do {
+            try request.setJSONBody(body)
+            let response = try await NetSwiftly.shared.performRequest(request: request, responseType: responseType)
+            return .success(response)
+        } catch {
+            return .failure(error)
+        }
+    }
+    
 }
